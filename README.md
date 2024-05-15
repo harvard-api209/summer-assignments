@@ -38,8 +38,10 @@ structure:
 ### /assignments
 
 This folder contains all the assignments you will need to complete
-during the summer. Each assignment is provided as a RMarkdown (`.rmd`)
+during the summer. Each assignment is provided as an RMarkdown (`.Rmd`)
 file. You will be working on these files directly in Posit Cloud.
+Navigate to the `assignments` folder and open the `.Rmd` files to begin
+working on them.
 
 <figure>
 <img src="figs/folder_structure.png" alt="Folder Structure" />
