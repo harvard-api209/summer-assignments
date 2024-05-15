@@ -2,107 +2,110 @@
 title: "R Summer Assignment -- RMarkdown 1"
 output: html_document
 date: "2024-05-06"
+editor:
+  mode: visual
 editor_options: 
   markdown: 
-    wrap: 72
+    wrap: 80
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**Summer 2023, Pre-Assignment**
+![Kennedy School
+Logo](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-**Notebook 1: Programming Fundamentals**
+## Summer 2024, Pre-Assignment
 
-1.  **Creation**: First, you must make a personal copy of this notebook.
-    To do that, please go to **File → Save a Copy in Drive.**
+Welcome! If you're here, it means you've already created your GitHub account.
+This will be essential for managing your projects and collaborating with others.
+For now, we will be using Posit Cloud to complete our summer assignments. You
+can also download the entire project to use with RStudio offline, but for the
+beginning, we'll focus on the cloud environment.
 
-This set of exercises will help get you up and running with doing basic
-data analysis in R. The goal of this assignment is **not** that you will
-have perfected R by the time you finish them, but that you have a solid
-foundation of key concepts when going into Math Camp. During Math Camp,
-we will go over much of this material in greater depth. Spending a
-significant amount of time on this now in a way that suits your own
-schedule will help make your future learning easier.
+This set of exercises will help get you up and running with doing basic data
+analysis in R. The goal of this assignment is **not** that you will have
+perfected R by the time you finish them, but that you have a solid foundation of
+key concepts when going into Math Camp. During Math Camp, we will go over much
+of this material in greater depth. Spending a significant amount of time on this
+now in a way that suits your own schedule will help make your future learning
+easier.
 
-2.  **Preparation**: Before completing each notebook on this summer
-    assignment, we will ask you to please watch a brief primer from the
-    creators of RStudio, an application for interacting with R that we
-    will use later in the summer. We recommend watching this video
-    first, taking notes in the code box below, and coming back later to
-    complete the rest of the exercises.
+RMarkdown is an extension of Markdown used to create dynamic documents that
+combine code, output, and text. It allows you to write R code directly in the
+document, which can then be executed to display results within the same
+document. This integration of code and narrative makes RMarkdown an excellent
+tool for creating reproducible reports and interactive documents.
 
--   **WATCH**: [Programming
-    Basics](https://rstudio.cloud/learn/primers/1.2)
+**RMarkdown Notebook 1: Programming Fundamentals**
 
-3.  **Submission**: Complete your assignment in Google Colab
-    environment. Please submit only the links to each Colab Notebook to
-    the Assignment Page on Canvas which we will announce when created.
+1.  **Preparation**: Before completing each notebook on this summer assignment,
+    we will ask you to please watch a brief primer from the creators of RStudio,
+    an application for interacting with R that we will use later in the summer.
+    We recommend watching this video first, taking notes in the code box below,
+    and coming back later to complete the rest of the exercises.
 
-## General Colab Tips
+-   **WATCH**: [Programming Basics](https://rstudio.cloud/learn/primers/1.2)
 
-You can enter R code in the boxes below. To run code, you can click on
-the arrow that appears on the left side when your cursor is in the box,
-or press CMD + Enter (or Return) on a Mac or CTRL + Enter on a PC.
+2.  **Submission**: Complete your assignment in the Posit Cloud environment.
+    Please submit only the file you are working on (i.e., your RMarkdown) to the
+    Assignment Page on Canvas. We will announce when the Canvas site is created.
 
-We strongly encourage you to practice writing code as you learn -- do
-not just read this document and only complete the exercises. Please
-write and enter your own code while you read. Try new things, type code
-in and see what happens. Code as you go. Coding is a skill, much like
-learning to play an instrument. The most important part of learning to
-code is to **practice**!
+## General Tips
 
-Remember to go to File → Save a Copy in Drive before making any changes
-to this document. This will create a personal copy of the notebook for
-you to work out of.
+You can enter R code in the code chunks below. To run code, you can click the
+play button that appears on the left side of the code chunk when your cursor is
+in the box, or press CMD + Enter (or Return) on a Mac or CTRL + Enter on a PC.
 
-**Please save often.** Google Colab will not autosave for you. You can
-do this with File → Save or with CMD + S (Mac) / Ctrl + S (PC).
+We strongly encourage you to practice writing code as you learn -- do not just
+read this document and only complete the exercises. Please write and enter your
+own code while you read. Try new things, type code in, and see what happens.
+Code as you go. Coding is a skill, much like learning to play an instrument. The
+most important part of learning to code is to **practice**!
 
-**Colab may warn you** that the notebook was not authored by Google.
-That's true! These notebooks were created by the API 209 teaching team.
-If you see that warning, please press "Run Anyway" to continue.
+In Posit Cloud (and RStudio), you can toggle between Visual and Source modes for
+your editor. Visual mode allows for a more WYSIWYG (What You See Is What You
+Get) experience, making it easier to format text and visualize results. Source
+mode, on the other hand, shows the raw code and markdown, providing greater
+control over the document's structure and content. Switching between these modes
+can help you understand both the presentation and underlying code of your
+notebook.
 
-If you get stuck in any aspect of using these Colab notebooks, please
-consult [the Frequently Asked Questions
-document](https://docs.google.com/document/d/1e7f5LcpDiwOoGfRtA9xeg2G0wuf5ssSpJ2_9CLZXfW4/edit)
-or use Slack to ask the teaching team.
+**Please save often.** Remember to save your work frequently. In Posit Cloud,you
+can save your notebook by going to File → Save, or with CMD + S (Mac) / Ctrl + S
+(PC).
+
+If you get stuck in any aspect of using these notebooks, please use Slack to ask
+the teaching team.
 
 ```{r}
-# AFTER MAKING A PERSONAL COPY OF THIS DOCUMENT, CLICK IN THIS BOX
-# Use this space to write code to take notes on RStudio video.
+# Use this space to write code to take notes on the RStudio video.
 sqrt(9)
-
 ```
 
-Once you have watched the video above, please continue with the
-exercises below. These exercises give you additional opportunities to
-practice the most important concepts from the RStudio Tutorials for our
-HKS courses.
+Once you have watched the video above, please continue with the exercises below.
+These exercises give you additional opportunities to practice the most important
+concepts from the RStudio Tutorials for our HKS courses.
 
 # Data
 
-Throughout this entire course, you will use code to do things with
-**data**. R can deal with many types of data, like **numbers** (3, 0,
-2021), letters and words called **characters** ("Data", "South Amboy",
-"Dom"), and many many others. For example, in the box below this
-message, type 3+2 and press the arrow on the left side (or CMD + Enter
-on a Mac / Ctrl + Enter on PC):
+Throughout this entire course, you will use code to do things with **data**. R
+can deal with many types of data, like **numbers** (3, 0, 2021), letters and
+words called **characters** ("Data", "South Amboy", "Dom"), and many many
+others. For example, in the box below this message, type 3+2 and press the arrow
+on the left side (or CMD + Enter on a Mac / Ctrl + Enter on PC):
 
 ```{r}
 # Try adding below
 3+2
 ```
 
+That was code! R knows that 3 is a number, and it simply reported it back to
+you. The number in brackets like this `[5]` simply means that one value was
+reported back to you -- R keeps track of these sorts of things for you.
 
-That was code! R knows that 3 is a number, and it simply reported it
-back to you. The number in brackets like this `[5]` simply means that
-one value was reported back to you -- R keeps track of these sorts of
-things for you.
-
-R is also very good at math. Try expanding on the commands written out
-below:
+R is also very good at math. Try expanding on the commands written out below:
 
 ```{r}
 3 + 2
@@ -115,26 +118,24 @@ below:
 # Try your own here
 ```
 
-
 # Try your own here
 
-You can also type letters and words as long as they are between two
-quotes `"like this"`. In the console, type your name and again run the
-code:
+You can also type letters and words as long as they are between two quotes
+`"like this"`. In the console, type your name and again run the code:
 
 # Type your name below
 
-All of these numbers belong to a certain data type in R called `numeric`
-while your name was a `character` (you may have heard terms like class,
-type, etc. in reference to certain kinds of data or programming objects,
-which we will talk more about later).
+All of these numbers belong to a certain data type in R called `numeric` while
+your name was a `character` (you may have heard terms like class, type, etc. in
+reference to certain kinds of data or programming objects, which we will talk
+more about later).
 
 Another important type of data in R is **Boolean** values (often called
-`logical`), which are `TRUE` or `FALSE`. We often write expressions that
-will evaluate to either `TRUE` or `FALSE`. For example, `==` (two equal
-signs) will tell you whether or not the value on the left is equal to
-the value on the right. If they are equal, the operator returns `TRUE`.
-If they are not equal, the operator returns `FALSE`.
+`logical`), which are `TRUE` or `FALSE`. We often write expressions that will
+evaluate to either `TRUE` or `FALSE`. For example, `==` (two equal signs) will
+tell you whether or not the value on the left is equal to the value on the
+right. If they are equal, the operator returns `TRUE`. If they are not equal,
+the operator returns `FALSE`.
 
 # Examples
 
@@ -148,8 +149,8 @@ If they are not equal, the operator returns `FALSE`.
 
 Now you try it. Is 4 equal to (2 + 2)?
 
-`==` works with characters too -- below, try to see if the character
-"HKS" equal to "HBS"
+`==` works with characters too -- below, try to see if the character "HKS" equal
+to "HBS"
 
 ```{r}
 # == works on characters too
@@ -158,79 +159,80 @@ Now you try it. Is 4 equal to (2 + 2)?
 # You try it here
 ```
 
-Many other operators in R will evaluate to a Boolean value of `TRUE` or
-`FALSE`. For example, `!=` allows you to check if something is NOT equal
-to something else. If the values are not equal, R will return `TRUE`. If
-they are equal, it will return `FALSE`. Try asking if 4 is not equal to
-3.
+Many other operators in R will evaluate to a Boolean value of `TRUE` or `FALSE`.
+For example, `!=` allows you to check if something is NOT equal to something
+else. If the values are not equal, R will return `TRUE`. If they are equal, it
+will return `FALSE`. Try asking if 4 is not equal to 3.
 
 ```{r}
 # You try it here
 ```
-
 
 ## Exercises #1
 
 Below, complete the following exercises using the material above.
 
 1.  Try evaluating a few mathematical expressions in the box below.
+
 ```{r}
 
 ```
-2.  Check that a character for your name is not equal to the character
-    for someone else's name.
+
+2.  Check that a character for your name is not equal to the character for
+    someone else's name.
+
 ```{r}
 
 ```
-3.  Calculate 4017 + 2098. Then, have R confirm that 4017 + 2098 is not
-    equal to 4016 + 2098.
+
+3.  Calculate 4017 + 2098. Then, have R confirm that 4017 + 2098 is not equal to
+    4016 + 2098.
+
 ```{r}
 
 ```
-4.  **Comments**: you may have noticed the stylish green text in the
-    boxes below. These are called "comments," and they are messages that
-    we've left for you. Writing your own comments is a very good habit
-    to form, as it makes your intentions clear to others, and it will
-    help remind you what your code does when you return to it in the
-    future. In R, we use comments by starting a line of code with a
-    hashtag: `#`. R will not evaluate these lines as code, so they are
-    text that can be inserted into your code.
+
+4.  **Comments**: you may have noticed the stylish green text in the boxes
+    below. These are called "comments," and they are messages that we've left
+    for you. Writing your own comments is a very good habit to form, as it makes
+    your intentions clear to others, and it will help remind you what your code
+    does when you return to it in the future. In R, we use comments by starting
+    a line of code with a hashtag: `#`. R will not evaluate these lines as code,
+    so they are text that can be inserted into your code.
 
 Go back to #1-3 and add comments above your code.
 
 ### Objects
 
-Sometimes, you want to store data for later. An **object** in R will
-store data for you. For example, imagine you want to keep the value of a
-complicated calculation like the one below:
+Sometimes, you want to store data for later. An **object** in R will store data
+for you. For example, imagine you want to keep the value of a complicated
+calculation like the one below:
 
 ```{r}
 2018 * (6 - 2.5)
 ```
 
 Instead of trying to remember that number, you can store that data in an
-**object**. Then, the data will be there whenever you want it. In R, we
-make objects with the `<-` operator. Think of `<-` like an arrow, it
-stores the **data on the right** in the **name on the left**. In
-general, you can give objects any name you want, as long as there are
-**no spaces** in the name and it does not start with a number. For
-example:
+**object**. Then, the data will be there whenever you want it. In R, we make
+objects with the `<-` operator. Think of `<-` like an arrow, it stores the
+**data on the right** in the **name on the left**. In general, you can give
+objects any name you want, as long as there are **no spaces** in the name and it
+does not start with a number. For example:
 
 ```{r}
 result <- 2018 * (6 - 2.5)
 ```
 
-Wait, nothing happened when you ran that code? This is because your
-answer is now stored in an object called `result.` Type `result` in the
-console and your answer will come back!
+Wait, nothing happened when you ran that code? This is because your answer is
+now stored in an object called `result.` Type `result` in the console and your
+answer will come back!
 
 ```{r}
 result
 ```
 
-
-Objects are very powerful tools in R, and can hold any type of data we
-have discussed so far. Try making your own below:
+Objects are very powerful tools in R, and can hold any type of data we have
+discussed so far. Try making your own below:
 
 ```{r}
 # Creating objects
@@ -244,8 +246,8 @@ check_year <- 2022 == (2020 + 2)
 check_year
 ```
 
-In general, you can perform operations on the names of objects the same
-way you can perform operations on the value the object contains.
+In general, you can perform operations on the names of objects the same way you
+can perform operations on the value the object contains.
 
 ```{r}
 # is name equal to Callan?
@@ -261,49 +263,52 @@ year + 2
 check_year == TRUE
 ```
 
-
 ## Exercises #2
 
 1.  Create an object named `year` with the value 2021.
+
 ```{r}
 
 ```
 
-2.  Create an object named `answer` with the value 15. Then, divide
-    `answer` by 3.
+2.  Create an object named `answer` with the value 15. Then, divide `answer` by
+    3.  
+
 ```{r}
 
 ```
 
 3.  Use `==` to see whether `answer` is equal to 12.
+
 ```{r}
 
 ```
 
 4.  Assign your name to an object called `name`.
+
 ```{r}
 # prompt: Assign your name to an object called name
 ```
 
-5.  Try adding 1 to the object containing your name. What happens? Why
-    might this be?
+5.  Try adding 1 to the object containing your name. What happens? Why might
+    this be?
+
 ```{r}
 
 ```
 
-
 # Functions
 
-Some operations are a little more complex than simple math like
-addition. A **function** is a pre-written piece of code that somebody
-else wrote for you to perform a specific task. For example, there will
-be functions for things like making plots. We will use many functions in
-this course. We will even learn how to write our own functions!
+Some operations are a little more complex than simple math like addition. A
+**function** is a pre-written piece of code that somebody else wrote for you to
+perform a specific task. For example, there will be functions for things like
+making plots. We will use many functions in this course. We will even learn how
+to write our own functions!
 
-For example, how would you find the square root of a number? Well,
-thankfully there is a function called `sqrt()`. To run it, you should
-type `sqrt()` into the console and put the number that you want to find
-the square root of between the parentheses:
+For example, how would you find the square root of a number? Well, thankfully
+there is a function called `sqrt()`. To run it, you should type `sqrt()` into
+the console and put the number that you want to find the square root of between
+the parentheses:
 
 ```{r}
 sqrt(9)
@@ -314,52 +319,48 @@ sqrt(9)
 This is how all functions will work:
 
 -   Type the name of the function. Here, it is `sqrt()`.
--   Include the value you want to evaluate inside the parentheses
-    (`sqrt(9)`). The value you give to the function (`9`) is called an
-    **argument**.
+-   Include the value you want to evaluate inside the parentheses (`sqrt(9)`).
+    The value you give to the function (`9`) is called an **argument**.
 
-Functions can take **objects** as their argument as well. Remember our
-object `number`? Check it out!
+Functions can take **objects** as their argument as well. Remember our object
+`number`? Check it out!
 
 ```{r}
 number <- 16
 sqrt(number)
 ```
 
-You can store the output of a function into an object as well. To see
-the result, just type in the name of your object. For example:
+You can store the output of a function into an object as well. To see the
+result, just type in the name of your object. For example:
 
 ```{r}
 result <- sqrt(9)
 result
 ```
 
-The `seq()` function will make a sequence of numbers for you. `seq()`
-takes two arguments -- the number to start the sequence, and the number
-to finish it. For example:
+The `seq()` function will make a sequence of numbers for you. `seq()` takes two
+arguments -- the number to start the sequence, and the number to finish it. For
+example:
 
 seq(1, 10)
 
-To learn how a function works, you can type `?` followed by the name of
-the function (e.g. `?seq`) in the code chunk below to open the
-**documentation**.
+To learn how a function works, you can type `?` followed by the name of the
+function (e.g. `?seq`) in the code chunk below to open the **documentation**.
 
 -   **Usage** shows you how to use the function.
 -   **Arguments** tells you what arguments you pass the function.
 -   **Details** tells you a little bit about the function.
 -   **Value** will tell you what the function returns, if anything.
--   **Examples** are very useful, they show you examples of working
-    code.
+-   **Examples** are very useful, they show you examples of working code.
 
-You may find difficult to parse right now, but with more practice this
-wil become second nature!
+You may find difficult to parse right now, but with more practice this wil
+become second nature!
 
 ```{r}
 # Open the documentation "help pages" for the seq() function
 
 ?seq
 ```
-
 
 The `paste()` function is also useful, as it combines two strings:
 
@@ -369,19 +370,18 @@ paste("hello", "world")
 # Try it below
 ```
 
-One particularly important function is `ifelse()`. This function is used
-to return a different value depending on whether a statement is `TRUE`
-or `FALSE`. For example, imagine wanting to change string to represent
-currency depending on the country you are working with.
+One particularly important function is `ifelse()`. This function is used to
+return a different value depending on whether a statement is `TRUE` or `FALSE`.
+For example, imagine wanting to change string to represent currency depending on
+the country you are working with.
 
 The structure of the function is:
 
 -   `ifelse(condition, value if TRUE, value if FALSE)`
 
-A condition can be anything that evaluates to `TRUE` or `FALSE`.
-Operators like `==`, `!=`, `>` (greater than), `<` (less than), `>=`
-(greater than or equal to), are very helpful for writing these
-conditions.
+A condition can be anything that evaluates to `TRUE` or `FALSE`. Operators like
+`==`, `!=`, `>` (greater than), `<` (less than), `>=` (greater than or equal
+to), are very helpful for writing these conditions.
 
 ```{r}
 # Run this code, then try changing USA to India in the country object, rerun the code, and see what happens.
@@ -394,11 +394,12 @@ salary <- 30000
 ifelse(salary > 35000, "Higher than 35,000", "Lower than or equal to 35,000")
 ```
 
-You can also create your own functions. To do so, you need to define a function 
-just like an object. The syntax for this is a little complicated, but we will 
+You can also create your own functions. To do so, you need to define a function
+just like an object. The syntax for this is a little complicated, but we will
 practice it several times throughout the semester.
 
 Study the code below, and then use the function:
+
 ```{r}
 # Creates a function that adds 10 to a number
   # add_10 is the name off the function
@@ -414,8 +415,8 @@ add_10(4)
 add_10(2)
 ```
 
-Functions can draw on all of the lessons we have learned so far. Here is
-one that will be useful for you in a few years:
+Functions can draw on all of the lessons we have learned so far. Here is one
+that will be useful for you in a few years:
 
 ```{r}
 graduate_hks <- function(name, year) {
@@ -429,29 +430,29 @@ graduate_hks("Callan", 2024)
 
 ## Exercises #3
 
-1.  Create an object called `number` with the value 1444. What is the
-    square root of `number`?
+1.  Create an object called `number` with the value 1444. What is the square
+    root of `number`?
+
 ```{r}
 
 ```
 
-2.  Now, go in the console and type `?abs` to open the documentation for
-    the `abs()` function. Come up with an example that shows what it
-    does.
+2.  Now, go in the console and type `?abs` to open the documentation for the
+    `abs()` function. Come up with an example that shows what it does.
+
 ```{r}
 
 ```
 
-3.  Create a function called `is_even()` that returns "Even" if the
-    number is even and "Odd" if the number is odd. **Hint**: even
-    numbers have a remainder of 0 when divided by 2, while odd numbers
-    do not have a remainder of 0 when divided by 2. To find the
-    remainder, use the `%%` operator (this is called "modulo"). Call
-    your argument `x` and don't forget to add comments.
+3.  Create a function called `is_even()` that returns "Even" if the number is
+    even and "Odd" if the number is odd. **Hint**: even numbers have a remainder
+    of 0 when divided by 2, while odd numbers do not have a remainder of 0 when
+    divided by 2. To find the remainder, use the `%%` operator (this is called
+    "modulo"). Call your argument `x` and don't forget to add comments.
+
 ```{r}
 
 ```
-
 
 ## Example: remainder of 8 divided by 2
 
@@ -459,24 +460,21 @@ graduate_hks("Callan", 2024)
 8 %% 2
 ```
 
-
 ### Objects with Multiple Values
 
-Objects can also store more than one value at once. **Vectors** are one
-very common way to store data. To create a vector, we use the function
-`c()` (the "c" stands for combine, because it combines multiple values
-separated by a comma). Just like before, you can use the `<-` syntax to
-create an object.
+Objects can also store more than one value at once. **Vectors** are one very
+common way to store data. To create a vector, we use the function `c()` (the "c"
+stands for combine, because it combines multiple values separated by a comma).
+Just like before, you can use the `<-` syntax to create an object.
 
 ```{r}
 years <- c(2020, 2018, 2007)
 names <- c("Callan", "Dom", "Dan")
 ```
 
-
-Some functions take **vectors** as arguments because they are meant to
-work with multiple values. For example, the `mean()` function will find
-the average of the values in a vector:
+Some functions take **vectors** as arguments because they are meant to work with
+multiple values. For example, the `mean()` function will find the average of the
+values in a vector:
 
 ```{r}
 numbers <- c(10, 15)
@@ -484,44 +482,46 @@ numbers <- c(10, 15)
 mean(numbers)
 ```
 
+We've already learned a lot of terminology. Above, we used a **vector** called
+`numbers` as an **argument** in a **function** called `mean()`.
 
-We've already learned a lot of terminology. Above, we used a **vector**
-called `numbers` as an **argument** in a **function** called `mean()`.
-
-Some operators and functions will run on every entry of the vector
-separately. For example:
+Some operators and functions will run on every entry of the vector separately.
+For example:
 
 ```{r}
 ages <- c(27, 41, 35)
 ages + 1
 ```
 
-
 ## Exercises #4
 
-1.  Create a vector called `prices` with the values 12, 11, and 8. Find
-    the average price.
+1.  Create a vector called `prices` with the values 12, 11, and 8. Find the
+    average price.
+
 ```{r}
 
 ```
 
 2.  What happens if you run `prices + 1`? What is this doing? How about
     `prices == 8`?
+
 ```{r}
 
 ```
 
-3.  The function `sum()` will add all the values in a vector. Run `?sum`
-    to learn how it works. Find the total sum of the `prices` object.
+3.  The function `sum()` will add all the values in a vector. Run `?sum` to
+    learn how it works. Find the total sum of the `prices` object.
+
 ```{r}
 
 ```
 
-4.  Create a function called `is_sum_greater_than()` that takes two
-    arguments, `vector` and `value`. The function should calculate the
-    sum of `vector`, check if that sum is greater than `value`, and
-    return "The sum is greater than (value)" if it is, and "The sum is
-    NOT greater than (value)" if it is not.
+4.  Create a function called `is_sum_greater_than()` that takes two arguments,
+    `vector` and `value`. The function should calculate the sum of `vector`,
+    check if that sum is greater than `value`, and return "The sum is greater
+    than (value)" if it is, and "The sum is NOT greater than (value)" if it is
+    not.
+
 ```{r}
 
 ```
@@ -530,5 +530,5 @@ ages + 1
 
 Please follow the submission instructions listed
 [here](https://docs.google.com/document/d/1lt05S6JnBbGTedNLFaLL_b4rmfRTwkW74PK_t7OVuaI/edit).
-We suggest you submit notebooks as you finish them (i.e., don’t wait
-until you have completed them all to submit).
+We suggest you submit notebooks as you finish them (i.e., don’t wait until you
+have completed them all to submit).
