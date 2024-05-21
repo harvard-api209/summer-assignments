@@ -1,7 +1,8 @@
 ---
 title: "R Summer Assignment -- RMarkdown 2"
+author: "YOUR NAME"
 output: html_document
-date: "2024-05-06"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 editor:
   mode: visual
 editor_options:
@@ -24,8 +25,10 @@ The instructions are the same as the first notebook, with a new tutorial link to
 watch. Please make a copy of this notebook, watch the tutorial, complete this
 document, and submit the URL to your notebook on Canvas.
 
-1.  **Creation**: First, you must make a personal copy of this notebook. To do
-    that, please go to **File → Save a Copy in Drive.**
+1.  **Creation**: First, you do not need to make a personal copy of this
+    notebook. We encourage you to use the Posit Cloud and, if needed, download
+    the project file if you would like to use it offline from your Posit Cloud
+    home page.
 
 2.  **Preparation**: Like the first notebook, we ask you to follow this RStudio
     tutorial before starting this notebook. We strongly recommend taking notes
@@ -34,8 +37,9 @@ document, and submit the URL to your notebook on Canvas.
 -   [Working with Tibbles](https://rstudio.cloud/learn/primers/2.1)
 -   [Manipulating Data with dplyr](https://rstudio.cloud/learn/primers/2.2)
 
-3.  **Submission**: After making your own copy, complete your assignment in
-    Google Colab environment.
+3.  **Submission**: Complete your assignment in the Posit Cloud environment.
+    Please submit only the file you are working on (i.e., your RMarkdown) to the
+    Assignment Page on Canvas. Remember to add your name to line 3 of this file.
 
 ## Remember: General RMardown Tips
 
@@ -57,12 +61,6 @@ will create a personal copy of the notebook for you to work from.
 
 **Please save often.** While Posit Cloud does autosave, it's a good habit to
 manually save your work regularly to ensure you don't lose any progress.
-
-Finally, if you leave the notebook for a while, you may need to reload it and
-re-run any setup code. This will not be a problem once you're on campus and have
-R installed on your own computer, but it can be a temporary issue with
-cloud-based notebooks. If you leave the notebook for a while and come back,
-please re-run any necessary setup code.
 
 If you get stuck in any aspect of using these Posit Cloud RMarkdowns, please use
 Slack to ask the teaching team.
@@ -86,15 +84,15 @@ for our HKS courses.
 
 In RMarkdown 1, we learned about objects. Vectors are objects with multiple
 values. For example, you could have vectors that tell you the `population` and
-`year` for a particular area. Like this: 
+`year` for a particular area. Like this:
 
 ```{r}
 pop <- c(100, 347, 500)
 year <- c(2019, 2020, 2021)
 ```
 
-You can type the name of the object to see these values and
-also use functions on them just like before: 
+You can type the name of the object to see these values and also use functions
+on them just like before:
 
 ```{r}
 # Make sure to run the previous code first to create these objects
@@ -103,8 +101,8 @@ year
 mean(pop) 
 ```
 
-However, what if you want information on population **and** year 
-**in a single object**? This is what **datasets** are for.
+However, what if you want information on population **and** year **in a single
+object**? This is what **datasets** are for.
 
 # 1. Datasets
 
@@ -116,27 +114,26 @@ observations are the rows and columns are variables.
 
 For example, let's use one of the datasets built into the `tidyverse()` package.
 Load the `tidyverse` package with `library(tidyverse)`. You will need to do this
-at the start of any script where you want to use `tidyverse`. 
+at the start of any script where you want to use `tidyverse`.
 
 ```{r}
 library(tidyverse)
 ```
 
-
 The `tidyverse` package comes with a built-in dataset called `population`. This
 *object* called `population` was automatically created when you ran
-`library(tidyverse)`. Go to the console in Posit Cloud (or RStudio) 
-(the panel called "Console" with the `>` character at the bottom) and type 
-`population`. It will print out a dataset that looks like this: 
+`library(tidyverse)`. Go to the console in Posit Cloud (or RStudio) (the panel
+called "Console" with the `>` character at the bottom) and type `population`. It
+will print out a dataset that looks like this:
 
 ```{r}
 population
 ```
 
-Notice that this dataset has both *rows* and *columns*. `4060 x 3` tells you 
-that there are 4060 rows (up to down) and 3 columns (left to right). We can see 
-the first ten rows in the screenshot above. Each row in the dataset tells you 
-about the `population` of a `country` in a particular `year`. So, the population 
+Notice that this dataset has both *rows* and *columns*. `4060 x 3` tells you
+that there are 4060 rows (up to down) and 3 columns (left to right). We can see
+the first ten rows in the screenshot above. Each row in the dataset tells you
+about the `population` of a `country` in a particular `year`. So, the population
 of Afghanistan in 2003 was 23,116,142.
 
 In the console, type `head(population)` to look at the top of your dataset,
@@ -153,10 +150,10 @@ column called `population`. We will keep that in mind as we progress!
 head(population) 
 ```
 
-You can do many things with datasets. Often, we will want to
-use functions on datasets. For example, the `slice()` function takes two
-arguments, an object and a number `n`, and the function will return to you the
-first `n` rows you asked for.
+You can do many things with datasets. Often, we will want to use functions on
+datasets. For example, the `slice()` function takes two arguments, an object and
+a number `n`, and the function will return to you the first `n` rows you asked
+for.
 
 For example, to have R return only the 5th row of `population`, type:
 
@@ -164,23 +161,20 @@ For example, to have R return only the 5th row of `population`, type:
 slice(population, 5) 
 ```
 
-You can also pass a vector to `slice()` to have it return
-multiple rows. For example, to have `slice()` return rows 2, 3, and 4, we can
-write: `2:4`.
+You can also pass a vector to `slice()` to have it return multiple rows. For
+example, to have `slice()` return rows 2, 3, and 4, we can write: `2:4`.
 
 ```{r}
 # The : syntax creates a vector from the low to the high number
 2:4 
 ```
 
-
 ```{r}
 # If we pass this into slice(), we get each row back 
 slice(population, 2:4)
 ```
 
-
-# 2. The `|>` Operator (or %>%)
+# 2. The `|>` Operator (or %\>%)
 
 We will often want to chain multiple functions together. The `|>` operator
 (called "pipe") makes this very easy.
@@ -203,21 +197,20 @@ population |> slice(5)
 
 1.  Write code to find the first 10 rows of `population`. Save it in an object
     called `first_ten`.
-    
+
 ```{r}
 # Write your code here
 ```
-  
 
 2.  Try to run `population + 1`. What happens? That's an error message - read
     it! Most importantly, why isn't this working? What is the message trying to
-    tell you? 
-    
+    tell you?
+
 ```{r}
 # Write your code here 
 ```
-    
-Write your text response here:    
+
+Write your text response here:
 
 # 3. Choosing particular rows: `filter()`
 
@@ -236,27 +229,27 @@ only have "France" as the value for `country`.
 `filter()` will evaluate the condition in the parentheses to `TRUE` or `FALSE`
 for every single row in the dataset. The function will return only rows which
 evaluate to `TRUE`. Do you remember Booleans from Notebook #1? This is one
-reason why they are so useful! 
+reason why they are so useful!
 
 ```{r}
 # Return rows for which country is equal to France
 population |> filter(country == "France") 
 ```
 
-Keep in mind, you can also get the same results by using the following code style:
+Keep in mind, you can also get the same results by using the following code
+style:
 
 ```{r}
 population |>
   filter(country == "France")
 ```
 
-
-When checking equality with operators like `==`, R is very specific and case-sensitive. That is, "France" is
-not equal to "france," or "FRANCE."
+When checking equality with operators like `==`, R is very specific and
+case-sensitive. That is, "France" is not equal to "france," or "FRANCE."
 
 Notice that you absolutely need two equal signs here, for `==`, and not `=`.
 Using one equals sign when you need two to check equality (in functions like
-`filter()`) is a very common coding error! 
+`filter()`) is a very common coding error!
 
 ```{r}
 country <- "France"
@@ -266,42 +259,44 @@ country == "FRANCE"
 country == "FRA"
 ```
 
-Because these are not equal, when using `filter()` you need to be precise and make sure your
-comparisons reflect the values in your actual data. For example, this code would
-not return any rows because no rows in our dataset have country equal to
-"FRANCE": 
+Because these are not equal, when using `filter()` you need to be precise and
+make sure your comparisons reflect the values in your actual data. For example,
+this code would not return any rows because no rows in our dataset have country
+equal to "FRANCE":
 
 ```{r}
 population |> filter(country == "FRANCE") 
 ```
 
-R returned an empty dataset. This is not a problem with R, since it is doing exactly what we asked
-it to do -- return any rows with "FRANCE" in the country column. However,
-because there were no such rows, we get an empty tibble (0 rows by 3 columns).
+R returned an empty dataset. This is not a problem with R, since it is doing
+exactly what we asked it to do -- return any rows with "FRANCE" in the country
+column. However, because there were no such rows, we get an empty tibble (0 rows
+by 3 columns).
 
 To look at the unique values of a particular column, you can use the `unique()`
 function. The way to ask for a particular column is to put the `$` operator
-after the name of the dataset, like this example below: 
+after the name of the dataset, like this example below:
 
 ```{r}
 # Show all unique values of the country column in the population object
 unique(population$country)
 ```
 
-Notice that FRANCE is not in there, but France is. When using `filter()`, we could target any one of these values above. More
-broadly, we can `filter()` on any condition that evaluates to `TRUE` or `FALSE`.
-For example, let's get data from the year 1995. 
+Notice that FRANCE is not in there, but France is. When using `filter()`, we
+could target any one of these values above. More broadly, we can `filter()` on
+any condition that evaluates to `TRUE` or `FALSE`. For example, let's get data
+from the year 1995.
 
 ```{r}
 population |> filter(year == 1995)
 ```
 
-Finally, it is often useful to use **multiple** logical conditions at
-once. For example, return rows in France AND in the year 1995, or return any
-data from France OR India.
+Finally, it is often useful to use **multiple** logical conditions at once. For
+example, return rows in France AND in the year 1995, or return any data from
+France OR India.
 
 -   `&` is the AND operator. Both conditions must be `TRUE` to return a row.
--   `|` is the OR operator. Either condition can be `TRUE` to return a row. 
+-   `|` is the OR operator. Either condition can be `TRUE` to return a row.
 
 ```{r}
 # Return rows from France AND in the year 1995
@@ -313,14 +308,13 @@ population |> filter(country == "France" & year == 1995)
 population |> filter(country == "France" | country == "India")
 ```
 
-
 # Ordering Data
 
 Often, we want to **order** or **sort** our dataset by one of the values in our
 data. This is done with the `arrange()` function.
 
 By default, `arrange()` will order from smallest to largest for the column name
-you enter: 
+you enter:
 
 ```{r}
 tuvalu <- population |> filter(country == "Tuvalu")
@@ -328,35 +322,42 @@ tuvalu <- population |> filter(country == "Tuvalu")
 tuvalu |> arrange(population)
 ```
 
-By including the `desc()` (descending) function inside of `arrange()`, you can have it sort from largest to smallest.
+By including the `desc()` (descending) function inside of `arrange()`, you can
+have it sort from largest to smallest.
 
 For example, this code shows us that the populaion of Tuvalu keeps increasing
-over time. 
+over time.
 
 ```{r}
 tuvalu |> arrange(desc(population))
 ```
 
-
 # Exercise #2
 
 1.  Use `filter()` to access the rows in `population` in the year 1999.
+
 ```{r}
 # Write your code here
 ```
+
 2.  Use `filter()` to access the rows in `population` with less than 5000
     people. Assign the result to an object called `small_countries`.
+
 ```{r}
 # Write your code here
 ```
+
 3.  Use `filter()` to access the rows in `population` for every country
     **other** than Greece. **Hint**: remember in Notebook 1 we talked about a
     way to check if one value is NOT equal to another value.
+
 ```{r}
 # Write your code here
 ```
+
 4.  Use `filter()` to create an object with only the rows from 2004. Then, use
     `filter()` on that object to get only the rows from India OR Pakistan.
+
 ```{r}
 # Write your code here
 ```
@@ -365,7 +366,7 @@ tuvalu |> arrange(desc(population))
 
 The `mutate()` function is used to **make new columns** in your data. For
 example, if we wanted a new column in our dataset representing countries with at
-least 10 million people in a given year: 
+least 10 million people in a given year:
 
 ```{r}
 # remember: population is the name of the dataset
@@ -373,13 +374,14 @@ least 10 million people in a given year:
 population |>
   mutate(ten_million = population > 10000000)
 ```
-In order to keep changes in your dataset object, you will need create a new object just like always. That is,
-functions like `mutate()` and `filter()` will create output for you, but will
-not save these results to a new object unless you manually ask it to by creating
-a new object with `<-`.
+
+In order to keep changes in your dataset object, you will need create a new
+object just like always. That is, functions like `mutate()` and `filter()` will
+create output for you, but will not save these results to a new object unless
+you manually ask it to by creating a new object with `<-`.
 
 For example, let's try to use the `ten_million` column we just used to filter to
-observations where it equals `TRUE`: 
+observations where it equals `TRUE`:
 
 ```{r, error = TRUE}
 # this will give you an error! 
@@ -389,7 +391,7 @@ population |>
 
 Why does this code not work? We edited the `population` object to have a new
 `ten_million` column, but we never saved it back in a new object. For example,
-this code would work with no errors: 
+this code would work with no errors:
 
 ```{r}
 # create a new object with a ten_million column
@@ -400,8 +402,11 @@ pop_million |>
   filter(ten_million == TRUE)
 ```
 
-In general, the best practice is to write your code, make sure it is making the changes you want to your dataset,
-and then save it back to an object as the last step. However, make sure you whether or not you would like to overwrite your object. Sometimes it might be better just to save your data manipulation into a new object.
+In general, the best practice is to write your code, make sure it is making the
+changes you want to your dataset, and then save it back to an object as the last
+step. However, make sure you whether or not you would like to overwrite your
+object. Sometimes it might be better just to save your data manipulation into a
+new object.
 
 ```{r}
 population <- population |>
@@ -410,25 +415,28 @@ population <- population |>
 head(population)
 ```
 
-You can make new columns to accomplish all sorts of tasks. For example, beyond checking logical statements we can do mathematical operations on
-an existing column: 
+You can make new columns to accomplish all sorts of tasks. For example, beyond
+checking logical statements we can do mathematical operations on an existing
+column:
 
 ```{r}
 population |>
     mutate(pop_in_thousands = population / 1000)
 ```
 
-
 # Exercise #3
 
 1.  Filter `population` to the data for years since 2005. Save it to an object
     called `modern`.
+
 ```{r}
 # Write your code here
 ```
+
 2.  Create a column in `population` called `is2000` that is `TRUE` if the year
     is 2000 and `FALSE` otherwise. After you've confirmed your code is working,
     don't forget to save your changes back into the `population` object.
+
 ```{r}
 # Write your code here
 ```
@@ -450,7 +458,7 @@ will store it in an object called `elections`. The argument to this function is
 the path to the file you want to read. Since you placed it in the same folder,
 the path is simply the name of the file. After typing the quotes, you can press
 the **tab** key on your keyboard to show your list of options. If you press tab
-again, R will autocomplete. 
+again, R will autocomplete.
 
 ```{r}
 # Reminder: please make sure to run library(tidyverse) code above before running this line
@@ -460,30 +468,41 @@ elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_el
 
 # Exercise #4
 
-1.  Look at the `elections` dataset with `head()`. What do the rows and columns represent?
+1.  Look at the `elections` dataset with `head()`. What do the rows and columns
+    represent?
+
 ```{r}
 # Write your code here
 ```
+
 2.  Use `filter()` to subset results for Massachussetts and store the answer in
     an object called `ma`.
+
 ```{r}
 # Write your code here
 ```
+
 3.  Use `filter()` to make an object called `south` that only contains results
     from states in the south:
+
 ```{r}
 # Write your code here
 ```
+
 4.  Look up the function `nrow()` in the documentation (you can type `?nrow` or
     Google "r nrow"). Figure out what it does, and then use it on both `ma` and
     `south`.
+
 ```{r}
 # Write your code here
 ```
+
 5.  Explain why this code below returns no rows (it may be helpful to look at
     the dataset with `elections`): elections \|\> filter(state == "MA") Write
     your answer here (double-click to add text): \## Reminder to Submit
 
-Please follow the submission instructions listed
-[here](TO BE INCLUDED). We suggest you submit your assignments as you finish them (i.e., don’t wait until you
-have completed them all to submit).
+## Reminder to Submit
+
+Please follow the submission instructions listed [here](TO%20BE%20INCLUDED). We
+suggest you submit your assignments as you finish them (i.e., don’t wait until
+you have completed them all to submit).

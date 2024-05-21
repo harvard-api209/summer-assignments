@@ -1,0 +1,453 @@
+---
+title: "R Summer Assignment -- RMarkdown 4"
+author: "YOUR NAME"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+editor:
+  mode: visual
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![Kennedy School
+Logo](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
+
+**Summer 2024, Pre-Assignment**
+
+**Notebook 4: Data Manipulation: Part 2**
+
+The instructions are the same as the first notebook, with a new tutorial link to
+watch. Please make a copy of this notebook, watch the tutorial, complete this
+document, and submit the URL to your notebook on Canvas.
+
+1.  **Creation**: First, you do not need to make a personal copy of this
+    notebook. We encourage you to use the Posit Cloud and, if needed, download
+    the project file if you would like to use it offline from your Posit Cloud
+    home page.
+
+2.  **Preparation**: Please complete these official RStudio tutorials before
+    starting this notebook. We strongly recommend taking notes below and typing
+    in the code yourself as you follow this tutorial.
+
+-   **WATCH**: [Visualization Basics](https://rstudio.cloud/learn/primers/3)
+
+This one has several parts, but each part is fairly short. We ask you to
+complete them before continuing with the rest of this notebook. There are
+several parts this time, so these may take a while. Feel free to complete some
+and then come back later.
+
+3.  **Submission**: Complete your assignment in the Posit Cloud environment.
+    Please submit only the file you are working on (i.e., your RMarkdown) to the
+    Assignment Page on Canvas. Remember to add your name to line 3 of this file.
+
+## Remember: General RMardown Tips
+
+## General Tips
+
+You can enter R code in the code chunks below. To run code, you can click the
+play button that appears on the left side of the code chunk when your cursor is
+in the box, or press CMD + Enter (or Return) on a Mac, or CTRL + Enter on a PC.
+
+We strongly encourage you to practice writing code as you learn -- do not just
+read this document and only complete the exercises. Please write and enter your
+own code while you read. Try new things, type code in, and see what happens.
+Code as you go. Coding is a skill, much like learning to play an instrument. The
+most important part of learning to code is to **practice**!
+
+Remember to save your work frequently. In Posit Cloud, you can save your
+notebook by going to File → Save, or with CMD + S (Mac) / Ctrl + S (PC). This
+will create a personal copy of the notebook for you to work from.
+
+**Please save often.** While Posit Cloud does autosave, it's a good habit to
+manually save your work regularly to ensure you don't lose any progress.
+
+If you get stuck in any aspect of using these Posit Cloud RMarkdowns, please use
+Slack to ask the teaching team.
+
+> In previous notebooks, we have generally edited components of datasets while
+> keeping the larger dataset structure the same. Often, we will want to
+> calculate **statistics** from datasets that involve generating new information
+> from our dataset in some way.
+
+# 1. When to summarize?
+
+Often, we will want to **aggregate** information across a dataset or across
+groups in a dataset. For example, adding the total number of votes in every
+polling place, or the average outcome in each group in a randomized trial. Using
+our `state` population data from last time, imagine we wanted to plot the total
+US population over time.
+
+```{r, warning=FALSE}
+# INSTALLATION CODE:
+
+if(!("tidyverse" %in% rownames(installed.packages()))) {
+  install.packages("tidyverse")
+}
+
+library(tidyverse)
+
+# This code sets some plot options,
+# it will make more sense later in the semester.
+options(repr.plot.width=10, repr.plot.height=10)
+theme_set(theme_gray(base_size = 15))
+theme_set(theme_dark(base_size = 15))
+theme_set(theme_linedraw(base_size = 20))
+update_geom_defaults("point",list(size=5))
+update_geom_defaults("line",list(lwd=1.5))
+
+# read in the data
+state <- read_csv("https://www.dropbox.com/s/javbnd4c3n67380/state_population.csv?dl=1")
+
+# see the first 5 rows of the data
+head(state)
+
+cat("Done!")
+
+```
+
+We could plot every state at once, but this would not tell us the total US
+population by year. Since the rows in our dataset are state populations in one
+particular year, this plot will plot every state as its own sequence of points
+in a scatterplot.
+
+```{r}
+state |>
+  ggplot(
+    aes(
+      x = year, 
+      y = population
+    )
+  ) +
+  geom_point()
+```
+
+What if we want to know the **total population by year**? We already have the
+tools we need to do this for a single year.
+
+How? We could `filter()` the dataset to a certain year, and then use `sum()` on
+the `population` column. We can use the `$` syntax after the name of a dataset
+to access one particular column in the dataset as a vector.
+
+For example, to calculate the US population in 1976, we could:
+
+```{r}
+# Filter rows to all observations in 1976
+all_1976 <- state |> 
+  filter(year == 1976)
+
+# Sum the population column
+sum(all_1976$population)
+```
+
+So, according to this dataset the US population in 1976 was a little over 200
+million.
+
+# Quick Exercise
+
+First, try it yourself. Try calculating the population of only the US South in
+the year 1980.
+
+```{r}
+# Write your code here.
+```
+
+# group_by() and summarise()
+
+The above process was a little tedious though. How might we calculate this total
+for **every year** in our dataset? We could replicate the above procedure many
+times, or perhaps create a function and run it once for each year.
+
+Instead, R makes this sort of repetition with the functions `group_by()` and
+`summarise()`. When used together, `group_by()` defines a group and
+`summarise()` will perform a calculation within each of those groups. If you are
+familiar with Excel, this idea is conceptually similar to a Pivot Table. You
+will see that R allows for much more flexible and complex calculations.
+
+For example, this code will run the `sum()` function on the `population` column
+within each group (`year`):
+
+```{r}
+# Within each group (year)
+# calculate the total population
+pop_by_year <- state |>
+  group_by(year) |>
+  summarise(pop = sum(population))
+
+# tail() shows the final rows in the dataset
+head(pop_by_year)
+```
+
+Now that we have that object, we can plot total US population by year directly.
+How should we visualize this data? Building on what we learned in our last
+lesson, we have a lot of options. Let's start a simple bar plot:
+
+```{r}
+# simple bar plot
+pop_by_year |>
+  ggplot(
+    aes(
+      x = year, 
+      y = pop
+    )
+  ) +
+  geom_col() +
+  labs(
+    x = "Year",
+    y = "Population",
+    title = "US Population by Year"
+  )
+```
+
+Another option would be to try to draw the viewer's attention to the top of the
+bar by placing points on top. These are often called 'lollipop plots,' and can
+be made by creating a line segment and a `geom_point()`.
+
+Want to learn more about the `geom_segment()` function? One very useful skill
+when learning to program is learning to read documentation. Take a look at [this
+help page](https://ggplot2.tidyverse.org/reference/geom_segment.html) for the
+`geom_segment()` function and try to read through what each argument below does.
+
+```{r}
+# a "lollipop" plot
+# combines straight line segment with point
+pop_by_year |>
+  ggplot(
+    aes(
+      x = year, 
+      y = pop
+    )
+  ) +
+  geom_segment(aes(x = year, xend = year, y = 0, yend = pop), col = "grey") +
+  geom_point() +
+  labs(
+    x = "Year",
+    y = "Population",
+    title = "US Population by Year"
+  )
+```
+
+You can also **define groups by multiple variables**. This is useful when you
+want to calculate a particular statistic within groups defined by more than one
+variable. For example, to calculate population separately by **region** AND
+**year**.
+
+```{r}
+region_year <- state |>
+  group_by(region, year) |> # group_by multiple columns
+  summarise(pop = sum(population))
+
+region_year |> filter(year == 1900)
+```
+
+Now, we could use a facet like we learned in the previous lesson to visualize
+the growth in each region at once.
+
+```{r}
+region_year |>
+  ggplot(aes(x = year, y = pop)) +
+  geom_segment(aes(x = year, xend = year, y = 0, yend = pop), col = "grey") +
+  geom_point(size = 0.5) +
+  labs(x = "Year",
+       y = "Population",
+       title = "US Population by Year") +
+  facet_wrap(~region)
+```
+
+## Exercises #1
+
+This dataset contains information on World Cup matches from 1930 to 2006. The
+`scored` column contains information on each national team's performance in a
+particular World Cup.
+
+```{r}
+cups <- read_csv("https://www.dropbox.com/s/eb74w6516hvm11a/world_cups%20-%20WorldCups.csv?dl=1")
+```
+
+1.  Look at the data with a function like `head()`.
+
+```{r}
+# Write your code here.
+```
+
+2.  Then, using `group_by()` and `summarise()`, calculate the total number of
+    goals that each team has scored across all World Cups. Save this to an
+    object named `goals`.
+
+```{r}
+# Write your code here.
+```
+
+3.  Filter to only teams that have scored at least 50 goals in total from the
+    `goals` object. Save this in an object called `high_score_teams`.
+
+```{r}
+# Write your code here.
+```
+
+4.  Design a plot visualizing the number of goals scored by each team using
+    `high_score_teams`. The plot can be as simple (or as sophisticated) as you
+    want as long as it conveys clearly the main findings you want the reader to
+    derive.
+
+```{r}
+# Write your code here.
+```
+
+# Using groups for other statistics
+
+The sum is one interesting measurement you will want to calculate, but it is
+certainly not the only one. The **mean** (average) is another. Thankfully,
+calculating means for the complete sample or finding means within each group is
+very simple. All you need to do is change the function that you use in
+`summarise()`.
+
+Take a look at the examples below. We recommend running each section of code
+separately and trying to edit them yourself. Calculate other statistics you
+think might be interesting. Any questions or trouble? Post in the Slack!
+
+```{r}
+# find total number of goals scored for each team
+cups |>
+  group_by(team) |>
+  summarise(scored = sum(scored))
+```
+
+```{r}
+# find average number of goals scored by team in each World Cup
+# consider: why might a statistic like this not be very useful for all teams?
+cups |>
+  group_by(team) |>
+  summarise(scored = mean(scored))
+```
+
+Using `summarise()` without any groups created by `group_by()` before it will
+summarize the entire dataset. For example:
+
+```{r}
+# find total number of goals scored in 1930 World Cup
+cups |>
+  filter(year == 1930) |>
+  summarise(scored = sum(scored))
+```
+
+```{r}
+# find average goals scored per match in 1930 World Cup
+cups |>
+  filter(year == 1930) |>
+  summarise(scored = mean(scored / matches))
+```
+
+The **median** of a set of numbers is found by ordering them from smallest to
+largest and finding the value in the middle. Means and medians are both ways of
+estimating the center of a dataset, but they do have important differences in
+some cases. For example:
+
+```{r}
+numbers <- c(1, 3, 7, 9, 2000)
+# notice how the mean is sensitive to outliers
+mean(numbers)
+# the median is not as sensitive
+median(numbers)
+```
+
+```{r}
+# consider: why might these numbers be different?
+mean(cups$scored)
+median(cups$scored)
+```
+
+# 2. Visualizing distributions
+
+Statistics like sums, means, and medians are one way of summarizing data, but
+they still only tell you one number. Sometimes, you will want to visualize all
+of the values in a column or two of your dataset - the entire **distribution**.
+
+### Histograms
+
+For example, a **histogram** will visualize all of the values in one column.
+Taller bars tell you that more data fit in that range:
+
+```{r}
+# visualize shots on goal since 1950
+cups |>
+  filter(year > 1950) |>
+  ggplot(aes(x = shots_on_goal)) +
+    geom_histogram()
+```
+
+```{r}
+# just like any other geom, can use with groups and facets
+cups |>
+  filter(year > 1950) |>
+  ggplot(aes(x = shots_on_goal)) +
+    geom_histogram() +
+    facet_wrap(~year)
+```
+
+This tells you that most teams had between 0-10 shots on goal, while some had a
+lot (\>50). Notice the message you get when creating this plot -
+`stat_bin() using bins = 30. Pick better value with binwidth.` This means that
+`ggplot()` chose a default width for the "bins" (rectangles) it creates on the
+histogram, but that you can overwrite it if you want with the `binwidth`
+argument. `ggplot()` will often do a good job, but you can choose one that best
+fits your data.
+
+```{r}
+# very small binwidth
+cups |>
+  filter(year > 1950) |>
+  ggplot(aes(x = shots_on_goal)) +
+  geom_histogram(binwidth = 1)
+```
+
+```{r}
+# very large binwidth - not as informative!
+cups |>
+  filter(year > 1950) |>
+  ggplot(aes(x = shots_on_goal)) +
+  geom_histogram(binwidth = 25)
+```
+
+## Exercises #2
+
+1.  Read in the `elections` data from the previous notebook. Then, create a
+    histogram to visualize Democratic performance in all elections since and
+    including 1992 (`>= 1992`) with one plot for each region.
+
+For an extra challenge, try adding a vertical line to the plot at 50 with the
+`geom_vline()` function (you can read the documentation for a function with
+`?geom_vline` or by Googling "R `geom_vline()`, then scroll down to "Examples"
+to see code examples using the function).
+
+Finally, explain the general trend that you see.
+
+```{r}
+elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_elections.csv?dl=1")
+```
+
+2.  Using **only results from states in the South**, create a histogram for
+    `democrat` with one plot per year. Try adding a vertical line at 50 as
+    described above.
+
+```{r}
+# Write your code here.
+```
+
+Here, in text desrcibe the trend you see over time!
+
+3.  Think about the trend you saw in Question 2. Clearly describe it. Discuss a
+    way you might visualize that trend. If you have time, try designing a plot
+    to do so.
+
+Type answer here!
+
+## Reminder to Submit
+
+Please follow the submission instructions listed [here](TO%20BE%20INCLUDED). We
+suggest you submit your assignments as you finish them (i.e., don’t wait until
+you have completed them all to submit).

@@ -1,7 +1,8 @@
 ---
 title: "R Summer Assignment -- RMarkdown 1"
+author: "YOUR NAME"
 output: html_document
-date: "2024-05-06"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 editor:
   mode: visual
 editor_options: 
@@ -50,7 +51,8 @@ tool for creating reproducible reports and interactive documents.
 
 2.  **Submission**: Complete your assignment in the Posit Cloud environment.
     Please submit only the file you are working on (i.e., your RMarkdown) to the
-    Assignment Page on Canvas. We will announce when the Canvas site is created.
+    Assignment Page on Canvas. Change line 3 of this file to your name. We will
+    announce when the Canvas site is created.
 
 ## General Tips
 
@@ -528,7 +530,6 @@ ages + 1
 
 ## Reminder to Submit
 
-Please follow the submission instructions listed
-[here](https://docs.google.com/document/d/1lt05S6JnBbGTedNLFaLL_b4rmfRTwkW74PK_t7OVuaI/edit).
-We suggest you submit notebooks as you finish them (i.e., don’t wait until you
-have completed them all to submit).
+Please follow the submission instructions listed [here](TO%20BE%20INCLUDED). We
+suggest you submit your assignments as you finish them (i.e., don’t wait until
+you have completed them all to submit).
