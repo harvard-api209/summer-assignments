@@ -278,8 +278,8 @@ fantastic resource for learning different functions and applications and
 provides more detail on these functions than the RStudio primers you completed.
 We recommend you try exercises in the following chapters to test how comfortable
 you are with the functions introduced in the primers. 1. [Chapter 3 - Data
-Visualization](https://r4ds.had.co.nz/data-visualisation.html) 2. [Chapter 5 -
-Data Transformation](https://r4ds.had.co.nz/transform.html)
+Visualization](https://r4ds.hadley.nz/data-visualize.html) 2. [Chapter 5 - Data
+Transformation](https://r4ds.hadley.nz/data-transform.html)
 
 **Appendix 2: Coursera: Data Analysis with R Programming**
 
@@ -303,4 +303,3 @@ default HKS way of doing certain common tasks in R. Feel free to deviate from
 the cheat sheet, but we encourage you to adopt it when you are first learning R
 as it will save you time from having to constantly conduct web searches to look
 for commands to perform standard tasks in R.
-

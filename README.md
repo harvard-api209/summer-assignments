@@ -65,9 +65,8 @@ provides a user-friendly interface for writing and running R code.
 
 ### GitHub
 
-You will need a GitHub account to manage your projects and collaborate
-with others. If you haven’t created a GitHub account yet, please do so
-before starting the assignments.
+It is not mandatory to create a GitHub account since you can access the
+Posit Cloud project using your Google account.
 
 ### RMarkdown
 
@@ -78,8 +77,8 @@ execute your R code within the assignments.
 ## Submission
 
 Complete your assignments in the Posit Cloud environment. Please submit
-only the `.rmd` file you are working on to the Assignment Page on
-Canvas. We will announce when the Canvas site is created.
+only the `.rmd` file you are working on to the Assignment Dropbox Link.
+You can find the instruction
 
 ## Help and Support
 
