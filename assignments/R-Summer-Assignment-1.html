@@ -351,7 +351,7 @@ display: none;
 
 <h1 class="title toc-ignore">R Summer Assignment – RMarkdown 1</h1>
 <h4 class="author">YOUR NAME</h4>
-<h4 class="date">20 May, 2024</h4>
+<h4 class="date">27 May, 2024</h4>
 
 </div>
 
@@ -384,7 +384,7 @@ makes RMarkdown an excellent tool for creating reproducible reports and
 interactive documents.</p>
 <p><strong>RMarkdown Notebook 1: Programming Fundamentals</strong></p>
 <ol style="list-style-type: decimal">
-<li><strong>Preparation</strong>: Before completing each notebook on
+<li><strong>Preparation</strong>: Before completing each RMarkdown on
 this summer assignment, we will ask you to please watch a brief primer
 from the creators of RStudio, an application for interacting with R that
 we will use later in the summer. We recommend watching this video first,
@@ -392,8 +392,16 @@ taking notes in the code box below, and coming back later to complete
 the rest of the exercises.</li>
 </ol>
 <ul>
-<li><strong>WATCH</strong>: <a href="https://rstudio.cloud/learn/primers/1.2">Programming
-Basics</a></li>
+<li><strong>WATCH</strong>:
+<ul>
+<li><a href="https://vimeo.com/220490105">Functions</a></li>
+<li><a href="https://vimeo.com/220490157">Arguments</a></li>
+<li><a href="https://vimeo.com/220493412">Objects</a></li>
+<li><a href="https://vimeo.com/220490316">Vectors</a></li>
+<li><a href="https://vimeo.com/220490241">Data Types</a></li>
+<li><a href="https://vimeo.com/220490360">Lists</a></li>
+<li><a href="https://vimeo.com/220490447">Packages</a></li>
+</ul></li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Submission</strong>: Complete your assignment in the Posit
@@ -422,11 +430,11 @@ text and visualize results. Source mode, on the other hand, shows the
 raw code and markdown, providing greater control over the document’s
 structure and content. Switching between these modes can help you
 understand both the presentation and underlying code of your
-notebook.</p>
+RMarkdown.</p>
 <p><strong>Please save often.</strong> Remember to save your work
-frequently. In Posit Cloud,you can save your notebook by going to File →
-Save, or with CMD + S (Mac) / Ctrl + S (PC).</p>
-<p>If you get stuck in any aspect of using these notebooks, please use
+frequently. In Posit Cloud,you can save your RMarkdown by going to File
+→ Save, or with CMD + S (Mac) / Ctrl + S (PC).</p>
+<p>If you get stuck in any aspect of using these RMarkdown, please use
 Slack to ask the teaching team.</p>
 <pre class="r"><code># Use this space to write code to take notes on the RStudio video.
 sqrt(9)</code></pre>
@@ -464,16 +472,11 @@ out below:</p>
 <pre><code>## [1] 24.5</code></pre>
 <pre class="r"><code>(4 + 2) - (3 * 6)</code></pre>
 <pre><code>## [1] -12</code></pre>
-<pre class="r"><code># Try your own here</code></pre>
-</div>
-<div id="try-your-own-here" class="section level1">
-<h1>Try your own here</h1>
+<pre class="r"><code># Try your own her</code></pre>
 <p>You can also type letters and words as long as they are between two
 quotes <code>&quot;like this&quot;</code>. In the console, type your name and
 again run the code:</p>
-</div>
-<div id="type-your-name-below" class="section level1">
-<h1>Type your name below</h1>
+<pre class="r"><code># Type your name below</code></pre>
 <p>All of these numbers belong to a certain data type in R called
 <code>numeric</code> while your name was a <code>character</code> (you
 may have heard terms like class, type, etc. in reference to certain
@@ -487,10 +490,8 @@ either <code>TRUE</code> or <code>FALSE</code>. For example,
 on the left is equal to the value on the right. If they are equal, the
 operator returns <code>TRUE</code>. If they are not equal, the operator
 returns <code>FALSE</code>.</p>
-</div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
-<pre class="r"><code>3 == 3 </code></pre>
+<pre class="r"><code># Examples
+3 == 3 </code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>2 == 4 </code></pre>
 <pre><code>## [1] FALSE</code></pre>
@@ -515,20 +516,28 @@ to 3.</p>
 <h2>Exercises #1</h2>
 <p>Below, complete the following exercises using the material above.</p>
 <ol style="list-style-type: decimal">
-<li><p>Try evaluating a few mathematical expressions in the box
-below.</p></li>
-<li><p>Check that a character for your name is not equal to the
-character for someone else’s name.</p></li>
-<li><p>Calculate 4017 + 2098. Then, have R confirm that 4017 + 2098 is
-not equal to 4016 + 2098.</p></li>
-<li><p><strong>Comments</strong>: you may have noticed the stylish green
+<li>Try evaluating a few mathematical expressions in the box below.</li>
+</ol>
+<pre class="r"><code># You try it here</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Check that a character for your name is not equal to the character
+for someone else’s name.</li>
+</ol>
+<pre class="r"><code># You try it here</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Calculate 4017 + 2098. Then, have R confirm that 4017 + 2098 is not
+equal to 4016 + 2098.</li>
+</ol>
+<pre class="r"><code># You try it here</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Comments</strong>: you may have noticed the stylish green
 text in the boxes below. These are called “comments,” and they are
 messages that we’ve left for you. Writing your own comments is a very
 good habit to form, as it makes your intentions clear to others, and it
 will help remind you what your code does when you return to it in the
 future. In R, we use comments by starting a line of code with a hashtag:
 <code>#</code>. R will not evaluate these lines as code, so they are
-text that can be inserted into your code.</p></li>
+text that can be inserted into your code.</li>
 </ol>
 <p>Go back to #1-3 and add comments above your code.</p>
 <div id="objects" class="section level3">
@@ -585,22 +594,31 @@ check_year == TRUE</code></pre>
 <div id="exercises-2" class="section level2">
 <h2>Exercises #2</h2>
 <ol style="list-style-type: decimal">
-<li><p>Create an object named <code>year</code> with the value
-2021.</p></li>
-<li><p>Create an object named <code>answer</code> with the value 15.
-Then, divide <code>answer</code> by</p>
+<li>Create an object named <code>year</code> with the value 2021.</li>
+</ol>
+<pre class="r"><code># You try it here</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Create an object named <code>answer</code> with the value 15. Then,
+divide <code>answer</code> by
 <ol start="3" style="list-style-type: decimal">
 <li></li>
 </ol></li>
-<li><p>Use <code>==</code> to see whether <code>answer</code> is equal
-to 12.</p></li>
-<li><p>Assign your name to an object called <code>name</code>.</p></li>
+</ol>
+<pre class="r"><code># You try it here</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Use <code>==</code> to see whether <code>answer</code> is equal to
+12.</li>
+</ol>
+<pre class="r"><code># You try it here</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Assign your name to an object called <code>name</code>.</li>
 </ol>
 <pre class="r"><code># prompt: Assign your name to an object called name</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Try adding 1 to the object containing your name. What happens? Why
 might this be?</li>
 </ol>
+<pre class="r"><code># You try it here</code></pre>
 </div>
 </div>
 <div id="functions" class="section level1">
@@ -783,9 +801,9 @@ is not.</p></li>
 </div>
 <div id="reminder-to-submit" class="section level2">
 <h2>Reminder to Submit</h2>
-<p>Please follow the submission instructions listed <a href="TO%20BE%20INCLUDED">here</a>. We suggest you submit your
-assignments as you finish them (i.e., don’t wait until you have
-completed them all to submit).</p>
+<p>Please follow the submission instructions listed <a href="https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing">here</a>.
+We suggest you submit your assignments as you finish them (i.e., don’t
+wait until you have completed them all to submit).</p>
 </div>
 </div>
 

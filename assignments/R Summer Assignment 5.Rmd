@@ -28,8 +28,8 @@ key concepts when going into Math Camp. During Math Camp, we will go over much
 of this material in greater depth. Spending time on this now will help make your
 future learning easier.
 
-The instructions are the same as the first notebook, with a new tutorial link to
-watch. Please make a copy of this notebook, watch the tutorial, complete this
+The instructions are the same as the first RMarkdown, with a new tutorial link
+to watch. Please make a copy of this notebook, watch the tutorial, complete this
 document, and submit the URL to your notebook on Canvas.
 
 1.  **Creation**: First, you do not need to make a personal copy of this
@@ -37,20 +37,11 @@ document, and submit the URL to your notebook on Canvas.
     the project file if you would like to use it offline from your Posit Cloud
     home page.
 
-2.  **Preparation**: Please complete these official RStudio tutorials before
-    starting this notebook. We strongly recommend taking notes below and typing
-    in the code yourself as you follow this tutorial.
-
--   **WATCH**: [Visualization Basics](https://rstudio.cloud/learn/primers/3)
-
-This one has several parts, but each part is fairly short. We ask you to
-complete them before continuing with the rest of this notebook. There are
-several parts this time, so these may take a while. Feel free to complete some
-and then come back later.
-
-3.  **Submission**: Complete your assignment in the Posit Cloud environment.
-    Please submit only the file you are working on (i.e., your RMarkdown) to the
-    Assignment Page on Canvas. Remember to add your name to line 3 of this file.
+2.  **Submission**: Complete your assignment in the Posit Cloud environment.
+    Please submit only the file you are working on (i.e., your RMarkdown) to
+    [this Assignment
+    Link](https://www.dropbox.com/request/DlVlonnaIag3fAgZYVJi). Remember to add
+    your name to line 3 of this file.
 
 ## Remember: General RMardown Tips
 
@@ -231,11 +222,11 @@ making a high-quality graphic that is informative and user-friendly.
     question. By default, `mean()` and `median()` report a missing value if at
     least one of its input values is missing, and as you probably found in parts
     (1) and (2), a country has a missing value for 2019 GDP per capita. Now,
-    modify your code so that you change this default and remove the missing
-    values in your computation. [As the help page for the functions
-    indicate](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean),
-    the relevant argument is `na.rm`( for NA-remove). Set the logical value to
-    `TRUE` (it is `FALSE` by default if you do not specify anything).
+        modify your code so that you change this default and remove the missing
+        values in your computation. [As the help page for the functions
+        indicate](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean),
+        the relevant argument is `na.rm`( for NA-remove). Set the logical value
+        to `TRUE` (it is `FALSE` by default if you do not specify anything).
 
 ```{r}
 # Write your code here!
@@ -267,9 +258,10 @@ tailor our instruction during math camp and beyond. Please fill in the form
 
 ## Reminder to Submit
 
-Please follow the submission instructions listed [here](TO%20BE%20INCLUDED). We
-suggest you submit your assignments as you finish them (i.e., don’t wait until
-you have completed them all to submit).
+Please follow the submission instructions listed
+[here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
+We suggest you submit your assignments as you finish them (i.e., don’t wait
+until you have completed them all to submit).
 
 # ***Part II - Additional Optional Resources and Exercises***
 
@@ -311,3 +303,4 @@ default HKS way of doing certain common tasks in R. Feel free to deviate from
 the cheat sheet, but we encourage you to adopt it when you are first learning R
 as it will save you time from having to constantly conduct web searches to look
 for commands to perform standard tasks in R.
+
