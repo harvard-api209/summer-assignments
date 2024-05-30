@@ -82,12 +82,18 @@ control over the document's structure and content. Switching between these modes
 can help you understand both the presentation and underlying code of your
 RMarkdown.
 
-**Please save often.** Remember to save your work frequently. In Posit Cloud,you
-can save your RMarkdown by going to File → Save, or with CMD + S (Mac) / Ctrl +
-S (PC).
+**Please save often.** Please save a **permanent copy.** You do this only the
+first time you open the Posit Project. This will be saved in your Workspace so
+you can access it at any time. Remember to save your work frequently. In Posit
+Cloud,you can save your RMarkdown by going to File → Save, or with CMD + S (Mac)
+/ Ctrl + S (PC).
 
 If you get stuck in any aspect of using these RMarkdown, please use Slack to ask
 the teaching team.
+
+Finally, use the following
+[FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
+in case of doubts.
 
 ```{r}
 # Use this space to write code to take notes on the RStudio video.

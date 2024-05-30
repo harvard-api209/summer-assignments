@@ -71,6 +71,10 @@ manually save your work regularly to ensure you don't lose any progress.
 If you get stuck in any aspect of using these Posit Cloud RMarkdowns, please use
 Slack to ask the teaching team.
 
+Finally, use the following
+[FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
+in case of doubts.
+
 ```{r, warning=FALSE}
 # INSTALLATION CODE:
 

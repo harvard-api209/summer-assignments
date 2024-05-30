@@ -11,14 +11,14 @@ Welcome to the Summer 2024 Pre-Assignment! This readme file will provide you wit
 
 ## Getting Started
 
-1. **GitHub Account**: You will need a GitHub account to manage your projects and collaborate with others. If you haven't created a GitHub account yet, please do so before starting the assignments. You can create an account at [GitHub](https://github.com/).
-2. **Access Assignments**: You can access the summer assignments using the following link: [Posit Cloud Assignments](https://posit.cloud/content/8155534).
+1.  **GitHub Account**: You will need a GitHub account to manage your projects and collaborate with others. If you haven't created a GitHub account yet, please do so before starting the assignments. You can create an account at [GitHub](https://github.com/).
+2.  **Access Assignments**: You can access the summer assignments using the following link: [Posit Cloud Assignments](https://posit.cloud/content/8155534).
 
 ## Folder Structure
 
 In your Posit Cloud workspace, you will find the following folder structure:
 
-```
+```         
 /summer-assignment
   ├── assignments
       ├── R Summer Assignment 1.rmd
@@ -39,6 +39,8 @@ This folder contains all the assignments you will need to complete during the su
 ### Posit Cloud
 
 We will be using Posit Cloud as our primary platform for completing assignments. Posit Cloud allows you to write, execute, and save R code in a cloud environment, making it accessible from any device with an internet connection.
+
+Please save a **permanent copy** of the project**.** This will be saved in your Workspace so you can access it at any time.
 
 ### R and RStudio
 

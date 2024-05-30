@@ -73,6 +73,10 @@ manually save your work regularly to ensure you don't lose any progress.
 If you get stuck in any aspect of using these Posit Cloud RMarkdowns, please use
 Slack to ask the teaching team.
 
+Finally, use the following
+[FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
+in case of doubts.
+
 > In previous notebooks, we have generally edited components of datasets while
 > keeping the larger dataset structure the same. Often, we will want to
 > calculate **statistics** from datasets that involve generating new information
@@ -98,9 +102,9 @@ library(tidyverse)
 # This code sets some plot options,
 # it will make more sense later in the semester.
 options(repr.plot.width=10, repr.plot.height=10)
-theme_set(theme_gray(base_size = 15))
-theme_set(theme_dark(base_size = 15))
-theme_set(theme_linedraw(base_size = 20))
+theme_set(theme_gray(base_size = 12))
+theme_set(theme_dark(base_size = 12))
+theme_set(theme_linedraw(base_size = 12))
 update_geom_defaults("point",list(size=5))
 update_geom_defaults("line",list(lwd=1.5))
 
