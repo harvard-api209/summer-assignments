@@ -57,8 +57,8 @@ assignments. Posit Cloud allows you to write, execute, and save R code
 in a cloud environment, making it accessible from any device with an
 internet connection.
 
-Please save a **permanent copy** of the project**.** This will be saved
-in your Workspace so you can access it at any time.
+Please save a **permanent copy** of the project. This will be saved in
+your Workspace so you can access it at any time.
 
 ### R and RStudio
 
