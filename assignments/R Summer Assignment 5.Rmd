@@ -14,8 +14,7 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-![Kennedy School
-Logo](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
+![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
 **Summer 2024, Pre-Assignment**
 

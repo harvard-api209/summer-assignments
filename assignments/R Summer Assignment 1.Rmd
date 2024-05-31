@@ -14,16 +14,13 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-![Kennedy School
-Logo](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
+![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
 ## Summer 2024, Pre-Assignment
 
-Welcome! If you're here, it means you've already created your GitHub account.
-This will be essential for managing your projects and collaborating with others.
-For now, we will be using Posit Cloud to complete our summer assignments. You
-can also download the entire project to use with RStudio offline, but for the
-beginning, we'll focus on the cloud environment.
+Welcome! For now, we will be using Posit Cloud to complete our summer
+assignments. You can also download the entire project to use with RStudio
+offline, but for the beginning, we'll focus on the cloud environment.
 
 This set of exercises will help get you up and running with doing basic data
 analysis in R. The goal of this assignment is **not** that you will have
@@ -41,11 +38,13 @@ tool for creating reproducible reports and interactive documents.
 
 **RMarkdown Notebook 1: Programming Fundamentals**
 
-1.  **Preparation**: Before completing each RMarkdown on this summer assignment,
-    we will ask you to please watch a brief primer from the creators of RStudio,
-    an application for interacting with R that we will use later in the summer.
-    We recommend watching this video first, taking notes in the code box below,
-    and coming back later to complete the rest of the exercises.
+1.  **Preparation**: If you are new to R, we strongly recommend waching the
+    videos below.
+2.  Before completing each RMarkdown on this summer assignment, we will ask you
+    to please watch a brief primer from the creators of RStudio, an application
+    for interacting with R that we will use later in the summer. We recommend
+    watching this video first, taking notes in the code box below, and coming
+    back later to complete the rest of the exercises.
 
 -   **WATCH**:
     -   [Functions](https://vimeo.com/220490105)
@@ -82,11 +81,10 @@ control over the document's structure and content. Switching between these modes
 can help you understand both the presentation and underlying code of your
 RMarkdown.
 
-**Please save often.** Please save a **permanent copy.** You do this only the
-first time you open the Posit Project. This will be saved in your Workspace so
-you can access it at any time. Remember to save your work frequently. In Posit
-Cloud,you can save your RMarkdown by going to File → Save, or with CMD + S (Mac)
-/ Ctrl + S (PC).
+**Please save often.** You do this only the first time you open the Posit
+Project. This will be saved in your Workspace so you can access it at any time.
+Remember to save your work frequently. In Posit Cloud,you can save your
+RMarkdown by going to File → Save, or with CMD + S (Mac) / Ctrl + S (PC).
 
 If you get stuck in any aspect of using these RMarkdown, please use Slack to ask
 the teaching team.
@@ -542,7 +540,7 @@ ages + 1
 
 ```
 
-## Reminder to Submit
+## Please don't forget to submit your assignment 
 
 Please follow the submission instructions listed
 [here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
