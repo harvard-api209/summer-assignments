@@ -3,10 +3,7 @@ Summer Assignment Overview
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<figure>
-<img src="figs/logo.png" alt="Kennedy School Logo" />
-<figcaption aria-hidden="true">Kennedy School Logo</figcaption>
-</figure>
+![](figs/logo.png)
 
 Welcome to the Summer 2024 Pre-Assignment! This readme file will provide
 you with the basic structure of the folder in Posit Cloud and an
@@ -14,10 +11,8 @@ overview of what tools and resources we will be using.
 
 ## Getting Started
 
-1.  **GitHub Account**: You will need a GitHub account to manage your
-    projects and collaborate with others. If you haven’t created a
-    GitHub account yet, please do so before starting the assignments.
-    You can create an account at [GitHub](https://github.com/).
+1.  **Google Account**: You will need a Google account to manage your
+    projects and access the Posit Cloud assignments.
 2.  **Access Assignments**: You can access the summer assignments using
     the following link: [Posit Cloud
     Assignments](https://posit.cloud/content/8155534).
@@ -64,7 +59,9 @@ your Workspace so you can access it at any time.
 
 R is the programming language we will be using for data analysis.
 RStudio is an integrated development environment (IDE) for R that
-provides a user-friendly interface for writing and running R code.
+provides a user-friendly interface for writing and running R code. Posit
+Cloud is the “online” RStudio that we are going to use during the
+summer.
 
 ### GitHub
 
@@ -80,8 +77,9 @@ execute your R code within the assignments.
 ## Submission
 
 Complete your assignments in the Posit Cloud environment. Please submit
-only the `.rmd` file you are working on to the Assignment Dropbox Link.
-You can find the instruction
+only the `.rmd` file you are working on to Course Canvas. You can find
+the instruction
+[here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
 
 ## Help and Support
 

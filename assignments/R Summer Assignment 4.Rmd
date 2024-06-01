@@ -1,5 +1,5 @@
 ---
-title: "R Summer Assignment -- RMarkdown 4"
+title: "R Summer Assignment -- Part 4"
 author: "YOUR NAME"
 output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -18,18 +18,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Summer 2024, Pre-Assignment**
 
-**Notebook 4: Data Manipulation: Part 2**
+**Part 4: Data Manipulation: Part 2**
 
-The instructions are the same as the first RMarkdown, with a new tutorial link
-to watch. Please make a copy of this notebook, watch the tutorial, complete this
-document, and submit the URL to your notebook on Canvas.
-
-1.  **Creation**: First, you do not need to make a personal copy of this
-    notebook. We encourage you to use the Posit Cloud and, if needed, download
-    the project file if you would like to use it offline from your Posit Cloud
-    home page.
-
-2.  **Preparation**: Please complete these official RStudio tutorials before
+1.  **Preparation**: Please complete these official RStudio tutorials before
     starting this notebook. We strongly recommend taking notes below and typing
     in the code yourself as you follow this tutorial.
 
@@ -37,44 +28,9 @@ document, and submit the URL to your notebook on Canvas.
     -   [dplyr essentials](https://youtu.be/Gvhkp-Yw65U)
     -   [dplyr advanced guide](https://youtu.be/DiY8EqZDwoI) (Optional)
 
-This one has several parts, but each part is fairly short. We ask you to
-complete them before continuing with the rest of this notebook. There are
-several parts this time, so these may take a while. Feel free to complete some
-and then come back later.
-
-3.  **Submission**: Complete your assignment in the Posit Cloud environment.
-    Please submit only the file you are working on (i.e., your RMarkdown) to
-    [this Assignment
-    Link](https://www.dropbox.com/request/z6jRaakfgr9NwGnLonPR). Remember to add
-    your name to line 3 of this file.
-
-## Remember: General RMardown Tips
-
-## General Tips
-
-You can enter R code in the code chunks below. To run code, you can click the
-play button that appears on the left side of the code chunk when your cursor is
-in the box, or press CMD + Enter (or Return) on a Mac, or CTRL + Enter on a PC.
-
-We strongly encourage you to practice writing code as you learn -- do not just
-read this document and only complete the exercises. Please write and enter your
-own code while you read. Try new things, type code in, and see what happens.
-Code as you go. Coding is a skill, much like learning to play an instrument. The
-most important part of learning to code is to **practice**!
-
-Remember to save your work frequently. In Posit Cloud, you can save your
-notebook by going to File → Save, or with CMD + S (Mac) / Ctrl + S (PC). This
-will create a personal copy of the notebook for you to work from.
-
-**Please save often.** While Posit Cloud does autosave, it's a good habit to
-manually save your work regularly to ensure you don't lose any progress.
-
-If you get stuck in any aspect of using these Posit Cloud RMarkdowns, please use
-Slack to ask the teaching team.
-
-Finally, use the following
-[FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
-in case of doubts.
+2.  Use the following
+    [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
+    in case of doubts.
 
 > In previous notebooks, we have generally edited components of datasets while
 > keeping the larger dataset structure the same. Often, we will want to

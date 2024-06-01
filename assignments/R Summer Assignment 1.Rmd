@@ -1,5 +1,5 @@
 ---
-title: "R Summer Assignment -- RMarkdown 1"
+title: "R Summer Assignment -- Part 1"
 author: "YOUR NAME"
 output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -36,9 +36,9 @@ document, which can then be executed to display results within the same
 document. This integration of code and narrative makes RMarkdown an excellent
 tool for creating reproducible reports and interactive documents.
 
-**RMarkdown Notebook 1: Programming Fundamentals**
+**Part 1: Programming Fundamentals**
 
-1.  **Preparation**: If you are new to R, we strongly recommend waching the
+1.  **Preparation**: If you are new to R, we strongly recommend watching the
     videos below.
 2.  Before completing each RMarkdown on this summer assignment, we will ask you
     to please watch a brief primer from the creators of RStudio, an application
@@ -54,12 +54,6 @@ tool for creating reproducible reports and interactive documents.
     -   [Data Types](https://vimeo.com/220490241)
     -   [Lists](https://vimeo.com/220490360)
     -   [Packages](https://vimeo.com/220490447)
-
-2.  **Submission**: Complete your assignment in the Posit Cloud environment.
-    Please submit only the file you are working on (i.e., your RMarkdown) to
-    [this Assignment
-    link](https://www.dropbox.com/request/dcWEAIkBUzBmX597wock). Change line 3
-    of this file to your name. We will announce when the Canvas site is created.
 
 ## General Tips
 
@@ -540,7 +534,7 @@ ages + 1
 
 ```
 
-## Please don't forget to submit your assignment 
+## Please don't forget to submit your assignment
 
 Please follow the submission instructions listed
 [here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).

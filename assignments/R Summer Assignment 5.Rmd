@@ -1,5 +1,5 @@
 ---
-title: "R Summer Assignment -- RMarkdown 5 -- Capstone Assignment"
+title: "R Summer Assignment -- Part 5"
 author: "YOUR NAME"
 output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Summer 2024, Pre-Assignment**
 
-**Notebook 5: Capstone Assignment**
+**Part 5: Capstone Assignment**
 
 This set of exercises will help get you up and running with doing basic data
 analysis in R. The goal of this assignment is **not** that you will have
@@ -26,49 +26,6 @@ perfected R by the time you finish them, but that you have a solid foundation of
 key concepts when going into Math Camp. During Math Camp, we will go over much
 of this material in greater depth. Spending time on this now will help make your
 future learning easier.
-
-The instructions are the same as the first RMarkdown, with a new tutorial link
-to watch. Please make a copy of this notebook, watch the tutorial, complete this
-document, and submit the URL to your notebook on Canvas.
-
-1.  **Creation**: First, you do not need to make a personal copy of this
-    notebook. We encourage you to use the Posit Cloud and, if needed, download
-    the project file if you would like to use it offline from your Posit Cloud
-    home page.
-
-2.  **Submission**: Complete your assignment in the Posit Cloud environment.
-    Please submit only the file you are working on (i.e., your RMarkdown) to
-    [this Assignment
-    Link](https://www.dropbox.com/request/DlVlonnaIag3fAgZYVJi). Remember to add
-    your name to line 3 of this file.
-
-## Remember: General RMardown Tips
-
-## General Tips
-
-You can enter R code in the code chunks below. To run code, you can click the
-play button that appears on the left side of the code chunk when your cursor is
-in the box, or press CMD + Enter (or Return) on a Mac, or CTRL + Enter on a PC.
-
-We strongly encourage you to practice writing code as you learn -- do not just
-read this document and only complete the exercises. Please write and enter your
-own code while you read. Try new things, type code in, and see what happens.
-Code as you go. Coding is a skill, much like learning to play an instrument. The
-most important part of learning to code is to **practice**!
-
-Remember to save your work frequently. In Posit Cloud, you can save your
-notebook by going to File → Save, or with CMD + S (Mac) / Ctrl + S (PC). This
-will create a personal copy of the notebook for you to work from.
-
-**Please save often.** While Posit Cloud does autosave, it's a good habit to
-manually save your work regularly to ensure you don't lose any progress.
-
-If you get stuck in any aspect of using these RMarkdowns, please use Slack to
-ask the teaching team.
-
-Finally, use the following
-[FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
-in case of doubts.
 
 # ***Part I - Analysis of World Economic Outlook Data***
 
@@ -273,6 +230,8 @@ through-out the semester. We believe the above primers and exercises provide a
 solid foundation in the skills needed for the semester, but if you have the time
 and desire to hone your skills more before arriving on campus, we encourage you
 to consult the following additional resources.
+
+# Appendix
 
 **Appendix 1: R for Data Science**
 
