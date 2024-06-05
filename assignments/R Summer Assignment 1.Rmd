@@ -41,19 +41,15 @@ tool for creating reproducible reports and interactive documents.
 1.  **Preparation**: If you are new to R, we strongly recommend watching the
     videos below.
 2.  Before completing each RMarkdown on this summer assignment, we will ask you
-    to please watch a brief primer from the creators of RStudio, an application
+    to please follow a brief primer from the creators of RStudio, an application
     for interacting with R that we will use later in the summer. We recommend
-    watching this video first, taking notes in the code box below, and coming
-    back later to complete the rest of the exercises.
+    following the sequence in the primers. Take notes and come back later to
+    complete the rest of the exercises.
 
 -   **WATCH**:
-    -   [Functions](https://vimeo.com/220490105)
-    -   [Arguments](https://vimeo.com/220490157)
-    -   [Objects](https://vimeo.com/220493412)
-    -   [Vectors](https://vimeo.com/220490316)
-    -   [Data Types](https://vimeo.com/220490241)
-    -   [Lists](https://vimeo.com/220490360)
-    -   [Packages](https://vimeo.com/220490447)
+    -   [Programming
+        Basics](https://r-primers.andrewheiss.com/basics/02-programming-basics/):
+        Follow the tutorial from Functions to Packages and watch the videos.
 
 ## General Tips
 

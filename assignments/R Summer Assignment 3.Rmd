@@ -24,7 +24,10 @@ knitr::opts_chunk$set(echo = TRUE)
     notebook. We strongly recommend taking notes below and typing in the code
     yourself as you follow this tutorial.
 
--   **WATCH**: [Visualization Basics](https://vimeo.com/223812632) [Optional]
+-   **WATCH**:
+    -   [Data Visualization
+        Basics](https://r-primers.andrewheiss.com/basics/01-visualization-basics/)
+    -   [Grammar of Graphics (Video)](https://vimeo.com/223812632) [Optional]
 
 2.  Use the following
     [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
@@ -73,7 +76,7 @@ cat("Done!")
 
 ```{r}
 # If needed: 
-# TAKE NOTES HERE
+# TAKE NOTES HERE for the Primers
 ```
 
 As usual, once you have completed the RStudio tutorials above, please start here

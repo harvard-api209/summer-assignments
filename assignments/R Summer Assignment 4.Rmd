@@ -37,6 +37,11 @@ knitr::opts_chunk$set(echo = TRUE)
 > calculate **statistics** from datasets that involve generating new information
 > from our dataset in some way.
 
+```{r}
+# If needed: 
+# TAKE NOTES HERE for the Primers
+```
+
 # 1. When to summarize?
 
 Often, we will want to **aggregate** information across a dataset or across
