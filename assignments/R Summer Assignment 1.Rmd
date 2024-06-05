@@ -23,7 +23,7 @@ assignments. You can also download the entire project to use with RStudio
 offline, but for the beginning, we'll focus on the cloud environment.
 
 This set of exercises will help get you up and running with doing basic data
-analysis in R. The goal of this assignment is **not** that you will have
+analysis in R. The goal of these assignments is **not** that you will have
 perfected R by the time you finish them, but that you have a solid foundation of
 key concepts when going into Math Camp. During Math Camp, we will go over much
 of this material in greater depth. Spending a significant amount of time on this
@@ -76,12 +76,12 @@ Project. This will be saved in your Workspace so you can access it at any time.
 Remember to save your work frequently. In Posit Cloud,you can save your
 RMarkdown by going to File → Save, or with CMD + S (Mac) / Ctrl + S (PC).
 
-If you get stuck in any aspect of using these RMarkdown, please use Slack to ask
-the teaching team.
+If you get stuck in any aspect of using R, please use Slack to ask the teaching
+team.
 
 Finally, use the following
 [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
-in case of doubts.
+in case of doubts. Any other questions? Post them on Slack.
 
 ```{r}
 # Use this space to write code to take notes on the RStudio video.
@@ -105,8 +105,8 @@ on the left side (or CMD + Enter on a Mac / Ctrl + Enter on PC):
 3+2
 ```
 
-That was code! R knows that 3 is a number, and it simply reported it back to
-you. The number in brackets like this `[5]` simply means that one value was
+That was code! R knows that 2 and 3 are numbers, and it simply reported it back
+to you. The number in brackets like this `[5]` simply means that one value was
 reported back to you -- R keeps track of these sorts of things for you.
 
 R is also very good at math. Try expanding on the commands written out below:
@@ -119,7 +119,7 @@ R is also very good at math. Try expanding on the commands written out below:
 
 (4 + 2) - (3 * 6)
 
-# Try your own her
+# Try your own here
 
 ```
 

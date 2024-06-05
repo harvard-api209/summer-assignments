@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 2.  Use the following
     [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
-    in case of doubts.
+    in case of doubts. Any other questions? Post them on Slack.
 
 > In previous notebooks, we have generally edited components of datasets while
 > keeping the larger dataset structure the same. Often, we will want to
@@ -152,7 +152,7 @@ head(pop_by_year)
 
 Now that we have that object, we can plot total US population by year directly.
 How should we visualize this data? Building on what we learned in our last
-lesson, we have a lot of options. Let's start a simple bar plot:
+lesson, we have a lot of options. Let's start with a simple bar plot:
 
 ```{r}
 # simple bar plot
@@ -293,7 +293,7 @@ cups |>
   summarise(scored = mean(scored))
 ```
 
-Using `summarise()` without any groups created by `group_by()` before it will
+Using `summarise()` without any groups created by `group_by()` before will
 summarize the entire dataset. For example:
 
 ```{r}

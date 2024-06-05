@@ -376,7 +376,7 @@ Transformation using RStudio dplyr</a> (Optional)</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>Use the following <a href="https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing">FAQs</a>
-in case of doubts.</li>
+in case of doubts. Any other questions? Post them on Slack.</li>
 </ol>
 <pre class="r"><code># INSTALLATION CODE:
 
@@ -971,7 +971,7 @@ tuvalu |&gt; arrange(population)</code></pre>
 <p>By including the <code>desc()</code> (descending) function inside of
 <code>arrange()</code>, you can have it sort from largest to
 smallest.</p>
-<p>For example, this code shows us that the populaion of Tuvalu keeps
+<p>For example, this code shows us that the population of Tuvalu keeps
 increasing over time.</p>
 <pre class="r"><code>tuvalu |&gt; arrange(desc(population))</code></pre>
 <pre><code>## # A tibble: 19 × 3
@@ -1000,21 +1000,21 @@ increasing over time.</p>
 <div id="exercise-2" class="section level1">
 <h1>Exercise #2</h1>
 <ol style="list-style-type: decimal">
-<li>Use <code>filter()</code> to access the rows in
+<li>Use <code>filter()</code> to extract the rows in
 <code>population</code> in the year 1999.</li>
 </ol>
 <pre class="r"><code># Write your code here</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Use <code>filter()</code> to access the rows in
+<li>Use <code>filter()</code> to extract the rows in
 <code>population</code> with less than 5000 people. Assign the result to
 an object called <code>small_countries</code>.</li>
 </ol>
 <pre class="r"><code># Write your code here</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Use <code>filter()</code> to access the rows in
+<li>Use <code>filter()</code> to extract the rows in
 <code>population</code> for every country <strong>other</strong> than
-Greece. <strong>Hint</strong>: remember in Notebook 1 we talked about a
-way to check if one value is NOT equal to another value.</li>
+Greece. <strong>Hint</strong>: remember in Part 1 we talked about a way
+to check if one value is NOT equal to another value.</li>
 </ol>
 <pre class="r"><code># Write your code here</code></pre>
 <ol start="4" style="list-style-type: decimal">
@@ -1089,9 +1089,9 @@ pop_million |&gt;
 ## # ℹ 1,494 more rows</code></pre>
 <p>In general, the best practice is to write your code, make sure it is
 making the changes you want to your dataset, and then save it back to an
-object as the last step. However, make sure you whether or not you would
+object as the last step. However, make sure whether or not you would
 like to overwrite your object. Sometimes it might be better just to save
-your data manipulation into a new object.</p>
+your manipulated data into a new object.</p>
 <pre class="r"><code>population &lt;- population |&gt;
   mutate(ten_million = population &gt; 10000000)
 
@@ -1197,11 +1197,11 @@ does, and then use it on both <code>ma</code> and
 </ol>
 <pre class="r"><code># Write your code here</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Explain why this code below returns no rows (it may be helpful to
-look at the dataset with <code>elections</code>): elections |&gt;
-filter(state == “MA”) Write your answer here (double-click to add text):
-## Reminder to Submit</li>
+<li>Explain why thie following code returns no rows (it may be helpful
+to look at the dataset with <code>elections</code>):</li>
 </ol>
+<p><code>elections \|\&gt; filter(state == &quot;MA&quot;)</code></p>
+<p>Write your answer here:</p>
 <div id="reminder-to-submit" class="section level2">
 <h2>Reminder to Submit</h2>
 <p>Please follow the submission instructions listed <a href="https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing">here</a>.

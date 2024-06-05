@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 2.  Use the following
     [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
-    in case of doubts.
+    in case of doubts. Any other questions? Post them on Slack.
 
 ```{r, warning=FALSE}
 # INSTALLATION CODE:
@@ -90,7 +90,7 @@ Looking at a dataset is nice, but we will often want to visualize our data. R
 has incredibly powerful tools for data visualization.
 
 To start, load the `tidyverse` library and read this dataset on US presidential
-election resulst from 1932 to 2016 by state.
+election results from 1932 to 2016 by state.
 
 ```{r}
 # Run this code, loads libraries and does some setup
@@ -147,10 +147,8 @@ the data, like a point, a line, or a shape. To further customize this plot, we
 simply add a *geom* for the shape we want. Let's use `geom_line()` to make a
 line:
 
-**Hint**: if the plot below looks too small on your computer, you can right
-click and "open" it in a new tab to look at. When you start Math Camp, we will
-install your own copy of R on your computer and you will be able to create plots
-of any size.
+**Hint**: if the plot below looks too small on your computer, you can click the
+"show in new window" icon at the top right corner of the plot.
 
 ```{r}
 ma |>
@@ -181,8 +179,8 @@ ma |>
   geom_point()
 ```
 
-You can also add both! Notice how the points appear on top of the lines, since
-we added them after:
+You can also add both! Notice how the points appear on top of the line, since we
+added them after:
 
 ```{r}
 ma |>
@@ -307,7 +305,7 @@ ma |>
 
 Uh-oh! What's happening here? Well, we've asked the plot to change the `color`
 of our shapes according to the `winner` variable. Since we have both points and
-a line, the plot is trying to change the color both.
+a line, the plot is trying to change the color of both.
 
 What if we only want to change the color of the points depending on the value of
 `winner`? Well, we can include that aesthetic **only** in the `geom_point()`
@@ -611,9 +609,10 @@ northeast |>
 
 Does the font size look too small to you? There are many many ways of
 customizing `ggplot()` objects, many of which we will learn throughout the
-course. [Here](https://www.rstudio.com/resources/cheatsheets/) is a helpful
-cheatsheet with many of the options listed in case you would like to delve
-deeper into this.
+course.
+[Here](https://rstudio.github.io/cheatsheets/html/data-visualization.html) is a
+helpful cheatsheet with many of the options listed in case you would like to
+delve deeper into this.
 
 ```{r}
 # For example, functions like axis.text() and axis.title() change font sizes
