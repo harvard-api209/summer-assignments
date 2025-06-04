@@ -1,0 +1,719 @@
+---
+title: "R Summer Assignment -- Part 3 (Solutions)"
+author: "YOUR NAME"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+editor:
+  mode: visual
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
+
+**Summer 2024, Pre-Assignment**
+
+**Part 3: Introduction to Data Visualization**
+
+1.  **Preparation**: Please complete these tutorials before starting this
+    notebook. We strongly recommend taking notes below and typing in the code
+    yourself as you follow this tutorial.
+
+-   **WATCH**:
+    -   [Data Visualization
+        Basics](https://r-primers.andrewheiss.com/basics/01-visualization-basics/)
+    -   [Grammar of Graphics (Video)](https://vimeo.com/223812632) [Optional]
+
+2.  Use the following
+    [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
+    in case of doubts. Any other questions? Post them on Slack.
+
+```{r, warning=FALSE}
+# INSTALLATION CODE:
+
+# This code block installs a few extra packages you will need
+# This may take a few minutes, the icon on the left will spin.
+# When it stops spinning it is complete.
+# When we get to meet in-person, we are going to learn other forms to load your
+# packages.
+
+pkgs <- c("tidyverse", "ggrepel", "gapminder", "maps", "ggthemes")
+
+to_install <- which(!(pkgs %in% rownames(installed.packages())))
+
+install.packages(pkgs[to_install])
+
+library(tidyverse)
+library(ggrepel)
+library(gapminder)
+library(maps)
+
+# Datasets like iris, mpg, gapminder, etc. are all available for you to use here.
+
+# Here, we recreate the Asia dataset in the tutorial for you.
+# Filter down to relevant countries
+asia <- gapminder |> 
+  filter(
+    country %in% c("China", "Japan", "Korea, Rep.", "Korea, Dem. Rep."))
+
+# Rename four Asian countries to use
+asia <- asia |> 
+  mutate(
+    country = case_when(
+      country == "Korea, Rep." ~ "South Korea",
+      country == "Korea, Dem. Rep." ~ "North Korea",
+      country == "China" ~ "China",
+      country == "Japan" ~ "Japan")
+  )
+
+cat("Done!")
+```
+
+```{r}
+# If needed: 
+# TAKE NOTES HERE for the Primers
+```
+
+As usual, once you have completed the RStudio tutorials above, please start here
+and continue the document below. These exercises give you additional
+opportunities to practice the most important concepts from the RStudio Tutorials
+for our HKS courses.
+
+# 1. Building a plot
+
+Looking at a dataset is nice, but we will often want to visualize our data. R
+has incredibly powerful tools for data visualization.
+
+To start, load the `tidyverse` library and read this dataset on US presidential
+election results from 1932 to 2016 by state.
+
+```{r}
+# Run this code, loads libraries and does some setup
+library(tidyverse)
+options(repr.plot.width=10, repr.plot.height=10)
+theme_set(theme_gray(base_size = 20))
+theme_set(theme_dark(base_size = 20))
+theme_set(theme_linedraw(base_size = 30,  ))
+update_geom_defaults("point",list(size=5))
+update_geom_defaults("line",list(lwd=1.5))
+
+elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_elections.csv?dl=1")
+
+# show first 10 rows
+head(elections, n = 10)
+```
+
+Let's look at the results for Massachussetts:
+
+```{r}
+# Don't forget to run the code above first to read in the data
+ma <- elections |> 
+  filter(state == "Massachusetts")
+
+head(ma)
+
+# Practice by creating an object for a different state or time period.
+south <- elections |> 
+  filter(region == "south")
+```
+
+As you might expect, there are many functions for plotting! As you learned in
+the RStudio tutorials, the starting point for every plot we make in this course
+is called `ggplot()`.
+
+Starting with a dataset, you can create a plot with `year` on the x-axis and
+`democrat` on the y-axis with:
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  )
+```
+
+`ggplot()` makes a plot for you, and the `aes()` function (short for
+"aesthetic") describes the variables in the dataset that you want on the x and y
+axis (for now! We can use `aes()` for other things too later).
+
+But it's empty! To get shapes to appear on the plot, we need to ask for a
+particular `geom` (short for "geometry"). A `geom` in R is a way to visualize
+the data, like a point, a line, or a shape. To further customize this plot, we
+simply add a *geom* for the shape we want. Let's use `geom_line()` to make a
+line:
+
+**Hint**: if the plot below looks too small on your computer, you can click the
+"show in new window" icon at the top right corner of the plot.
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line()
+
+# Try creating a line plot for a different state
+elections |>
+  filter(state == "Texas") |>
+  ggplot(aes(x = year, y = democrat)) + 
+  geom_line()
+```
+
+Notice the `+` sign! We add a `+` sign between different pieces of a plot.
+
+We could keep almost this exact code for a plot with a different geometry for
+points as well:
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_point()
+```
+
+You can also add both! Notice how the points appear on top of the line, since we
+added them after:
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line() +
+  geom_point()
+```
+
+## Exercises #1
+
+1.  Okay, let's all try this. Create a new object with the election results from
+    one state other than Massachusetts. Use it to make a a line plot like we
+    have above.
+
+```{r}
+# Write your code here 
+elections |>
+  filter(state == "Texas") |>
+  ggplot(aes(x = year, y = democrat)) + 
+  geom_line()
+```
+
+2.  Then, try to make a bar graph using `geom_col()` instead of points or lines.
+
+```{r}
+# Write your code here
+elections |>
+  filter(state == "Texas") |>
+  ggplot(aes(x = year, y = democrat)) + 
+  geom_col()
+```
+
+3.  Look back at the line, point, and bar plots you made. Are they all
+    displaying the same information? Which one do you think is most effective?
+
+Displaying the same information, but which you think is more effective is
+debatable!
+
+# 2. Aesthetics
+
+We added an `x` and `y` aesthetic to choose particular columns to display on our
+axes, but plots can accept many other arguments.
+
+### Colors
+
+As you saw in the RStudio tutorials, if you want to make your geoms a certain
+color, that is very easy to do with the `color` argument:
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line(color = "grey") +
+  geom_point(color = "blue")
+```
+
+This looks great, but what if we want the colors in our plots to **depend on the
+value of the data**? For example, red points for elections that Republicans won
+and blue for elections that Democrats won.
+
+Then, people looking at our plot would see additional pieces of information
+beyond the values on the x and y axes.
+
+Just like the x and y axes, if we want the color of the points to depend on
+values in the data we have to use a **column** in our dataset to define the
+colors. Let's make a new column that shows whether the Democratic candidate won
+the election.
+
+For a crude measure of the election winner, let's use whether `democrat` is
+greater than 50 percent (this is too simple since more than two candidates can
+run, but it's okay for now).
+
+```{r}
+# Create a new column for a Democratic winner
+ma <- ma |>
+  mutate(
+    winner = democrat > 50
+  )
+
+head(ma)
+```
+
+Remember how this code works: the column `democrat` in `ma` is really a vector.
+The code works very similarly to running something like:
+
+```{r}
+democrat <- c(52, 37, 63)
+democrat > 50
+```
+
+If you want the color of the points to depend on the value of a column, then you
+can use the `color` argument in the `aes()` function. R will assign one color to
+each value in the `winner` vector. Since there are only `TRUE` and `FALSE`
+values in this column, all of the `TRUE` values will have one color and `FALSE`
+will have another.
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat, 
+      color = winner
+    )
+  ) +
+  geom_point()
+```
+
+What if we add the line back?
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat, 
+      color = winner)
+  ) +
+  geom_point() +
+  geom_line()
+```
+
+Uh-oh! What's happening here? Well, we've asked the plot to change the `color`
+of our shapes according to the `winner` variable. Since we have both points and
+a line, the plot is trying to change the color of both.
+
+What if we only want to change the color of the points depending on the value of
+`winner`? Well, we can include that aesthetic **only** in the `geom_point()`
+function.
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line() +
+  geom_point(aes(color = winner))
+```
+
+Like before, you can still set the color of the line manually since you don't
+want the color to vary by the value of a column. Make sure to do this outside of
+`aes()`:
+
+```{r}
+ma|>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line(color = "grey") +
+  geom_point(aes(color = winner))
+```
+
+## Size and shape
+
+Similarly, you can have the **size** of a point depend on the value of a column.
+For example, see how values with a `winner` value of `TRUE` are larger below
+than values with `FALSE`:
+
+```{r}
+ma|>
+  ggplot(aes(x = year, y = democrat)) +
+    geom_line(color = "grey") +
+    geom_point(aes(size = winner))
+```
+
+Now, points are larger for larger values of `winner`! However, larger values of
+`winner` are already higher up on the y-axis, so this does not add much
+information to our plot.
+
+The same is true for `shape`:
+
+```{r}
+ma|>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line(color = "grey") +
+  geom_point(aes(shape = winner))
+```
+
+## Exercises #2
+
+1.  Create a new column in the `ma` dataset called `percent`. The values should
+    be equal the values in `democrat` divided by 100.
+
+```{r}
+# Write your code here.
+ma <- ma |>
+  mutate(percent = democrat / 100)
+```
+
+2.  Make a scatterplot for the `ma` object with `year` on the x-axis and
+    `percent` on the y-axis.
+
+```{r}
+# Write your code here.
+ma |>
+  ggplot(aes(x = year, y = percent)) + 
+    geom_point()
+```
+
+3.  Create a new column in `ma` called `modern` which is `TRUE` for all
+    elections after 1980 and `FALSE` for those before. Create a plot with `year`
+    on the x-axis, `democrat` on the y-axis, color the points by `winner`, and
+    vary the shape by `modern`.
+
+```{r}
+# Write your code here.
+ma |>
+  mutate(modern = year > 1980) |>
+  ggplot(aes(x = year, y = democrat, fill = winner, shape = modern)) + 
+    geom_point()
+```
+
+# 3. Customizing your visualizations
+
+Geometries and aesthetics are the core of a nice visualization. R gives you many
+many more tools to customize your plots any way you want. For example:
+
+## Labels
+
+**Labels** are important in any plot. We create these with the `labs()`
+function, which has arguments for `title`, `subitle`, `caption`, `x`, and `y`
+labels. You can choose which labels to include in your plot. For example:
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line(color = "grey") +
+  geom_point(aes(color = winner)) +
+  labs(
+    title = "Massachussets Presidential \n Election Results",
+    subtitle = "1932-2016",
+    x = "Election Year",
+    y = "Democratic %"
+  )
+```
+
+You can also set your own **axes** in R -- the minimum and maximum values on the
+x (horizontal) axis and y (vertical) axis. R will often try to pick them for you
+automatically, but sometimes you may want to choose your own.
+
+The `xlim()` and `ylim()` functions will take a vector (specificied by `c()`)
+with the smallest and largest values you want for that axis.
+
+For example, R automatically chose a y-axis for the previoius plot that
+stretched from around 40 to 70 because that's where our values were. However,
+what if we wanted to make that go from 0 to 100? We could change `ylim()` like
+this:
+
+```{r}
+ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line(color = "grey") +
+  geom_point(aes(color = winner)) +
+  labs(title = "Massachussets Presidential \n Election Results",
+       subtitle = "1932-2016",
+       x = "Election Year",
+       y = "Democratic %") +
+  ylim(c(0, 100)) # now 0 is the minimum, 100 is the maximum
+```
+
+## Themes
+
+**Themes** are simple ways to improve the presentation of your plot as well. We
+will learn how to make our own later, but for now you can use built-in themes.
+Some built-in themes include `theme_bw()`, `theme_minimal()`, and
+`theme_dark()`.
+
+For convenience, you can also store plots to an object and add additional
+features onto that object:
+
+```{r}
+# save plot in an object called p
+p <- ma |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line(color = "grey") +
+  geom_point(aes(color = winner)) +
+  labs(
+    title = "Massachussets Presidential Election Results",
+    subtitle = "1932-2016",
+    x = "Election Year",
+    y = "Democratic %"
+  )
+
+# now we can make more customizations to p
+# without retyping everything
+p + theme_minimal()
+p + theme_dark()
+```
+
+There are many, many more themes available via packages like `ggthemes`.
+
+```{r}
+library(ggthemes)
+```
+
+This opens up many many more themes for you, many of which are lisited at [this
+link](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/).
+Here are a few:
+
+```{r}
+p + theme_clean()
+p + theme_fivethirtyeight() # 538
+p + theme_igray()           # Gray background
+p + theme_economist()       # The Economist
+p + theme_stata()           # theme from a language called Stata
+p + theme_solarized()
+```
+
+You can edit almost anything you want about a plot's **theme**, even if you've
+already added a preset theme. Most of this works happens through the `theme()`
+function. You can run `?theme` to get a full list of options. For example:
+
+```{r}
+p +
+  theme_bw() +
+  theme(legend.position = "bottom")
+```
+
+## Facets
+
+Often, you will want to plot several groups at once. However, putting all
+information on one plot can be overwhelming. For example, consider this plot:
+
+```{r}
+northeast <- elections |> 
+  filter(region == "Northeast")
+
+northeast |>
+  mutate(winner = democrat > 50) |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat, 
+      color = winner
+    )
+  ) +
+  geom_point()
+```
+
+Why is this so cluttered? Well, we are now plotting results from all states in
+the Northeast! We could `color` by state instead, but that might look
+overwhelming:
+
+```{r}
+northeast |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat,
+      color = state
+    )
+  ) +
+  geom_point()
+```
+
+Wow! That looks terrible. Instead, what if we plotted a separate line for each
+state?
+
+```{r}
+northeast |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat,
+      color = state
+    )
+  ) +
+  geom_point() +
+  geom_line()
+```
+
+That looks a little better, but it is still difficult to tell each line apart
+from one another. What if we made a smaller plot for each state and combined
+them? This is what a **facet** is. If we ask for a `facet_wrap()` by state, R
+will make one plot per state:
+
+```{r}
+northeast |>
+  ggplot(aes(x = year, y = democrat)) +
+  geom_point() +
+  geom_line() +
+  facet_wrap(~state) + # notice the ~ key (called a tilde)
+  theme_linedraw()
+```
+
+We could also add the `winner` color back and `facet_wrap()` will automatically
+apply it to each plot:
+
+```{r}
+northeast |>
+  mutate(winner = democrat > 50) |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_line() +
+  geom_point(aes(color = winner)) +
+  facet_wrap(~state) + # notice the ~ key (called a tilde)
+  theme_linedraw() +
+  labs(
+    x = "Election Year",
+    y = "Democratic %",
+    title = "Presidential Elections",
+    subtitle = "1932-2016, Northeastern States"
+  )
+```
+
+Does the font size look too small to you? There are many many ways of
+customizing `ggplot()` objects, many of which we will learn throughout the
+course.
+[Here](https://rstudio.github.io/cheatsheets/html/data-visualization.html) is a
+helpful cheatsheet with many of the options listed in case you would like to
+delve deeper into this.
+
+```{r}
+# For example, functions like axis.text() and axis.title() change font sizes
+# for particular places on your plot.
+northeast |>
+  ggplot(
+    aes(
+      x = year, 
+      y = democrat
+    )
+  ) +
+  geom_point() +
+  geom_line() +
+  facet_wrap(~state) + # notice the ~ key (called a tilde)
+  theme_linedraw() +
+  theme(
+    strip.text = element_text(size = 25),
+    axis.text = element_text(size = 15),
+    axis.title = element_text(size = 15)
+  )
+```
+
+## Exercises #3
+
+1.  The `pop` dataset below contains state population data over time. For any
+    state you want, make a plot showing population by year for every year
+    **after 1960**.
+
+```{r}
+pop <- read_csv("https://www.dropbox.com/s/javbnd4c3n67380/state_population.csv?dl=1")
+
+ok_plot <- pop |>
+  filter(year > 1960 & state == "OK") |>
+  ggplot(
+    aes(
+      x = year, 
+      y = population
+    )
+  ) + 
+  geom_point()
+```
+
+2.  Add labels and a theme to your plot from Question 1.
+
+```{r}
+# Write your code here.
+ok_plot + 
+  theme_bw() + 
+  labs(
+    title = "Oklahoma population since 1960",
+    x = "Year", 
+    y = "Population"
+  )
+```
+
+3.  Now, design a plot (or extend your plot from Question 2) that uses a facet
+    in some way (a facet by state or region could be interesting, but feel free
+    to be creative!).
+
+```{r}
+# Write your code here.
+pop |>
+  filter(region == "Midwest" & year > 1950 & year < 2020) |>
+  ggplot(
+    aes(
+      x = year, 
+      y = population
+    )
+  ) + 
+  geom_point() + 
+  facet_wrap(~ state)
+```
+
+## Reminder to Submit
+
+Please follow the submission instructions listed
+[here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
+We suggest you submit your assignments as you finish them (i.e., don’t wait
+until you have completed them all to submit).
+

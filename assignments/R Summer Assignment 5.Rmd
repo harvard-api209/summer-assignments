@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-**Summer 2024, Pre-Assignment**
+**Summer 2025, Pre-Assignment**
 
 **Part 5: Capstone Assignment**
 
@@ -85,7 +85,7 @@ The command `head()` displays a preview of the dataset.
 3.  The `arrange()` command can also sort more than one variable. To rank
     countries within their continent, write a command that sorts the countries
     by continent (in alphabetical order), then by 2019 GDP in descending order.
-    Remember different inputs (“arguments”) to a function are separated by
+    Remember different inputs ("arguments") to a function are separated by
     commas.
 
 ```{r}
@@ -107,7 +107,7 @@ dataset but also includes three new columns:
 Operationalize the rate of growth between two periods a and b \> a (referring to
 the formula below) as:
 
--   A variable called `gdp_percap_2019` that is the country’s GDP per capita in
+-   A variable called `gdp_percap_2019` that is the country's GDP per capita in
     2019,
 -   A variable called `gdp_percap_1994`, which is the same as above but for
     1994, and
@@ -124,7 +124,7 @@ You will be using this new object for problem three.
 
 ## **Problem 3: Graphing**
 
-1.  Make a scatterplot that shows a country’s 1994 GDP per capita on the x-axis
+1.  Make a scatterplot that shows a country's 1994 GDP per capita on the x-axis
     and its 2019 GDP per capita on the y-axis.
 
 You might notice that the scatterplot itself is not as informative as it could
@@ -158,7 +158,7 @@ making a high-quality graphic that is informative and user-friendly.
     informative x-axis title and a y-axis title. This can be specified by adding
     a `labs()` layer to your graph. To see an example, open [the help page for
     the labs function](https://ggplot2.tidyverse.org/reference/labs.html), and
-    scroll to the bottom of the page under “Examples”.
+    scroll to the bottom of the page under "Examples".
 
 ```{r}
 # Write your code here!
@@ -166,7 +166,7 @@ making a high-quality graphic that is informative and user-friendly.
 
 ## **Problem 4: Mean and Median**
 
-1.  Let’s start to think about summarizing variables using summary statistics.
+1.  Let's start to think about summarizing variables using summary statistics.
     Write code that reports the mean of country-level 2019 GDP per capita across
     all countries in one column and the median for 2019 in another. Pick column
     names that are sufficiently self- explanatory but also concise. What result
@@ -200,6 +200,29 @@ making a high-quality graphic that is informative and user-friendly.
 # Write your code here!
 ```
 
+## **Problem 5: Choose Your Own Adventure**
+
+Take this opportunity to show off all that you have learned and using the World
+Economic Outlook data set, pursue a question of your own that is of interest.
+This could be done by producing summary statistics using the `group_by()`
+command, producing a plot that you think is interesting, or anything else you
+desire. It can be as simple or as complex as you'd like, as long as it is your
+own!
+
+Please write your question here:
+
+WRITE QUESTION
+
+And conduct your analysis below.
+
+```{r}
+# Write your code here!
+```
+
+Once you have completed, please write a brief paragraph, sharing your question,
+a brief summary of the approach you do, and the key takeaway from your output
+and post it on the course Slack. Take a chance to review others work and react!
+
 ## **[Challenge Problem] More Graphing**
 
 This problem is more challenging. It involves some commands not covered in the
@@ -232,7 +255,7 @@ tailor our instruction during math camp and beyond. Please fill in the form
 
 Please follow the submission instructions listed
 [here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
-We suggest you submit your assignments as you finish them (i.e., don’t wait
+We suggest you submit your assignments as you finish them (i.e., don't wait
 until you have completed them all to submit).
 
 # ***Part II - Additional Optional Resources and Exercises***
@@ -269,7 +292,7 @@ value out of it. Focus on the parts that you want to learn more about.
 Learning any language requires following its form and style. Throughout the
 course, we will be enforcing style guidelines on how R code should be written.
 To become familiar with these guidelines, read and try to internalize Book I
-(“Analyses”) of [tidyverse style guide](https://style.tidyverse.org), especially
+("Analyses") of [tidyverse style guide](https://style.tidyverse.org), especially
 chapters 1 and 2.
 
 **Appendix 4: R HKS cheat sheet**

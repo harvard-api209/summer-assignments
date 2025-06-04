@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-**Summer 2024, Pre-Assignment**
+**Summer 2025, Pre-Assignment**
 
 **Part 4: Data Manipulation: Part 2**
 
@@ -389,8 +389,8 @@ cups |>
 
 For an extra challenge, try adding a vertical line to the plot at 50 with the
 `geom_vline()` function (you can read the documentation for a function with
-`?geom_vline` or by Googling "R `geom_vline()`, then scroll down to "Examples"
-to see code examples using the function).
+`?geom_vline` or by Googling "R `geom_vline()`, then scroll down to"Examples" to
+see code examples using the function).
 
 Finally, explain the general trend that you see.
 
@@ -418,5 +418,5 @@ Type answer here!
 
 Please follow the submission instructions listed
 [here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
-We suggest you submit your assignments as you finish them (i.e., don’t wait
+We suggest you submit your assignments as you finish them (i.e., don't wait
 until you have completed them all to submit).
