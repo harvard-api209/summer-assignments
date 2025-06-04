@@ -5,7 +5,7 @@ Summer Assignment Overview
 
 ![](figs/logo.png)
 
-Welcome to the Summer 2024 Pre-Assignment! This readme file will provide
+Welcome to the Summer 2025 Pre-Assignment! This readme file will provide
 you with the basic structure of the folder in Posit Cloud and an
 overview of what tools and resources we will be using.
 
