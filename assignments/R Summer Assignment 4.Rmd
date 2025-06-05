@@ -406,7 +406,7 @@ elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_el
 # Write your code here.
 ```
 
-Here, in text desrcibe the trend you see over time!
+Here, in text describe the trend you see over time!
 
 3.  Think about the trend you saw in Question 2. Clearly describe it. Discuss a
     way you might visualize that trend. If you have time, try designing a plot

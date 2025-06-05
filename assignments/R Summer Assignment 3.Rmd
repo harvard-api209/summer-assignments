@@ -108,7 +108,7 @@ elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_el
 head(elections, n = 10)
 ```
 
-Let's look at the results for Massachussetts:
+Let's look at the results for Massachusetts:
 
 ```{r}
 # Don't forget to run the code above first to read in the data
@@ -417,7 +417,7 @@ ma |>
   geom_line(color = "grey") +
   geom_point(aes(color = winner)) +
   labs(
-    title = "Massachussets Presidential \n Election Results",
+    title = "Massachusetts Presidential \n Election Results",
     subtitle = "1932-2016",
     x = "Election Year",
     y = "Democratic %"
@@ -428,13 +428,12 @@ You can also set your own **axes** in R -- the minimum and maximum values on the
 x (horizontal) axis and y (vertical) axis. R will often try to pick them for you
 automatically, but sometimes you may want to choose your own.
 
-The `xlim()` and `ylim()` functions will take a vector (specificied by `c()`)
-with the smallest and largest values you want for that axis.
+The `xlim()` and `ylim()` functions will take a vector (specified by `c()`) with
+the smallest and largest values you want for that axis.
 
-For example, R automatically chose a y-axis for the previoius plot that
-stretched from around 40 to 70 because that's where our values were. However,
-what if we wanted to make that go from 0 to 100? We could change `ylim()` like
-this:
+For example, R automatically chose a y-axis for the previous plot that stretched
+from around 40 to 70 because that's where our values were. However, what if we
+wanted to make that go from 0 to 100? We could change `ylim()` like this:
 
 ```{r}
 ma |>
@@ -493,7 +492,7 @@ There are many, many more themes available via packages like `ggthemes`.
 library(ggthemes)
 ```
 
-This opens up many many more themes for you, many of which are lisited at [this
+This opens up many many more themes for you, many of which are listed at [this
 link](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/).
 Here are a few:
 

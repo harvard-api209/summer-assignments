@@ -366,7 +366,7 @@ function (e.g. `?seq`) in the code chunk below to open the **documentation**.
 -   **Value** will tell you what the function returns, if anything.
 -   **Examples** are very useful, they show you examples of working code.
 
-You may find difficult to parse right now, but with more practice this wil
+You may find difficult to parse right now, but with more practice this will
 become second nature!
 
 ```{r}

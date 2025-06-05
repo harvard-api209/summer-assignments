@@ -468,7 +468,7 @@ elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_el
 # Write your code here
 ```
 
-2.  Use `filter()` to subset results for Massachussetts and store the answer in
+2.  Use `filter()` to subset results for Massachusetts and store the answer in
     an object called `ma`.
 
 ```{r}
@@ -490,8 +490,8 @@ elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_el
 # Write your code here
 ```
 
-5.  Explain why thie following code returns no rows (it may be helpful to look
-    at the dataset with `elections`):
+5.  Explain why the following code returns no rows (it may be helpful to look at
+    the dataset with `elections`):
 
 `elections \|\> filter(state == "MA")`
 
