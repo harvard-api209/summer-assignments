@@ -364,8 +364,8 @@ Transformation](https://r4ds.hadley.nz/data-transform.html)
 
 **Appendix 2: Coursera: Data Analysis with R Programming**
 
-This [course](https://www.coursera.org/learn/data-analysis-r) provides 37 hours
-of additional introductory instruction to R. You do not need to do it all to get
+This [course](https://www.coursera.org/learn/data-analysis-with-r) provides
+additional introductory instruction to R. You do not need to do it all to get
 value out of it. Focus on the parts that you want to learn more about.
 
 **Appendix 3: Familiarize with the Style Guide**
