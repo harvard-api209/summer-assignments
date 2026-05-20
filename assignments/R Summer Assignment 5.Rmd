@@ -20,6 +20,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Part 5: Capstone Assignment**
 
+**Estimated time:** 2-5 hours
+
 This set of exercises will help get you up and running with doing basic data
 analysis in R. The goal of this capstone assignment is **not** that you will
 have perfected R by the time you finish them, but that you have a solid
@@ -36,8 +38,9 @@ any AI help you used and how you verified it.
 
 ## **Problem 1: Sorting by Values**
 
-The following questions are based on a recent version of the World Economic
-Outlook (WEO) dataset published by the International Monetary Fund (IMF). Each
+The following questions are based on a fixed teaching version of the World
+Economic Outlook (WEO) dataset published by the International Monetary Fund
+(IMF). We use a fixed version so everyone can reproduce the same results. Each
 row in the spreadsheet is a country, with total GDP for a given year adjusted
 for purchasing power parity (with the rgdp column prefix) and total population
 (with the pop column prefix). GDP values are in millions of international
@@ -77,6 +80,12 @@ glimpse(weo)
 
 The function `select()` keeps only the columns you name. For example,
 `weo |> select(country, continent)` would keep just those two columns.
+
+```{r}
+weo |>
+  select(country, continent) |>
+  head()
+```
 
 1.  Write a command (connected by pipes - `|>`) that:
 2.  First sorts the dataset from lowest to highest real GDP in 2019, and then
@@ -190,6 +199,13 @@ making a high-quality graphic that is informative and user-friendly.
 # Write your code here!
 ```
 
+Here is a small example of how `is.na()` works. It returns `TRUE` for missing
+values and `FALSE` for non-missing values.
+
+```{r}
+is.na(c(1, NA, 3))
+```
+
 2.  Write code that indicates which countries have missing values for 2019 GDP
     per capita. To do this, you could `filter()` with a value that tells you
     whether each value is NA or not. There is a function called `is.na()` that
@@ -209,6 +225,13 @@ making a high-quality graphic that is informative and user-friendly.
     indicate](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean),
     the relevant argument is `na.rm` (for NA-remove). Set the logical value to
     `TRUE` (it is `FALSE` by default if you do not specify anything).
+
+Here is a small example:
+
+```{r}
+mean(c(1, NA, 3))
+mean(c(1, NA, 3), na.rm = TRUE)
+```
 
 ```{r}
 # Write your code here!
@@ -245,6 +268,10 @@ Please also write a short analysis memo here:
 -   **Finding:** What is your main takeaway?
 -   **Caveat:** What is one limitation or reason to be cautious?
 
+A complete memo should be short but specific. A reader should be able to tell
+what you studied, what code steps you used, what you found, and why your finding
+should be interpreted with care.
+
 Write your memo here:
 
 If you used AI for this capstone, briefly document it here. What did you ask it
@@ -253,11 +280,11 @@ use AI, write "I did not use AI for this capstone."
 
 Write your AI-use note here:
 
-## **[Challenge Problem] More Graphing**
+## **[Optional Challenge Problem] More Graphing**
 
-This problem is more challenging. It involves some commands not covered in the
-primers. Please attempt it to the best of your ability, but do not get
-discouraged if you get stuck.
+This optional problem is more challenging. It involves some commands not covered
+in the primers. Attempt it if you have time and want extra graphing practice,
+but do not get discouraged if you get stuck.
 
 Make a graph like the one shown in the figure below based on the provided WEO
 data set you used earlier. Follow both the graphical components of the graph
@@ -276,6 +303,26 @@ these tools only if they help make your figure easier to read.
 ```{r}
 # Write your code here!
 ```
+
+## What you should know after this part
+
+By the end of Part 5, you should be able to:
+
+-   Combine sorting, filtering, mutating, graphing, and summarizing in one
+    analysis.
+-   Use `select()`, `is.na()`, and `na.rm` in context.
+-   Create and interpret GDP per capita measures.
+-   Write a short analysis memo with a clear question, approach, finding, and
+    caveat.
+-   Document and verify any AI assistance you used.
+
+## Before you submit
+
+-   Knit the notebook successfully.
+-   Answer every written question in your own words.
+-   Complete the short analysis memo.
+-   Save your completed `.Rmd` file.
+-   Submit the correct `.Rmd` file to Canvas.
 
 ## Your Feedback
 

@@ -40,6 +40,8 @@ tool for creating reproducible reports and interactive documents.
 
 **Part 1: Programming Fundamentals**
 
+**Estimated time:** 2-4 hours
+
 1.  **Preparation**: If you are new to R, we strongly recommend watching the
     videos below.
 2.  Before completing each RMarkdown on this summer assignment, we will ask you
@@ -560,6 +562,23 @@ ages + 1
 ```{r}
 
 ```
+
+## What you should know after this part
+
+By the end of Part 1, you should be able to:
+
+-   Run simple R code and read the output.
+-   Create objects with `<-`.
+-   Recognize numbers, characters, logical values, and vectors.
+-   Use basic functions and read simple documentation pages.
+-   Read an error message carefully before asking for help.
+
+## Before you submit
+
+-   Knit the notebook successfully.
+-   Answer every written question in your own words.
+-   Save your completed `.Rmd` file.
+-   Submit the correct `.Rmd` file to Canvas.
 
 ## Please don't forget to submit your assignment
 

@@ -11,12 +11,12 @@ overview of what tools and resources we will be using.
 
 ## Student Guide Website
 
-This repo now includes a simple static website in `index.html` that
+This repo now includes a simple static website in `docs/index.html` that
 walks students through the summer assignment process. The website is
 separate from Posit Cloud: Posit Cloud remains the environment where
-students edit and submit the R Markdown assignments. If GitHub Pages is
-enabled from the repository root, the website can serve as the public
-guide for the same materials.
+students edit and submit the R Markdown assignments. GitHub Pages is
+configured to publish the site from the `docs/` folder on the
+`2026-refresh` branch.
 
 ## Getting Started
 

@@ -20,6 +20,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Part 2: Data Manipulation (1)**
 
+**Estimated time:** 2-4 hours
+
 1.  **Preparation**: Like the first RMarkdown, we ask you to follow this RStudio
     primer before starting this RMarkdown. We strongly recommend taking notes
     below and typing in the code yourself as you follow this tutorial.
@@ -545,6 +547,23 @@ Write your text response here:
 `elections \|\> filter(state == "MA")`
 
 Write your answer here:
+
+## What you should know after this part
+
+By the end of Part 2, you should be able to:
+
+-   Inspect a dataset with functions like `head()`, `glimpse()`, and `nrow()`.
+-   Explain what one row represents in a dataset.
+-   Use `filter()`, `arrange()`, and `mutate()` to transform data.
+-   Read a CSV file from a URL with `read_csv()`.
+-   Check whether your output has the rows and columns you expected.
+
+## Before you submit
+
+-   Knit the notebook successfully.
+-   Answer every written question in your own words.
+-   Save your completed `.Rmd` file.
+-   Submit the correct `.Rmd` file to Canvas.
 
 ## Reminder to Submit
 

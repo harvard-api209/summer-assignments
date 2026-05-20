@@ -20,6 +20,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Part 4: Data Manipulation: Part 2**
 
+**Estimated time:** 2-4 hours
+
 1.  **Preparation**: Please complete these official RStudio tutorials before
     starting this notebook. We strongly recommend taking notes below and typing
     in the code yourself as you follow this tutorial.
@@ -66,14 +68,25 @@ if(!("tidyverse" %in% rownames(installed.packages()))) {
 
 library(tidyverse)
 
-# This code sets some plot options,
-# it will make more sense later in the semester.
-options(repr.plot.width=10, repr.plot.height=10)
-theme_set(theme_gray(base_size = 12))
-theme_set(theme_dark(base_size = 12))
-theme_set(theme_linedraw(base_size = 12))
-update_geom_defaults("point",list(size=5))
-update_geom_defaults("line",list(lwd=1.5))
+# This code sets a simple plot style for the examples below.
+# It will make more sense later in the semester.
+options(repr.plot.width = 10, repr.plot.height = 7)
+
+hks_blue <- "#1F5F83"
+hks_crimson <- "#A51C30"
+
+theme_set(
+  theme_minimal(base_size = 13) +
+    theme(
+      plot.title = element_text(face = "bold", size = 16),
+      plot.subtitle = element_text(color = "gray35"),
+      panel.grid.minor = element_blank(),
+      strip.text = element_text(face = "bold"),
+      axis.title = element_text(face = "bold")
+    )
+)
+update_geom_defaults("point", list(size = 2.2, alpha = 0.8))
+update_geom_defaults("line", list(linewidth = 1.1))
 
 # read in the data
 state <- read_csv("https://www.dropbox.com/s/javbnd4c3n67380/state_population.csv?dl=1")
@@ -98,7 +111,14 @@ state |>
       y = population
     )
   ) +
-  geom_point()
+  geom_point(color = hks_blue, alpha = 0.45, size = 1.4) +
+  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+  labs(
+    x = "Year",
+    y = "State population",
+    title = "State Populations Over Time",
+    subtitle = "Each point is one state in one year"
+  )
 ```
 
 What if we want to know the **total population by year**? We already have the
@@ -192,11 +212,13 @@ pop_by_year |>
       y = pop
     )
   ) +
-  geom_col() +
+  geom_col(fill = hks_blue, width = 0.85) +
+  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
   labs(
     x = "Year",
-    y = "Population",
-    title = "US Population by Year"
+    y = "Total population",
+    title = "US Population by Year",
+    subtitle = "Total population across states in the dataset"
   )
 ```
 
@@ -219,12 +241,14 @@ pop_by_year |>
       y = pop
     )
   ) +
-  geom_segment(aes(x = year, xend = year, y = 0, yend = pop), col = "grey") +
-  geom_point() +
+  geom_segment(aes(x = year, xend = year, y = 0, yend = pop), color = "gray80") +
+  geom_point(color = hks_crimson, size = 2.4) +
+  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
   labs(
     x = "Year",
-    y = "Population",
-    title = "US Population by Year"
+    y = "Total population",
+    title = "US Population by Year",
+    subtitle = "A lollipop plot draws attention to the top of each value"
   )
 ```
 
@@ -247,11 +271,15 @@ the growth in each region at once.
 ```{r}
 region_year |>
   ggplot(aes(x = year, y = pop)) +
-  geom_segment(aes(x = year, xend = year, y = 0, yend = pop), col = "grey") +
-  geom_point(size = 0.5) +
-  labs(x = "Year",
-       y = "Population",
-       title = "US Population by Year") +
+  geom_line(color = hks_blue) +
+  geom_point(color = hks_blue, size = 1.2) +
+  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+  labs(
+    x = "Year",
+    y = "Total population",
+    title = "US Population by Region",
+    subtitle = "Each panel summarizes state populations within a region"
+  ) +
   facet_wrap(~region)
 ```
 
@@ -403,7 +431,13 @@ Taller bars tell you that more data fit in that range:
 cups |>
   filter(year > 1950) |>
   ggplot(aes(x = shots_on_goal)) +
-    geom_histogram()
+  geom_histogram(binwidth = 5, fill = hks_blue, color = "white", linewidth = 0.2) +
+  labs(
+    x = "Shots on goal",
+    y = "Number of team-World Cup observations",
+    title = "Shots on Goal Since 1950",
+    subtitle = "Most teams are concentrated at lower shot totals"
+  )
 ```
 
 ```{r}
@@ -411,8 +445,13 @@ cups |>
 cups |>
   filter(year > 1950) |>
   ggplot(aes(x = shots_on_goal)) +
-    geom_histogram() +
-    facet_wrap(~year)
+  geom_histogram(binwidth = 5, fill = hks_blue, color = "white", linewidth = 0.2) +
+  labs(
+    x = "Shots on goal",
+    y = "Count",
+    title = "Shots on Goal by World Cup Year"
+  ) +
+  facet_wrap(~year)
 ```
 
 This tells you that most teams had between 0-10 shots on goal, while some had a
@@ -428,7 +467,13 @@ fits your data.
 cups |>
   filter(year > 1950) |>
   ggplot(aes(x = shots_on_goal)) +
-  geom_histogram(binwidth = 1)
+  geom_histogram(binwidth = 1, fill = hks_blue, color = "white", linewidth = 0.15) +
+  labs(
+    x = "Shots on goal",
+    y = "Count",
+    title = "Histogram With a Small Binwidth",
+    subtitle = "More detail, but also more visual noise"
+  )
 ```
 
 ```{r}
@@ -436,7 +481,13 @@ cups |>
 cups |>
   filter(year > 1950) |>
   ggplot(aes(x = shots_on_goal)) +
-  geom_histogram(binwidth = 25)
+  geom_histogram(binwidth = 25, fill = hks_blue, color = "white", linewidth = 0.2) +
+  labs(
+    x = "Shots on goal",
+    y = "Count",
+    title = "Histogram With a Large Binwidth",
+    subtitle = "Less detail, which can hide important variation"
+  )
 ```
 
 ## Exercises #2
@@ -475,6 +526,23 @@ Here, in text describe the trend you see over time!
     to do so.
 
 Type answer here!
+
+## What you should know after this part
+
+By the end of Part 4, you should be able to:
+
+-   Use `group_by()` and `summarise()` to calculate grouped statistics.
+-   Explain how summarizing changes the unit of analysis.
+-   Use `n()` to check how many rows are in each group.
+-   Compare means and medians, including when outliers matter.
+-   Describe the center, spread, skew, and outliers in a distribution.
+
+## Before you submit
+
+-   Knit the notebook successfully.
+-   Answer every written question in your own words.
+-   Save your completed `.Rmd` file.
+-   Submit the correct `.Rmd` file to Canvas.
 
 ## Reminder to Submit
 

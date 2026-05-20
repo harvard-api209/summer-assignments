@@ -20,6 +20,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Part 3: Introduction to Data Visualization**
 
+**Estimated time:** 2-4 hours
+
 1.  **Preparation**: Please complete these tutorials before starting this
     notebook. We strongly recommend taking notes below and typing in the code
     yourself as you follow this tutorial.
@@ -101,8 +103,22 @@ election results from 1932 to 2016 by state.
 ```{r}
 # Run this code, loads libraries and does some setup
 library(tidyverse)
-options(repr.plot.width=10, repr.plot.height=10)
-theme_set(theme_gray(base_size = 14))
+options(repr.plot.width = 10, repr.plot.height = 7)
+
+hks_blue <- "#1F5F83"
+hks_crimson <- "#A51C30"
+hks_gray <- "#6B7280"
+
+theme_set(
+  theme_minimal(base_size = 13) +
+    theme(
+      plot.title = element_text(face = "bold", size = 16),
+      plot.subtitle = element_text(color = "gray35"),
+      panel.grid.minor = element_blank(),
+      strip.text = element_text(face = "bold"),
+      axis.title = element_text(face = "bold")
+    )
+)
 
 elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_elections.csv?dl=1")
 
@@ -160,7 +176,13 @@ ma |>
       y = democrat
     )
   ) +
-  geom_line()
+  geom_line(color = hks_blue) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    title = "Massachusetts Presidential Elections",
+    subtitle = "Democratic vote share, 1932-2016"
+  )
 
 # Try creating a line plot for a different state
 ```
@@ -178,7 +200,13 @@ ma |>
       y = democrat
     )
   ) +
-  geom_point()
+  geom_point(color = hks_blue) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    title = "Massachusetts Presidential Elections",
+    subtitle = "Points show individual elections"
+  )
 ```
 
 You can also add both! Notice how the points appear on top of the line, since we
@@ -192,8 +220,14 @@ ma |>
       y = democrat
     )
   ) +
-  geom_line() +
-  geom_point()
+  geom_line(color = hks_gray) +
+  geom_point(color = hks_blue) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    title = "Massachusetts Presidential Elections",
+    subtitle = "Line and points show the same values in different ways"
+  )
 ```
 
 ## Exercises #1
@@ -239,8 +273,13 @@ ma |>
       y = democrat
     )
   ) +
-  geom_line(color = "grey") +
-  geom_point(color = "blue")
+  geom_line(color = "gray75") +
+  geom_point(color = hks_blue) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    title = "Using Fixed Colors"
+  )
 ```
 
 This looks great, but what if we want the colors in our plots to **depend on the
@@ -292,7 +331,14 @@ ma |>
       color = winner
     )
   ) +
-  geom_point()
+  geom_point(size = 2.4) +
+  scale_color_manual(values = c("FALSE" = hks_crimson, "TRUE" = hks_blue)) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    color = "Democratic win",
+    title = "Color Mapped to the Data"
+  )
 ```
 
 What if we add the line back?
@@ -305,8 +351,15 @@ ma |>
       y = democrat, 
       color = winner)
   ) +
-  geom_point() +
-  geom_line()
+  geom_point(size = 2.4) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c("FALSE" = hks_crimson, "TRUE" = hks_blue)) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    color = "Democratic win",
+    title = "When Color Affects Both Points and Lines"
+  )
 ```
 
 Uh-oh! What's happening here? Well, we've asked the plot to change the `color`
@@ -325,8 +378,15 @@ ma |>
       y = democrat
     )
   ) +
-  geom_line() +
-  geom_point(aes(color = winner))
+  geom_line(color = hks_gray) +
+  geom_point(aes(color = winner), size = 2.4) +
+  scale_color_manual(values = c("FALSE" = hks_crimson, "TRUE" = hks_blue)) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    color = "Democratic win",
+    title = "Color Only the Points"
+  )
 ```
 
 Like before, you can still set the color of the line manually since you don't
@@ -341,8 +401,15 @@ ma|>
       y = democrat
     )
   ) +
-  geom_line(color = "grey") +
-  geom_point(aes(color = winner))
+  geom_line(color = "gray75") +
+  geom_point(aes(color = winner), size = 2.4) +
+  scale_color_manual(values = c("FALSE" = hks_crimson, "TRUE" = hks_blue)) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    color = "Democratic win",
+    title = "Fixed Line Color, Data-Driven Point Color"
+  )
 ```
 
 ## Size and shape
@@ -354,8 +421,14 @@ than values with `FALSE`:
 ```{r}
 ma|>
   ggplot(aes(x = year, y = democrat)) +
-    geom_line(color = "grey") +
-    geom_point(aes(size = winner))
+    geom_line(color = "gray75") +
+    geom_point(aes(size = winner), color = hks_blue) +
+    labs(
+      x = "Election year",
+      y = "Democratic vote share",
+      size = "Democratic win",
+      title = "Size Mapped to a Logical Value"
+    )
 ```
 
 Now, points are larger for larger values of `winner`! However, larger values of
@@ -372,8 +445,14 @@ ma|>
       y = democrat
     )
   ) +
-  geom_line(color = "grey") +
-  geom_point(aes(shape = winner))
+  geom_line(color = "gray75") +
+  geom_point(aes(shape = winner), color = hks_blue, size = 2.4) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    shape = "Democratic win",
+    title = "Shape Mapped to a Logical Value"
+  )
 ```
 
 ## Exercises #2
@@ -420,13 +499,15 @@ ma |>
       y = democrat
     )
   ) +
-  geom_line(color = "grey") +
-  geom_point(aes(color = winner)) +
+  geom_line(color = "gray75") +
+  geom_point(aes(color = winner), size = 2.4) +
+  scale_color_manual(values = c("FALSE" = hks_crimson, "TRUE" = hks_blue)) +
   labs(
     title = "Massachusetts Presidential \n Election Results",
     subtitle = "1932-2016",
     x = "Election Year",
-    y = "Democratic %"
+    y = "Democratic %",
+    color = "Democratic win"
   )
 ```
 
@@ -449,12 +530,14 @@ ma |>
       y = democrat
     )
   ) +
-  geom_line(color = "grey") +
-  geom_point(aes(color = winner)) +
+  geom_line(color = "gray75") +
+  geom_point(aes(color = winner), size = 2.4) +
+  scale_color_manual(values = c("FALSE" = hks_crimson, "TRUE" = hks_blue)) +
   labs(title = "Massachusetts Presidential \n Election Results",
        subtitle = "1932-2016",
        x = "Election Year",
-       y = "Democratic %") +
+       y = "Democratic %",
+       color = "Democratic win") +
   ylim(c(0, 100)) # now 0 is the minimum, 100 is the maximum
 ```
 
@@ -477,13 +560,15 @@ p <- ma |>
       y = democrat
     )
   ) +
-  geom_line(color = "grey") +
-  geom_point(aes(color = winner)) +
+  geom_line(color = "gray75") +
+  geom_point(aes(color = winner), size = 2.4) +
+  scale_color_manual(values = c("FALSE" = hks_crimson, "TRUE" = hks_blue)) +
   labs(
     title = "Massachusetts Presidential Election Results",
     subtitle = "1932-2016",
     x = "Election Year",
-    y = "Democratic %"
+    y = "Democratic %",
+    color = "Democratic win"
   )
 
 # now we can make more customizations to p
@@ -539,7 +624,13 @@ northeast |>
       color = winner
     )
   ) +
-  geom_point()
+  geom_point(color = hks_blue, alpha = 0.45) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    title = "Northeast Presidential Election Results",
+    subtitle = "All Northeastern states shown together"
+  )
 ```
 
 Why is this so cluttered? Well, we are now plotting results from all states in
@@ -555,7 +646,13 @@ northeast |>
       color = state
     )
   ) +
-  geom_point()
+  geom_point(alpha = 0.7) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    color = "State",
+    title = "Coloring Every State Can Become Busy"
+  )
 ```
 
 Wow! That looks terrible. Instead, what if we plotted a separate line for each
@@ -570,8 +667,14 @@ northeast |>
       color = state
     )
   ) +
-  geom_point() +
-  geom_line()
+  geom_point(alpha = 0.7) +
+  geom_line(linewidth = 0.8) +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    color = "State",
+    title = "Many Lines Can Still Be Difficult to Read"
+  )
 ```
 
 That looks a little better, but it is still difficult to tell each line apart
@@ -582,10 +685,14 @@ will make one plot per state:
 ```{r}
 northeast |>
   ggplot(aes(x = year, y = democrat)) +
-  geom_point() +
-  geom_line() +
+  geom_line(color = hks_gray) +
+  geom_point(color = hks_blue, size = 1.8) +
   facet_wrap(~state) + # notice the ~ key (called a tilde)
-  theme_linedraw()
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    title = "Facets Separate the States"
+  )
 ```
 
 We could also add the `winner` color back and `facet_wrap()` will automatically
@@ -600,13 +707,14 @@ northeast |>
       y = democrat
     )
   ) +
-  geom_line() +
-  geom_point(aes(color = winner)) +
+  geom_line(color = "gray75") +
+  geom_point(aes(color = winner), size = 1.8) +
+  scale_color_manual(values = c("FALSE" = hks_crimson, "TRUE" = hks_blue)) +
   facet_wrap(~state) + # notice the ~ key (called a tilde)
-  theme_linedraw() +
   labs(
     x = "Election Year",
     y = "Democratic %",
+    color = "Democratic win",
     title = "Presidential Elections",
     subtitle = "1932-2016, Northeastern States"
   )
@@ -629,14 +737,18 @@ northeast |>
       y = democrat
     )
   ) +
-  geom_point() +
-  geom_line() +
+  geom_line(color = hks_gray) +
+  geom_point(color = hks_blue, size = 1.8) +
   facet_wrap(~state) + # notice the ~ key (called a tilde)
-  theme_linedraw() +
+  labs(
+    x = "Election year",
+    y = "Democratic vote share",
+    title = "Adjusting Text Size in Facets"
+  ) +
   theme(
-    strip.text = element_text(size = 25),
-    axis.text = element_text(size = 15),
-    axis.title = element_text(size = 15)
+    strip.text = element_text(size = 12),
+    axis.text = element_text(size = 9),
+    axis.title = element_text(size = 11)
   )
 ```
 
@@ -669,6 +781,23 @@ pop <- read_csv("https://www.dropbox.com/s/javbnd4c3n67380/state_population.csv?
     your reasoning by referring to the data, the code, or the plot.
 
 Write your answer here:
+
+## What you should know after this part
+
+By the end of Part 3, you should be able to:
+
+-   Build a plot with `ggplot()`, `aes()`, and a geom.
+-   Decide when a line, point, bar, or faceted plot is useful.
+-   Use color, size, and shape intentionally.
+-   Add labels and themes that make a plot easier to read.
+-   Critique whether a plot answers the question being asked.
+
+## Before you submit
+
+-   Knit the notebook successfully.
+-   Answer every written question in your own words.
+-   Save your completed `.Rmd` file.
+-   Submit the correct `.Rmd` file to Canvas.
 
 ## Reminder to Submit
 
