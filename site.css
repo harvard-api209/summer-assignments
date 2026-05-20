@@ -1,14 +1,11 @@
 :root {
-  --paper: #fbfaf8;
-  --white: #ffffff;
-  --ink: #181818;
-  --muted: #66645f;
-  --line: #e5e1da;
-  --crimson: #a51c30;
-  --blue: #1f5f83;
-  --green: #2f6f55;
-  --soft: #f3f0ea;
-  --shadow: 0 18px 55px rgba(35, 31, 24, 0.08);
+  --background: #ffffff;
+  --surface: #fafafa;
+  --ink: #1f2328;
+  --muted: #59636e;
+  --line: #d8dee4;
+  --accent: #a51c30;
+  --link: #0969da;
 }
 
 * {
@@ -21,36 +18,34 @@ html {
 
 body {
   margin: 0;
-  background:
-    linear-gradient(90deg, rgba(24, 24, 24, 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(24, 24, 24, 0.025) 1px, transparent 1px),
-    var(--paper);
-  background-size: 72px 72px;
+  background: var(--background);
   color: var(--ink);
-  font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
-  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
 }
 
 a {
-  color: inherit;
+  color: var(--link);
 }
 
 code {
-  background: #efebe4;
-  border: 1px solid #e1d9cf;
-  border-radius: 5px;
-  font-size: 0.92em;
+  background: #f6f8fa;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.9em;
   padding: 0.1rem 0.28rem;
 }
 
 .site-header {
   align-items: center;
-  backdrop-filter: blur(18px);
-  background: rgba(251, 250, 248, 0.86);
+  background: var(--background);
   border-bottom: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
-  min-height: 72px;
+  min-height: 64px;
   padding: 0 32px;
   position: sticky;
   top: 0;
@@ -59,6 +54,7 @@ code {
 
 .brand {
   align-items: center;
+  color: var(--ink);
   display: inline-flex;
   gap: 12px;
   text-decoration: none;
@@ -66,15 +62,14 @@ code {
 
 .brand-mark {
   align-items: center;
-  background: var(--ink);
-  border-radius: 8px;
-  color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--accent);
   display: inline-flex;
   font-weight: 700;
-  height: 40px;
+  height: 38px;
   justify-content: center;
-  letter-spacing: 0;
-  width: 48px;
+  width: 46px;
 }
 
 .brand strong,
@@ -91,47 +86,43 @@ code {
 .nav-links {
   align-items: center;
   display: flex;
-  gap: 4px;
+  gap: 2px;
 }
 
 .nav-links a {
-  border-radius: 8px;
+  border-radius: 6px;
   color: var(--muted);
   font-size: 0.92rem;
-  font-weight: 600;
-  padding: 10px 12px;
+  font-weight: 500;
+  padding: 8px 10px;
   text-decoration: none;
 }
 
 .nav-links a:hover {
-  background: var(--soft);
+  background: var(--surface);
   color: var(--ink);
 }
 
 main {
   margin: 0 auto;
-  max-width: 1180px;
-  padding: 56px 28px 80px;
+  max-width: 1080px;
+  padding: 48px 28px 72px;
 }
 
 .hero {
+  border-bottom: 1px solid var(--line);
   display: grid;
-  gap: 36px;
-  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
-  min-height: calc(100vh - 180px);
-  padding: 36px 0 68px;
-}
-
-.hero-copy {
-  align-self: center;
+  gap: 40px;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  padding: 34px 0 54px;
 }
 
 .eyebrow {
-  color: var(--crimson);
+  color: var(--accent);
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  margin: 0 0 16px;
+  letter-spacing: 0.08em;
+  margin: 0 0 12px;
   text-transform: uppercase;
 }
 
@@ -139,76 +130,75 @@ h1,
 h2,
 h3 {
   letter-spacing: 0;
-  line-height: 1.02;
+  line-height: 1.18;
   margin: 0;
 }
 
-h1,
-h2 {
-  font-family: "Source Serif 4", Georgia, serif;
-}
-
 h1 {
-  font-size: clamp(3.2rem, 8vw, 7.5rem);
-  max-width: 860px;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-weight: 700;
+  max-width: 760px;
 }
 
 h2 {
-  font-size: clamp(2.2rem, 4.6vw, 4.4rem);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
 }
 
 h3 {
-  font-size: 1.16rem;
-  margin-bottom: 10px;
+  font-size: 1.08rem;
+  font-weight: 650;
+  margin-bottom: 8px;
 }
 
 .hero-text {
   color: var(--muted);
-  font-size: clamp(1.05rem, 2vw, 1.28rem);
-  margin: 28px 0 0;
-  max-width: 680px;
+  font-size: 1.1rem;
+  margin: 22px 0 0;
+  max-width: 650px;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 34px;
+  gap: 10px;
+  margin-top: 28px;
 }
 
 .button {
   align-items: center;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 6px;
   display: inline-flex;
-  font-weight: 700;
-  min-height: 46px;
-  padding: 0 18px;
+  font-weight: 600;
+  min-height: 42px;
+  padding: 0 14px;
   text-decoration: none;
 }
 
 .button.primary {
   background: var(--ink);
   border-color: var(--ink);
-  color: var(--white);
+  color: #ffffff;
 }
 
 .button.secondary {
-  background: var(--white);
+  background: var(--background);
   color: var(--ink);
 }
 
-.button:hover {
-  transform: translateY(-1px);
+.button:hover,
+.assignment a:hover,
+.support-grid a:hover {
+  border-color: #8c959f;
 }
 
 .hero-panel {
-  align-self: end;
-  background: rgba(255, 255, 255, 0.88);
+  align-self: start;
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  padding: 22px;
+  border-radius: 6px;
+  padding: 20px;
 }
 
 .hero-panel dl,
@@ -218,7 +208,7 @@ h3 {
 
 .hero-panel div {
   border-bottom: 1px solid var(--line);
-  padding: 18px 0;
+  padding: 14px 0;
 }
 
 .hero-panel div:first-child {
@@ -231,9 +221,9 @@ h3 {
 }
 
 .hero-panel dt {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   text-transform: uppercase;
 }
 
@@ -241,67 +231,76 @@ h3 {
   color: var(--muted);
 }
 
-.band,
+#process,
 .assignments,
+.split,
 .support {
-  margin-top: 56px;
+  border-bottom: 1px solid var(--line);
+  padding: 48px 0;
 }
 
-.band {
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  padding: clamp(24px, 5vw, 54px);
+.support {
+  border-bottom: 0;
 }
 
 .section-heading {
   display: grid;
-  gap: 20px;
-  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1fr);
+  gap: 24px;
+  grid-template-columns: 260px minmax(0, 1fr);
 }
 
 .section-heading.compact {
   display: block;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
+}
+
+#process .section-heading {
+  display: block;
+  margin-bottom: 20px;
 }
 
 .section-heading p:not(.eyebrow) {
   color: var(--muted);
-  font-size: 1.08rem;
-  margin: 8px 0 0;
-  max-width: 720px;
+  font-size: 1.02rem;
+  margin: 6px 0 0;
+  max-width: 680px;
 }
 
-.process-grid {
+.process-list {
+  border-top: 1px solid var(--line);
+  margin-top: 28px;
+}
+
+.process-step {
+  align-items: start;
+  border-bottom: 1px solid var(--line);
   display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: 40px;
-}
-
-.process-grid article {
-  background: #f8f6f2;
-  min-height: 245px;
-  padding: 24px;
+  gap: 18px;
+  grid-template-columns: 100px 245px minmax(0, 1fr);
+  padding: 24px 0;
 }
 
 .step-number,
 .assignment-kicker {
-  color: var(--blue);
+  color: var(--muted);
   display: block;
   font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  margin-bottom: 26px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
-.process-grid p,
+.process-step p,
 .assignment p,
 .plain-copy p,
 .check-list,
 .site-footer {
   color: var(--muted);
+}
+
+.process-step p {
+  margin: 0;
 }
 
 .assignment-list {
@@ -313,8 +312,8 @@ h3 {
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: 18px;
-  grid-template-columns: 110px 260px minmax(0, 1fr) 150px;
-  padding: 28px 0;
+  grid-template-columns: 100px 245px minmax(0, 1fr) 135px;
+  padding: 24px 0;
 }
 
 .assignment p {
@@ -323,91 +322,70 @@ h3 {
 
 .assignment a {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 6px;
+  color: var(--link);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   justify-self: end;
-  padding: 10px 12px;
+  padding: 8px 10px;
   text-decoration: none;
   white-space: nowrap;
-}
-
-.assignment a:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--white);
 }
 
 .split {
   align-items: start;
   display: grid;
-  gap: 40px;
-  grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1fr);
+  gap: 42px;
+  grid-template-columns: 320px minmax(0, 1fr);
 }
 
 .plain-copy p {
-  font-size: 1.12rem;
+  font-size: 1.05rem;
   margin-top: 0;
 }
 
 .check-list {
   list-style: none;
-  margin: 22px 0 0;
+  margin: 20px 0 0;
   padding: 0;
 }
 
 .check-list li {
   border-top: 1px solid var(--line);
-  padding: 14px 0 14px 28px;
-  position: relative;
-}
-
-.check-list li::before {
-  background: var(--green);
-  border-radius: 999px;
-  content: "";
-  height: 8px;
-  left: 0;
-  position: absolute;
-  top: 22px;
-  width: 8px;
+  padding: 12px 0;
 }
 
 .support-grid {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .support-grid a {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(35, 31, 24, 0.05);
-  font-weight: 700;
-  min-height: 86px;
-  padding: 22px;
+  border-radius: 6px;
+  color: var(--link);
+  font-weight: 600;
+  min-height: 72px;
+  padding: 18px;
   text-decoration: none;
-}
-
-.support-grid a:hover {
-  border-color: var(--ink);
 }
 
 .site-footer {
   border-top: 1px solid var(--line);
   font-size: 0.9rem;
   margin: 0 auto;
-  max-width: 1180px;
-  padding: 28px;
+  max-width: 1080px;
+  padding: 24px 28px;
 }
 
 @media (max-width: 900px) {
   .site-header {
     align-items: flex-start;
     flex-direction: column;
-    gap: 12px;
-    padding: 16px 20px;
+    gap: 10px;
+    padding: 14px 20px;
   }
 
   .nav-links {
@@ -415,7 +393,7 @@ h3 {
   }
 
   main {
-    padding: 32px 20px 64px;
+    padding: 30px 20px 56px;
   }
 
   .hero,
@@ -425,21 +403,18 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .hero {
-    min-height: auto;
-  }
-
-  .process-grid,
+  .process-list,
   .support-grid {
     grid-template-columns: 1fr;
   }
 
-  .process-grid article {
-    min-height: auto;
+  .process-step {
+    gap: 8px;
+    grid-template-columns: 1fr;
   }
 
   .assignment {
-    gap: 10px;
+    gap: 8px;
   }
 
   .assignment a {
@@ -449,7 +424,7 @@ h3 {
 
 @media (max-width: 560px) {
   h1 {
-    font-size: 3rem;
+    font-size: 2.55rem;
   }
 
   .hero-actions,

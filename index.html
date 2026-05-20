@@ -8,13 +8,7 @@
       name="description"
       content="Student guide for completing the API-209 Summer 2026 R assignments in Posit Cloud."
     >
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&display=swap"
-      rel="stylesheet"
-    >
-    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="site.css?v=2">
   </head>
   <body>
     <header class="site-header" aria-label="Course guide header">
@@ -37,11 +31,11 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
           <p class="eyebrow">Summer 2026 pre-assignment</p>
-          <h1 id="hero-title">A clean path through the R summer work.</h1>
+          <h1 id="hero-title">API-209 Summer R Assignments</h1>
           <p class="hero-text">
-            Use this page as the front door for the five API-209 R assignments.
-            The actual work happens in Posit Cloud; this site explains the
-            sequence, expectations, and how to check your progress.
+            This page explains how to work through the five API-209 R
+            assignments. The actual coding work happens in Posit Cloud; this
+            site provides the sequence, expectations, and links to each part.
           </p>
           <div class="hero-actions" aria-label="Primary resources">
             <a class="button primary" href="https://posit.cloud/content/8155534">Open Posit Cloud</a>
@@ -67,8 +61,8 @@
         </aside>
       </section>
 
-      <section class="band" id="process" aria-labelledby="process-title">
-        <div class="section-heading">
+      <section id="process" aria-labelledby="process-title">
+        <div class="section-heading compact">
           <p class="eyebrow">Start here</p>
           <h2 id="process-title">The process</h2>
           <p>
@@ -78,33 +72,33 @@
           </p>
         </div>
 
-        <div class="process-grid">
-          <article>
-            <span class="step-number">01</span>
+        <div class="process-list">
+          <article class="process-step">
+            <div class="step-number">01</div>
             <h3>Save your own copy</h3>
             <p>
               Open the Posit Cloud project and save a permanent copy to your
               workspace before editing any assignment files.
             </p>
           </article>
-          <article>
-            <span class="step-number">02</span>
+          <article class="process-step">
+            <div class="step-number">02</div>
             <h3>Work in the R Markdown file</h3>
             <p>
               Open the relevant assignment in the <code>assignments</code>
               folder. Write code and short answers directly in the notebook.
             </p>
           </article>
-          <article>
-            <span class="step-number">03</span>
+          <article class="process-step">
+            <div class="step-number">03</div>
             <h3>Knit early and often</h3>
             <p>
               Knit the notebook regularly. This catches code errors before they
               accumulate and confirms the document is reproducible.
             </p>
           </article>
-          <article>
-            <span class="step-number">04</span>
+          <article class="process-step">
+            <div class="step-number">04</div>
             <h3>Submit the Rmd</h3>
             <p>
               Submit the completed <code>.Rmd</code> file to Canvas using the
@@ -175,7 +169,7 @@
         </div>
       </section>
 
-      <section class="band split" id="ai" aria-labelledby="ai-title">
+      <section class="split" id="ai" aria-labelledby="ai-title">
         <div>
           <p class="eyebrow">AI use</p>
           <h2 id="ai-title">Debug, verify, explain.</h2>
