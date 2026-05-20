@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-## Summer 2025, Pre-Assignment
+## Summer 2026, Pre-Assignment
 
 Welcome! For now, we will be using Posit Cloud to complete our summer
 assignments. You can also download the entire project to use with RStudio
@@ -88,6 +88,12 @@ helps ensure that your code is reproducible.
 If you get stuck in any aspect of using R, please use Slack to ask the teaching
 team.
 
+**Using AI while learning R:** AI tools can help explain error messages or
+clarify what a command does, but they cannot replace your own practice. If you
+use AI while working on these assignments, run the code yourself, check that the
+output matches the question, and be ready to explain the result in your own
+words.
+
 Finally, use the following
 [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
 in case of doubts. Any other questions? Post them on Slack.
@@ -108,6 +114,15 @@ can deal with many types of data, like **numbers** (3, 0, 2021), letters and
 words called **characters** ("Data", "South Amboy", "Dom"), and many many
 others. For example, in the box below this message, type 3+2 and press the arrow
 on the left side (or CMD + Enter on a Mac / Ctrl + Enter on PC):
+
+Here are a few words we will use throughout these assignments:
+
+-   **Object**: a named thing that stores a value for later use.
+-   **Function**: a command that performs a task, usually using values inside
+    parentheses.
+-   **Argument**: an input you give to a function.
+-   **Vector**: an object that stores more than one value.
+-   **Logical value**: a value that is either `TRUE` or `FALSE`.
 
 ```{r}
 # Try adding below
@@ -309,6 +324,13 @@ check_year == TRUE
 ```{r}
 # You try it here
 ```
+
+6.  Read the error message from question 5 carefully. In one sentence, explain
+    what R tried to do and why it could not do it. If you use AI to help explain
+    the error, write the explanation in your own words and say how you checked
+    that it matched what happened in R.
+
+Write your answer here:
 
 # Functions
 

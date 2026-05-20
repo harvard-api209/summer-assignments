@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-**Summer 2025, Pre-Assignment**
+**Summer 2026, Pre-Assignment**
 
 **Part 4: Data Manipulation: Part 2**
 
@@ -31,6 +31,11 @@ knitr::opts_chunk$set(echo = TRUE)
 2.  Use the following
     [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
     in case of doubts. Any other questions? Post them on Slack.
+
+**Using AI while learning R:** AI tools can help you remember syntax for
+`group_by()`, `summarise()`, or a graphing function. They cannot decide whether
+your denominator, grouping level, or interpretation is correct. Always check
+what one row represents before and after you summarize.
 
 > In previous notebooks, we have generally edited components of datasets while
 > keeping the larger dataset structure the same. Often, we will want to
@@ -52,6 +57,8 @@ US population over time.
 
 ```{r, warning=FALSE}
 # INSTALLATION CODE:
+
+options(repos = c(CRAN = "https://cloud.r-project.org"))
 
 if(!("tidyverse" %in% rownames(installed.packages()))) {
   install.packages("tidyverse")
@@ -148,6 +155,28 @@ pop_by_year <- state |>
 
 # tail() shows the final rows in the dataset
 head(pop_by_year)
+```
+
+Notice that the unit of analysis changed. In `state`, one row is a state-year.
+In `pop_by_year`, one row is a year. This is why checking the rows after
+`summarise()` is so important.
+
+```{r}
+nrow(state)
+nrow(pop_by_year)
+```
+
+The function `n()` counts how many rows are in each group. This is useful for
+checking whether each summary is based on the number of observations you
+expected.
+
+```{r}
+state |>
+  group_by(year) |>
+  summarise(
+    pop = sum(population),
+    n_states = n()
+  )
 ```
 
 Now that we have that object, we can plot total US population by year directly.
@@ -266,6 +295,11 @@ cups <- read_csv("https://www.dropbox.com/s/eb74w6516hvm11a/world_cups%20-%20Wor
 # Write your code here.
 ```
 
+In one sentence, describe the main finding from your plot. Then write one
+sentence about whether the plot makes comparison across teams easy or difficult.
+
+Write your answer here:
+
 # Using groups for other statistics
 
 The sum is one interesting measurement you will want to calculate, but it is
@@ -310,6 +344,23 @@ cups |>
   summarise(scored = mean(scored / matches))
 ```
 
+Be careful with averages. The average of team-level rates is not always the same
+as the overall rate. In the code below, the unweighted mean treats every team
+equally, while the weighted rate gives more influence to teams with more
+matches.
+
+```{r}
+cups |>
+  filter(year == 1930) |>
+  summarise(
+    unweighted_goals_per_match = mean(scored / matches),
+    weighted_goals_per_match = sum(scored) / sum(matches)
+  )
+```
+
+If an AI tool suggests a summary statistic, check whether it is using the right
+level of aggregation and the right denominator.
+
 The **median** of a set of numbers is found by ordering them from smallest to
 largest and finding the value in the middle. Means and medians are both ways of
 estimating the center of a dataset, but they do have important differences in
@@ -327,6 +378,13 @@ median(numbers)
 # consider: why might these numbers be different?
 mean(cups$scored)
 median(cups$scored)
+```
+
+When summarizing real datasets, also check for missing values before trusting a
+mean or median.
+
+```{r}
+sum(is.na(cups$scored))
 ```
 
 # 2. Visualizing distributions
@@ -393,6 +451,10 @@ For an extra challenge, try adding a vertical line to the plot at 50 with the
 see code examples using the function).
 
 Finally, explain the general trend that you see.
+
+In your explanation, describe the center, spread, skew, and any visible outliers
+or regional differences. If changing the binwidth changes your conclusion, say
+so.
 
 ```{r}
 elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_elections.csv?dl=1")

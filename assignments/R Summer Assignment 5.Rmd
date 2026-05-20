@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-**Summer 2025, Pre-Assignment**
+**Summer 2026, Pre-Assignment**
 
 **Part 5: Capstone Assignment**
 
@@ -26,6 +26,11 @@ have perfected R by the time you finish them, but that you have a solid
 foundation of key concepts when going into Math Camp. During Math Camp, we will
 go over much of this material in greater depth. Spending time on this now will
 help make your future learning easier.
+
+**Using AI while learning R:** In this capstone, AI tools may help you debug an
+error or explain unfamiliar syntax. They should not choose your question, write
+your interpretation, or replace your own checks. You will be asked to document
+any AI help you used and how you verified it.
 
 # ***Part I - Analysis of World Economic Outlook Data***
 
@@ -42,13 +47,14 @@ values are in millions of persons.
 To begin, run the code chunk below to open the dataset and the necessary
 libraries.
 
-```{r, warning=FALSE, message==FALSE}
+```{r, warning=FALSE, message=FALSE}
 # INSTALLATION CODE:
 
 pkgs <- c("tidyverse", "ggrepel", "gapminder", "scales")
 
 to_install <- which(!(pkgs %in% rownames(installed.packages())))
 
+options(repos = c(CRAN = "https://cloud.r-project.org"))
 install.packages(pkgs[to_install])
 
 # Open packages
@@ -63,6 +69,14 @@ cat("Done!")
 ```
 
 The command `head()` displays a preview of the dataset.
+
+```{r}
+head(weo)
+glimpse(weo)
+```
+
+The function `select()` keeps only the columns you name. For example,
+`weo |> select(country, continent)` would keep just those two columns.
 
 1.  Write a command (connected by pipes - `|>`) that:
 2.  First sorts the dataset from lowest to highest real GDP in 2019, and then
@@ -169,7 +183,7 @@ making a high-quality graphic that is informative and user-friendly.
 1.  Let's start to think about summarizing variables using summary statistics.
     Write code that reports the mean of country-level 2019 GDP per capita across
     all countries in one column and the median for 2019 in another. Pick column
-    names that are sufficiently self- explanatory but also concise. What result
+    names that are sufficiently self-explanatory but also concise. What result
     do you get? Is this what you expected? Why might this be the case?
 
 ```{r}
@@ -190,11 +204,11 @@ making a high-quality graphic that is informative and user-friendly.
     question. By default, `mean()` and `median()` report a missing value if at
     least one of its input values is missing, and as you probably found in parts
     (1) and (2), a country has a missing value for 2019 GDP per capita. Now,
-        modify your code so that you change this default and remove the missing
-        values in your computation. [As the help page for the functions
-        indicate](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean),
-        the relevant argument is `na.rm`( for NA-remove). Set the logical value
-        to `TRUE` (it is `FALSE` by default if you do not specify anything).
+    modify your code so that you change this default and remove the missing
+    values in your computation. [As the help page for the functions
+    indicate](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean),
+    the relevant argument is `na.rm` (for NA-remove). Set the logical value to
+    `TRUE` (it is `FALSE` by default if you do not specify anything).
 
 ```{r}
 # Write your code here!
@@ -223,6 +237,22 @@ Once you have completed, please write a brief paragraph, sharing your question,
 a brief summary of the approach you do, and the key takeaway from your output
 and post it on the course Slack. Take a chance to review others work and react!
 
+Please also write a short analysis memo here:
+
+-   **Question:** What did you ask?
+-   **Data:** What does one row represent, and which variables did you use?
+-   **Approach:** What code steps did you use?
+-   **Finding:** What is your main takeaway?
+-   **Caveat:** What is one limitation or reason to be cautious?
+
+Write your memo here:
+
+If you used AI for this capstone, briefly document it here. What did you ask it
+for, what did it suggest, and how did you verify the suggestion? If you did not
+use AI, write "I did not use AI for this capstone."
+
+Write your AI-use note here:
+
 ## **[Challenge Problem] More Graphing**
 
 This problem is more challenging. It involves some commands not covered in the
@@ -236,6 +266,10 @@ in the Figure caption.
 
 **Hint**: Check out the packages `ggrepel` and `scales` to implement some of the
 features.
+
+The `ggrepel` package helps add labels that avoid overlapping points. The
+`scales` package helps format axes, such as using commas or dollar signs. Use
+these tools only if they help make your figure easier to read.
 
 ![](../figs/assignment5.png)
 
@@ -261,7 +295,7 @@ until you have completed them all to submit).
 # ***Part II - Additional Optional Resources and Exercises***
 
 We will continue to practice and develop R skills during the HKS Math Camp and
-through-out the semester. We believe the above primers and exercises provide a
+throughout the semester. We believe the above primers and exercises provide a
 solid foundation in the skills needed for the semester, but if you have the time
 and desire to hone your skills more before arriving on campus, we encourage you
 to consult the following additional resources.

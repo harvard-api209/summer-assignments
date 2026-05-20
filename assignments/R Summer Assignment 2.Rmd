@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-**Summer 2025, Pre-Assignment**
+**Summer 2026, Pre-Assignment**
 
 **Part 2: Data Manipulation (1)**
 
@@ -35,6 +35,11 @@ knitr::opts_chunk$set(echo = TRUE)
     [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
     in case of doubts. Any other questions? Post them on Slack.
 
+**Using AI while learning R:** AI tools can help explain error messages or
+remind you what a command does. They are most useful after you have tried the
+code yourself. Always run the code, inspect the output, and make sure the result
+answers the question being asked.
+
 ```{r}
 # INSTALLATION CODE:
 
@@ -43,8 +48,8 @@ knitr::opts_chunk$set(echo = TRUE)
 # it is here to handle installation for you in the background.
 # It will make more sense soon!
 
-# If you are running this code on your local machine and you run into an error regarding trying to use CRAN without setting a mirror, the uncomment the following line of code, which may be needed in each of your subsequent workbooks:
-# options(repos = c(CRAN = "https://cloud.r-project.org"))
+# This sets a reliable package download location for Posit Cloud or RStudio.
+options(repos = c(CRAN = "https://cloud.r-project.org"))
 
 
 if(!("tidyverse" %in% rownames(installed.packages()))) {
@@ -72,6 +77,15 @@ As usual, once you have completed the RStudio tutorials above please start here
 and continue the document below. These exercises give you additional
 opportunities to practice the most important concepts from the RStudio Tutorials
 for our HKS courses.
+
+For data work, use this basic workflow throughout the assignment:
+
+1.  **Inspect** the data: What are the rows, columns, and values?
+2.  **Ask** a clear question: What subset, summary, or transformation do you
+    need?
+3.  **Transform** the data with code.
+4.  **Check** the result: Does the output have the rows, columns, and values you
+    expected?
 
 # Vectors
 
@@ -143,6 +157,15 @@ column called `population`. We will keep that in mind as we progress!
 head(population) 
 ```
 
+Two other useful inspection functions are `glimpse()` and `nrow()`. `glimpse()`
+shows the columns and their types, while `nrow()` tells you how many rows are in
+the dataset.
+
+```{r}
+glimpse(population)
+nrow(population)
+```
+
 You can do many things with datasets. Often, we will want to use functions on
 datasets. For example, the `slice()` function takes two arguments, an object and
 a number `n`, and the function will return to you the first `n` rows you asked
@@ -201,6 +224,15 @@ population |> slice(5)
 
 ```{r}
 # Write your code here 
+```
+
+Write your text response here:
+
+3.  Use `glimpse()` and `nrow()` on `population`. What does one row represent?
+    How many rows are in the dataset?
+
+```{r}
+# Write your code here
 ```
 
 Write your text response here:
@@ -273,6 +305,13 @@ after the name of the dataset, like this example below:
 ```{r}
 # Show all unique values of the country column in the population object
 unique(population$country)
+```
+
+You can also use `distinct()` to ask for the unique values of a column while
+staying inside the tidyverse style:
+
+```{r}
+population |> distinct(country)
 ```
 
 Notice that FRANCE is not in there, but France is. When using `filter()`, we
@@ -459,6 +498,14 @@ again, R will autocomplete.
 elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_elections.csv?dl=1")
 ```
 
+Before analyzing a new dataset, check its structure and unit of analysis.
+
+```{r}
+glimpse(elections)
+nrow(elections)
+count(elections, region)
+```
+
 # Exercise #4
 
 1.  Look at the `elections` dataset with `head()`. What do the rows and columns
@@ -467,6 +514,8 @@ elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_el
 ```{r}
 # Write your code here
 ```
+
+Write your text response here:
 
 2.  Use `filter()` to subset results for Massachusetts and store the answer in
     an object called `ma`.

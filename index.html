@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API-209 Summer 2026 R Assignments</title>
+    <meta
+      name="description"
+      content="Student guide for completing the API-209 Summer 2026 R assignments in Posit Cloud."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="site.css">
+  </head>
+  <body>
+    <header class="site-header" aria-label="Course guide header">
+      <a class="brand" href="#top" aria-label="API-209 summer assignments home">
+        <span class="brand-mark">209</span>
+        <span>
+          <strong>API-209</strong>
+          <small>Summer R Guide</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="#process">Process</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#ai">AI use</a>
+        <a href="#support">Support</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Summer 2026 pre-assignment</p>
+          <h1 id="hero-title">A clean path through the R summer work.</h1>
+          <p class="hero-text">
+            Use this page as the front door for the five API-209 R assignments.
+            The actual work happens in Posit Cloud; this site explains the
+            sequence, expectations, and how to check your progress.
+          </p>
+          <div class="hero-actions" aria-label="Primary resources">
+            <a class="button primary" href="https://posit.cloud/content/8155534">Open Posit Cloud</a>
+            <a class="button secondary" href="README.md">Read the overview</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Quick facts">
+          <dl>
+            <div>
+              <dt>Where you work</dt>
+              <dd>Posit Cloud, inside the assignment R Markdown files.</dd>
+            </div>
+            <div>
+              <dt>What you submit</dt>
+              <dd>The completed <code>.Rmd</code> file for each part.</dd>
+            </div>
+            <div>
+              <dt>What this site is</dt>
+              <dd>A guide hosted from GitHub, not a Posit Cloud deployment.</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="band" id="process" aria-labelledby="process-title">
+        <div class="section-heading">
+          <p class="eyebrow">Start here</p>
+          <h2 id="process-title">The process</h2>
+          <p>
+            Move through the assignments in order. Each part builds the habits
+            you will use during Math Camp and API-209: inspect data, write code,
+            check output, and explain what the result means.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <article>
+            <span class="step-number">01</span>
+            <h3>Save your own copy</h3>
+            <p>
+              Open the Posit Cloud project and save a permanent copy to your
+              workspace before editing any assignment files.
+            </p>
+          </article>
+          <article>
+            <span class="step-number">02</span>
+            <h3>Work in the R Markdown file</h3>
+            <p>
+              Open the relevant assignment in the <code>assignments</code>
+              folder. Write code and short answers directly in the notebook.
+            </p>
+          </article>
+          <article>
+            <span class="step-number">03</span>
+            <h3>Knit early and often</h3>
+            <p>
+              Knit the notebook regularly. This catches code errors before they
+              accumulate and confirms the document is reproducible.
+            </p>
+          </article>
+          <article>
+            <span class="step-number">04</span>
+            <h3>Submit the Rmd</h3>
+            <p>
+              Submit the completed <code>.Rmd</code> file to Canvas using the
+              course submission instructions.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="assignments" class="assignments" aria-labelledby="assignments-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Five parts</p>
+          <h2 id="assignments-title">Assignment roadmap</h2>
+        </div>
+
+        <div class="assignment-list">
+          <article class="assignment">
+            <div class="assignment-kicker">Part 1</div>
+            <h3>Programming Fundamentals</h3>
+            <p>
+              Learn objects, data types, logical values, functions, vectors,
+              comments, and how to read simple error messages.
+            </p>
+            <a href="assignments/R-Summer-Assignment-1.html">Preview Part 1</a>
+          </article>
+
+          <article class="assignment">
+            <div class="assignment-kicker">Part 2</div>
+            <h3>Data Manipulation I</h3>
+            <p>
+              Practice inspecting data, filtering rows, sorting, mutating
+              columns, reading CSV files, and checking units of analysis.
+            </p>
+            <a href="assignments/R-Summer-Assignment-2.html">Preview Part 2</a>
+          </article>
+
+          <article class="assignment">
+            <div class="assignment-kicker">Part 3</div>
+            <h3>Data Visualization</h3>
+            <p>
+              Build plots with <code>ggplot()</code>, choose geoms and
+              aesthetics, label figures, use facets, and critique whether a
+              graph answers the question.
+            </p>
+            <a href="assignments/R-Summer-Assignment-3.html">Preview Part 3</a>
+          </article>
+
+          <article class="assignment">
+            <div class="assignment-kicker">Part 4</div>
+            <h3>Data Manipulation II</h3>
+            <p>
+              Use <code>group_by()</code> and <code>summarise()</code>, compare
+              means and medians, check denominators, and describe distributions.
+            </p>
+            <a href="assignments/R-Summer-Assignment-4.html">Preview Part 4</a>
+          </article>
+
+          <article class="assignment">
+            <div class="assignment-kicker">Part 5</div>
+            <h3>Capstone Analysis</h3>
+            <p>
+              Apply the full workflow to World Economic Outlook data, produce a
+              graph or summary, write a short analysis memo, and document any AI
+              help you used.
+            </p>
+            <a href="assignments/R-Summer-Assignment-5.html">Preview Part 5</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="band split" id="ai" aria-labelledby="ai-title">
+        <div>
+          <p class="eyebrow">AI use</p>
+          <h2 id="ai-title">Debug, verify, explain.</h2>
+        </div>
+        <div class="plain-copy">
+          <p>
+            AI tools can help explain an error message or remind you what a
+            specific R command does. They should not choose your answer, replace
+            your practice, or write interpretations that you cannot defend.
+          </p>
+          <ul class="check-list">
+            <li>Try the code yourself first.</li>
+            <li>Run any AI-suggested code before trusting it.</li>
+            <li>Check that column names, filters, and denominators are correct.</li>
+            <li>Explain the output in your own words.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="support" id="support" aria-labelledby="support-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">When stuck</p>
+          <h2 id="support-title">Use the course support channels.</h2>
+        </div>
+        <div class="support-grid">
+          <a href="https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing">
+            FAQ document
+          </a>
+          <a href="https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing">
+            Submission instructions
+          </a>
+          <a href="README.md">
+            Project overview
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>API-209 Summer 2026 R assignments. Website guide for the GitHub repo; coding work remains in Posit Cloud.</p>
+    </footer>
+  </body>
+</html>

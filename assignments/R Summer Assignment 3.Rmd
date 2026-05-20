@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-**Summer 2025, Pre-Assignment**
+**Summer 2026, Pre-Assignment**
 
 **Part 3: Introduction to Data Visualization**
 
@@ -33,6 +33,11 @@ knitr::opts_chunk$set(echo = TRUE)
     [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
     in case of doubts. Any other questions? Post them on Slack.
 
+**Using AI while learning R:** AI tools can sometimes suggest `ggplot()` code,
+but they may use column names that are not in your dataset or produce a graph
+that does not answer your question. Treat any suggestion as a draft: run it,
+check the mappings, and explain what the graph shows.
+
 ```{r, warning=FALSE}
 # INSTALLATION CODE:
 
@@ -46,6 +51,7 @@ pkgs <- c("tidyverse", "ggrepel", "gapminder", "maps", "ggthemes")
 
 to_install <- which(!(pkgs %in% rownames(installed.packages())))
 
+options(repos = c(CRAN = "https://cloud.r-project.org"))
 install.packages(pkgs[to_install])
 
 library(tidyverse)
@@ -96,11 +102,7 @@ election results from 1932 to 2016 by state.
 # Run this code, loads libraries and does some setup
 library(tidyverse)
 options(repr.plot.width=10, repr.plot.height=10)
-theme_set(theme_gray(base_size = 20))
-theme_set(theme_dark(base_size = 20))
-theme_set(theme_linedraw(base_size = 30,  ))
-update_geom_defaults("point",list(size=5))
-update_geom_defaults("line",list(lwd=1.5))
+theme_set(theme_gray(base_size = 14))
 
 elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_elections.csv?dl=1")
 
@@ -214,6 +216,10 @@ ma |>
     displaying the same information? Which one do you think is most effective?
 
 Answer here in text!
+
+When judging a graph, ask yourself: What is the main comparison? What does each
+axis represent? Are color, size, or shape adding information? What should a
+reader conclude after looking at the figure for ten seconds?
 
 # 2. Aesthetics
 
@@ -403,7 +409,7 @@ many more tools to customize your plots any way you want. For example:
 ## Labels
 
 **Labels** are important in any plot. We create these with the `labs()`
-function, which has arguments for `title`, `subitle`, `caption`, `x`, and `y`
+function, which has arguments for `title`, `subtitle`, `caption`, `x`, and `y`
 labels. You can choose which labels to include in your plot. For example:
 
 ```{r}
@@ -445,7 +451,7 @@ ma |>
   ) +
   geom_line(color = "grey") +
   geom_point(aes(color = winner)) +
-  labs(title = "Massachussets Presidential \n Election Results",
+  labs(title = "Massachusetts Presidential \n Election Results",
        subtitle = "1932-2016",
        x = "Election Year",
        y = "Democratic %") +
@@ -474,7 +480,7 @@ p <- ma |>
   geom_line(color = "grey") +
   geom_point(aes(color = winner)) +
   labs(
-    title = "Massachussets Presidential Election Results",
+    title = "Massachusetts Presidential Election Results",
     subtitle = "1932-2016",
     x = "Election Year",
     y = "Democratic %"
@@ -657,6 +663,12 @@ pop <- read_csv("https://www.dropbox.com/s/javbnd4c3n67380/state_population.csv?
 ```{r}
 # Write your code here.
 ```
+
+4.  Optional AI check: if you use an AI tool to critique one of your plots, list
+    one suggestion it made. Did you accept or reject that suggestion? Explain
+    your reasoning by referring to the data, the code, or the plot.
+
+Write your answer here:
 
 ## Reminder to Submit
 
