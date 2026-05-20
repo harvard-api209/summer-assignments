@@ -232,6 +232,7 @@ h3 {
 }
 
 #process,
+.manifesto,
 .assignments,
 .split,
 .support {
@@ -300,6 +301,56 @@ h3 {
 }
 
 .process-step p {
+  margin: 0;
+}
+
+.manifesto-body {
+  display: grid;
+  gap: 42px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  margin-top: 30px;
+}
+
+.manifesto-lede {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+}
+
+.manifesto-lede p {
+  color: var(--ink);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.45;
+  margin: 0;
+  max-width: 700px;
+}
+
+.manifesto-lede p + p {
+  color: var(--muted);
+  font-size: 1.02rem;
+  margin-top: 18px;
+}
+
+.principle-list {
+  border-top: 1px solid var(--line);
+}
+
+.principle-list div {
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  padding: 16px 0;
+}
+
+.principle-list span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.principle-list p {
+  color: var(--ink);
   margin: 0;
 }
 
@@ -419,6 +470,10 @@ h3 {
 
   .assignment a {
     justify-self: start;
+  }
+
+  .manifesto-body {
+    grid-template-columns: 1fr;
   }
 }
 
