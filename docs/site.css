@@ -56,20 +56,7 @@ code {
   align-items: center;
   color: var(--ink);
   display: inline-flex;
-  gap: 12px;
   text-decoration: none;
-}
-
-.brand-mark {
-  align-items: center;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--accent);
-  display: inline-flex;
-  font-weight: 700;
-  height: 38px;
-  justify-content: center;
-  width: 46px;
 }
 
 .brand strong,
@@ -101,6 +88,17 @@ code {
 .nav-links a:hover {
   background: var(--surface);
   color: var(--ink);
+}
+
+.nav-links a.is-disabled {
+  color: #8c959f;
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.nav-links a.is-disabled:hover {
+  background: transparent;
+  color: #8c959f;
 }
 
 main {
@@ -188,7 +186,6 @@ h3 {
 }
 
 .button:hover,
-.assignment a:hover,
 .support-grid a:hover {
   border-color: #8c959f;
 }
@@ -238,10 +235,6 @@ h3 {
 .support {
   border-bottom: 1px solid var(--line);
   padding: 48px 0;
-}
-
-.support {
-  border-bottom: 0;
 }
 
 .section-heading {
@@ -296,7 +289,12 @@ h3 {
 .assignment p,
 .plain-copy p,
 .check-list,
-.site-footer {
+.site-footer,
+.resource-section p,
+.resource-list,
+.submission-list em,
+.support-grid span,
+.readiness-list {
   color: var(--muted);
 }
 
@@ -363,24 +361,12 @@ h3 {
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: 18px;
-  grid-template-columns: 100px 245px minmax(0, 1fr) 135px;
+  grid-template-columns: 100px 245px minmax(0, 1fr);
   padding: 24px 0;
 }
 
 .assignment p {
   margin: 0;
-}
-
-.assignment a {
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--link);
-  font-size: 0.9rem;
-  font-weight: 600;
-  justify-self: end;
-  padding: 8px 10px;
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 .split {
@@ -417,10 +403,23 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 6px;
   color: var(--link);
+  display: grid;
+  gap: 8px;
   font-weight: 600;
-  min-height: 72px;
+  min-height: 118px;
   padding: 18px;
   text-decoration: none;
+}
+
+.support-grid strong,
+.support-grid span {
+  display: block;
+}
+
+.support-grid span {
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.45;
 }
 
 .site-footer {
@@ -429,6 +428,101 @@ h3 {
   margin: 0 auto;
   max-width: 1080px;
   padding: 24px 28px;
+}
+
+.resource-main {
+  max-width: 900px;
+}
+
+.resource-hero {
+  border-bottom: 1px solid var(--line);
+  padding: 34px 0 48px;
+}
+
+.resource-section {
+  border-bottom: 1px solid var(--line);
+  padding: 42px 0;
+}
+
+.resource-section:last-child {
+  border-bottom: 0;
+}
+
+.resource-section h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 20px;
+}
+
+.resource-section p {
+  margin: 12px 0 0;
+  max-width: 720px;
+}
+
+.resource-list {
+  margin: 0;
+  max-width: 760px;
+  padding-left: 22px;
+}
+
+.resource-list li + li {
+  margin-top: 12px;
+}
+
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+
+.faq-list article {
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+}
+
+.faq-list article:last-child {
+  border-bottom: 0;
+}
+
+.folder-tree {
+  background: #f6f8fa;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  margin: 18px 0 0;
+  overflow-x: auto;
+  padding: 18px;
+}
+
+.folder-tree code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.submission-list {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+}
+
+.submission-list div {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.submission-list span {
+  font-weight: 650;
+}
+
+.submission-list em {
+  font-style: normal;
+}
+
+.resource-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
 }
 
 .warmup-main {
@@ -494,6 +588,27 @@ h3 {
 .finish-panel {
   border-bottom: 1px solid var(--line);
   padding: 48px 0;
+}
+
+.warmup-section.is-locked,
+.finish-panel.is-locked {
+  opacity: 0.72;
+}
+
+.warmup-section.is-locked .warmup-heading::after,
+.finish-panel.is-locked > div:first-child::after {
+  color: var(--muted);
+  content: "Complete the previous activity to unlock this section.";
+  display: block;
+  font-size: 0.95rem;
+  margin-top: 12px;
+}
+
+.warmup-section.is-locked .activity-grid,
+.warmup-section.is-locked .pipe-example,
+.warmup-section.is-locked .done-check,
+.finish-panel.is-locked .finish-actions {
+  filter: grayscale(0.2);
 }
 
 .loop-grid {
@@ -682,6 +797,31 @@ h3 {
   min-height: 1.6em;
 }
 
+.continue-panel {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-top: 22px;
+  padding: 14px 16px;
+}
+
+.continue-note {
+  color: var(--muted);
+  margin: 0;
+}
+
+.continue-button:disabled,
+.choice-group button:disabled,
+.short-answer input:disabled,
+.done-check input:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
 .done-check {
   align-items: flex-start;
   color: var(--ink);
@@ -740,6 +880,28 @@ h3 {
   gap: 12px;
 }
 
+.readiness-list {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.readiness-list p {
+  color: var(--ink);
+  font-weight: 650;
+  margin: 0 0 8px;
+}
+
+.readiness-list ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.readiness-list li + li {
+  margin-top: 6px;
+}
+
 @media (max-width: 900px) {
   .site-header {
     align-items: flex-start;
@@ -780,10 +942,6 @@ h3 {
 
   .assignment {
     gap: 8px;
-  }
-
-  .assignment a {
-    justify-self: start;
   }
 
   .manifesto-body {

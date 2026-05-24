@@ -8,12 +8,11 @@
       name="description"
       content="Student guide for completing the API-209 Summer 2026 R assignments in Posit Cloud."
     >
-    <link rel="stylesheet" href="site.css?v=3">
+    <link rel="stylesheet" href="site.css?v=8">
   </head>
   <body>
     <header class="site-header" aria-label="Course guide header">
       <a class="brand" href="#top" aria-label="API-209 summer assignments home">
-        <span class="brand-mark">209</span>
         <span>
           <strong>API-209</strong>
           <small>Summer R Guide</small>
@@ -35,14 +34,15 @@
           <p class="eyebrow">Summer 2026 pre-assignment</p>
           <h1 id="hero-title">API-209 Summer R Assignments</h1>
           <p class="hero-text">
-            This page explains how to work through the five API-209 R
-            assignments. The actual coding work happens in Posit Cloud; this
-            site provides the sequence, expectations, and links to each part.
+            This website is the overall guide for the five API-209 R
+            assignments and the short warm-up. You will always do the
+            assignment work in Posit Cloud, inside the assignment R Markdown
+            files. If you have never used R before, start with the warm-up; it
+            walks through the basic concepts before you begin Part 1.
           </p>
           <div class="hero-actions" aria-label="Primary resources">
             <a class="button primary" href="interactive-hour.html">Start the warm-up</a>
             <a class="button primary" href="https://posit.cloud/content/8155534">Open Posit Cloud</a>
-            <a class="button secondary" href="../README.md">Read the overview</a>
           </div>
         </div>
 
@@ -50,7 +50,7 @@
           <dl>
             <div>
               <dt>Before you code</dt>
-              <dd>A 45-60 minute interactive warm-up introduces the basic habits.</dd>
+              <dd>A 20-30 minute interactive warm-up introduces the basic habits.</dd>
             </div>
             <div>
               <dt>Where you work</dt>
@@ -62,6 +62,32 @@
             </div>
           </dl>
         </aside>
+      </section>
+
+      <section class="support" id="support" aria-labelledby="support-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">When stuck</p>
+          <h2 id="support-title">Use the course support channels</h2>
+          <p>
+            The most common setup, submission, and troubleshooting guidance is
+            now available on this site. Use these pages first, then contact the
+            teaching team if you still need help.
+          </p>
+        </div>
+        <div class="support-grid">
+          <a href="faq.html">
+            <strong>FAQ</strong>
+            <span>Answers for Posit Cloud, R Markdown, AI use, and common problems.</span>
+          </a>
+          <a href="submission.html">
+            <strong>How to submit</strong>
+            <span>Download the completed R Markdown files and submit them on Canvas.</span>
+          </a>
+          <a href="getting-started.html">
+            <strong>Getting started</strong>
+            <span>Open Posit Cloud, save your copy, and find the assignment files.</span>
+          </a>
+        </div>
       </section>
 
       <section id="process" aria-labelledby="process-title">
@@ -173,6 +199,11 @@
         <div class="section-heading compact">
           <p class="eyebrow">Five parts</p>
           <h2 id="assignments-title">Assignment roadmap</h2>
+          <p>
+            Use this roadmap to understand the sequence. To see the actual
+            assignment files, open the Posit Cloud project and check the
+            <code>.Rmd</code> files in the <code>assignments</code> folder.
+          </p>
         </div>
 
         <div class="assignment-list">
@@ -184,7 +215,6 @@
               comments, and how to read simple error messages. Estimated time:
               2-4 hours.
             </p>
-            <a href="assignments/R-Summer-Assignment-1.html">Preview Part 1</a>
           </article>
 
           <article class="assignment">
@@ -195,7 +225,6 @@
               columns, reading CSV files, and checking units of analysis.
               Estimated time: 2-4 hours.
             </p>
-            <a href="assignments/R-Summer-Assignment-2.html">Preview Part 2</a>
           </article>
 
           <article class="assignment">
@@ -206,7 +235,6 @@
               aesthetics, label figures, use facets, and critique whether a
               graph answers the question. Estimated time: 2-4 hours.
             </p>
-            <a href="assignments/R-Summer-Assignment-3.html">Preview Part 3</a>
           </article>
 
           <article class="assignment">
@@ -217,7 +245,6 @@
               means and medians, check denominators, and describe distributions.
               Estimated time: 2-4 hours.
             </p>
-            <a href="assignments/R-Summer-Assignment-4.html">Preview Part 4</a>
           </article>
 
           <article class="assignment">
@@ -228,7 +255,6 @@
               graph or summary, write a short analysis memo, and document any AI
               help you used. Estimated time: 2-5 hours.
             </p>
-            <a href="assignments/R-Summer-Assignment-5.html">Preview Part 5</a>
           </article>
         </div>
       </section>
@@ -236,7 +262,7 @@
       <section class="split" id="ai" aria-labelledby="ai-title">
         <div>
           <p class="eyebrow">AI use</p>
-          <h2 id="ai-title">Debug, verify, explain.</h2>
+          <h2 id="ai-title">Debug, verify, explain</h2>
         </div>
         <div class="plain-copy">
           <p>
@@ -255,23 +281,6 @@
         </div>
       </section>
 
-      <section class="support" id="support" aria-labelledby="support-title">
-        <div class="section-heading compact">
-          <p class="eyebrow">When stuck</p>
-          <h2 id="support-title">Use the course support channels.</h2>
-        </div>
-        <div class="support-grid">
-          <a href="https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing">
-            FAQ document
-          </a>
-          <a href="https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing">
-            Submission instructions
-          </a>
-          <a href="../README.md">
-            Project overview
-          </a>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">

@@ -8,12 +8,11 @@
       name="description"
       content="A short interactive warm-up for API-209 students before starting the summer R assignments."
     >
-    <link rel="stylesheet" href="site.css?v=4">
+    <link rel="stylesheet" href="site.css?v=8">
   </head>
   <body>
     <header class="site-header" aria-label="Course guide header">
       <a class="brand" href="index.html" aria-label="Back to API-209 summer guide">
-        <span class="brand-mark">209</span>
         <span>
           <strong>API-209</strong>
           <small>R Warm-up</small>
@@ -21,8 +20,8 @@
       </a>
       <nav class="nav-links" aria-label="Warm-up navigation">
         <a href="index.html">Guide</a>
+        <a href="#run-code">Run code</a>
         <a href="#objects">Objects</a>
-        <a href="#functions">Functions</a>
         <a href="#data">Data</a>
         <a href="#errors">Errors</a>
         <a href="#finish">Finish</a>
@@ -35,14 +34,13 @@
           <p class="eyebrow">Before Assignment 1</p>
           <h1 id="warmup-title">A short warm-up before R</h1>
           <p class="hero-text">
-            This is a short warm-up before the summer assignments. It is not a
-            test. The goal is to practice reading code, predicting what it will
-            do, and explaining the result in plain language. It should take
-            about 20 minutes. If something here takes much longer or feels
-            confusing, please let us know.
+            This warm-up is for students who may be opening R for the first
+            time. It is not a test. In about 20 minutes, and no more than 30,
+            you will practice running small pieces of code, reading the output,
+            and explaining what happened in plain language.
           </p>
           <div class="hero-actions" aria-label="Warm-up actions">
-            <a class="button primary" href="#objects">Begin</a>
+            <a class="button primary" href="#run-code">Begin</a>
             <a class="button secondary" href="https://posit.cloud/content/8155534">Open Posit Cloud</a>
           </div>
         </div>
@@ -50,14 +48,15 @@
         <aside class="progress-panel" aria-label="Warm-up progress">
           <div>
             <span class="progress-label">Your progress</span>
-            <strong><span id="progress-count">0</span>/7</strong>
+            <strong><span id="progress-count">0</span>/8</strong>
           </div>
           <div class="progress-track" aria-hidden="true">
             <span id="progress-bar"></span>
           </div>
           <p>
-            Mark each section when you can explain the idea without looking at
-            the answer.
+            Answer each activity, then mark the section when you can explain
+            the idea in one sentence. If this takes more than 30 minutes, stop
+            and ask for help.
           </p>
         </aside>
       </section>
@@ -65,7 +64,7 @@
       <section class="learning-loop" aria-labelledby="loop-title">
         <div class="section-heading compact">
           <p class="eyebrow">How to use this page</p>
-          <h2 id="loop-title">Read, predict, check, explain.</h2>
+          <h2 id="loop-title">Read, predict, check, explain</h2>
         </div>
         <div class="loop-grid">
           <article>
@@ -91,9 +90,39 @@
         </div>
       </section>
 
-      <section id="objects" class="warmup-section" aria-labelledby="objects-title">
+      <section id="run-code" class="warmup-section" aria-labelledby="run-code-title">
         <div class="warmup-heading">
           <p class="eyebrow">Warm-up 1</p>
+          <h2 id="run-code-title">Run code and read the output</h2>
+          <p>
+            In the assignments, you will work in R Markdown files. A code chunk
+            is a small block where R commands live. When you run a chunk, R
+            prints output below it. Start by reading one line at a time.
+          </p>
+        </div>
+
+        <div class="activity-grid">
+          <article class="code-card">
+            <pre><code><span class="line"><span class="line-number">1</span><span>2 + 2</span></span></code></pre>
+          </article>
+          <article class="activity-card choice-group">
+            <h3>Predict</h3>
+            <p>If you run this line, what will R print?</p>
+            <button type="button" data-correct="false">2 + 2</button>
+            <button type="button" data-correct="true">4</button>
+            <button type="button" data-correct="false">Nothing</button>
+            <p class="feedback" aria-live="polite"></p>
+          </article>
+        </div>
+        <label class="done-check">
+          <input type="checkbox" data-progress="run-code">
+          I can run one line of R and read the output.
+        </label>
+      </section>
+
+      <section id="objects" class="warmup-section" aria-labelledby="objects-title">
+        <div class="warmup-heading">
+          <p class="eyebrow">Warm-up 2</p>
           <h2 id="objects-title">Objects: putting a name on a value</h2>
           <p>
             In R, the arrow <code>&lt;-</code> saves something with a name. Once
@@ -107,17 +136,23 @@
         <div class="activity-grid">
           <article class="code-card">
             <pre><code><span class="line"><span class="line-number">1</span><span>year &lt;- 2026</span></span>
-<span class="line"><span class="line-number">2</span><span>course &lt;- "API-209"</span></span>
-<span class="line"><span class="line-number">3</span><span>ready &lt;- TRUE</span></span>
+<span class="line"><span class="line-number">2</span><span>program_cost &lt;- 125000</span></span>
+<span class="line"><span class="line-number">3</span><span>country &lt;- "Ghana"</span></span>
 <span class="line"><span class="line-number">4</span><span></span></span>
-<span class="line"><span class="line-number">5</span><span>year</span></span></code></pre>
+<span class="line"><span class="line-number">5</span><span>program_cost</span></span></code></pre>
           </article>
           <article class="activity-card">
             <h3>Predict</h3>
-            <p>What will R print when line 5, <code>year</code>, runs?</p>
+            <p>What will R print when line 5, <code>program_cost</code>, runs?</p>
             <label class="short-answer">
               <span>Your answer</span>
-              <input type="text" data-answer="2026" aria-label="Answer for object prediction">
+              <input
+                type="text"
+                data-answer="125000"
+                data-success="Yes. The object program_cost stores the value 125000."
+                data-error="Try again. Line 5 asks R to print the value saved in program_cost."
+                aria-label="Answer for object prediction"
+              >
             </label>
             <button class="button secondary check-answer" type="button">Check</button>
             <p class="feedback" aria-live="polite"></p>
@@ -131,25 +166,26 @@
 
       <section id="functions" class="warmup-section" aria-labelledby="functions-title">
         <div class="warmup-heading">
-          <p class="eyebrow">Warm-up 2</p>
+          <p class="eyebrow">Warm-up 3</p>
           <h2 id="functions-title">Functions: commands with inputs</h2>
           <p>
-            A function does something. The inputs go inside parentheses. The
-            details inside the parentheses are called arguments.
+            A function does something. The inputs go inside parentheses. In
+            public policy work, a function might calculate an average, count
+            observations, or make a graph.
           </p>
         </div>
 
         <div class="activity-grid">
           <article class="code-card">
-            <pre><code><span class="line"><span class="line-number">1</span><span>scores &lt;- c(2, 4, 6)</span></span>
-<span class="line"><span class="line-number">2</span><span>mean(scores)</span></span></code></pre>
+            <pre><code><span class="line"><span class="line-number">1</span><span>program_costs &lt;- c(120, 150, 180)</span></span>
+<span class="line"><span class="line-number">2</span><span>mean(program_costs)</span></span></code></pre>
           </article>
           <article class="activity-card choice-group">
             <h3>Choose the output</h3>
-            <p>What does <code>mean(scores)</code> return?</p>
-            <button type="button" data-correct="false">2, 4, 6</button>
-            <button type="button" data-correct="true">4</button>
-            <button type="button" data-correct="false">12</button>
+            <p>What does <code>mean(program_costs)</code> return?</p>
+            <button type="button" data-correct="false">120, 150, 180</button>
+            <button type="button" data-correct="true">150</button>
+            <button type="button" data-correct="false">450</button>
             <p class="feedback" aria-live="polite"></p>
           </article>
         </div>
@@ -161,7 +197,7 @@
 
       <section id="data" class="warmup-section" aria-labelledby="data-title">
         <div class="warmup-heading">
-          <p class="eyebrow">Warm-up 3</p>
+          <p class="eyebrow">Warm-up 4</p>
           <h2 id="data-title">Data frames: rows, columns, and units</h2>
           <p>
             A data frame is a table. Before calculating anything, ask what one
@@ -176,24 +212,24 @@
                 <tr>
                   <th>country</th>
                   <th>year</th>
-                  <th>population</th>
+                  <th>poverty_rate</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>France</td>
-                  <td>2000</td>
-                  <td>60.9m</td>
+                  <td>Ghana</td>
+                  <td>2023</td>
+                  <td>23.4</td>
                 </tr>
                 <tr>
-                  <td>France</td>
-                  <td>2001</td>
-                  <td>61.4m</td>
+                  <td>Ghana</td>
+                  <td>2024</td>
+                  <td>22.8</td>
                 </tr>
                 <tr>
-                  <td>India</td>
-                  <td>2000</td>
-                  <td>1.06b</td>
+                  <td>Kenya</td>
+                  <td>2024</td>
+                  <td>19.6</td>
                 </tr>
               </tbody>
             </table>
@@ -215,7 +251,7 @@
 
       <section id="pipes" class="warmup-section" aria-labelledby="pipes-title">
         <div class="warmup-heading">
-          <p class="eyebrow">Warm-up 4</p>
+          <p class="eyebrow">Warm-up 5</p>
           <h2 id="pipes-title">Pipes: reading code left to right</h2>
           <p>
             The pipe <code>|&gt;</code> sends the result of one step into the
@@ -232,15 +268,15 @@
 
         <div class="pipe-example">
           <article class="code-card">
-            <pre><code><span class="line"><span class="line-number">1</span><span>population |&gt;</span></span>
-<span class="line"><span class="line-number">2</span><span>  filter(country == "France") |&gt;</span></span>
+            <pre><code><span class="line"><span class="line-number">1</span><span>poverty |&gt;</span></span>
+<span class="line"><span class="line-number">2</span><span>  filter(country == "Ghana") |&gt;</span></span>
 <span class="line"><span class="line-number">3</span><span>  arrange(year)</span></span></code></pre>
           </article>
           <article class="reflection-card">
             <h3>Worked example</h3>
             <ol class="plain-steps">
-              <li>Start with the <code>population</code> data.</li>
-              <li>Keep rows where <code>country</code> is France.</li>
+              <li>Start with the <code>poverty</code> data.</li>
+              <li>Keep rows where <code>country</code> is Ghana.</li>
               <li>Sort the remaining rows by <code>year</code>.</li>
             </ol>
           </article>
@@ -248,16 +284,16 @@
 
         <div class="activity-grid">
           <article class="code-card">
-            <pre><code><span class="line"><span class="line-number">1</span><span>elections |&gt;</span></span>
-<span class="line"><span class="line-number">2</span><span>  filter(state == "MA") |&gt;</span></span>
+            <pre><code><span class="line"><span class="line-number">1</span><span>schools |&gt;</span></span>
+<span class="line"><span class="line-number">2</span><span>  filter(district == "Boston") |&gt;</span></span>
 <span class="line"><span class="line-number">3</span><span>  arrange(desc(year))</span></span></code></pre>
           </article>
           <article class="activity-card choice-group">
             <h3>Your turn</h3>
             <p>Which plain-English version is closest?</p>
-            <button type="button" data-correct="false">Start with elections, keep every state, then remove year.</button>
-            <button type="button" data-correct="true">Start with elections, keep Massachusetts, then sort from newest year to oldest.</button>
-            <button type="button" data-correct="false">Start with population, keep France, then sort by year.</button>
+            <button type="button" data-correct="false">Start with schools, keep every district, then remove year.</button>
+            <button type="button" data-correct="true">Start with schools, keep Boston, then sort from newest year to oldest.</button>
+            <button type="button" data-correct="false">Start with poverty, keep Ghana, then sort by year.</button>
             <p class="feedback" aria-live="polite"></p>
           </article>
         </div>
@@ -269,17 +305,18 @@
 
       <section id="errors" class="warmup-section" aria-labelledby="errors-title">
         <div class="warmup-heading">
-          <p class="eyebrow">Warm-up 5</p>
-          <h2 id="errors-title">Errors: slow down and locate the problem</h2>
+          <p class="eyebrow">Warm-up 6</p>
+          <h2 id="errors-title">Errors and surprises: slow down and locate the problem</h2>
           <p>
-            An error is information. The first task is not to panic. The first
-            task is to find what R was trying to do.
+            An error or unexpected result is information. The first task is not
+            to panic. The first task is to find what R was trying to do.
           </p>
         </div>
 
         <div class="activity-grid">
           <article class="code-card warning-code">
-            <pre><code><span class="line"><span class="line-number">1</span><span>mean(c(10, 20, NA))</span></span></code></pre>
+            <pre><code><span class="line"><span class="line-number">1</span><span>poverty_rate &lt;- c(23.4, NA, 19.6)</span></span>
+<span class="line"><span class="line-number">2</span><span>mean(poverty_rate)</span></span></code></pre>
             <p class="console-line">[1] NA</p>
           </article>
           <article class="activity-card choice-group">
@@ -299,7 +336,7 @@
 
       <section id="ai-check" class="warmup-section" aria-labelledby="ai-check-title">
         <div class="warmup-heading">
-          <p class="eyebrow">Warm-up 6</p>
+          <p class="eyebrow">Warm-up 7</p>
           <h2 id="ai-check-title">AI: ask for help you can verify</h2>
           <p>
             AI can be useful when your question is specific and checkable. It is
@@ -312,7 +349,7 @@
             <h3>Choose the better prompt</h3>
             <p>You get an error from a short line of R code. Which prompt is more useful?</p>
             <button type="button" data-correct="true">
-              Explain this R error in plain language. Do not solve the whole assignment.
+              I ran this R code and got this output. Explain what it means and suggest one thing to check.
             </button>
             <button type="button" data-correct="false">
               Finish this assignment for me and write the interpretation.
@@ -336,18 +373,28 @@
       <section id="finish" class="finish-panel" aria-labelledby="finish-title">
         <div>
           <p class="eyebrow">Ready for the assignments</p>
-          <h2 id="finish-title">Now open Part 1.</h2>
+          <h2 id="finish-title">Now open Part 1</h2>
           <p>
-            You do not need to memorize everything here. You need the habit:
-            read the code, predict what it does, run it, and explain the result.
+            You do not need to memorize everything here. You need enough
+            orientation to start Part 1 in Posit Cloud and ask specific
+            questions when something does not make sense.
           </p>
         </div>
         <div class="finish-actions">
+          <div class="readiness-list" aria-label="Warm-up readiness checklist">
+            <p>I can:</p>
+            <ul>
+              <li>run a small code chunk</li>
+              <li>explain what <code>&lt;-</code> does</li>
+              <li>identify rows and columns</li>
+              <li>treat errors as clues</li>
+            </ul>
+          </div>
           <label class="done-check">
             <input type="checkbox" data-progress="finish">
             I completed the warm-up.
           </label>
-          <a class="button primary" href="assignments/R-Summer-Assignment-1.html">Preview Part 1</a>
+          <a class="button primary" href="https://posit.cloud/content/8155534">Open Posit Cloud</a>
           <a class="button secondary" href="index.html">Back to the guide</a>
         </div>
       </section>
@@ -358,12 +405,113 @@
     </footer>
 
     <script>
-      const progressKey = "api209-warmup-progress";
+      const progressKey = "api209-warmup-progress-v2";
+      const answerKey = "api209-warmup-answers-v2";
       const progressBoxes = [...document.querySelectorAll("[data-progress]")];
       const savedProgress = JSON.parse(localStorage.getItem(progressKey) || "{}");
+      const savedAnswers = JSON.parse(localStorage.getItem(answerKey) || "{}");
+      const stepSections = [
+        ...document.querySelectorAll(".warmup-section, .finish-panel")
+      ];
+      const stepIds = stepSections.map((section) => section.id);
+
+      function sectionIdFor(element) {
+        return element.closest(".warmup-section, .finish-panel").id;
+      }
+
+      function saveAnswers() {
+        localStorage.setItem(answerKey, JSON.stringify(savedAnswers));
+      }
+
+      function hasActivity(section) {
+        return Boolean(
+          section.querySelector(".choice-group button, [data-answer]")
+        );
+      }
+
+      function isSectionComplete(section) {
+        const id = section.id;
+        const checkbox = section.querySelector("[data-progress]");
+        const selfCheckDone = checkbox ? checkbox.checked : false;
+        return selfCheckDone && (!hasActivity(section) || savedAnswers[id]);
+      }
+
+      function isSectionUnlocked(index) {
+        if (index === 0) {
+          return true;
+        }
+        return stepSections.slice(0, index).every(isSectionComplete);
+      }
+
+      function setInteractiveState(section, isUnlocked) {
+        section.classList.toggle("is-locked", !isUnlocked);
+        section.querySelectorAll("button, input").forEach((control) => {
+          if (!control.classList.contains("continue-button")) {
+            control.disabled = !isUnlocked;
+          }
+        });
+      }
+
+      function updateContinueButtons() {
+        stepSections.forEach((section, index) => {
+          const button = section.querySelector(".continue-button");
+          const note = section.querySelector(".continue-note");
+          if (!button) {
+            return;
+          }
+          const complete = isSectionComplete(section);
+          button.disabled = !complete;
+          note.textContent = complete
+            ? "Ready for the next activity."
+            : "Answer correctly and check the reflection box to continue.";
+          button.textContent = index === stepSections.length - 2
+            ? "Continue to final checklist"
+            : "Continue";
+        });
+      }
+
+      function updateLocks() {
+        stepSections.forEach((section, index) => {
+          const unlocked = isSectionUnlocked(index);
+          setInteractiveState(section, unlocked);
+          const checkbox = section.querySelector("[data-progress]");
+          if (checkbox && unlocked && hasActivity(section)) {
+            checkbox.disabled = !savedAnswers[section.id];
+            if (!savedAnswers[section.id] && checkbox.checked) {
+              checkbox.checked = false;
+            }
+          }
+        });
+        document.querySelectorAll(".nav-links a[href^='#']").forEach((link) => {
+          const id = link.getAttribute("href").slice(1);
+          const index = stepIds.indexOf(id);
+          if (index === -1) {
+            return;
+          }
+          const unlocked = isSectionUnlocked(index);
+          link.classList.toggle("is-disabled", !unlocked);
+          link.setAttribute("aria-disabled", String(!unlocked));
+        });
+        updateContinueButtons();
+      }
+
+      function addContinueControls() {
+        stepSections.slice(0, -1).forEach((section) => {
+          const controls = document.createElement("div");
+          controls.className = "continue-panel";
+          controls.innerHTML = `
+            <p class="continue-note" aria-live="polite"></p>
+            <button class="button primary continue-button" type="button" disabled>Continue</button>
+          `;
+          section.append(controls);
+        });
+      }
+
+      addContinueControls();
 
       function updateProgress() {
-        const done = progressBoxes.filter((box) => box.checked).length;
+        updateLocks();
+        const done = stepSections.filter(isSectionComplete).length;
         const count = document.querySelector("#progress-count");
         const bar = document.querySelector("#progress-bar");
         count.textContent = done;
@@ -381,18 +529,44 @@
       });
       updateProgress();
 
+      document.querySelectorAll(".continue-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          const section = button.closest(".warmup-section, .finish-panel");
+          const currentIndex = stepIds.indexOf(section.id);
+          const nextSection = stepSections[currentIndex + 1];
+          if (nextSection && isSectionComplete(section)) {
+            updateLocks();
+            nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      document.querySelectorAll(".nav-links a[href^='#']").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const id = link.getAttribute("href").slice(1);
+          const index = stepIds.indexOf(id);
+          if (index !== -1 && !isSectionUnlocked(index)) {
+            event.preventDefault();
+          }
+        });
+      });
+
       document.querySelectorAll(".choice-group button").forEach((button) => {
         button.addEventListener("click", () => {
           const group = button.closest(".choice-group");
           const feedback = group.querySelector(".feedback");
+          const sectionId = sectionIdFor(button);
           group.querySelectorAll("button").forEach((item) => {
             item.classList.remove("is-correct", "is-incorrect");
           });
           const isCorrect = button.dataset.correct === "true";
+          savedAnswers[sectionId] = isCorrect;
+          saveAnswers();
           button.classList.add(isCorrect ? "is-correct" : "is-incorrect");
           feedback.textContent = isCorrect
             ? "Yes. That answer matches what the code is doing."
             : "Not quite. Read the code one step at a time and try again.";
+          updateProgress();
         });
       });
 
@@ -401,16 +575,22 @@
           const card = button.closest(".activity-card");
           const input = card.querySelector("[data-answer]");
           const feedback = card.querySelector(".feedback");
+          const sectionId = sectionIdFor(button);
           const expected = input.dataset.answer.trim().toLowerCase();
           const actual = input.value.trim().toLowerCase();
           const isCorrect = actual === expected;
+          savedAnswers[sectionId] = isCorrect;
+          saveAnswers();
           input.classList.toggle("is-correct", isCorrect);
           input.classList.toggle("is-incorrect", !isCorrect);
           feedback.textContent = isCorrect
-            ? "Yes. The object year stores the value 2026."
-            : "Try again. Line 5 asks R to print the value saved in year.";
+            ? input.dataset.success
+            : input.dataset.error;
+          updateProgress();
         });
       });
+
+      updateLocks();
     </script>
   </body>
 </html>
