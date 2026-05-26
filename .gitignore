@@ -41,6 +41,9 @@ vignettes/*.pdf
 
 # GitHub Pages site is tracked in docs/
 
+# Rendered assignment previews should not be committed. Students work in .Rmd.
+assignments/*.html
+
 # translation temp files
 po/*~
 
