@@ -7,67 +7,134 @@ output: github_document
 
 ![](figs/logo.png)
 
-Welcome to the Summer 2026 Pre-Assignment! This readme file will provide you with the basic structure of the folder in Posit Cloud and an overview of what tools and resources we will be using.
+Welcome to the Summer 2026 Pre-Assignment. These assignments build R fluency
+before Math Camp by using one cleaned country-year development dataset across
+all five parts.
 
 ## Student Guide Website
 
-This repo now includes a simple static website in `docs/index.html` that walks students through the summer assignment process. The website is separate from Posit Cloud: Posit Cloud remains the environment where students edit and submit the R Markdown assignments. GitHub Pages is configured to publish the site from the `docs/` folder on the `2026-refresh` branch.
+This repo includes a simple static website in `docs/index.html` that walks
+students through the summer assignment process. The website is separate from
+Posit Cloud: Posit Cloud remains the environment where students edit and submit
+the R Markdown assignments.
+
+## Repository Branches
+
+- `2026-refresh`: website branch. GitHub Pages publishes from `docs/` on this
+  branch.
+- `posit-cloud-2026`: student Posit Cloud branch. This branch keeps the project
+  focused on the files students need in Posit Cloud: assignments, data, the
+  project file, README, and the refresh script.
+- `main`: archived 2025 baseline.
 
 ## Getting Started
 
-1.  **Google Account**: You will need a Google account to manage your projects and access the Posit Cloud assignments.
-2.  **Access Assignments**: You can access the summer assignments using the following link: [Posit Cloud Assignments](https://posit.cloud/content/8155534).
+1. **Google Account**: You will need a Google account to manage your projects
+   and access the Posit Cloud assignments.
+2. **Access Assignments**: You can access the summer assignments using the
+   Posit Cloud project link provided by the teaching team.
+3. **Save a permanent copy**: Save the project to your own Posit Cloud
+   workspace before editing any files.
+
+## Assignment Arc
+
+The five assignments use the same data backbone so students can focus on R
+skills instead of learning a new dataset each time.
+
+1. **Part 1: R Basics for Development Data**  
+   Objects, data types, logical values, functions, vectors, comments, and one
+   controlled debugging exercise.
+2. **Part 2: Filtering and Inspecting Country-Year Data**  
+   `read_csv()`, `head()`, `glimpse()`, `distinct()`, coherent `filter()` use,
+   `arrange()`, light `mutate()`, data dictionaries, and missingness.
+3. **Part 3: Visualizing Development Patterns**  
+   `ggplot()`, line plots, scatterplots, bar charts, color, facets, labels, and
+   descriptive interpretation.
+4. **Part 4: Summarizing Countries, Regions, and Time Periods**  
+   `group_by()`, `summarise()`, means, medians, denominators, and missing-data
+   caveats.
+5. **Part 5: Mini Development Diagnostic Memo**  
+   A structured country-peer diagnostic memo using filters, plots, summaries,
+   and a short non-causal interpretation.
 
 ## Folder Structure
 
-In your Posit Cloud workspace, you will find the following folder structure:
+In your Posit Cloud workspace, you will find the following structure:
 
-```         
-/summer-assignment
-  ├── assignments
-      ├── R Summer Assignment 1.rmd
-      ├── R Summer Assignment 2.rmd
-      ├── R Summer Assignment 3.rmd
-      ├── R Summer Assignment 4.rmd
-      └── R Summer Assignment 5.rmd
+```text
+/summer-assignments
+  assignments/
+    R Summer Assignment 1.Rmd
+    R Summer Assignment 2.Rmd
+    R Summer Assignment 3.Rmd
+    R Summer Assignment 4.Rmd
+    R Summer Assignment 5.Rmd
+  data/
+    development_indicators_2026.csv
+    development_indicators_dictionary_2026.csv
+  figs/
+  scripts/
+    refresh_development_indicators.R
 ```
 
-### /assignments
+The assignment files live in `assignments/`. The shared CSV snapshot and data
+dictionary live in `data/`. When an assignment reads
+`../data/development_indicators_2026.csv`, the `..` means "go up one folder"
+from `assignments/` and then enter the `data/` folder.
 
-This folder contains all the assignments you will need to complete during the summer. Each assignment is provided as an RMarkdown (`.Rmd`) file. You will be working on these files directly in Posit Cloud. Navigate to the `assignments` folder and open the `.Rmd` files to begin working on them.
+## Data Sources
 
-![Folder Structure](figs/folder_structure.png)
+The assignments use one cleaned country-year dataset created for this course.
+Most indicators come from the World Bank World Development Indicators.
+Governance indicators come from the Worldwide Governance Indicators. The data
+are stored as a local CSV snapshot so everyone works with the same values and
+the assignments knit reliably.
+
+The data dictionary records each variable's label, source, source indicator
+code, unit, and interpretation notes. The instructor refresh script in
+`scripts/refresh_development_indicators.R` documents how the snapshot was
+generated.
+
+## Why Knitting Matters
+
+Knitting runs an R Markdown document from top to bottom in a fresh R session.
+This checks whether the work is reproducible: the code, output, and written
+answers can be rebuilt in order. Running chunks manually is useful while
+learning, but a successful knit is the best check that an assignment is complete
+and self-contained.
 
 ## Tools and Resources
 
 ### Posit Cloud
 
-We will be using Posit Cloud as our primary platform for completing assignments. Posit Cloud allows you to write, execute, and save R code in a cloud environment, making it accessible from any device with an internet connection.
-
-Please save a **permanent copy** of the project. This will be saved in your Workspace so you can access it at any time.
+We use Posit Cloud as the primary platform for the summer assignments. Posit
+Cloud lets students write, execute, save, and knit R Markdown files in a browser.
 
 ### R and RStudio
 
-R is the programming language we will be using for data analysis. RStudio is an integrated development environment (IDE) for R that provides a user-friendly interface for writing and running R code. Posit Cloud is the "online" RStudio that we are going to use during the summer. 
+R is the programming language used for data analysis. RStudio is the interface
+for writing and running R code. Posit Cloud provides RStudio online.
 
-### GitHub
+### R Markdown
 
-It is not mandatory to create a GitHub account since you can access the Posit Cloud project using your Google account.
-
-### RMarkdown
-
-RMarkdown is a powerful tool that combines Markdown and R code to create dynamic, reproducible documents. You will be using it to write and execute your R code within the assignments.
+R Markdown combines instructions, code, output, and written answers. Students
+submit the completed `.Rmd` files to Canvas.
 
 ### AI and Learning R
 
-AI tools can be useful for debugging error messages and clarifying what a specific R command does. They are not a substitute for running the code yourself, checking the output, and explaining what your analysis means. In these assignments, you are responsible for all code and interpretations you submit.
+AI tools can be useful for debugging error messages and clarifying what a
+specific R command does. They are not a substitute for running the code,
+checking the output, and explaining the analysis. Each assignment asks for a
+brief AI-use note; the capstone asks for a fuller reflection.
 
 ## Submission
 
-Complete your assignments in the Posit Cloud environment. Please submit only the `.rmd` file you are working on to Course Canvas. You can find the instruction [here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
+Complete the assignments in Posit Cloud. For each part, knit successfully and
+submit the completed `.Rmd` file to Canvas unless the teaching team gives
+different instructions.
 
 ## Help and Support
 
-If you get stuck or need assistance, please use Slack to ask the teaching team.
-
-Happy coding!
+If you get stuck, check the guide website and FAQ first. If you still need help,
+use Slack or the course support channel and include the assignment number, the
+code or error message, and what you already tried.

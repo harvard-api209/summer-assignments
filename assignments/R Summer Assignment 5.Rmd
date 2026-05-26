@@ -16,371 +16,254 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-**Summer 2026, Pre-Assignment**
+**Part 5: Mini Development Diagnostic Memo**
 
-**Part 5: Capstone Assignment**
+**Estimated time:** 3-4 hours
 
-**Estimated time:** 2-5 hours
+This capstone asks you to combine the core skills from Parts 1-4: filtering,
+inspecting, mutating, plotting, summarizing, and writing a short interpretation.
+The analysis is descriptive. You may discuss possible explanations, but do not
+claim the data prove that one variable caused another.
 
-This set of exercises will help get you up and running with doing basic data
-analysis in R. The goal of this capstone assignment is **not** that you will
-have perfected R by the time you finish them, but that you have a solid
-foundation of key concepts when going into Math Camp. During Math Camp, we will
-go over much of this material in greater depth. Spending time on this now will
-help make your future learning easier.
+## Why knit?
 
-**Using AI while learning R:** In this capstone, AI tools may help you debug an
-error or explain unfamiliar syntax. They should not choose your question, write
-your interpretation, or replace your own checks. You will be asked to document
-any AI help you used and how you verified it.
+Your final submission should knit successfully. A successful knit means the
+memo, code, tables, and plots can be rebuilt from top to bottom.
 
-# ***Part I - Analysis of World Economic Outlook Data***
+## Packages and data
 
-## **Problem 1: Sorting by Values**
-
-The following questions are based on a fixed teaching version of the World
-Economic Outlook (WEO) dataset published by the International Monetary Fund
-(IMF). We use a fixed version so everyone can reproduce the same results. Each
-row in the spreadsheet is a country, with total GDP for a given year adjusted
-for purchasing power parity (with the rgdp column prefix) and total population
-(with the pop column prefix). GDP values are in millions of international
-dollars, so you can directly compare values in different years. Population
-values are in millions of persons.
-
-To begin, run the code chunk below to open the dataset and the necessary
-libraries.
-
-```{r, warning=FALSE, message=FALSE}
-# INSTALLATION CODE:
-
-pkgs <- c("tidyverse", "ggrepel", "gapminder", "scales")
-
-to_install <- which(!(pkgs %in% rownames(installed.packages())))
-
+```{r message=FALSE, warning=FALSE}
 options(repos = c(CRAN = "https://cloud.r-project.org"))
-install.packages(pkgs[to_install])
 
-# Open packages
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+
 library(tidyverse)
-library(ggrepel)
-library(scales)
 
-# Open database
-weo <- read_csv("https://www.dropbox.com/s/piuh2gsej1zpqq7/WEO-clean.csv?dl=1")
-
-cat("Done!")
+dev <- read_csv("../data/development_indicators_2026.csv")
+dictionary <- read_csv("../data/development_indicators_dictionary_2026.csv")
 ```
 
-The command `head()` displays a preview of the dataset.
+## Your task
+
+Choose one country and 3-5 peer countries. Peers should be in the same region or
+same income group unless you briefly justify a different comparison.
+
+Write a short diagnostic memo that identifies one development challenge, shows
+how your country compares to peers over time, and states one caveat about the
+data.
+
+Required outputs:
+
+- One filtered country-peer dataset.
+- One trend plot.
+- One comparison table.
+- One second plot or summary statistic.
+- A short memo with question, data, approach, finding, and caveat.
+- A fuller AI-use reflection.
+
+## Step 1: choose a country and peers
+
+Start by inspecting possible countries.
 
 ```{r}
-head(weo)
-glimpse(weo)
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  distinct(country, region, income_group) |>
+  arrange(region, country)
 ```
 
-The function `select()` keeps only the columns you name. For example,
-`weo |> select(country, continent)` would keep just those two columns.
+Example country-peer set:
 
 ```{r}
-weo |>
-  select(country, continent) |>
-  head()
+my_country <- "Ghana"
+peer_countries <- c("Ghana", "Kenya", "Rwanda", "Tanzania")
 ```
 
-1.  Write a command (connected by pipes - `|>`) that:
-2.  First sorts the dataset from lowest to highest real GDP in 2019, and then
-3.  Select only the columns representing the country and its GDP. `select()` is
-    a new `tidyverse` function that we have not covered yet. If you run
-    `select()` after a `|>`, try listing the column names (separated by commas)
-    that you would like to keep.
+Replace the example values below with your own country and peer countries.
 
 ```{r}
-# Write your code here!
+my_country <- "Ghana"
+peer_countries <- c("Ghana", "Kenya", "Rwanda", "Tanzania")
 ```
 
-2.  Write a command that is the same as (1) but now sort the dataset in
-    descending order of 2019 GDP (highest to lowest).
+Check that your countries exist in the data:
 
 ```{r}
-# Write your code here!
+dev |>
+  filter(country %in% peer_countries) |>
+  distinct(country, region, income_group) |>
+  arrange(country)
 ```
 
-3.  The `arrange()` command can also sort more than one variable. To rank
-    countries within their continent, write a command that sorts the countries
-    by continent (in alphabetical order), then by 2019 GDP in descending order.
-    Remember different inputs ("arguments") to a function are separated by
-    commas.
+Are your peer countries from the same region or income group? If not, what is
+your justification?
+
+Write your answer here:
+
+## Step 2: create your analysis dataset
+
+Filter to your countries and a recent time period.
 
 ```{r}
-# Write your code here!
+analysis_data <- dev |>
+  filter(country %in% peer_countries & year >= 2010)
+
+glimpse(analysis_data)
 ```
 
-4.  Write a command that shows African countries in descending order of their
-    2019 GDP (Use the variable continent to filter on African countries).
+What does one row in `analysis_data` represent?
+
+Write your answer here:
+
+## Step 3: inspect missingness
+
+Choose one main indicator for your diagnostic. Good options include:
+
+- `gdp_per_capita_ppp`
+- `life_expectancy`
+- `under5_mortality`
+- `secondary_school_enrollment`
+- `unemployment_youth`
+- `co2_per_capita`
+- `government_effectiveness`
+- `poverty_rate` if coverage is adequate
+
+Inspect missing values for the indicators you might use.
 
 ```{r}
-# Write your code here!
+analysis_data |>
+  summarise(
+    missing_gdp = sum(is.na(gdp_per_capita_ppp)),
+    missing_life_expectancy = sum(is.na(life_expectancy)),
+    missing_under5 = sum(is.na(under5_mortality)),
+    missing_poverty = sum(is.na(poverty_rate)),
+    total_rows = n()
+  )
 ```
 
-## **Problem 2: GDP per capita**
+Which indicator will you use as your main diagnostic outcome, and why?
 
-Create a new tibble object called weo_percap that is the same as the main
-dataset but also includes three new columns:
+Write your answer here:
 
-Operationalize the rate of growth between two periods a and b \> a (referring to
-the formula below) as:
+## Step 4: trend plot
 
--   A variable called `gdp_percap_2019` that is the country's GDP per capita in
-    2019,
--   A variable called `gdp_percap_1994`, which is the same as above but for
-    1994, and
--   A variable called `growth_2019_1994` which indicates the rate of growth
-    between the two variables above, following the definition below:
-
-$growth_{b,a} = \frac{GDP per capita_b - GDP per capita_a}{GDP per capita_a}$
-
-You will be using this new object for problem three.
+Example trend plot:
 
 ```{r}
-# Write your code here!
+analysis_data |>
+  ggplot(aes(x = year, y = life_expectancy, color = country)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.4) +
+  labs(
+    x = "Year",
+    y = "Life expectancy at birth",
+    color = "Country",
+    title = "Life Expectancy Trends",
+    subtitle = "Country-peer comparison, 2010-2024"
+  )
 ```
 
-## **Problem 3: Graphing**
-
-1.  Make a scatterplot that shows a country's 1994 GDP per capita on the x-axis
-    and its 2019 GDP per capita on the y-axis.
-
-You might notice that the scatterplot itself is not as informative as it could
-be. In later sessions, we will spend time discussing the nuts and bolts of
-making a high-quality graphic that is informative and user-friendly.
+Create your own trend plot using your chosen indicator.
 
 ```{r}
-# Write your code here!
+# Write your code here.
 ```
 
-2.  Show the same figure, but color the points by continent. That is, countries
-    of the same continent should have the same color.
+What is the main pattern in your trend plot?
+
+Write your answer here:
+
+## Step 5: comparison table
+
+Create a table for the latest year you want to compare. Use a year with enough
+data for your chosen indicator.
+
+Example:
 
 ```{r}
-# Write your code here!
+comparison_table <- analysis_data |>
+  filter(year == 2023) |>
+  select(
+    country,
+    region,
+    income_group,
+    life_expectancy,
+    under5_mortality,
+    gdp_per_capita_ppp
+  ) |>
+  arrange(desc(life_expectancy))
+
+comparison_table
 ```
 
-3.  Show the same figure, but assign a different shape of point for different
-    continents (hint: like `color`, there is a `shape` argument in `aes()`).
-    Also, set the color for all countries to blue by using the color name
-    `"blue"` (hint: since this will not change depending on values in the
-    dataset, it does not need to go in `aes()`).
+Create your own comparison table.
 
 ```{r}
-# Write your code here!
+# Write your code here.
 ```
 
-4.  To make a figure presentable in a professional setting, you will need to
-    make many, many more additions to a graph. At the very least, you need to
-    label your axes with actual words. Update the graph in part (2) by adding an
-    informative x-axis title and a y-axis title. This can be specified by adding
-    a `labs()` layer to your graph. To see an example, open [the help page for
-    the labs function](https://ggplot2.tidyverse.org/reference/labs.html), and
-    scroll to the bottom of the page under "Examples".
+In one sentence, what does the table show?
+
+Write your answer here:
+
+## Step 6: second plot or summary
+
+Create one additional plot or summary statistic that helps your memo. It can
+compare countries in one year, summarize change since 2010, or show an
+association.
 
 ```{r}
-# Write your code here!
+# Write your code here.
 ```
 
-## **Problem 4: Mean and Median**
+Explain why this output is useful for your diagnostic.
 
-1.  Let's start to think about summarizing variables using summary statistics.
-    Write code that reports the mean of country-level 2019 GDP per capita across
-    all countries in one column and the median for 2019 in another. Pick column
-    names that are sufficiently self-explanatory but also concise. What result
-    do you get? Is this what you expected? Why might this be the case?
+Write your answer here:
 
-```{r}
-# Write your code here!
-```
+## Step 7: short memo
 
-Here is a small example of how `is.na()` works. It returns `TRUE` for missing
-values and `FALSE` for non-missing values.
+Write a short memo below. Be specific but concise.
 
-```{r}
-is.na(c(1, NA, 3))
-```
-
-2.  Write code that indicates which countries have missing values for 2019 GDP
-    per capita. To do this, you could `filter()` with a value that tells you
-    whether each value is NA or not. There is a function called `is.na()` that
-    will return `TRUE` or `FALSE` if a value is missing. Think about how you
-    might combine that with `filter()`. Try it out here.
-
-```{r}
-# Write your code here!
-```
-
-3.  We will now adjust for the missing values you received in part 1 of this
-    question. By default, `mean()` and `median()` report a missing value if at
-    least one of its input values is missing, and as you probably found in parts
-    (1) and (2), a country has a missing value for 2019 GDP per capita. Now,
-    modify your code so that you change this default and remove the missing
-    values in your computation. [As the help page for the functions
-    indicate](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/mean),
-    the relevant argument is `na.rm` (for NA-remove). Set the logical value to
-    `TRUE` (it is `FALSE` by default if you do not specify anything).
-
-Here is a small example:
-
-```{r}
-mean(c(1, NA, 3))
-mean(c(1, NA, 3), na.rm = TRUE)
-```
-
-```{r}
-# Write your code here!
-```
-
-## **Problem 5: Choose Your Own Adventure**
-
-Take this opportunity to show off all that you have learned and using the World
-Economic Outlook data set, pursue a question of your own that is of interest.
-This could be done by producing summary statistics using the `group_by()`
-command, producing a plot that you think is interesting, or anything else you
-desire. It can be as simple or as complex as you'd like, as long as it is your
-own!
-
-Please write your question here:
-
-WRITE QUESTION
-
-And conduct your analysis below.
-
-```{r}
-# Write your code here!
-```
-
-Once you have completed, please write a brief paragraph, sharing your question,
-a brief summary of the approach you do, and the key takeaway from your output
-and post it on the course Slack. Take a chance to review others work and react!
-
-Please also write a short analysis memo here:
-
--   **Question:** What did you ask?
--   **Data:** What does one row represent, and which variables did you use?
--   **Approach:** What code steps did you use?
--   **Finding:** What is your main takeaway?
--   **Caveat:** What is one limitation or reason to be cautious?
-
-A complete memo should be short but specific. A reader should be able to tell
-what you studied, what code steps you used, what you found, and why your finding
-should be interpreted with care.
+- **Question:** What did you ask?
+- **Data:** What does one row represent, and which variables did you use?
+- **Approach:** What filters, summaries, and plots did you create?
+- **Finding:** What is your main descriptive takeaway?
+- **Caveat:** What is one limitation or reason to be cautious?
 
 Write your memo here:
 
-If you used AI for this capstone, briefly document it here. What did you ask it
-for, what did it suggest, and how did you verify the suggestion? If you did not
-use AI, write "I did not use AI for this capstone."
+## Optional extension
 
-Write your AI-use note here:
-
-## **[Optional Challenge Problem] More Graphing**
-
-This optional problem is more challenging. It involves some commands not covered
-in the primers. Attempt it if you have time and want extra graphing practice,
-but do not get discouraged if you get stuck.
-
-Make a graph like the one shown in the figure below based on the provided WEO
-data set you used earlier. Follow both the graphical components of the graph
-shown as you see them, as well as the description of the measures as described
-in the Figure caption.
-
-**Hint**: Check out the packages `ggrepel` and `scales` to implement some of the
-features.
-
-The `ggrepel` package helps add labels that avoid overlapping points. The
-`scales` package helps format axes, such as using commas or dollar signs. Use
-these tools only if they help make your figure easier to read.
-
-![](../figs/assignment5.png)
+If you want a challenge, add one polished figure with improved labels, caption,
+or direct annotations. You can also add one additional indicator from the
+dataset if it helps your memo.
 
 ```{r}
-# Write your code here!
+# Optional extension code here.
 ```
 
-## What you should know after this part
+## AI-use reflection
 
-By the end of Part 5, you should be able to:
+If you used AI for this capstone, document it here:
 
--   Combine sorting, filtering, mutating, graphing, and summarizing in one
-    analysis.
--   Use `select()`, `is.na()`, and `na.rm` in context.
--   Create and interpret GDP per capita measures.
--   Write a short analysis memo with a clear question, approach, finding, and
-    caveat.
--   Document and verify any AI assistance you used.
+- What did you ask it for?
+- What did it suggest?
+- What did you change?
+- How did you verify the code and interpretation?
+
+If you did not use AI, write "I did not use AI for this capstone."
+
+Write your AI-use reflection here:
 
 ## Before you submit
 
--   Knit the notebook successfully.
--   Answer every written question in your own words.
--   Complete the short analysis memo.
--   Save your completed `.Rmd` file.
--   Submit the correct `.Rmd` file to Canvas.
-
-## Your Feedback
-
-Please submit an anonymous feedback form so we can understand what worked well
-to support your learning experience and what did not. Your feedback will be
-important to continue to improve this material for future MPA/IDs and to better
-tailor our instruction during math camp and beyond. Please fill in the form
-[here](https://harvard.az1.qualtrics.com/jfe/form/SV_e2kD9Y6GbHuxPiC).
-
-## Reminder to Submit
-
-Please follow the submission instructions listed
-[here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
-We suggest you submit your assignments as you finish them (i.e., don't wait
-until you have completed them all to submit).
-
-# ***Part II - Additional Optional Resources and Exercises***
-
-We will continue to practice and develop R skills during the HKS Math Camp and
-throughout the semester. We believe the above primers and exercises provide a
-solid foundation in the skills needed for the semester, but if you have the time
-and desire to hone your skills more before arriving on campus, we encourage you
-to consult the following additional resources.
-
-# Appendix
-
-**Appendix 1: R for Data Science**
-
-The free text [R for Data Science](https://r4ds.had.co.nz/index.html) is a
-fantastic resource for learning different functions and applications and
-provides more detail on these functions than the RStudio primers you completed.
-We recommend you try exercises in the following chapters to test how comfortable
-you are with the functions introduced in the primers.
-
-1\. [Chapter 1 - Data Visualization](https://r4ds.hadley.nz/data-visualize.html)
-
-2\. [Chapter 3 - Data
-Transformation](https://r4ds.hadley.nz/data-transform.html)
-
-**Appendix 2: Coursera: Data Analysis with R Programming**
-
-This [course](https://www.coursera.org/learn/data-analysis-with-r) provides
-additional introductory instruction to R. You do not need to do it all to get
-value out of it. Focus on the parts that you want to learn more about.
-
-**Appendix 3: Familiarize with the Style Guide**
-
-Learning any language requires following its form and style. Throughout the
-course, we will be enforcing style guidelines on how R code should be written.
-To become familiar with these guidelines, read and try to internalize Book I
-("Analyses") of [tidyverse style guide](https://style.tidyverse.org), especially
-chapters 1 and 2.
-
-**Appendix 4: R HKS cheat sheet**
-
-To help you learn R in the most efficient way possible, we developed a cheat
-sheet (available at [here](https://bit.ly/3V8Xfhn)) that provides you with the
-default HKS way of doing certain common tasks in R. Feel free to deviate from
-the cheat sheet, but we encourage you to adopt it when you are first learning R
-as it will save you time from having to constantly conduct web searches to look
-for commands to perform standard tasks in R.
+- Add your name at the top.
+- Check that your peer comparison is coherent.
+- Check missing values for your main indicator.
+- Make sure your graphs have meaningful labels.
+- Avoid causal claims.
+- Complete the memo and AI-use reflection.
+- Knit successfully.
+- Submit the completed `.Rmd` file to Canvas.

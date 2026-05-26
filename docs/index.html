@@ -22,6 +22,7 @@
         <a href="interactive-hour.html">Warm-up</a>
         <a href="#process">Process</a>
         <a href="#principles">Principles</a>
+        <a href="#data">Data</a>
         <a href="#assignments">Assignments</a>
         <a href="#ai">AI use</a>
         <a href="#support">Support</a>
@@ -35,10 +36,10 @@
           <h1 id="hero-title">API-209 Summer R Assignments</h1>
           <p class="hero-text">
             This website is the overall guide for the five API-209 R
-            assignments and the short warm-up. You will always do the
-            assignment work in Posit Cloud, inside the assignment R Markdown
-            files. If you have never used R before, start with the warm-up; it
-            walks through the basic concepts before you begin Part 1.
+            assignments and the short warm-up. The assignments build R fluency
+            before Math Camp using one cleaned country-year development dataset
+            with indicators on income, poverty, health, education, labor,
+            climate, and governance.
           </p>
           <div class="hero-actions" aria-label="Primary resources">
             <a class="button primary" href="interactive-hour.html">Start the warm-up</a>
@@ -57,8 +58,12 @@
               <dd>Posit Cloud, inside the assignment R Markdown files.</dd>
             </div>
             <div>
+              <dt>Data backbone</dt>
+              <dd>One local CSV snapshot and data dictionary used across all five parts.</dd>
+            </div>
+            <div>
               <dt>What you submit</dt>
-              <dd>The completed <code>.Rmd</code> file for each part.</dd>
+              <dd>The completed <code>.Rmd</code> file for each part after it knits.</dd>
             </div>
           </dl>
         </aside>
@@ -97,8 +102,8 @@
           <p>
             Move through the assignments in order. Each part builds the habits
             you will use during Math Camp and API-209: inspect data, write code,
-            check output, and explain what the result means. Each assignment now
-            includes a time estimate and a short submission checklist.
+            filter coherently, check output, and explain what the result means
+            without overclaiming causality.
           </p>
         </div>
 
@@ -123,8 +128,9 @@
             <div class="step-number">03</div>
             <h3>Knit early and often</h3>
             <p>
-              Knit the notebook regularly. This catches code errors before they
-              accumulate and confirms the document is reproducible.
+              Knit the notebook regularly. Knitting runs the file from top to
+              bottom in a fresh R session and confirms the document is
+              reproducible.
             </p>
           </article>
           <article class="process-step">
@@ -185,7 +191,7 @@
             <div>
               <span>05</span>
               <p>
-                You should treat missing data, units of analysis, and
+                You should treat missing data, units of analysis, filters, and
                 denominators as statistical responsibilities, not technical
                 details.
               </p>
@@ -193,6 +199,28 @@
           </div>
         </div>
 
+      </section>
+
+      <section id="data" class="split" aria-labelledby="data-title">
+        <div>
+          <p class="eyebrow">Course data</p>
+          <h2 id="data-title">One cleaned development snapshot</h2>
+        </div>
+        <div class="plain-copy">
+          <p>
+            The five assignments use the same local CSV:
+            <code>data/development_indicators_2026.csv</code>. Each row is one
+            country or economy in one year. The data dictionary
+            <code>data/development_indicators_dictionary_2026.csv</code>
+            explains each variable, source, unit, and caveat.
+          </p>
+          <p>
+            Most indicators come from the World Bank World Development
+            Indicators. Governance variables come from the Worldwide Governance
+            Indicators. The teaching team uses a pre-cleaned CSV snapshot so
+            everyone gets the same values and the notebooks knit reliably.
+          </p>
+        </div>
       </section>
 
       <section id="assignments" class="assignments" aria-labelledby="assignments-title">
@@ -212,18 +240,18 @@
             <h3>Programming Fundamentals</h3>
             <p>
               Learn objects, data types, logical values, functions, vectors,
-              comments, and how to read simple error messages. Estimated time:
-              2-4 hours.
+              comments, why knitting matters, and how to read one simple error
+              message. Estimated time: 1.5-3 hours.
             </p>
           </article>
 
           <article class="assignment">
             <div class="assignment-kicker">Part 2</div>
-            <h3>Data Manipulation I</h3>
+            <h3>Filtering Country-Year Data</h3>
             <p>
-              Practice inspecting data, filtering rows, sorting, mutating
-              columns, reading CSV files, and checking units of analysis.
-              Estimated time: 2-4 hours.
+              Practice reading the local CSV, using the data dictionary,
+              inspecting valid values, filtering rows, sorting, mutating simple
+              columns, and interpreting missingness. Estimated time: 2-3 hours.
             </p>
           </article>
 
@@ -231,9 +259,10 @@
             <div class="assignment-kicker">Part 3</div>
             <h3>Data Visualization</h3>
             <p>
-              Build plots with <code>ggplot()</code>, choose geoms and
-              aesthetics, label figures, use facets, and critique whether a
-              graph answers the question. Estimated time: 2-4 hours.
+              Build descriptive plots with <code>ggplot()</code>, choose geoms
+              and aesthetics, label figures, use facets, and explain whether a
+              graph shows a trend, comparison, or association. Estimated time:
+              2-3 hours.
             </p>
           </article>
 
@@ -242,18 +271,18 @@
             <h3>Data Manipulation II</h3>
             <p>
               Use <code>group_by()</code> and <code>summarise()</code>, compare
-              means and medians, check denominators, and describe distributions.
-              Estimated time: 2-4 hours.
+              means and medians, check denominators, and treat missing values as
+              a data-quality issue. Estimated time: 2-3 hours.
             </p>
           </article>
 
           <article class="assignment">
             <div class="assignment-kicker">Part 5</div>
-            <h3>Capstone Analysis</h3>
+            <h3>Mini Development Diagnostic Memo</h3>
             <p>
-              Apply the full workflow to World Economic Outlook data, produce a
-              graph or summary, write a short analysis memo, and document any AI
-              help you used. Estimated time: 2-5 hours.
+              Choose one country and coherent peers, produce a trend plot,
+              comparison table, second output, and short non-causal diagnostic
+              memo. Estimated time: 3-4 hours.
             </p>
           </article>
         </div>

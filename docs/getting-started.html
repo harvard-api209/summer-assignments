@@ -54,8 +54,8 @@
       <section class="resource-section" aria-labelledby="folder-title">
         <h2 id="folder-title">Folder structure</h2>
         <p>
-          In Posit Cloud, the assignment project contains an
-          <code>assignments</code> folder with five R Markdown files:
+          In Posit Cloud, the assignment project contains the five R Markdown
+          files, the shared data snapshot, and a data dictionary:
         </p>
         <pre class="folder-tree"><code>/summer-assignment
   assignments/
@@ -63,10 +63,37 @@
     R Summer Assignment 2.Rmd
     R Summer Assignment 3.Rmd
     R Summer Assignment 4.Rmd
-    R Summer Assignment 5.Rmd</code></pre>
+    R Summer Assignment 5.Rmd
+  data/
+    development_indicators_2026.csv
+    development_indicators_dictionary_2026.csv
+  scripts/
+    refresh_development_indicators.R</code></pre>
         <p>
           Open each file in Posit Cloud. Write code and short answers directly
           in the file, then knit regularly to check your work.
+        </p>
+        <p>
+          The assignments read data with paths like
+          <code>../data/development_indicators_2026.csv</code>. The
+          <code>..</code> means "go up one folder" from
+          <code>assignments</code> and then enter the shared
+          <code>data</code> folder.
+        </p>
+      </section>
+
+      <section class="resource-section" aria-labelledby="data-title">
+        <h2 id="data-title">Course dataset</h2>
+        <p>
+          All five assignments use the same cleaned country-year development
+          dataset. Each row is one country or economy in one year. Most
+          indicators come from the World Bank World Development Indicators, and
+          governance indicators come from the Worldwide Governance Indicators.
+        </p>
+        <p>
+          We use a local CSV snapshot so everyone has the same data and the
+          notebooks knit reliably. The data dictionary gives the source,
+          indicator code, unit, and interpretation notes for each variable.
         </p>
       </section>
 
@@ -95,6 +122,14 @@
               R Markdown combines instructions, code, output, and written
               responses. The completed <code>.Rmd</code> file is what you
               submit.
+            </p>
+          </article>
+          <article>
+            <h3>Knitting</h3>
+            <p>
+              Knitting runs an assignment from top to bottom in a fresh R
+              session. A successful knit is the main check that your code and
+              written answers are reproducible.
             </p>
           </article>
         </div>

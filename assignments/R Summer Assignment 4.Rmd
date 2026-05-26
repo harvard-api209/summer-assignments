@@ -16,537 +16,209 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-**Summer 2026, Pre-Assignment**
+**Part 4: Summarizing Countries, Regions, and Time Periods**
 
-**Part 4: Data Manipulation: Part 2**
+**Estimated time:** 2-3 hours
 
-**Estimated time:** 2-4 hours
+This assignment introduces grouped summaries. You will use `group_by()` and
+`summarise()` to compare countries, regions, and years. Always check what one
+row represents before and after summarizing.
 
-1.  **Preparation**: Please complete these official RStudio tutorials before
-    starting this notebook. We strongly recommend taking notes below and typing
-    in the code yourself as you follow this tutorial.
+## Why knit?
 
--   **WATCH**:
-    -   [dplyr essentials](https://youtu.be/Gvhkp-Yw65U)
-    -   [dplyr advanced guide](https://youtu.be/DiY8EqZDwoI) (Optional)
+A successful knit confirms that your summaries can be rebuilt from the raw
+assignment data in order.
 
-2.  Use the following
-    [FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
-    in case of doubts. Any other questions? Post them on Slack.
+## Packages and data
 
-**Using AI while learning R:** AI tools can help you remember syntax for
-`group_by()`, `summarise()`, or a graphing function. They cannot decide whether
-your denominator, grouping level, or interpretation is correct. Always check
-what one row represents before and after you summarize.
-
-> In previous notebooks, we have generally edited components of datasets while
-> keeping the larger dataset structure the same. Often, we will want to
-> calculate **statistics** from datasets that involve generating new information
-> from our dataset in some way.
-
-```{r}
-# If needed: 
-# TAKE NOTES HERE for the Primers
-```
-
-# 1. When to summarize?
-
-Often, we will want to **aggregate** information across a dataset or across
-groups in a dataset. For example, adding the total number of votes in every
-polling place, or the average outcome in each group in a randomized trial. Using
-our `state` population data from last time, imagine we wanted to plot the total
-US population over time.
-
-```{r, warning=FALSE}
-# INSTALLATION CODE:
-
+```{r message=FALSE, warning=FALSE}
 options(repos = c(CRAN = "https://cloud.r-project.org"))
 
-if(!("tidyverse" %in% rownames(installed.packages()))) {
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
   install.packages("tidyverse")
 }
 
 library(tidyverse)
 
-# This code sets a simple plot style for the examples below.
-# It will make more sense later in the semester.
-options(repr.plot.width = 10, repr.plot.height = 7)
-
-hks_blue <- "#1F5F83"
-hks_crimson <- "#A51C30"
-
-theme_set(
-  theme_minimal(base_size = 13) +
-    theme(
-      plot.title = element_text(face = "bold", size = 16),
-      plot.subtitle = element_text(color = "gray35"),
-      panel.grid.minor = element_blank(),
-      strip.text = element_text(face = "bold"),
-      axis.title = element_text(face = "bold")
-    )
-)
-update_geom_defaults("point", list(size = 2.2, alpha = 0.8))
-update_geom_defaults("line", list(linewidth = 1.1))
-
-# read in the data
-state <- read_csv("https://www.dropbox.com/s/javbnd4c3n67380/state_population.csv?dl=1")
-
-# see the first 5 rows of the data
-head(state)
-
-cat("Done!")
-
+dev <- read_csv("../data/development_indicators_2026.csv")
+dictionary <- read_csv("../data/development_indicators_dictionary_2026.csv")
 ```
 
-We could plot every state at once, but this would not tell us the total US
-population by year. Since the rows in our dataset are state populations in one
-particular year, this plot will plot every state as its own sequence of points
-in a scatterplot.
+## Summarizing one variable
+
+Use `summarise()` to reduce a dataset to summary statistics.
 
 ```{r}
-state |>
-  ggplot(
-    aes(
-      x = year, 
-      y = population
-    )
-  ) +
-  geom_point(color = hks_blue, alpha = 0.45, size = 1.4) +
-  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
-  labs(
-    x = "Year",
-    y = "State population",
-    title = "State Populations Over Time",
-    subtitle = "Each point is one state in one year"
-  )
-```
-
-What if we want to know the **total population by year**? We already have the
-tools we need to do this for a single year.
-
-How? We could `filter()` the dataset to a certain year, and then use `sum()` on
-the `population` column. We can use the `$` syntax after the name of a dataset
-to access one particular column in the dataset as a vector.
-
-For example, to calculate the US population in 1976, we could:
-
-```{r}
-# Filter rows to all observations in 1976
-all_1976 <- state |> 
-  filter(year == 1976)
-
-# Sum the population column
-sum(all_1976$population)
-```
-
-So, according to this dataset the US population in 1976 was a little over 200
-million.
-
-# Quick Exercise
-
-First, try it yourself. Try calculating the population of only the US South in
-the year 1980.
-
-```{r}
-# Write your code here.
-```
-
-# group_by() and summarise()
-
-The above process was a little tedious though. How might we calculate this total
-for **every year** in our dataset? We could replicate the above procedure many
-times, or perhaps create a function and run it once for each year.
-
-Instead, R makes this sort of repetition with the functions `group_by()` and
-`summarise()`. When used together, `group_by()` defines a group and
-`summarise()` will perform a calculation within each of those groups. If you are
-familiar with Excel, this idea is conceptually similar to a Pivot Table. You
-will see that R allows for much more flexible and complex calculations.
-
-For example, this code will run the `sum()` function on the `population` column
-within each group (`year`):
-
-```{r}
-# Within each group (year)
-# calculate the total population
-pop_by_year <- state |>
-  group_by(year) |>
-  summarise(pop = sum(population))
-
-# tail() shows the final rows in the dataset
-head(pop_by_year)
-```
-
-Notice that the unit of analysis changed. In `state`, one row is a state-year.
-In `pop_by_year`, one row is a year. This is why checking the rows after
-`summarise()` is so important.
-
-```{r}
-nrow(state)
-nrow(pop_by_year)
-```
-
-The function `n()` counts how many rows are in each group. This is useful for
-checking whether each summary is based on the number of observations you
-expected.
-
-```{r}
-state |>
-  group_by(year) |>
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
   summarise(
-    pop = sum(population),
-    n_states = n()
+    mean_life_expectancy = mean(life_expectancy),
+    median_life_expectancy = median(life_expectancy),
+    n_countries = n()
   )
 ```
 
-Now that we have that object, we can plot total US population by year directly.
-How should we visualize this data? Building on what we learned in our last
-lesson, we have a lot of options. Let's start with a simple bar plot:
+## Grouping by region
+
+Use `group_by()` before `summarise()` to calculate statistics within groups.
 
 ```{r}
-# simple bar plot
-pop_by_year |>
-  ggplot(
-    aes(
-      x = year, 
-      y = pop
-    )
-  ) +
-  geom_col(fill = hks_blue, width = 0.85) +
-  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
-  labs(
-    x = "Year",
-    y = "Total population",
-    title = "US Population by Year",
-    subtitle = "Total population across states in the dataset"
+region_life_2023 <- dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  group_by(region) |>
+  summarise(
+    mean_life_expectancy = mean(life_expectancy),
+    median_life_expectancy = median(life_expectancy),
+    n_countries = n()
   )
+
+region_life_2023
 ```
 
-Another option would be to try to draw the viewer's attention to the top of the
-bar by placing points on top. These are often called 'lollipop plots,' and can
-be made by creating a line segment and a `geom_point()`.
+The unit of analysis changed. In `dev`, one row is a country-year. In
+`region_life_2023`, one row is a region.
 
-Want to learn more about the `geom_segment()` function? One very useful skill
-when learning to program is learning to read documentation. Take a look at [this
-help page](https://ggplot2.tidyverse.org/reference/geom_segment.html) for the
-`geom_segment()` function and try to read through what each argument below does.
+## Exercises 1: regional summaries
 
-```{r}
-# a "lollipop" plot
-# combines straight line segment with point
-pop_by_year |>
-  ggplot(
-    aes(
-      x = year, 
-      y = pop
-    )
-  ) +
-  geom_segment(aes(x = year, xend = year, y = 0, yend = pop), color = "gray80") +
-  geom_point(color = hks_crimson, size = 2.4) +
-  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
-  labs(
-    x = "Year",
-    y = "Total population",
-    title = "US Population by Year",
-    subtitle = "A lollipop plot draws attention to the top of each value"
-  )
-```
-
-You can also **define groups by multiple variables**. This is useful when you
-want to calculate a particular statistic within groups defined by more than one
-variable. For example, to calculate population separately by **region** AND
-**year**.
-
-```{r}
-region_year <- state |>
-  group_by(region, year) |> # group_by multiple columns
-  summarise(pop = sum(population))
-
-region_year |> filter(year == 1900)
-```
-
-Now, we could use a facet like we learned in the previous lesson to visualize
-the growth in each region at once.
-
-```{r}
-region_year |>
-  ggplot(aes(x = year, y = pop)) +
-  geom_line(color = hks_blue) +
-  geom_point(color = hks_blue, size = 1.2) +
-  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
-  labs(
-    x = "Year",
-    y = "Total population",
-    title = "US Population by Region",
-    subtitle = "Each panel summarizes state populations within a region"
-  ) +
-  facet_wrap(~region)
-```
-
-## Exercises #1
-
-This dataset contains information on World Cup matches from 1930 to 2006. The
-`scored` column contains information on each national team's performance in a
-particular World Cup.
-
-```{r}
-cups <- read_csv("https://www.dropbox.com/s/eb74w6516hvm11a/world_cups%20-%20WorldCups.csv?dl=1")
-```
-
-1.  Look at the data with a function like `head()`.
+1. For assignment-sample countries in 2023, calculate the mean and median
+under-5 mortality by region. Include `n_countries = n()`.
 
 ```{r}
 # Write your code here.
 ```
 
-2.  Then, using `group_by()` and `summarise()`, calculate the total number of
-    goals that each team has scored across all World Cups. Save this to an
-    object named `goals`.
-
-```{r}
-# Write your code here.
-```
-
-3.  Filter to only teams that have scored at least 50 goals in total from the
-    `goals` object. Save this in an object called `high_score_teams`.
-
-```{r}
-# Write your code here.
-```
-
-4.  Design a plot visualizing the number of goals scored by each team using
-    `high_score_teams`. The plot can be as simple (or as sophisticated) as you
-    want as long as it conveys clearly the main findings you want the reader to
-    derive.
-
-```{r}
-# Write your code here.
-```
-
-In one sentence, describe the main finding from your plot. Then write one
-sentence about whether the plot makes comparison across teams easy or difficult.
+2. Which region has the highest median under-5 mortality in your table? What
+does one row in your summary represent?
 
 Write your answer here:
 
-# Using groups for other statistics
-
-The sum is one interesting measurement you will want to calculate, but it is
-certainly not the only one. The **mean** (average) is another. Thankfully,
-calculating means for the complete sample or finding means within each group is
-very simple. All you need to do is change the function that you use in
-`summarise()`.
-
-Take a look at the examples below. We recommend running each section of code
-separately and trying to edit them yourself. Calculate other statistics you
-think might be interesting. Any questions or trouble? Post in the Slack!
-
-```{r}
-# find total number of goals scored for each team
-cups |>
-  group_by(team) |>
-  summarise(scored = sum(scored))
-```
-
-```{r}
-# find average number of goals scored by team in each World Cup
-# consider: why might a statistic like this not be very useful for all teams?
-cups |>
-  group_by(team) |>
-  summarise(scored = mean(scored))
-```
-
-Using `summarise()` without any groups created by `group_by()` before will
-summarize the entire dataset. For example:
-
-```{r}
-# find total number of goals scored in 1930 World Cup
-cups |>
-  filter(year == 1930) |>
-  summarise(scored = sum(scored))
-```
-
-```{r}
-# find average goals scored per match in 1930 World Cup
-cups |>
-  filter(year == 1930) |>
-  summarise(scored = mean(scored / matches))
-```
-
-Be careful with averages. The average of team-level rates is not always the same
-as the overall rate. In the code below, the unweighted mean treats every team
-equally, while the weighted rate gives more influence to teams with more
-matches.
-
-```{r}
-cups |>
-  filter(year == 1930) |>
-  summarise(
-    unweighted_goals_per_match = mean(scored / matches),
-    weighted_goals_per_match = sum(scored) / sum(matches)
-  )
-```
-
-If an AI tool suggests a summary statistic, check whether it is using the right
-level of aggregation and the right denominator.
-
-The **median** of a set of numbers is found by ordering them from smallest to
-largest and finding the value in the middle. Means and medians are both ways of
-estimating the center of a dataset, but they do have important differences in
-some cases. For example:
-
-```{r}
-numbers <- c(1, 3, 7, 9, 2000)
-# notice how the mean is sensitive to outliers
-mean(numbers)
-# the median is not as sensitive
-median(numbers)
-```
-
-```{r}
-# consider: why might these numbers be different?
-mean(cups$scored)
-median(cups$scored)
-```
-
-When summarizing real datasets, also check for missing values before trusting a
-mean or median.
-
-```{r}
-sum(is.na(cups$scored))
-```
-
-# 2. Visualizing distributions
-
-Statistics like sums, means, and medians are one way of summarizing data, but
-they still only tell you one number. Sometimes, you will want to visualize all
-of the values in a column or two of your dataset - the entire **distribution**.
-
-### Histograms
-
-For example, a **histogram** will visualize all of the values in one column.
-Taller bars tell you that more data fit in that range:
-
-```{r}
-# visualize shots on goal since 1950
-cups |>
-  filter(year > 1950) |>
-  ggplot(aes(x = shots_on_goal)) +
-  geom_histogram(binwidth = 5, fill = hks_blue, color = "white", linewidth = 0.2) +
-  labs(
-    x = "Shots on goal",
-    y = "Number of team-World Cup observations",
-    title = "Shots on Goal Since 1950",
-    subtitle = "Most teams are concentrated at lower shot totals"
-  )
-```
-
-```{r}
-# just like any other geom, can use with groups and facets
-cups |>
-  filter(year > 1950) |>
-  ggplot(aes(x = shots_on_goal)) +
-  geom_histogram(binwidth = 5, fill = hks_blue, color = "white", linewidth = 0.2) +
-  labs(
-    x = "Shots on goal",
-    y = "Count",
-    title = "Shots on Goal by World Cup Year"
-  ) +
-  facet_wrap(~year)
-```
-
-This tells you that most teams had between 0-10 shots on goal, while some had a
-lot (\>50). Notice the message you get when creating this plot -
-`stat_bin() using bins = 30. Pick better value with binwidth.` This means that
-`ggplot()` chose a default width for the "bins" (rectangles) it creates on the
-histogram, but that you can overwrite it if you want with the `binwidth`
-argument. `ggplot()` will often do a good job, but you can choose one that best
-fits your data.
-
-```{r}
-# very small binwidth
-cups |>
-  filter(year > 1950) |>
-  ggplot(aes(x = shots_on_goal)) +
-  geom_histogram(binwidth = 1, fill = hks_blue, color = "white", linewidth = 0.15) +
-  labs(
-    x = "Shots on goal",
-    y = "Count",
-    title = "Histogram With a Small Binwidth",
-    subtitle = "More detail, but also more visual noise"
-  )
-```
-
-```{r}
-# very large binwidth - not as informative!
-cups |>
-  filter(year > 1950) |>
-  ggplot(aes(x = shots_on_goal)) +
-  geom_histogram(binwidth = 25, fill = hks_blue, color = "white", linewidth = 0.2) +
-  labs(
-    x = "Shots on goal",
-    y = "Count",
-    title = "Histogram With a Large Binwidth",
-    subtitle = "Less detail, which can hide important variation"
-  )
-```
-
-## Exercises #2
-
-1.  Read in the `elections` data from the previous notebook. Then, create a
-    histogram to visualize Democratic performance in all elections since and
-    including 1992 (`>= 1992`) with one plot for each region.
-
-For an extra challenge, try adding a vertical line to the plot at 50 with the
-`geom_vline()` function (you can read the documentation for a function with
-`?geom_vline` or by Googling "R `geom_vline()`, then scroll down to"Examples" to
-see code examples using the function).
-
-Finally, explain the general trend that you see.
-
-In your explanation, describe the center, spread, skew, and any visible outliers
-or regional differences. If changing the binwidth changes your conclusion, say
-so.
-
-```{r}
-elections <- read_csv("https://www.dropbox.com/s/lhp9nets5qb2rhe/presidential_elections.csv?dl=1")
-```
-
-2.  Using **only results from states in the South**, create a histogram for
-    `democrat` with one plot per year. Try adding a vertical line at 50 as
-    described above.
+3. Make a bar chart of the regional median under-5 mortality values.
 
 ```{r}
 # Write your code here.
 ```
 
-Here, in text describe the trend you see over time!
+## Multiple grouping variables
 
-3.  Think about the trend you saw in Question 2. Clearly describe it. Discuss a
-    way you might visualize that trend. If you have time, try designing a plot
-    to do so.
+You can group by more than one variable.
 
-Type answer here!
+```{r}
+region_year_life <- dev |>
+  filter(assignment_sample == TRUE & year >= 2010) |>
+  group_by(region, year) |>
+  summarise(
+    mean_life_expectancy = mean(life_expectancy),
+    n_countries = n(),
+    .groups = "drop"
+  )
 
-## What you should know after this part
+head(region_year_life)
+```
 
-By the end of Part 4, you should be able to:
+Plot the regional trend:
 
--   Use `group_by()` and `summarise()` to calculate grouped statistics.
--   Explain how summarizing changes the unit of analysis.
--   Use `n()` to check how many rows are in each group.
--   Compare means and medians, including when outliers matter.
--   Describe the center, spread, skew, and outliers in a distribution.
+```{r}
+region_year_life |>
+  ggplot(aes(x = year, y = mean_life_expectancy, color = region)) +
+  geom_line(linewidth = 1) +
+  labs(
+    x = "Year",
+    y = "Mean life expectancy",
+    color = "Region",
+    title = "Average Life Expectancy by Region",
+    subtitle = "Assignment-sample countries, 2010-2024"
+  )
+```
+
+## Missing values in summaries
+
+Some indicators have missing values. By default, `mean()` returns `NA` if any
+input value is missing.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  summarise(mean_poverty = mean(poverty_rate))
+```
+
+Use `na.rm = TRUE` to remove missing values from the calculation.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  summarise(
+    mean_poverty = mean(poverty_rate, na.rm = TRUE),
+    countries_with_poverty_data = sum(!is.na(poverty_rate)),
+    total_countries = n()
+  )
+```
+
+Missingness is substantive. Poverty data are usually based on household surveys,
+which are not available every year in every country.
+
+## Exercises 2: missingness and denominators
+
+1. For assignment-sample countries in 2023, summarize poverty by region. Include
+the mean poverty rate, number of countries with poverty data, and total number
+of countries.
+
+```{r}
+# Write your code here.
+```
+
+2. Which regions have very few countries with poverty data in 2023? Why should
+that affect interpretation?
+
+Write your answer here:
+
+## Mean versus median
+
+Means can be sensitive to outliers. Medians are often useful for skewed
+variables like GDP per capita.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  group_by(region) |>
+  summarise(
+    mean_gdp_pc = mean(gdp_per_capita_ppp, na.rm = TRUE),
+    median_gdp_pc = median(gdp_per_capita_ppp, na.rm = TRUE),
+    n_countries = n(),
+    .groups = "drop"
+  )
+```
+
+## Exercises 3: income summaries
+
+1. Calculate mean and median GDP per capita by income group for 2023.
+
+```{r}
+# Write your code here.
+```
+
+2. In one or two sentences, explain why mean and median might differ.
+
+Write your answer here:
+
+## Optional challenge
+
+Compare mean and median GDP per capita by region in 2010 and 2023. What changed?
+
+```{r}
+# Optional challenge code here.
+```
+
+## AI-use note
+
+If you used AI, write one sentence describing what you asked and how you checked
+the answer. If you did not use AI, write "I did not use AI for this assignment."
+
+Write your AI-use note here:
 
 ## Before you submit
 
--   Knit the notebook successfully.
--   Answer every written question in your own words.
--   Save your completed `.Rmd` file.
--   Submit the correct `.Rmd` file to Canvas.
-
-## Reminder to Submit
-
-Please follow the submission instructions listed
-[here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
-We suggest you submit your assignments as you finish them (i.e., don't wait
-until you have completed them all to submit).
+- Add your name at the top.
+- Check what one row represents before and after each summary.
+- Include denominators when summarizing sparse indicators.
+- Knit successfully.
+- Submit the completed `.Rmd` file to Canvas.
