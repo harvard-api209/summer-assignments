@@ -8,7 +8,8 @@
       name="description"
       content="Student guide for completing the API-209 Summer 2026 R assignments in Posit Cloud."
     >
-    <link rel="stylesheet" href="site.css?v=8">
+    <link rel="stylesheet" href="site.css?v=11">
+    <link rel="icon" href="favicon.ico">
   </head>
   <body>
     <header class="site-header" aria-label="Course guide header">
@@ -19,13 +20,11 @@
         </span>
       </a>
       <nav class="nav-links" aria-label="Page navigation">
+        <a href="getting-started.html">Getting started</a>
         <a href="interactive-hour.html">Warm-up</a>
-        <a href="#process">Process</a>
-        <a href="#principles">Principles</a>
-        <a href="#data">Data</a>
         <a href="#assignments">Assignments</a>
-        <a href="#ai">AI use</a>
-        <a href="#support">Support</a>
+        <a href="faq.html">FAQ</a>
+        <a href="submission.html">Submission</a>
       </nav>
     </header>
 
@@ -42,8 +41,9 @@
             climate, and governance.
           </p>
           <div class="hero-actions" aria-label="Primary resources">
-            <a class="button primary" href="interactive-hour.html">Start the warm-up</a>
-            <a class="button primary" href="https://posit.cloud/content/8155534">Open Posit Cloud</a>
+            <a class="button primary" href="getting-started.html">Get started</a>
+            <a class="button secondary" href="interactive-hour.html">Start the warm-up</a>
+            <a class="button secondary" href="https://posit.cloud/content/8155534">Open Posit Cloud</a>
           </div>
         </div>
 
@@ -69,6 +69,84 @@
         </aside>
       </section>
 
+      <section class="orientation-panel" aria-labelledby="orientation-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Start here</p>
+          <h2 id="orientation-title">How the summer assignments work</h2>
+          <p>
+            There are three places in the workflow. Use this website for
+            directions, Posit Cloud for the actual work, and Canvas when it is
+            time to submit. Follow the path below in order.
+          </p>
+        </div>
+
+        <div class="platform-map" aria-label="Platform roles">
+          <article>
+            <span>Website</span>
+            <h3>Read the guide</h3>
+            <p>Find the sequence, warm-up, support notes, and submission rules.</p>
+          </article>
+          <article>
+            <span>Posit Cloud</span>
+            <h3>Do the work</h3>
+            <p>Open your saved copy and complete the assignment <code>.Rmd</code> files.</p>
+          </article>
+          <article>
+            <span>Canvas</span>
+            <h3>Submit files</h3>
+            <p>Upload the completed <code>.Rmd</code> files when Canvas links are posted.</p>
+          </article>
+        </div>
+
+        <nav class="journey-flow" aria-label="Recommended sequence">
+          <a class="journey-step" href="getting-started.html">
+            <span class="journey-number">1</span>
+            <span class="journey-kicker">Start</span>
+            <strong>Getting Started</strong>
+            <span>
+              Learn the platform roles, enter Posit Cloud, and save your own
+              copy before editing.
+            </span>
+          </a>
+          <a class="journey-step" href="interactive-hour.html">
+            <span class="journey-number">2</span>
+            <span class="journey-kicker">Practice</span>
+            <strong>Warm-up</strong>
+            <span>
+              Read code, predict the output, run it, and explain what happened
+              in plain language.
+            </span>
+          </a>
+          <a class="journey-step" href="https://posit.cloud/content/8155534">
+            <span class="journey-number">3</span>
+            <span class="journey-kicker">Work</span>
+            <strong>Assignment 1</strong>
+            <span>
+              Open <code>assignments</code>, edit the first <code>.Rmd</code>,
+              and knit regularly.
+            </span>
+          </a>
+          <a class="journey-step" href="#assignments">
+            <span class="journey-number">4</span>
+            <span class="journey-kicker">Build</span>
+            <strong>Parts 2-5</strong>
+            <span>
+              Keep using the cleaned CSV snapshot and check filters,
+              denominators, and missing values.
+            </span>
+          </a>
+          <a class="journey-step" href="submission.html">
+            <span class="journey-number">5</span>
+            <span class="journey-kicker">Submit</span>
+            <strong>Canvas</strong>
+            <span>
+              Upload the completed <code>.Rmd</code> files when Canvas links
+              are posted.
+            </span>
+          </a>
+        </nav>
+      </section>
+
       <section class="support" id="support" aria-labelledby="support-title">
         <div class="section-heading compact">
           <p class="eyebrow">When stuck</p>
@@ -80,6 +158,10 @@
           </p>
         </div>
         <div class="support-grid">
+          <a href="getting-started.html">
+            <strong>Getting started</strong>
+            <span>Open Posit Cloud, save your copy, and find the assignment files.</span>
+          </a>
           <a href="faq.html">
             <strong>FAQ</strong>
             <span>Answers for Posit Cloud, R Markdown, AI use, and common problems.</span>
@@ -88,59 +170,6 @@
             <strong>How to submit</strong>
             <span>Download the completed R Markdown files and submit them on Canvas.</span>
           </a>
-          <a href="getting-started.html">
-            <strong>Getting started</strong>
-            <span>Open Posit Cloud, save your copy, and find the assignment files.</span>
-          </a>
-        </div>
-      </section>
-
-      <section id="process" aria-labelledby="process-title">
-        <div class="section-heading compact">
-          <p class="eyebrow">Start here</p>
-          <h2 id="process-title">The process</h2>
-          <p>
-            Move through the assignments in order. Each part builds the habits
-            you will use during Math Camp and API-209: inspect data, write code,
-            filter coherently, check output, and explain what the result means
-            without overclaiming causality.
-          </p>
-        </div>
-
-        <div class="process-list">
-          <article class="process-step">
-            <div class="step-number">01</div>
-            <h3>Save your own copy</h3>
-            <p>
-              Open the Posit Cloud project and save a permanent copy to your
-              workspace before editing any assignment files.
-            </p>
-          </article>
-          <article class="process-step">
-            <div class="step-number">02</div>
-            <h3>Work in the R Markdown file</h3>
-            <p>
-              Open the relevant assignment in the <code>assignments</code>
-              folder. Write code and short answers directly in the notebook.
-            </p>
-          </article>
-          <article class="process-step">
-            <div class="step-number">03</div>
-            <h3>Knit early and often</h3>
-            <p>
-              Knit the notebook regularly. Knitting runs the file from top to
-              bottom in a fresh R session and confirms the document is
-              reproducible.
-            </p>
-          </article>
-          <article class="process-step">
-            <div class="step-number">04</div>
-            <h3>Submit the Rmd</h3>
-            <p>
-              Submit the completed <code>.Rmd</code> file to Canvas using the
-              course submission instructions.
-            </p>
-          </article>
         </div>
       </section>
 
@@ -231,11 +260,13 @@
             Use this roadmap to understand the sequence. To see the actual
             assignment files, open the Posit Cloud project and check the
             <code>.Rmd</code> files in the <code>assignments</code> folder.
+            There are no separate assignment pages on this website; each part
+            lives in its own R Markdown file so students have one place to work.
           </p>
         </div>
 
         <div class="assignment-list">
-          <article class="assignment">
+          <article class="assignment" id="part-1">
             <div class="assignment-kicker">Part 1</div>
             <h3>Programming Fundamentals</h3>
             <p>
@@ -245,7 +276,7 @@
             </p>
           </article>
 
-          <article class="assignment">
+          <article class="assignment" id="part-2">
             <div class="assignment-kicker">Part 2</div>
             <h3>Filtering Country-Year Data</h3>
             <p>
@@ -255,7 +286,7 @@
             </p>
           </article>
 
-          <article class="assignment">
+          <article class="assignment" id="part-3">
             <div class="assignment-kicker">Part 3</div>
             <h3>Data Visualization</h3>
             <p>
@@ -266,7 +297,7 @@
             </p>
           </article>
 
-          <article class="assignment">
+          <article class="assignment" id="part-4">
             <div class="assignment-kicker">Part 4</div>
             <h3>Data Manipulation II</h3>
             <p>
@@ -276,7 +307,7 @@
             </p>
           </article>
 
-          <article class="assignment">
+          <article class="assignment" id="part-5">
             <div class="assignment-kicker">Part 5</div>
             <h3>Mini Development Diagnostic Memo</h3>
             <p>

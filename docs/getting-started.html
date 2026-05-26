@@ -8,7 +8,8 @@
       name="description"
       content="Getting started with the API-209 Summer 2026 R assignments in Posit Cloud."
     >
-    <link rel="stylesheet" href="site.css?v=8">
+    <link rel="stylesheet" href="site.css?v=11">
+    <link rel="icon" href="favicon.ico">
   </head>
   <body>
     <header class="site-header" aria-label="Course guide header">
@@ -21,6 +22,7 @@
       <nav class="nav-links" aria-label="Getting started navigation">
         <a href="index.html">Guide</a>
         <a href="interactive-hour.html">Warm-up</a>
+        <a href="index.html#assignments">Assignments</a>
         <a href="faq.html">FAQ</a>
         <a href="submission.html">Submission</a>
       </nav>
@@ -40,15 +42,99 @@
         </div>
       </section>
 
+      <section class="resource-section" aria-labelledby="where-title">
+        <h2 id="where-title">Where things happen</h2>
+        <div class="platform-map" aria-label="Platform roles">
+          <article>
+            <span>Website</span>
+            <h3>Instructions and support</h3>
+            <p>Use this guide to know what to do next and where to get help.</p>
+          </article>
+          <article>
+            <span>Posit Cloud</span>
+            <h3>Assignment work</h3>
+            <p>Write code and answers inside the assignment <code>.Rmd</code> files.</p>
+          </article>
+          <article>
+            <span>Canvas</span>
+            <h3>Final submission</h3>
+            <p>Submit the completed <code>.Rmd</code> files after they knit.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="resource-section" aria-labelledby="path-title">
+        <h2 id="path-title">Recommended path</h2>
+        <ol class="lesson-path" aria-label="Recommended sequence">
+          <li class="is-current"><span>1</span><strong>Getting Started</strong></li>
+          <li><span>2</span><strong>Warm-up</strong></li>
+          <li><span>3</span><strong>Assignment 1 in Posit Cloud</strong></li>
+          <li><span>4</span><strong>Parts 2-5</strong></li>
+          <li><span>5</span><strong>Submit on Canvas</strong></li>
+        </ol>
+      </section>
+
       <section class="resource-section" aria-labelledby="steps-title">
         <h2 id="steps-title">First steps</h2>
         <ol class="resource-list">
-          <li>Sign in to Posit Cloud with a Google, GitHub, or Clever account.</li>
-          <li>Open the API-209 summer assignments project.</li>
+          <li>
+            Open the
+            <a href="https://posit.cloud/content/8155534">API-209 Posit Cloud project</a>.
+          </li>
+          <li>
+            Sign in to Posit Cloud with the same account every time. We
+            recommend Google. If your Harvard account uses Google sign-in, use
+            that; otherwise, use a personal Google or GitHub account and keep
+            using the same one.
+          </li>
           <li>Save a permanent copy to your own workspace before editing.</li>
           <li>Open the <code>assignments</code> folder in the Files pane.</li>
           <li>Complete the five <code>.Rmd</code> files in order.</li>
         </ol>
+        <div class="callout important">
+          <strong>Before you edit:</strong> click
+          <strong>Save a Permanent Copy</strong>. This creates your own version
+          of the project. Do not start answering questions until your copy has
+          opened.
+        </div>
+      </section>
+
+      <section class="resource-section" aria-labelledby="onboarding-title">
+        <h2 id="onboarding-title">What you should see</h2>
+        <div class="onboarding-sequence">
+          <figure>
+            <img
+              src="img/onboarding/posit-login.png"
+              alt="Posit Cloud page with Log In and Sign Up links in the top navigation."
+            >
+            <figcaption>
+              If Posit Cloud asks you to sign in, use the <strong>Log In</strong>
+              link. Use the same account every time; Harvard Google is fine if
+              that is the account you normally use for class.
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="img/onboarding/posit-save-copy.png"
+              alt="Posit Cloud temporary project copy with a Save a Permanent Copy button."
+            >
+            <figcaption>
+              When the project opens, use <strong>Save a Permanent Copy</strong>
+              before editing any files. This puts the work in your own workspace.
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="img/onboarding/posit-open-part-1.png"
+              alt="RStudio in Posit Cloud with R Summer Assignment 1 open from the assignments folder."
+            >
+            <figcaption>
+              In the Files pane, open <code>assignments</code>, then open
+              <code>R Summer Assignment 1.Rmd</code>. Work inside the
+              <code>.Rmd</code> file and knit it regularly.
+            </figcaption>
+          </figure>
+        </div>
       </section>
 
       <section class="resource-section" aria-labelledby="folder-title">
@@ -80,6 +166,64 @@
           <code>assignments</code> and then enter the shared
           <code>data</code> folder.
         </p>
+      </section>
+
+      <section class="resource-section" aria-labelledby="panes-title">
+        <h2 id="panes-title">RStudio panes in Posit Cloud</h2>
+        <p>
+          Posit Cloud opens RStudio in your browser. The screen is divided into
+          panes. You do not need to master every button on day one, but you
+          should know where your work, output, files, and data objects appear.
+        </p>
+        <div class="callout">
+          For Assignment 1, focus on <strong>Source</strong>,
+          <strong>Console</strong>, and <strong>Files</strong>. You can ignore
+          the other panes unless an assignment asks you to use them.
+        </div>
+        <div class="pane-grid">
+          <article>
+            <h3>Source</h3>
+            <p>
+              Usually the upper-left pane. This is where the open
+              <code>.Rmd</code> file appears. Write your code and short answers
+              here. The <strong>Knit</strong> button is also at the top of this
+              pane when an R Markdown file is open.
+            </p>
+          </article>
+          <article>
+            <h3>Console</h3>
+            <p>
+              Usually the lower-left pane. R prints results and error messages
+              here when you run code. Use it to test small commands, but put
+              assignment answers in the <code>.Rmd</code> file.
+            </p>
+          </article>
+          <article>
+            <h3>Environment</h3>
+            <p>
+              Usually the upper-right pane. It lists objects created by your
+              code, such as data frames or vectors. If it is empty, that usually
+              means you have not run code that creates objects yet.
+            </p>
+          </article>
+          <article>
+            <h3>Files</h3>
+            <p>
+              Usually the lower-right pane. Use this pane to open
+              <code>assignments</code>, find the shared <code>data</code>
+              folder, and download files when submission instructions ask you
+              to do so.
+            </p>
+          </article>
+          <article>
+            <h3>Plots, Packages, Help, Viewer</h3>
+            <p>
+              These tabs share the lower-right area. Plots shows figures,
+              Packages shows installed R packages, Help opens documentation,
+              and Viewer displays some HTML outputs.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section class="resource-section" aria-labelledby="data-title">
@@ -145,6 +289,7 @@
         <div class="resource-actions">
           <a class="button primary" href="interactive-hour.html">Start the warm-up</a>
           <a class="button secondary" href="faq.html">Read the FAQ</a>
+          <a class="button secondary" href="index.html">Back to main guide</a>
         </div>
       </section>
     </main>
