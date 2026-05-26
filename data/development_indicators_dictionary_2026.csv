@@ -1,0 +1,15 @@
+variable,label,source,source_indicator_code,unit,higher_is,notes
+population,"Population, total",World Bank World Development Indicators,SP.POP.TOTL,people,larger population,Total population.
+gdp_per_capita_ppp,"GDP per capita, PPP",World Bank World Development Indicators,NY.GDP.PCAP.PP.KD,constant international dollars,higher income,GDP per capita based on purchasing power parity.
+gdp_growth,GDP growth,World Bank World Development Indicators,NY.GDP.MKTP.KD.ZG,annual percent,faster growth,Annual percentage growth rate of GDP at market prices based on constant local currency.
+inflation,Inflation,World Bank World Development Indicators,FP.CPI.TOTL.ZG,annual percent,higher inflation,Inflation measured by the consumer price index.
+poverty_rate,Poverty headcount ratio at $3.65 a day,World Bank World Development Indicators,SI.POV.LMIC,percent of population,higher poverty,International poverty line for lower-middle-income countries; coverage is sparse because it depends on household surveys.
+gini,Gini index,World Bank World Development Indicators,SI.POV.GINI,"index, 0-100",higher inequality,Coverage is sparse because it depends on household surveys.
+life_expectancy,Life expectancy at birth,World Bank World Development Indicators,SP.DYN.LE00.IN,years,longer life expectancy,Average number of years a newborn would live if current mortality patterns stayed constant.
+under5_mortality,Under-5 mortality rate,World Bank World Development Indicators,SH.DYN.MORT,"deaths per 1,000 live births",worse child mortality,"Probability of dying between birth and age 5 per 1,000 live births."
+secondary_school_enrollment,Secondary school enrollment,World Bank World Development Indicators,SE.SEC.ENRR,gross enrollment percent,higher enrollment,Gross enrollment ratio can exceed 100 because of over-age or under-age students.
+unemployment_total,"Unemployment, total",World Bank World Development Indicators,SL.UEM.TOTL.ZS,percent of labor force,higher unemployment,Modeled ILO estimate.
+unemployment_youth,Youth unemployment,World Bank World Development Indicators,SL.UEM.1524.ZS,percent of labor force ages 15-24,higher youth unemployment,Modeled ILO estimate.
+co2_per_capita,CO2 emissions per capita,World Bank World Development Indicators,EN.GHG.CO2.PC.CE.AR5,tons of CO2 equivalent per person,higher emissions,"Carbon dioxide emissions excluding land use, land-use change, and forestry per person."
+government_effectiveness,Government effectiveness,Worldwide Governance Indicators,GE.EST,"estimate, approximately -2.5 to 2.5",more effective governance,Perception-based composite indicator; compare changes cautiously.
+control_of_corruption,Control of corruption,Worldwide Governance Indicators,CC.EST,"estimate, approximately -2.5 to 2.5",more control of corruption,Perception-based composite indicator; compare changes cautiously.

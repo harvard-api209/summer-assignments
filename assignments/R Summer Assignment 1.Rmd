@@ -5,8 +5,8 @@ output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 editor:
   mode: visual
-editor_options: 
-  markdown: 
+editor_options:
+  markdown:
     wrap: 80
 ---
 
@@ -16,573 +16,273 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
 
-## Summer 2026, Pre-Assignment
+## Summer 2026 Pre-Assignment
 
-Welcome! For now, we will be using Posit Cloud to complete our summer
-assignments. You can also download the entire project to use with RStudio
-offline, but for the beginning, we'll focus on the cloud environment. During
-math camp, we will guide you in installation of R and RStudio on your individual
-computers, if you do not already have it installed.
+**Part 1: R Basics for Development Data**
 
-This set of exercises will help get you up and running with doing basic data
-analysis in R. The goal of these assignments is **not** that you will have
-perfected R by the time you finish them, but that you have a solid foundation of
-key concepts when going into Math Camp. During Math Camp, we will go over much
-of this material in greater depth. Spending a significant amount of time on this
-now in a way that suits your own schedule will help make your future learning
-easier.
+**Estimated time:** 1.5-3 hours
 
-RMarkdown is an extension of Markdown used to create dynamic documents that
-combine code, output, and text. It allows you to write R code directly in the
-document, which can then be executed to display results within the same
-document. This integration of code and narrative makes RMarkdown an excellent
-tool for creating reproducible reports and interactive documents.
+This assignment introduces the basic R habits you will use in the rest of the
+summer work: running code, creating objects, using functions, checking logical
+statements, and reading simple error messages. The examples use development
+data concepts because API-209 and the MPA/ID curriculum use data to reason
+carefully about policy questions.
 
-**Part 1: Programming Fundamentals**
+## Why knit?
 
-**Estimated time:** 2-4 hours
+Knitting runs this whole document from top to bottom in a fresh R session. This
+checks whether your work is reproducible: the code, output, and written answers
+can be rebuilt in order. Running chunks manually is useful while learning, but a
+successful knit is the best check that your assignment is complete and
+self-contained.
 
-1.  **Preparation**: If you are new to R, we strongly recommend watching the
-    videos below.
-2.  Before completing each RMarkdown on this summer assignment, we will ask you
-    to please follow a brief primer from the creators of RStudio, an application
-    for interacting with R that we will use later in the summer. We recommend
-    following the sequence in the primers. Take notes and come back later to
-    complete the rest of the exercises.
+## Project folders
 
--   **WATCH**:
-    -   [Programming
-        Basics](https://r-primers.andrewheiss.com/basics/02-programming-basics/):
-        Follow the tutorial from Functions to Packages and watch the videos.
+The project has a stable structure:
 
-## General Tips
-
-You can enter R code in the code chunks below. To run code, you can click the
-play button that appears on the left side of the code chunk when your cursor is
-in the box, or press CMD + Enter (or Return) on a Mac or CTRL + Enter on a PC.
-
-We strongly encourage you to practice writing code as you learn -- do not just
-read this document and only complete the exercises. Please write and enter your
-own code while you read. Try new things, type code in, and see what happens.
-Code as you go. Coding is a skill, much like learning to play an instrument. The
-most important part of learning to code is to **practice**!
-
-In Posit Cloud (and RStudio), you can toggle between Visual and Source modes for
-your editor. Visual mode allows for a more WYSIWYG (What You See Is What You
-Get) experience, making it easier to format text and visualize results. Source
-mode, on the other hand, shows the raw code and markdown, providing greater
-control over the document's structure and content. Switching between these modes
-can help you understand both the presentation and underlying code of your
-RMarkdown.
-
-**Please save often.** You do this only the first time you open the Posit
-Project. This will be saved in your Workspace so you can access it at any time.
-Remember to save your work frequently. In Posit Cloud,you can save your
-RMarkdown by going to File → Save, or with CMD + S (Mac) / Ctrl + S (PC).
-
-It is a best practice to continuously "knit" your notebook (a way of compiling
-it into a readable document in RStudio). Doing so will allow you to make sure
-that your code runs well and you catch errors before they compound. Every few
-lines of code, consider pressing the "Knit" button at the top to make sure that
-your output looks as you expect. This helps in avoiding headaches later on and
-helps ensure that your code is reproducible.
-
-If you get stuck in any aspect of using R, please use Slack to ask the teaching
-team.
-
-**Using AI while learning R:** AI tools can help explain error messages or
-clarify what a command does, but they cannot replace your own practice. If you
-use AI while working on these assignments, run the code yourself, check that the
-output matches the question, and be ready to explain the result in your own
-words.
-
-Finally, use the following
-[FAQs](https://docs.google.com/document/d/1sec_uWmFXWi0WOnecd1JoLqulhEpEvYY52zvCcMNlF4/edit?usp=sharing)
-in case of doubts. Any other questions? Post them on Slack.
-
-```{r}
-# Use this space to write code to take notes on the RStudio video.
-sqrt(9)
+```text
+summer-assignments/
+  assignments/
+  data/
+  figs/
+  scripts/
 ```
 
-Once you have watched the video above, please continue with the exercises below.
-These exercises give you additional opportunities to practice the most important
-concepts from the RStudio Tutorials for our HKS courses.
+You are working in the `assignments/` folder. Later assignments will load data
+from `../data/development_indicators_2026.csv`. The `..` means "go up one
+folder," so `../data/` points from `assignments/` to the shared data folder.
 
-# Data
+## Running code
 
-Throughout this entire course, you will use code to do things with **data**. R
-can deal with many types of data, like **numbers** (3, 0, 2021), letters and
-words called **characters** ("Data", "South Amboy", "Dom"), and many many
-others. For example, in the box below this message, type 3+2 and press the arrow
-on the left side (or CMD + Enter on a Mac / Ctrl + Enter on PC):
-
-Here are a few words we will use throughout these assignments:
-
--   **Object**: a named thing that stores a value for later use.
--   **Function**: a command that performs a task, usually using values inside
-    parentheses.
--   **Argument**: an input you give to a function.
--   **Vector**: an object that stores more than one value.
--   **Logical value**: a value that is either `TRUE` or `FALSE`.
-
-```{r}
-# Try adding below
-3+2
-```
-
-That was code! R knows that 2 and 3 are numbers, and it simply reported it back
-to you. The number in brackets like this `[5]` simply means that one value was
-reported back to you -- R keeps track of these sorts of things for you.
-
-R is also very good at math. Try expanding on the commands written out below:
+Click the green run button in a code chunk, or use Cmd + Enter on a Mac /
+Ctrl + Enter on a PC. Try running this chunk:
 
 ```{r}
 3 + 2
-3 - 2
-200 * 4
-196 / 8
-
-(4 + 2) - (3 * 6)
-
-# Try your own here
-
 ```
 
-You can also type letters and words as long as they are between two quotes
-`"like this"`. In the console, type your name and again run the code:
+R is a calculator, but in this course we will use it to analyze data. Try a few
+more calculations:
 
 ```{r}
-# Type your name below
+100 - 42
+12 * 4
+144 / 12
+(4 + 2) * 3
+
+# Try your own calculation below.
 ```
 
-All of these numbers belong to a certain data type in R called `numeric` while
-your name was a `character` (you may have heard terms like class, type, etc. in
-reference to certain kinds of data or programming objects, which we will talk
-more about later).
+## Data types
 
-Another important type of data in R is **Boolean** values (often called
-`logical`), which are `TRUE` or `FALSE`. We often write expressions that will
-evaluate to either `TRUE` or `FALSE`. For example, `==` (two equal signs) will
-tell you whether or not the value on the left is equal to the value on the
-right. If they are equal, the operator returns `TRUE`. If they are not equal,
-the operator returns `FALSE`.
+R works with different kinds of values. Numbers are numeric values. Words inside
+quotation marks are character values.
 
 ```{r}
-# Examples
-3 == 3 
-2 == 4 
-5 == 4
-
-# You try it here
+2026
+"Harvard Kennedy School"
+"Ghana"
 ```
 
-Now you try it. Is 4 equal to (2 + 2)?
-
-`==` works with characters too -- below, try to see if the character "HKS" equal
-to "HBS"
+Write your name as a character value:
 
 ```{r}
-# == works on characters too
-"Callan" == "Dom"
-
-# You try it here
+# Write your name below, inside quotation marks.
 ```
 
-Many other operators in R will evaluate to a Boolean value of `TRUE` or `FALSE`.
-For example, `!=` allows you to check if something is NOT equal to something
-else. If the values are not equal, R will return `TRUE`. If they are equal, it
-will return `FALSE`. Try asking if 4 is not equal to 3.
+## Logical values
+
+Logical values are `TRUE` or `FALSE`. They are central to filtering data later.
+The operator `==` asks whether two things are equal.
 
 ```{r}
-# You try it here
+3 == 3
+2 == 4
+"Ghana" == "Kenya"
 ```
 
-## Exercises #1
-
-Below, complete the following exercises using the material above.
-
-1.  Try evaluating a few mathematical expressions in the box below.
+The operator `!=` asks whether two things are not equal.
 
 ```{r}
-# You try it here
+"Ghana" != "Kenya"
+2024 != 2023
 ```
 
-2.  Check that a character for your name is not equal to the character for
-    someone else's name.
+### Exercises 1
+
+1. Ask R whether 100 is equal to 10 times 10.
 
 ```{r}
-# You try it here
+# Write your code here.
 ```
 
-3.  Calculate 4017 + 2098. Then, have R confirm that 4017 + 2098 is not equal to
-    4016 + 2098.
+2. Ask R whether `"HKS"` is not equal to `"MPAID"`.
 
 ```{r}
-# You try it here
+# Write your code here.
 ```
 
-4.  **Comments**: you may have noticed the stylish green text in the boxes
-    below. These are called "comments," and they are messages that we've left
-    for you. Writing your own comments is a very good habit to form, as it makes
-    your intentions clear to others, and it will help remind you what your code
-    does when you return to it in the future. In R, we use comments by starting
-    a line of code with a hashtag: `#`. R will not evaluate these lines as code,
-    so they are text that can be inserted into your code.
+3. Add a comment above each line of code you wrote in questions 1 and 2. In R,
+comments begin with `#`.
 
-Go back to #1-3 and add comments above your code.
+## Objects
 
-### Objects
-
-Sometimes, you want to store data for later. An **object** in R will store data
-for you. For example, imagine you want to keep the value of a complicated
-calculation like the one below:
+Objects store values so you can use them later. The assignment operator `<-`
+puts the value on the right into the name on the left.
 
 ```{r}
-2018 * (6 - 2.5)
+country <- "Ghana"
+year <- 2023
+population <- 33787914
 ```
 
-Instead of trying to remember that number, you can store that data in an
-**object**. Then, the data will be there whenever you want it. In R, we make
-objects with the `<-` operator. Think of `<-` like an arrow, it stores the
-**data on the right** in the **name on the left**. In general, you can give
-objects any name you want, as long as there are **no spaces** in the name and it
-does not start with a number. For example:
+Run the object names to see what they store:
 
 ```{r}
-result <- 2018 * (6 - 2.5)
-```
-
-Wait, nothing happened when you ran that code? This is because your answer is
-now stored in an object called `result.` Type `result` in the console and your
-answer will come back!
-
-```{r}
-result
-```
-
-Objects are very powerful tools in R, and can hold any type of data we have
-discussed so far. Try making your own below:
-
-```{r}
-# Creating objects
-name <- "Dom"
-name
-
-year <- 2022
+country
 year
-
-check_year <- 2022 == (2020 + 2)
-check_year
+population
 ```
 
-In general, you can perform operations on the names of objects the same way you
-can perform operations on the value the object contains.
+You can use objects in calculations.
 
 ```{r}
-# is name equal to Callan?
-
-name == "Callan"
-
-# add 2 to year
-
-year + 2
-
-# is check_year TRUE?
-
-check_year == TRUE
+population_millions <- population / 1000000
+population_millions
 ```
 
-## Exercises #2
-
-1.  Create an object named `year` with the value 2021.
+You can also use objects in logical checks.
 
 ```{r}
-# You try it here
+country == "Ghana"
+year >= 2020
 ```
 
-2.  Create an object named `answer` with the value 15. Then, divide `answer` by
-    3.  
+### Exercises 2
+
+1. Create an object called `my_country` with the name of a country you are
+interested in.
 
 ```{r}
-# You try it here
+# Write your code here.
 ```
 
-3.  Use `==` to see whether `answer` is equal to 12.
+2. Create an object called `current_year` and set it equal to 2026.
 
 ```{r}
-# You try it here
+# Write your code here.
 ```
 
-4.  Assign your name to an object called `name`.
+3. Ask R whether `current_year` is greater than or equal to 2026.
 
 ```{r}
-# prompt: Assign your name to an object called name
+# Write your code here.
 ```
 
-5.  Try adding 1 to the object containing your name. What happens? Why might
-    this be?
+## Functions
 
-```{r}
-# You try it here
-```
-
-6.  Read the error message from question 5 carefully. In one sentence, explain
-    what R tried to do and why it could not do it. If you use AI to help explain
-    the error, write the explanation in your own words and say how you checked
-    that it matched what happened in R.
-
-Write your answer here:
-
-# Functions
-
-Some operations are a little more complex than simple math like addition. A
-**function** is a pre-written piece of code that somebody else wrote for you to
-perform a specific task. For example, there will be functions for things like
-making plots. We will use many functions in this course. We will even learn how
-to write our own functions!
-
-For example, how would you find the square root of a number? Well, thankfully
-there is a function called `sqrt()`. To run it, you should type `sqrt()` into
-the console and put the number that you want to find the square root of between
-the parentheses:
+Functions perform tasks. Most functions use parentheses.
 
 ```{r}
 sqrt(9)
-
-# Take the square root of 16 below
+log(100)
+round(3.14159, digits = 2)
 ```
 
-This is how all functions will work:
-
--   Type the name of the function. Here, it is `sqrt()`.
--   Include the value you want to evaluate inside the parentheses (`sqrt(9)`).
-    The value you give to the function (`9`) is called an **argument**.
-
-Functions can take **objects** as their argument as well. Remember our object
-`number`? Check it out!
+The values inside parentheses are called arguments. Some arguments are required;
+others are optional.
 
 ```{r}
-number <- 16
-sqrt(number)
+mean(c(10, 20, 30))
+max(c(10, 20, 30))
+min(c(10, 20, 30))
 ```
 
-You can store the output of a function into an object as well. To see the
-result, just type in the name of your object. For example:
+## Vectors
+
+A vector stores several values in one object. Use `c()` to combine values.
 
 ```{r}
-result <- sqrt(9)
-result
+peer_countries <- c("Ghana", "Kenya", "Rwanda", "Tanzania")
+growth_rates <- c(3.8, 5.6, 8.2, 5.1)
 ```
 
-The `seq()` function will make a sequence of numbers for you. `seq()` takes two
-arguments -- the number to start the sequence, and the number to finish it. For
-example:
-
-seq(1, 10)
-
-To learn how a function works, you can type `?` followed by the name of the
-function (e.g. `?seq`) in the code chunk below to open the **documentation**.
-
--   **Usage** shows you how to use the function.
--   **Arguments** tells you what arguments you pass the function.
--   **Details** tells you a little bit about the function.
--   **Value** will tell you what the function returns, if anything.
--   **Examples** are very useful, they show you examples of working code.
-
-You may find difficult to parse right now, but with more practice this will
-become second nature!
+Run the objects:
 
 ```{r}
-# Open the documentation "help pages" for the seq() function
-
-?seq
+peer_countries
+growth_rates
+mean(growth_rates)
+growth_rates > 5
 ```
 
-The `paste()` function is also useful, as it combines two strings:
+### Exercises 3
+
+1. Create a vector called `years` with the values 2020, 2021, 2022, and 2023.
 
 ```{r}
-paste("hello", "world")
-
-# Try it below
+# Write your code here.
 ```
 
-One particularly important function is `ifelse()`. This function is used to
-return a different value depending on whether a statement is `TRUE` or `FALSE`.
-For example, imagine wanting to change string to represent currency depending on
-the country you are working with.
-
-The structure of the function is:
-
--   `ifelse(condition, value if TRUE, value if FALSE)`
-
-A condition can be anything that evaluates to `TRUE` or `FALSE`. Operators like
-`==`, `!=`, `>` (greater than), `<` (less than), `>=` (greater than or equal
-to), are very helpful for writing these conditions.
+2. Create a vector called `life_expectancy_values` with four made-up numeric
+values.
 
 ```{r}
-# Run this code, then try changing USA to India in the country object, rerun the code, and see what happens.
-country <- "USA"
-ifelse(country == "USA", "Dollar", "Rupee")
+# Write your code here.
 ```
+
+3. Calculate the mean of `life_expectancy_values`.
 
 ```{r}
-salary <- 30000
-ifelse(salary > 35000, "Higher than 35,000", "Lower than or equal to 35,000")
+# Write your code here.
 ```
 
-You can also create your own functions. To do so, you need to define a function
-just like an object. The syntax for this is a little complicated, but we will
-practice it several times throughout the semester.
+## A controlled debugging exercise
 
-Study the code below, and then use the function:
+Errors are part of learning R. Read error messages slowly. They usually tell
+you where to look first.
+
+The chunk below has an intentional error and is set to `eval=FALSE`, so it will
+not break knitting. Run the line manually, read the error, then fix the spelling
+in the next chunk.
+
+```{r eval=FALSE}
+squrt(9)
+```
+
+Write the corrected code here:
 
 ```{r}
-# Creates a function that adds 10 to a number
-  # add_10 is the name off the function
-  # x is the "argument"
-  # the function adds 10 to x
-  # the curly brackets {} take the code inside as the function
-
-add_10 <- function(x) {
-  x + 10
-}
-
-add_10(4)
-add_10(2)
+# Write your corrected code here.
 ```
 
-Functions can draw on all of the lessons we have learned so far. Here is one
-that will be useful for you in a few years:
+What was the error, and how did you fix it?
 
-```{r}
-graduate_hks <- function(name, year) {
-  paste0(name, ", MPA/ID ", year)
-}
-
-graduate_hks("Callan", 2024)
-
-# Try running the function on your name
-```
-
-## Exercises #3
-
-1.  Create an object called `number` with the value 1444. What is the square
-    root of `number`?
-
-```{r}
-
-```
-
-2.  Now, go in the console and type `?abs` to open the documentation for the
-    `abs()` function. Come up with an example that shows what it does.
-
-```{r}
-
-```
-
-3.  Create a function called `is_even()` that returns "Even" if the number is
-    even and "Odd" if the number is odd. **Hint**: even numbers have a remainder
-    of 0 when divided by 2, while odd numbers do not have a remainder of 0 when
-    divided by 2. To find the remainder, use the `%%` operator (this is called
-    "modulo"). Call your argument `x` and don't forget to add comments.
-
-```{r}
-
-```
-
-## Example: remainder of 8 divided by 2
-
-```{r}
-8 %% 2
-```
-
-### Objects with Multiple Values
-
-Objects can also store more than one value at once. **Vectors** are one very
-common way to store data. To create a vector, we use the function `c()` (the "c"
-stands for combine, because it combines multiple values separated by a comma).
-Just like before, you can use the `<-` syntax to create an object.
-
-```{r}
-years <- c(2020, 2018, 2007)
-names <- c("Callan", "Dom", "Dan")
-```
-
-Some functions take **vectors** as arguments because they are meant to work with
-multiple values. For example, the `mean()` function will find the average of the
-values in a vector:
-
-```{r}
-numbers <- c(10, 15)
-
-mean(numbers)
-```
-
-We've already learned a lot of terminology. Above, we used a **vector** called
-`numbers` as an **argument** in a **function** called `mean()`.
-
-Some operators and functions will run on every entry of the vector separately.
-For example:
-
-```{r}
-ages <- c(27, 41, 35)
-ages + 1
-```
-
-## Exercises #4
-
-1.  Create a vector called `prices` with the values 12, 11, and 8. Find the
-    average price.
-
-```{r}
-
-```
-
-2.  What happens if you run `prices + 1`? What is this doing? How about
-    `prices == 8`?
-
-```{r}
-
-```
-
-3.  The function `sum()` will add all the values in a vector. Run `?sum` to
-    learn how it works. Find the total sum of the `prices` object.
-
-```{r}
-
-```
-
-4.  Create a function called `is_sum_greater_than()` that takes two arguments,
-    `vector` and `value`. The function should calculate the sum of `vector`,
-    check if that sum is greater than `value`, and return "The sum is greater
-    than (value)" if it is, and "The sum is NOT greater than (value)" if it is
-    not.
-
-```{r}
-
-```
+Write your answer here:
 
 ## What you should know after this part
 
 By the end of Part 1, you should be able to:
 
--   Run simple R code and read the output.
--   Create objects with `<-`.
--   Recognize numbers, characters, logical values, and vectors.
--   Use basic functions and read simple documentation pages.
--   Read an error message carefully before asking for help.
+- Run R code in a chunk.
+- Create objects with `<-`.
+- Use comments to explain code.
+- Use basic functions.
+- Create vectors.
+- Read and fix a simple error message.
+- Explain why knitting checks reproducibility.
+
+## AI-use note
+
+If you used AI, write one sentence describing what you asked and how you checked
+the answer. If you did not use AI, write "I did not use AI for this assignment."
+
+Write your AI-use note here:
 
 ## Before you submit
 
--   Knit the notebook successfully.
--   Answer every written question in your own words.
--   Save your completed `.Rmd` file.
--   Submit the correct `.Rmd` file to Canvas.
-
-## Please don't forget to submit your assignment
-
-Please follow the submission instructions listed
-[here](https://docs.google.com/document/d/195R1jrfbKN5lYZKT2BrU0cJB0Z1JftG8vSZ-60fdi0Q/edit?usp=sharing).
-We suggest you submit your assignments as you finish them (i.e., don't wait
-until you have completed them all to submit).
+- Add your name at the top of this file.
+- Run the chunks you completed.
+- Knit the document successfully.
+- If knitting fails, read the first error message and fix that chunk first.
+- Submit the completed `.Rmd` file to Canvas.
