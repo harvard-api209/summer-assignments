@@ -6,6 +6,25 @@ country-year development dataset across all five parts.
 
 This is the student Posit Cloud branch: `posit-cloud-2026`.
 
+## Start Here
+
+Use the course website as the main guide:
+<https://harvard-api209.github.io/summer-assignments/>
+
+This Posit Cloud project is where you do the assignment work. Canvas is where
+you will submit completed files when the course submission links are posted.
+
+Before you edit anything, click **Save a Permanent Copy** in Posit Cloud. This
+creates your own version of the project. Do not start answering questions until
+your copy has opened.
+
+Recommended path:
+
+1. Read the Getting Started page on the course website.
+2. Complete the short warm-up.
+3. Return to this Posit Cloud project and open `assignments/`.
+4. Start `R Summer Assignment 1.Rmd`.
+
 ## What to Open
 
 Open the `assignments` folder and work through the files in order:
@@ -47,7 +66,8 @@ dictionary explains each variable's source, unit, and interpretation notes.
 
 ## How to Work
 
-- Save your own copy of this Posit Cloud project before editing.
+- If you have not already done so, save your own copy of this Posit Cloud
+  project before editing.
 - Knit early and often. Knitting runs the assignment from top to bottom in a
   fresh R session, which checks that your work is reproducible.
 - Submit the completed `.Rmd` file for each part using the course submission
