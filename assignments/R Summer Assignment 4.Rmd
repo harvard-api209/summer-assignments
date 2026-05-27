@@ -20,6 +20,28 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Estimated time:** 2-3 hours
 
+## Before you start
+
+You should be working in your own saved copy of the Posit Cloud project. Use the
+same Posit Cloud account every time, write your answers in this `.Rmd` file, and
+submit the completed `.Rmd` file to Canvas after it knits.
+
+## Learning goals
+
+By the end of Part 4, you should be able to:
+
+- summarize a filtered dataset with `summarise()`;
+- use `group_by()` to compare regions, income groups, and years;
+- explain when the unit of analysis changes;
+- report denominators when values are missing; and
+- compare means and medians without overclaiming.
+
+## How to work through this file
+
+Each summary should follow the same rhythm: define the goal, filter the data,
+summarize it, check the denominator and unit of analysis, explain the result,
+and knit before moving on.
+
 This assignment introduces grouped summaries. You will use `group_by()` and
 `summarise()` to compare countries, regions, and years. Always check what one
 row represents before and after summarizing.
@@ -80,6 +102,9 @@ The unit of analysis changed. In `dev`, one row is a country-year. In
 
 ## Exercises 1: regional summaries
 
+Goal: make a regional summary and explain what one row represents after
+grouping.
+
 1. For assignment-sample countries in 2023, calculate the mean and median
 under-5 mortality by region. Include `n_countries = n()`.
 
@@ -97,6 +122,11 @@ Write your answer here:
 ```{r}
 # Write your code here.
 ```
+
+### Knit checkpoint
+
+Knit now. Then check that your summary has one row per region and includes a
+denominator column.
 
 ## Multiple grouping variables
 
@@ -158,6 +188,9 @@ which are not available every year in every country.
 
 ## Exercises 2: missingness and denominators
 
+Goal: summarize a sparse indicator while showing how much data the summary is
+based on.
+
 1. For assignment-sample countries in 2023, summarize poverty by region. Include
 the mean poverty rate, number of countries with poverty data, and total number
 of countries.
@@ -170,6 +203,12 @@ of countries.
 that affect interpretation?
 
 Write your answer here:
+
+### Knit checkpoint
+
+Knit again. Check that every poverty summary reports both countries with data
+and total countries. If a region has very few countries with poverty data, say
+that directly in your written answer.
 
 ## Mean versus median
 
@@ -190,6 +229,8 @@ dev |>
 
 ## Exercises 3: income summaries
 
+Goal: compare means and medians while recognizing skewed income data.
+
 1. Calculate mean and median GDP per capita by income group for 2023.
 
 ```{r}
@@ -199,6 +240,11 @@ dev |>
 2. In one or two sentences, explain why mean and median might differ.
 
 Write your answer here:
+
+### Knit checkpoint
+
+Knit before the optional challenge. Confirm that your income summary uses 2023,
+the intended groups, and clear variable names.
 
 ## Optional challenge
 
@@ -213,11 +259,15 @@ Compare mean and median GDP per capita by region in 2010 and 2023. What changed?
 If you used AI, write one sentence describing what you asked and how you checked
 the answer. If you did not use AI, write "I did not use AI for this assignment."
 
+If AI suggested a summary, verify the grouping variables, denominator, missing
+value handling, and unit of analysis before trusting it.
+
 Write your AI-use note here:
 
 ## Before you submit
 
 - Add your name at the top.
+- Confirm that you are in your own saved Posit Cloud copy.
 - Check what one row represents before and after each summary.
 - Include denominators when summarizing sparse indicators.
 - Knit successfully.

@@ -20,6 +20,30 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Estimated time:** 3-4 hours
 
+## Before you start
+
+You should be working in your own saved copy of the Posit Cloud project. Use the
+same Posit Cloud account every time, write your memo and code in this `.Rmd`
+file, and submit the completed `.Rmd` file to Canvas after it knits.
+
+## Learning goals
+
+By the end of Part 5, you should be able to:
+
+- choose a coherent country-peer comparison;
+- inspect missingness before choosing an indicator;
+- create a filtered analysis dataset;
+- produce a trend plot, comparison table, and second output;
+- write a short descriptive memo with a caveat; and
+- document and verify any AI help.
+
+## How to work through this file
+
+This capstone still follows the course rhythm: define the goal, build and check
+the data, produce output, explain what it means, and knit regularly. The
+scaffolding is lighter here because the final task asks you to exercise
+judgment.
+
 This capstone asks you to combine the core skills from Parts 1-4: filtering,
 inspecting, mutating, plotting, summarizing, and writing a short interpretation.
 The analysis is descriptive. You may discuss possible explanations, but do not
@@ -102,6 +126,11 @@ your justification?
 
 Write your answer here:
 
+### Knit checkpoint
+
+Knit now. Then confirm that every country in `peer_countries` appears in the
+data and that your peer set is coherent.
+
 ## Step 2: create your analysis dataset
 
 Filter to your countries and a recent time period.
@@ -147,6 +176,11 @@ Which indicator will you use as your main diagnostic outcome, and why?
 
 Write your answer here:
 
+### Knit checkpoint
+
+Knit after choosing your indicator. If your main indicator has many missing
+values, either explain that limitation or choose a better-covered indicator.
+
 ## Step 4: trend plot
 
 Example trend plot:
@@ -174,6 +208,11 @@ Create your own trend plot using your chosen indicator.
 What is the main pattern in your trend plot?
 
 Write your answer here:
+
+### Knit checkpoint
+
+Knit after your trend plot. Check that the plot uses `analysis_data`, the chosen
+indicator, and meaningful labels.
 
 ## Step 5: comparison table
 
@@ -222,6 +261,11 @@ Explain why this output is useful for your diagnostic.
 
 Write your answer here:
 
+### Knit checkpoint
+
+Knit before writing the memo. Your outputs should now rebuild from top to bottom
+without relying on objects created only in the Console.
+
 ## Step 7: short memo
 
 Write a short memo below. Be specific but concise.
@@ -257,9 +301,14 @@ If you did not use AI, write "I did not use AI for this capstone."
 
 Write your AI-use reflection here:
 
+Before submitting, verify any AI-suggested code against your actual output:
+filters, countries, years, missing values, graph labels, and the memo's claim
+must all match.
+
 ## Before you submit
 
 - Add your name at the top.
+- Confirm that you are in your own saved Posit Cloud copy.
 - Check that your peer comparison is coherent.
 - Check missing values for your main indicator.
 - Make sure your graphs have meaningful labels.

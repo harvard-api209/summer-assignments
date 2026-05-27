@@ -33,6 +33,10 @@ You should be working in your own saved copy of the Posit Cloud project. If you
 do not remember doing that, stop and return to the Getting Started page on the
 course website before editing this file.
 
+Use the same Posit Cloud account every time. If you switch between Google,
+GitHub, Clever, or Harvard Google accounts, your saved project may look like it
+disappeared even though it is in the other account.
+
 Use the Files pane to confirm that you opened:
 
 ```text
@@ -405,6 +409,7 @@ Write your AI-use note here:
 ## Before you submit
 
 - Add your name at the top of this file.
+- Confirm that you are in your own saved Posit Cloud copy.
 - Run the chunks you completed.
 - Knit the document successfully.
 - If knitting fails, read the first error message and fix that chunk first.
