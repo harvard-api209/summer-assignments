@@ -22,47 +22,68 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Estimated time:** 1.5-3 hours
 
-This assignment introduces the basic R habits you will use in the rest of the
-summer work: running code, creating objects, using functions, checking logical
-statements, and reading simple error messages. The examples use development
-data concepts because API-209 and the MPA/ID curriculum use data to reason
-carefully about policy questions.
+This first assignment is a bridge from the website warm-up into the real Posit
+Cloud work. You will practice the habits that will appear in every later part:
+read the prompt, run a small piece of code, check the output, explain what
+happened, and knit the file.
 
-## Why knit?
+## Before you start: bridge from the website
 
-Knitting runs this whole document from top to bottom in a fresh R session. This
-checks whether your work is reproducible: the code, output, and written answers
-can be rebuilt in order. Running chunks manually is useful while learning, but a
-successful knit is the best check that your assignment is complete and
-self-contained.
+You should be working in your own saved copy of the Posit Cloud project. If you
+do not remember doing that, stop and return to the Getting Started page on the
+course website before editing this file.
 
-## Project folders
-
-The project has a stable structure:
+Use the Files pane to confirm that you opened:
 
 ```text
-summer-assignments/
-  assignments/
-  data/
-  figs/
-  scripts/
+assignments/R Summer Assignment 1.Rmd
 ```
 
-You are working in the `assignments/` folder. Later assignments will load data
-from `../data/development_indicators_2026.csv`. The `..` means "go up one
-folder," so `../data/` points from `assignments/` to the shared data folder.
+This `.Rmd` file is where your code and short written answers belong. Knitted
+HTML may help you preview your work, but you submit the completed `.Rmd` file.
 
-## Running code
+## Learning goals
 
-Click the green run button in a code chunk, or use Cmd + Enter on a Mac /
-Ctrl + Enter on a PC. Try running this chunk:
+By the end of Part 1, you should be able to:
+
+- run R code in a chunk;
+- create objects with `<-`;
+- use comments to explain code;
+- identify basic data types;
+- use logical checks;
+- use basic functions;
+- create vectors;
+- read and fix a simple error message; and
+- explain why knitting checks reproducibility.
+
+## Why this matters for API-209 and MPA/ID
+
+API-209 uses data to reason carefully about policy questions. Before using
+models, graphs, or development indicators, you need a few reliable habits:
+write code you understand, check what R returned, and explain results in words
+without overclaiming. This assignment is about those habits.
+
+## Lesson 1: Run code and read output
+
+### Goal
+
+Run a code chunk and connect the code you wrote to the output R returns.
+
+### Concept
+
+R can act like a calculator. In this course, that same code-running habit will
+later help you inspect data, filter rows, calculate summaries, and make plots.
+
+### Try it
+
+Click the green run button in the code chunk, or use Cmd + Enter on a Mac /
+Ctrl + Enter on a PC.
 
 ```{r}
 3 + 2
 ```
 
-R is a calculator, but in this course we will use it to analyze data. Try a few
-more calculations:
+Try a few more calculations:
 
 ```{r}
 100 - 42
@@ -73,10 +94,34 @@ more calculations:
 # Try your own calculation below.
 ```
 
-## Data types
+### Check
+
+Did R print the result you expected for each line? If not, rerun one line at a
+time and check the arithmetic slowly.
+
+### Explain
+
+In one sentence, what does R do when you run a line of code?
+
+Write your answer here:
+
+### Knit checkpoint
+
+Knit now. If knitting fails, read the first error message and return to the
+chunk named in the message.
+
+## Lesson 2: Data types
+
+### Goal
+
+Recognize the difference between numbers and text values.
+
+### Concept
 
 R works with different kinds of values. Numbers are numeric values. Words inside
 quotation marks are character values.
+
+### Try it
 
 ```{r}
 2026
@@ -90,10 +135,29 @@ Write your name as a character value:
 # Write your name below, inside quotation marks.
 ```
 
-## Logical values
+### Check
 
-Logical values are `TRUE` or `FALSE`. They are central to filtering data later.
-The operator `==` asks whether two things are equal.
+Your name should have quotation marks around it. Without quotation marks, R will
+look for an object with that name.
+
+### Explain
+
+Why do country names need quotation marks but years do not?
+
+Write your answer here:
+
+## Lesson 3: Logical values
+
+### Goal
+
+Use `TRUE` and `FALSE` checks, which are the foundation of filtering data.
+
+### Concept
+
+Logical values are `TRUE` or `FALSE`. The operator `==` asks whether two things
+are equal. The operator `!=` asks whether two things are not equal.
+
+### Try it
 
 ```{r}
 3 == 3
@@ -101,14 +165,12 @@ The operator `==` asks whether two things are equal.
 "Ghana" == "Kenya"
 ```
 
-The operator `!=` asks whether two things are not equal.
-
 ```{r}
 "Ghana" != "Kenya"
 2024 != 2023
 ```
 
-### Exercises 1
+### Practice
 
 1. Ask R whether 100 is equal to 10 times 10.
 
@@ -125,10 +187,33 @@ The operator `!=` asks whether two things are not equal.
 3. Add a comment above each line of code you wrote in questions 1 and 2. In R,
 comments begin with `#`.
 
-## Objects
+### Check
+
+Your first check should return `TRUE`. Your second check should also return
+`TRUE`.
+
+### Explain
+
+Why will logical checks matter when you later filter country-year data?
+
+Write your answer here:
+
+### Knit checkpoint
+
+Knit again. This is a habit, not a final step.
+
+## Lesson 4: Objects
+
+### Goal
+
+Create named objects and reuse them in calculations and checks.
+
+### Concept
 
 Objects store values so you can use them later. The assignment operator `<-`
 puts the value on the right into the name on the left.
+
+### Try it
 
 ```{r}
 country <- "Ghana"
@@ -144,21 +229,21 @@ year
 population
 ```
 
-You can use objects in calculations.
+Use objects in calculations:
 
 ```{r}
 population_millions <- population / 1000000
 population_millions
 ```
 
-You can also use objects in logical checks.
+Use objects in logical checks:
 
 ```{r}
 country == "Ghana"
 year >= 2020
 ```
 
-### Exercises 2
+### Practice
 
 1. Create an object called `my_country` with the name of a country you are
 interested in.
@@ -179,9 +264,29 @@ interested in.
 # Write your code here.
 ```
 
-## Functions
+### Check
 
-Functions perform tasks. Most functions use parentheses.
+Run each object name by itself. R should print the value you stored.
+
+### Explain
+
+What is one reason it is useful to store a value in an object instead of typing
+the value again and again?
+
+Write your answer here:
+
+## Lesson 5: Functions and vectors
+
+### Goal
+
+Use functions and vectors to summarize several values.
+
+### Concept
+
+Functions perform tasks. Most functions use parentheses. A vector stores
+several values in one object. Use `c()` to combine values.
+
+### Try it
 
 ```{r}
 sqrt(9)
@@ -198,9 +303,7 @@ max(c(10, 20, 30))
 min(c(10, 20, 30))
 ```
 
-## Vectors
-
-A vector stores several values in one object. Use `c()` to combine values.
+Now create two vectors:
 
 ```{r}
 peer_countries <- c("Ghana", "Kenya", "Rwanda", "Tanzania")
@@ -216,7 +319,7 @@ mean(growth_rates)
 growth_rates > 5
 ```
 
-### Exercises 3
+### Practice
 
 1. Create a vector called `years` with the values 2020, 2021, 2022, and 2023.
 
@@ -237,10 +340,34 @@ values.
 # Write your code here.
 ```
 
-## A controlled debugging exercise
+### Check
+
+Your `years` object should contain four values. Your
+`life_expectancy_values` object should also contain four values, and
+`mean(life_expectancy_values)` should return one number.
+
+### Explain
+
+In plain language, what does `mean(life_expectancy_values)` ask R to do?
+
+Write your answer here:
+
+### Knit checkpoint
+
+Knit again before moving to the debugging exercise.
+
+## Lesson 6: Debug one simple error
+
+### Goal
+
+Read an error message and fix one typo.
+
+### Concept
 
 Errors are part of learning R. Read error messages slowly. They usually tell
 you where to look first.
+
+### Try it
 
 The chunk below has an intentional error and is set to `eval=FALSE`, so it will
 not break knitting. Run the line manually, read the error, then fix the spelling
@@ -256,26 +383,22 @@ Write the corrected code here:
 # Write your corrected code here.
 ```
 
+### Check
+
+The corrected code should return `3`.
+
+### Explain
+
 What was the error, and how did you fix it?
 
 Write your answer here:
 
-## What you should know after this part
-
-By the end of Part 1, you should be able to:
-
-- Run R code in a chunk.
-- Create objects with `<-`.
-- Use comments to explain code.
-- Use basic functions.
-- Create vectors.
-- Read and fix a simple error message.
-- Explain why knitting checks reproducibility.
-
 ## AI-use note
 
-If you used AI, write one sentence describing what you asked and how you checked
-the answer. If you did not use AI, write "I did not use AI for this assignment."
+AI tools may help you understand an error message or remember what a function
+does. They should not replace your practice. If you used AI, write one sentence
+describing what you asked and how you checked the answer. If you did not use AI,
+write "I did not use AI for this assignment."
 
 Write your AI-use note here:
 
@@ -286,3 +409,4 @@ Write your AI-use note here:
 - Knit the document successfully.
 - If knitting fails, read the first error message and fix that chunk first.
 - Submit the completed `.Rmd` file to Canvas.
+- Do not submit the knitted `.html` file unless the teaching team asks for it.
