@@ -20,12 +20,20 @@ the R Markdown assignments.
 
 ## Repository Branches
 
+- `main`: current stable landing branch for the repository. This should reflect
+  the current year's approved guide and project overview.
 - `2026-refresh`: website branch. GitHub Pages publishes from `docs/` on this
   branch.
 - `posit-cloud-2026`: student Posit Cloud branch. This branch keeps the project
   focused on the files students need in Posit Cloud: assignments, data, the
   project file, README, and the refresh script.
-- `main`: archived 2025 baseline.
+- `archive/2025`: frozen 2025 branch.
+
+## Release Tags
+
+- `v2025.final`: final 2025 snapshot.
+- `v2026.1-website`: reviewed Summer 2026 website release.
+- `v2026.1-posit`: reviewed Summer 2026 Posit Cloud assignment release.
 
 ## Getting Started
 
