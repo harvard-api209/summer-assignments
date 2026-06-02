@@ -62,6 +62,12 @@ works, your code and written answers can be reproduced in order.
 
 ## Packages and data
 
+Think of R like a phone and packages like apps. Base R can already do many
+things, but a package gives R extra tools. The `tidyverse` package collection
+gives us functions for reading, filtering, summarizing, and plotting data.
+`install.packages()` downloads a package if needed; `library()` opens it for
+this R session.
+
 Run this chunk first.
 
 ```{r message=FALSE, warning=FALSE}
@@ -96,7 +102,9 @@ dictionary
 Find the row for `under5_mortality` in the dictionary. What is the unit? Does a
 higher value mean better or worse outcomes?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ## Values that exist
 
@@ -189,10 +197,12 @@ represent?
 # Write your code here.
 ```
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 4. Filter to countries in Sub-Saharan Africa in 2023 with life expectancy above
-65. Save the result as `ssa_life_2023`.
+   65. Save the result as `ssa_life_2023`.
 
 ```{r}
 # Write your code here.
@@ -205,7 +215,9 @@ sense?
 # Write your code here.
 ```
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -215,7 +227,9 @@ check that `india_recent` contains India and years 2010 or later, and that
 
 ## Sorting with arrange()
 
-Use `arrange()` to sort rows.
+Use `arrange()` to sort rows. By default, `arrange()` sorts from lowest to
+highest for numbers and A to Z for text. Use `desc()` when you want highest to
+lowest.
 
 ```{r}
 dev |>
@@ -257,7 +271,9 @@ under-5 mortality. Keep only `country`, `region`, `year`, and
 3. Write one sentence comparing what the two rankings are measuring. Do not make
 a causal claim.
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -316,7 +332,9 @@ missing.
 2. Which years have poverty data for your country? Why might poverty be measured
 less often than population or GDP?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -342,7 +360,9 @@ Before writing this note, verify any AI-suggested code against the actual data:
 check column names, filter values, row counts, and whether missing values were
 handled intentionally.
 
-Write your AI-use note here:
+**AI-use note:**
+
+[Write your AI-use note here.]
 
 ## Before you submit
 

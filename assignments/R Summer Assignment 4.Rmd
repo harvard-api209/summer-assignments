@@ -115,7 +115,9 @@ under-5 mortality by region. Include `n_countries = n()`.
 2. Which region has the highest median under-5 mortality in your table? What
 does one row in your summary represent?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 3. Make a bar chart of the regional median under-5 mortality values.
 
@@ -202,7 +204,9 @@ of countries.
 2. Which regions have very few countries with poverty data in 2023? Why should
 that affect interpretation?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -239,7 +243,9 @@ Goal: compare means and medians while recognizing skewed income data.
 
 2. In one or two sentences, explain why mean and median might differ.
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -262,7 +268,9 @@ the answer. If you did not use AI, write "I did not use AI for this assignment."
 If AI suggested a summary, verify the grouping variables, denominator, missing
 value handling, and unit of analysis before trusting it.
 
-Write your AI-use note here:
+**AI-use note:**
+
+[Write your AI-use note here.]
 
 ## Before you submit
 

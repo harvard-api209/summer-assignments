@@ -47,6 +47,12 @@ This assignment introduces `ggplot2`, the main plotting system we will use in R.
 The goal is descriptive: make graphs that show trends, comparisons, and
 associations. Do not claim that one variable causes another.
 
+`ggplot2` uses a "grammar of graphics": the data are the cast, `aes(...)` gives
+each variable a visual role, and geoms decide what gets drawn. In code,
+`ggplot(aes(...))` maps variables to visual features such as the x-axis, y-axis,
+or color. `geom_line()` draws connected lines, `geom_point()` draws points for
+observations, and `+` adds another layer or setting to the graph.
+
 ## Why knit?
 
 Knit regularly. A graph that appears after you run chunks manually might still
@@ -120,7 +126,9 @@ language.
 3. In one sentence, describe the trend. Is this a trend, comparison, or
 association?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -177,7 +185,9 @@ to check which countries are in the region.
 
 3. What is the main comparison in your graph? What is one caveat?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -225,7 +235,8 @@ dev |>
   )
 ```
 
-Facets create small multiples.
+Facets create small multiple plots within one output, usually by splitting the
+same graph across groups such as regions.
 
 ```{r}
 dev |>
@@ -262,7 +273,9 @@ capita on the y-axis for assignment-sample countries in 2022 or 2023.
 3. Write two sentences: one describing the association and one explaining why
 the graph alone is not causal evidence.
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -297,6 +310,10 @@ install.packages("ggrepel")
 library(ggrepel)
 ```
 
+For more graph examples, browse the
+[R Graph Gallery](https://r-graph-gallery.com/) or the
+[ggplot2 reference](https://ggplot2.tidyverse.org/reference/).
+
 ## AI-use note
 
 If you used AI, write one sentence describing what you asked and how you checked
@@ -305,7 +322,9 @@ the answer. If you did not use AI, write "I did not use AI for this assignment."
 If AI suggested a plot, verify that the filtered data, variables, geoms, labels,
 and interpretation all match the assignment question.
 
-Write your AI-use note here:
+**AI-use note:**
+
+[Write your AI-use note here.]
 
 ## Before you submit
 

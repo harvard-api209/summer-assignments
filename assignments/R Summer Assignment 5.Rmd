@@ -124,7 +124,9 @@ dev |>
 Are your peer countries from the same region or income group? If not, what is
 your justification?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -144,7 +146,9 @@ glimpse(analysis_data)
 
 What does one row in `analysis_data` represent?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ## Step 3: inspect missingness
 
@@ -174,7 +178,9 @@ analysis_data |>
 
 Which indicator will you use as your main diagnostic outcome, and why?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -207,7 +213,9 @@ Create your own trend plot using your chosen indicator.
 
 What is the main pattern in your trend plot?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -245,7 +253,9 @@ Create your own comparison table.
 
 In one sentence, what does the table show?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ## Step 6: second plot or summary
 
@@ -259,7 +269,9 @@ association.
 
 Explain why this output is useful for your diagnostic.
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -276,7 +288,9 @@ Write a short memo below. Be specific but concise.
 - **Finding:** What is your main descriptive takeaway?
 - **Caveat:** What is one limitation or reason to be cautious?
 
-Write your memo here:
+**Memo:**
+
+[Write your memo here.]
 
 ## Optional extension
 
@@ -299,7 +313,9 @@ If you used AI for this capstone, document it here:
 
 If you did not use AI, write "I did not use AI for this capstone."
 
-Write your AI-use reflection here:
+**AI-use reflection:**
+
+[Write your AI-use reflection here.]
 
 Before submitting, verify any AI-suggested code against your actual output:
 filters, countries, years, missing values, graph labels, and the memo's claim

@@ -107,7 +107,9 @@ time and check the arithmetic slowly.
 
 In one sentence, what does R do when you run a line of code?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -148,7 +150,9 @@ look for an object with that name.
 
 Why do country names need quotation marks but years do not?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ## Lesson 3: Logical values
 
@@ -159,7 +163,9 @@ Use `TRUE` and `FALSE` checks, which are the foundation of filtering data.
 ### Concept
 
 Logical values are `TRUE` or `FALSE`. The operator `==` asks whether two things
-are equal. The operator `!=` asks whether two things are not equal.
+are equal. The operator `!=` asks whether two things are not equal. Logical
+checks can also compare size: `>` means greater than, `<` means less than, `>=`
+means greater than or equal to, and `<=` means less than or equal to.
 
 ### Try it
 
@@ -172,6 +178,11 @@ are equal. The operator `!=` asks whether two things are not equal.
 ```{r}
 "Ghana" != "Kenya"
 2024 != 2023
+```
+
+```{r}
+2026 > 2024
+2020 <= 2026
 ```
 
 ### Practice
@@ -200,7 +211,9 @@ Your first check should return `TRUE`. Your second check should also return
 
 Why will logical checks matter when you later filter country-year data?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -277,7 +290,9 @@ Run each object name by itself. R should print the value you stored.
 What is one reason it is useful to store a value in an object instead of typing
 the value again and again?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ## Lesson 5: Functions and vectors
 
@@ -288,7 +303,8 @@ Use functions and vectors to summarize several values.
 ### Concept
 
 Functions perform tasks. Most functions use parentheses. A vector stores
-several values in one object. Use `c()` to combine values.
+several values in one object. Use `c()` to combine values. Vectors are values
+you can pass into functions; they are not functions themselves.
 
 ### Try it
 
@@ -354,7 +370,9 @@ Your `years` object should contain four values. Your
 
 In plain language, what does `mean(life_expectancy_values)` ask R to do?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ### Knit checkpoint
 
@@ -395,7 +413,9 @@ The corrected code should return `3`.
 
 What was the error, and how did you fix it?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ## AI-use note
 
@@ -404,7 +424,9 @@ does. They should not replace your practice. If you used AI, write one sentence
 describing what you asked and how you checked the answer. If you did not use AI,
 write "I did not use AI for this assignment."
 
-Write your AI-use note here:
+**AI-use note:**
+
+[Write your AI-use note here.]
 
 ## Before you submit
 
