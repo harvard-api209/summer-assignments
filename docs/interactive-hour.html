@@ -235,7 +235,11 @@
               </tbody>
             </table>
           </article>
-          <article class="activity-card choice-group">
+          <article
+            class="activity-card choice-group"
+            data-success="Yes. Each row is one country-year observation, such as Ghana in 2023."
+            data-error="Not quite. A row is one observation. Here each row combines a country and a year."
+          >
             <h3>Check the unit</h3>
             <p>What does one row represent?</p>
             <button type="button" data-correct="false">One country</button>
@@ -264,6 +268,11 @@
             Read piped code from top to bottom. The first line is the starting
             object. Each later line is one action applied to the result so far.
             When you are confused, translate each line into a short sentence.
+          </p>
+          <p>
+            You do not need to know <code>filter()</code> or
+            <code>arrange()</code> yet. For now, practice reading each line as a
+            plain-English action.
           </p>
         </div>
 
@@ -346,7 +355,11 @@
         </div>
 
         <div class="activity-grid">
-          <article class="activity-card choice-group wide-card">
+          <article
+            class="activity-card choice-group wide-card"
+            data-success="Yes. This prompt asks for an explanation and one checkable next step, while keeping you responsible for the assignment."
+            data-error="Not quite. This asks AI to do the assignment for you instead of helping you understand and verify your own work."
+          >
             <h3>Choose the better prompt</h3>
             <p>You get an error from a short line of R code. Which prompt is more useful?</p>
             <button type="button" data-correct="true">
@@ -376,9 +389,9 @@
           <p class="eyebrow">Ready for the assignments</p>
           <h2 id="finish-title">Now open Part 1</h2>
           <p>
-            You do not need to memorize everything here. You need enough
-            orientation to start Part 1 in Posit Cloud and ask specific
-            questions when something does not make sense.
+            You are ready to start Part 1. Keep this warm-up nearby as a
+            reference, then open the assignment file in Posit Cloud, run small
+            chunks, and ask a specific question when something is confusing.
           </p>
           <ol class="lesson-path compact" aria-label="Recommended sequence">
             <li><span>1</span><strong>Getting Started</strong></li>
@@ -400,7 +413,7 @@
             <input type="checkbox" data-progress="finish">
             I completed the warm-up.
           </label>
-          <a class="button primary" href="https://posit.cloud/content/8155534">Open Posit Cloud</a>
+          <a class="button primary" href="https://posit.cloud/content/8155534" target="_blank" rel="noopener">Open Assignment 1 in Posit Cloud</a>
           <a class="button secondary" href="getting-started.html">Getting started</a>
           <a class="button secondary" href="index.html">Back to main guide</a>
         </div>
@@ -580,8 +593,8 @@
           saveAnswers();
           button.classList.add(isCorrect ? "is-correct" : "is-incorrect");
           feedback.textContent = isCorrect
-            ? "Yes. That answer matches what the code is doing."
-            : "Not quite. Read the code one step at a time and try again.";
+            ? button.dataset.success || group.dataset.success || "Yes. That answer matches what the code is doing."
+            : button.dataset.error || group.dataset.error || "Not quite. Read the code one step at a time and try again.";
           updateProgress();
         });
       });
