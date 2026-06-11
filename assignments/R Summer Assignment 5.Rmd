@@ -67,6 +67,10 @@ library(tidyverse)
 
 dev <- read_csv("../data/development_indicators_2026.csv")
 dictionary <- read_csv("../data/development_indicators_dictionary_2026.csv")
+
+hks_blue <- "#1F5F83"
+hks_crimson <- "#A51C30"
+hks_gray <- "#6B7280"
 ```
 
 ## Your task
@@ -152,7 +156,9 @@ What does one row in `analysis_data` represent?
 
 ## Step 3: inspect missingness
 
-Choose one main indicator for your diagnostic. Good options include:
+Start with several possible indicators, inspect missingness for each, then
+choose one main diagnostic indicator for the rest of the memo. Good options
+include:
 
 - `gdp_per_capita_ppp`
 - `life_expectancy`
@@ -163,7 +169,7 @@ Choose one main indicator for your diagnostic. Good options include:
 - `government_effectiveness`
 - `poverty_rate` if coverage is adequate
 
-Inspect missing values for the indicators you might use.
+Inspect missing values for the candidate indicators you might use.
 
 ```{r}
 analysis_data |>
@@ -176,7 +182,8 @@ analysis_data |>
   )
 ```
 
-Which indicator will you use as your main diagnostic outcome, and why?
+After checking missingness, which one indicator will you use as your main
+diagnostic outcome, and why?
 
 **Answer:**
 

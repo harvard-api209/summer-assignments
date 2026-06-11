@@ -64,6 +64,10 @@ library(tidyverse)
 
 dev <- read_csv("../data/development_indicators_2026.csv")
 dictionary <- read_csv("../data/development_indicators_dictionary_2026.csv")
+
+hks_blue <- "#1F5F83"
+hks_crimson <- "#A51C30"
+hks_gray <- "#6B7280"
 ```
 
 ## Summarizing one variable
