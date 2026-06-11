@@ -24,6 +24,11 @@ This assignment introduces `ggplot2`, the main plotting system we will use in R.
 The goal is descriptive: make graphs that show trends, comparisons, and
 associations. Do not claim that one variable causes another.
 
+A note on the exercises: copy the example code just above each exercise and
+adapt it -- change the country, the variable, the labels. Adapting working
+code is how analysts actually work. The goal is to read and adjust ggplot
+code with judgment, not to memorize its syntax.
+
 ## Why knit?
 
 Knit regularly. A graph that appears after you run chunks manually might still
@@ -77,7 +82,7 @@ ghana |>
   )
 ```
 
-## Exercises 1: trends
+## Exercise 1: trends
 
 1. Create an object for one country other than Ghana.
 
@@ -85,14 +90,14 @@ ghana |>
 # Write your code here.
 ```
 
-2. Make a line plot of that country's under-5 mortality over time.
+2. Make a line plot of that country's under-5 mortality over time. Start from
+the Ghana example above and change the country object and the y-axis variable.
 
 ```{r}
 # Write your code here.
 ```
 
-3. In one sentence, describe the trend. Is this a trend, comparison, or
-association?
+3. In one sentence, describe the trend.
 
 Write your answer here:
 
@@ -119,7 +124,7 @@ east_africa_peers |>
   )
 ```
 
-## Exercises 2: coherent peer comparison
+## Exercise 2: coherent peer comparison
 
 1. Choose 3-5 countries from the same region. Use `distinct()` first if you need
 to check which countries are in the region.
@@ -195,7 +200,7 @@ dev |>
   )
 ```
 
-## Exercises 3: associations
+## Exercise 3: associations
 
 1. Make a scatterplot with GDP per capita on the x-axis and CO2 emissions per
 capita on the y-axis for assignment-sample countries in 2022 or 2023.
@@ -252,8 +257,11 @@ Write your AI-use note here:
 
 ## Before you submit
 
-- Add your name at the top.
+- Add your name in the YAML header at the top, replacing `YOUR NAME`.
+- Confirm you are in your own saved Posit Cloud copy, not a temporary copy.
+- Run your code chunks, then knit the document successfully. If knitting
+  fails, read the first error message and fix that chunk first.
+- Complete the AI-use note.
 - Make sure your plots have meaningful labels.
 - Do not make causal claims from descriptive graphs.
-- Knit successfully.
 - Submit the completed `.Rmd` file to Canvas.

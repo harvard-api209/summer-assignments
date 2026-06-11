@@ -281,8 +281,9 @@ Write your AI-use note here:
 
 ## Before you submit
 
-- Add your name at the top of this file.
-- Run the chunks you completed.
-- Knit the document successfully.
-- If knitting fails, read the first error message and fix that chunk first.
+- Add your name in the YAML header at the top, replacing `YOUR NAME`.
+- Confirm you are in your own saved Posit Cloud copy, not a temporary copy.
+- Run your code chunks, then knit the document successfully. If knitting
+  fails, read the first error message and fix that chunk first.
+- Complete the AI-use note.
 - Submit the completed `.Rmd` file to Canvas.

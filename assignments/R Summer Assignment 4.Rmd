@@ -78,7 +78,7 @@ region_life_2023
 The unit of analysis changed. In `dev`, one row is a country-year. In
 `region_life_2023`, one row is a region.
 
-## Exercises 1: regional summaries
+## Exercise 1: regional summaries
 
 1. For assignment-sample countries in 2023, calculate the mean and median
 under-5 mortality by region. Include `n_countries = n()`.
@@ -156,7 +156,7 @@ dev |>
 Missingness is substantive. Poverty data are usually based on household surveys,
 which are not available every year in every country.
 
-## Exercises 2: missingness and denominators
+## Exercise 2: missingness and denominators
 
 1. For assignment-sample countries in 2023, summarize poverty by region. Include
 the mean poverty rate, number of countries with poverty data, and total number
@@ -188,7 +188,7 @@ dev |>
   )
 ```
 
-## Exercises 3: income summaries
+## Exercise 3: income summaries
 
 1. Calculate mean and median GDP per capita by income group for 2023.
 
@@ -217,8 +217,11 @@ Write your AI-use note here:
 
 ## Before you submit
 
-- Add your name at the top.
+- Add your name in the YAML header at the top, replacing `YOUR NAME`.
+- Confirm you are in your own saved Posit Cloud copy, not a temporary copy.
+- Run your code chunks, then knit the document successfully. If knitting
+  fails, read the first error message and fix that chunk first.
+- Complete the AI-use note.
 - Check what one row represents before and after each summary.
 - Include denominators when summarizing sparse indicators.
-- Knit successfully.
 - Submit the completed `.Rmd` file to Canvas.

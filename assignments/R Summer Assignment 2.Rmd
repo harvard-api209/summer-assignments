@@ -134,7 +134,7 @@ dev |>
   filter(assignment_sample == TRUE & year == 2023)
 ```
 
-## Exercises 1: coherent filters
+## Exercise 1: coherent filters
 
 1. Use `distinct()` to list the countries in South Asia.
 
@@ -193,7 +193,7 @@ dev |>
   select(country, year, life_expectancy)
 ```
 
-## Exercises 2: ranking
+## Exercise 2: ranking
 
 1. Among assignment-sample countries in 2023, sort from highest to lowest GDP
 per capita. Keep only `country`, `region`, `income_group`, `year`, and
@@ -210,11 +210,6 @@ under-5 mortality. Keep only `country`, `region`, `year`, and
 ```{r}
 # Write your code here.
 ```
-
-3. Write one sentence comparing what the two rankings are measuring. Do not make
-a causal claim.
-
-Write your answer here:
 
 ## Creating variables with mutate()
 
@@ -253,7 +248,7 @@ dev |>
   select(country, year, poverty_rate)
 ```
 
-## Exercises 3: missingness
+## Exercise 3: missingness
 
 1. Filter to your chosen country and keep only rows where `poverty_rate` is not
 missing.
@@ -286,8 +281,11 @@ Write your AI-use note here:
 
 ## Before you submit
 
-- Add your name at the top.
-- Run your code chunks.
-- Knit the document successfully.
+- Add your name in the YAML header at the top, replacing `YOUR NAME`.
+- Confirm you are in your own saved Posit Cloud copy, not a temporary copy.
+- Run your code chunks, then knit the document successfully. If knitting
+  fails, read the first error message and fix that chunk first.
+- Complete the AI-use note.
 - Make sure each filter matches the written question.
+- Check missing values before interpreting poverty or inequality.
 - Submit the completed `.Rmd` file to Canvas.
