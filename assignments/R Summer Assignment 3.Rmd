@@ -20,6 +20,29 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Estimated time:** 2-3 hours
 
+## Before you start
+
+You should be working in your own saved copy of the Posit Cloud project. Use the
+same Posit Cloud account every time, write your answers in this `.Rmd` file, and
+submit the completed `.Rmd` file to Canvas after it knits.
+
+## Learning goals
+
+By the end of Part 3, you should be able to:
+
+- filter data before plotting;
+- make line plots for trends over time;
+- choose coherent peer countries for comparisons;
+- make scatterplots for descriptive associations;
+- label plots clearly; and
+- explain why a graph alone is not causal evidence.
+
+## How to work through this file
+
+Each graph should follow the same rhythm: define the goal, create the filtered
+data, plot it, check the rows and labels, explain the pattern, and knit before
+moving on.
+
 This assignment introduces `ggplot2`, the main plotting system we will use in R.
 The goal is descriptive: make graphs that show trends, comparisons, and
 associations. Do not claim that one variable causes another.
@@ -28,6 +51,12 @@ A note on the exercises: copy the example code just above each exercise and
 adapt it -- change the country, the variable, the labels. Adapting working
 code is how analysts actually work. The goal is to read and adjust ggplot
 code with judgment, not to memorize its syntax.
+
+`ggplot2` uses a "grammar of graphics": the data are the cast, `aes(...)` gives
+each variable a visual role, and geoms decide what gets drawn. In code,
+`ggplot(aes(...))` maps variables to visual features such as the x-axis, y-axis,
+or color. `geom_line()` draws connected lines, `geom_point()` draws points for
+observations, and `+` adds another layer or setting to the graph.
 
 ## Why knit?
 
@@ -84,6 +113,9 @@ ghana |>
 
 ## Exercise 1: trends
 
+Goal: make a trend plot for one country and describe the pattern in plain
+language.
+
 1. Create an object for one country other than Ghana.
 
 ```{r}
@@ -99,7 +131,14 @@ the Ghana example above and change the country object and the y-axis variable.
 
 3. In one sentence, describe the trend.
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
+
+### Knit checkpoint
+
+Knit now. Then check that your plot uses one country, the x-axis is year, and
+the y-axis is the indicator named in the question.
 
 ## Comparing peer countries
 
@@ -108,6 +147,14 @@ You can use `%in%` to filter to several values at once.
 ```{r}
 east_africa_peers <- dev |>
   filter(country %in% c("Kenya", "Rwanda", "Tanzania", "Uganda"))
+```
+
+Check the peer set before plotting it.
+
+```{r}
+east_africa_peers |>
+  distinct(country, region, income_group) |>
+  arrange(country)
 ```
 
 Map color to country to compare trends.
@@ -126,6 +173,8 @@ east_africa_peers |>
 
 ## Exercise 2: coherent peer comparison
 
+Goal: choose peers that make substantive sense before graphing them.
+
 1. Choose 3-5 countries from the same region. Use `distinct()` first if you need
 to check which countries are in the region.
 
@@ -141,7 +190,15 @@ to check which countries are in the region.
 
 3. What is the main comparison in your graph? What is one caveat?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
+
+### Knit checkpoint
+
+Knit again. Then inspect your peer-country list. If you used a region filter,
+every country in the graph should belong to that region unless you explicitly
+justify the exception.
 
 ## Scatterplots
 
@@ -183,7 +240,8 @@ dev |>
   )
 ```
 
-Facets create small multiples.
+Facets create small multiple plots within one output, usually by splitting the
+same graph across groups such as regions.
 
 ```{r}
 dev |>
@@ -202,6 +260,8 @@ dev |>
 
 ## Exercise 3: associations
 
+Goal: make an association plot and describe it without making a causal claim.
+
 1. Make a scatterplot with GDP per capita on the x-axis and CO2 emissions per
 capita on the y-axis for assignment-sample countries in 2022 or 2023.
 
@@ -218,7 +278,14 @@ capita on the y-axis for assignment-sample countries in 2022 or 2023.
 3. Write two sentences: one describing the association and one explaining why
 the graph alone is not causal evidence.
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
+
+### Knit checkpoint
+
+Knit before moving to bar charts. Check that your scatterplot uses one year,
+clear axis labels, and a color variable that is actually in the data.
 
 ## Bar charts
 
@@ -248,12 +315,21 @@ install.packages("ggrepel")
 library(ggrepel)
 ```
 
+For more graph examples, browse the
+[R Graph Gallery](https://r-graph-gallery.com/) or the
+[ggplot2 reference](https://ggplot2.tidyverse.org/reference/).
+
 ## AI-use note
 
 If you used AI, write one sentence describing what you asked and how you checked
 the answer. If you did not use AI, write "I did not use AI for this assignment."
 
-Write your AI-use note here:
+If AI suggested a plot, verify that the filtered data, variables, geoms, labels,
+and interpretation all match the assignment question.
+
+**AI-use note:**
+
+[Write your AI-use note here.]
 
 ## Before you submit
 
@@ -264,4 +340,5 @@ Write your AI-use note here:
 - Complete the AI-use note.
 - Make sure your plots have meaningful labels.
 - Do not make causal claims from descriptive graphs.
+- Check that peer countries and filters are coherent.
 - Submit the completed `.Rmd` file to Canvas.

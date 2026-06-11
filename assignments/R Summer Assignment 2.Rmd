@@ -20,6 +20,34 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Estimated time:** 2-3 hours
 
+## Before you start
+
+You should be working in your own saved copy of the Posit Cloud project. Use the
+same Posit Cloud account every time; switching accounts is the most common
+reason students think their work disappeared.
+
+Write code and short answers directly in this `.Rmd` file. Knit regularly while
+you work. At the end, submit the completed `.Rmd` file to Canvas, not the
+knitted HTML preview.
+
+## Learning goals
+
+By the end of Part 2, you should be able to:
+
+- inspect a country-year dataset before filtering it;
+- use `filter()` with one condition and with coherent combined conditions;
+- check that region, country, and year filters return the rows you expect;
+- sort rows with `arrange()`;
+- create simple variables with `mutate()`; and
+- recognize and explain missing values.
+
+## How to work through this file
+
+Each main section follows the same rhythm: identify the goal, read the concept,
+try the code, check the output, explain what it means, and knit before moving
+on. Part 2 gives you more responsibility than Part 1 for checking that your
+filters match the question.
+
 In this assignment, you will use one cleaned country-year dataset built for the
 summer assignments. Each row is one country or economy in one year. Most
 indicators come from World Bank World Development Indicators. Governance
@@ -33,6 +61,12 @@ Knitting runs this document from top to bottom in a fresh R session. If the knit
 works, your code and written answers can be reproduced in order.
 
 ## Packages and data
+
+Think of R like a phone and packages like apps. Base R can already do many
+things, but a package gives R extra tools. The `tidyverse` package collection
+gives us functions for reading, filtering, summarizing, and plotting data.
+`install.packages()` downloads a package if needed; `library()` opens it for
+this R session.
 
 Run this chunk first.
 
@@ -68,7 +102,9 @@ dictionary
 Find the row for `under5_mortality` in the dictionary. What is the unit? Does a
 higher value mean better or worse outcomes?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ## Values that exist
 
@@ -87,6 +123,9 @@ dev |>
   distinct(country) |>
   arrange(country)
 ```
+
+**Check:** if you later filter to `region == "Sub-Saharan Africa"`, any country
+filter you add should name countries that actually appear in the list above.
 
 ## Filtering rows
 
@@ -136,6 +175,9 @@ dev |>
 
 ## Exercise 1: coherent filters
 
+Goal: build filters that match the question and then inspect the result before
+interpreting it.
+
 1. Use `distinct()` to list the countries in South Asia.
 
 ```{r}
@@ -155,10 +197,12 @@ represent?
 # Write your code here.
 ```
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 4. Filter to countries in Sub-Saharan Africa in 2023 with life expectancy above
-65. Save the result as `ssa_life_2023`.
+   65. Save the result as `ssa_life_2023`.
 
 ```{r}
 # Write your code here.
@@ -171,11 +215,21 @@ sense?
 # Write your code here.
 ```
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
+
+### Knit checkpoint
+
+Knit now. If the file does not knit, fix the first error before continuing. Then
+check that `india_recent` contains India and years 2010 or later, and that
+`ssa_life_2023` contains only Sub-Saharan African countries from 2023.
 
 ## Sorting with arrange()
 
-Use `arrange()` to sort rows.
+Use `arrange()` to sort rows. By default, `arrange()` sorts from lowest to
+highest for numbers and A to Z for text. Use `desc()` when you want highest to
+lowest.
 
 ```{r}
 dev |>
@@ -195,6 +249,8 @@ dev |>
 
 ## Exercise 2: ranking
 
+Goal: sort a filtered dataset and check that the ranking is set up correctly.
+
 1. Among assignment-sample countries in 2023, sort from highest to lowest GDP
 per capita. Keep only `country`, `region`, `income_group`, `year`, and
 `gdp_per_capita_ppp`.
@@ -210,6 +266,11 @@ under-5 mortality. Keep only `country`, `region`, `year`, and
 ```{r}
 # Write your code here.
 ```
+
+### Knit checkpoint
+
+Knit again. Then inspect the top rows of each ranking and ask: are the year,
+sample, selected columns, and sort direction all correct?
 
 ## Creating variables with mutate()
 
@@ -250,6 +311,9 @@ dev |>
 
 ## Exercise 3: missingness
 
+Goal: treat missing values as information about data availability, not as a
+technical nuisance to ignore.
+
 1. Filter to your chosen country and keep only rows where `poverty_rate` is not
 missing.
 
@@ -260,7 +324,14 @@ missing.
 2. Which years have poverty data for your country? Why might poverty be measured
 less often than population or GDP?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
+
+### Knit checkpoint
+
+Knit before the optional challenge. Your answer should name the years with
+poverty data and explain why survey-based indicators are often sparse.
 
 ## Optional challenge
 
@@ -277,7 +348,13 @@ onward.
 If you used AI, write one sentence describing what you asked and how you checked
 the answer. If you did not use AI, write "I did not use AI for this assignment."
 
-Write your AI-use note here:
+Before writing this note, verify any AI-suggested code against the actual data:
+check column names, filter values, row counts, and whether missing values were
+handled intentionally.
+
+**AI-use note:**
+
+[Write your AI-use note here.]
 
 ## Before you submit
 

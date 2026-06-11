@@ -20,6 +20,30 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Estimated time:** 3-4 hours
 
+## Before you start
+
+You should be working in your own saved copy of the Posit Cloud project. Use the
+same Posit Cloud account every time, write your memo and code in this `.Rmd`
+file, and submit the completed `.Rmd` file to Canvas after it knits.
+
+## Learning goals
+
+By the end of Part 5, you should be able to:
+
+- choose a coherent country-peer comparison;
+- inspect missingness before choosing an indicator;
+- create a filtered analysis dataset;
+- produce a trend plot, comparison table, and second output;
+- write a short descriptive memo with a caveat; and
+- document and verify any AI help.
+
+## How to work through this file
+
+This capstone still follows the course rhythm: define the goal, build and check
+the data, produce output, explain what it means, and knit regularly. The
+scaffolding is lighter here because the final task asks you to exercise
+judgment.
+
 This capstone asks you to combine the core skills from Parts 1-4: filtering,
 inspecting, mutating, plotting, summarizing, and writing a short interpretation.
 The analysis is descriptive. You may discuss possible explanations, but do not
@@ -43,6 +67,10 @@ library(tidyverse)
 
 dev <- read_csv("../data/development_indicators_2026.csv")
 dictionary <- read_csv("../data/development_indicators_dictionary_2026.csv")
+
+hks_blue <- "#1F5F83"
+hks_crimson <- "#A51C30"
+hks_gray <- "#6B7280"
 ```
 
 ## Your task
@@ -100,7 +128,14 @@ dev |>
 Are your peer countries from the same region or income group? If not, what is
 your justification?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
+
+### Knit checkpoint
+
+Knit now. Then confirm that every country in `peer_countries` appears in the
+data and that your peer set is coherent.
 
 ## Step 2: create your analysis dataset
 
@@ -115,11 +150,15 @@ glimpse(analysis_data)
 
 What does one row in `analysis_data` represent?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ## Step 3: inspect missingness
 
-Choose one main indicator for your diagnostic. Good options include:
+Start with several possible indicators, inspect missingness for each, then
+choose one main diagnostic indicator for the rest of the memo. Good options
+include:
 
 - `gdp_per_capita_ppp`
 - `life_expectancy`
@@ -130,7 +169,7 @@ Choose one main indicator for your diagnostic. Good options include:
 - `government_effectiveness`
 - `poverty_rate` if coverage is adequate
 
-Inspect missing values for the indicators you might use.
+Inspect missing values for the candidate indicators you might use.
 
 ```{r}
 analysis_data |>
@@ -143,9 +182,17 @@ analysis_data |>
   )
 ```
 
-Which indicator will you use as your main diagnostic outcome, and why?
+After checking missingness, which one indicator will you use as your main
+diagnostic outcome, and why?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
+
+### Knit checkpoint
+
+Knit after choosing your indicator. If your main indicator has many missing
+values, either explain that limitation or choose a better-covered indicator.
 
 ## Step 4: trend plot
 
@@ -173,7 +220,14 @@ Create your own trend plot using your chosen indicator.
 
 What is the main pattern in your trend plot?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
+
+### Knit checkpoint
+
+Knit after your trend plot. Check that the plot uses `analysis_data`, the chosen
+indicator, and meaningful labels.
 
 ## Step 5: comparison table
 
@@ -206,7 +260,9 @@ Create your own comparison table.
 
 In one sentence, what does the table show?
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
 
 ## Step 6: second plot or summary
 
@@ -220,7 +276,14 @@ association.
 
 Explain why this output is useful for your diagnostic.
 
-Write your answer here:
+**Answer:**
+
+[Write your answer here.]
+
+### Knit checkpoint
+
+Knit before writing the memo. Your outputs should now rebuild from top to bottom
+without relying on objects created only in the Console.
 
 ## Step 7: short memo
 
@@ -232,7 +295,9 @@ Write a short memo below. Be specific but concise.
 - **Finding:** What is your main descriptive takeaway?
 - **Caveat:** What is one limitation or reason to be cautious?
 
-Write your memo here:
+**Memo:**
+
+[Write your memo here.]
 
 ## Optional extension
 
@@ -255,7 +320,13 @@ If you used AI for this capstone, document it here:
 
 If you did not use AI, write "I did not use AI for this capstone."
 
-Write your AI-use reflection here:
+**AI-use reflection:**
+
+[Write your AI-use reflection here.]
+
+Before submitting, verify any AI-suggested code against your actual output:
+filters, countries, years, missing values, graph labels, and the memo's claim
+must all match.
 
 ## Before you submit
 
