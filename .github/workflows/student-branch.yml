@@ -1,0 +1,63 @@
+# Regenerates the student-facing branch (posit-cloud-2026) whenever student
+# files change on the canonical branch. Nobody commits to the student branch
+# by hand — it is write-only output of this workflow, so the notebooks can
+# never drift between branches again.
+#
+# The student branch receives a normal commit on top of its history (no force
+# push), so the Posit Cloud project's `git pull` always fast-forwards.
+#
+# SEASON-END NOTE: when 2026-refresh is merged into main, change `branches:`
+# below to [main] in the same merge. See BRANCHING.md.
+
+name: Update student branch
+
+on:
+  push:
+    branches: [2026-refresh]
+    paths:
+      - "assignments/**"
+      - "data/**"
+      - "scripts/**"
+      - "student-bundle/**"
+      - "summer-assignments.Rproj"
+      - ".github/workflows/student-branch.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild student branch from ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          STUDENT_BRANCH="posit-cloud-2026"
+          SRC="$GITHUB_SHA"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout "$STUDENT_BRANCH"
+
+          # Replace the entire tracked tree with the bundle from the source
+          # commit: student folders as-is, plus the student README/.gitignore
+          # kept under student-bundle/ on the canonical branch.
+          git rm -rq .
+          git checkout "$SRC" -- assignments data scripts summer-assignments.Rproj student-bundle
+          mv student-bundle/README.md README.md
+          mv student-bundle/gitignore .gitignore
+          rm -r student-bundle
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Student branch already up to date."
+            exit 0
+          fi
+
+          git commit -m "Sync student files from ${GITHUB_REF_NAME} @ ${SRC:0:7}"
+          git push origin "$STUDENT_BRANCH"
