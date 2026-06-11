@@ -8,9 +8,9 @@
       name="description"
       content="A short interactive warm-up for API-209 students before starting the summer R assignments."
     >
-    <link rel="stylesheet" href="site.css?v=22">
+    <link rel="stylesheet" href="site.css?v=24">
     <link rel="icon" href="favicon.ico">
-    <script src="site.js?v=2" defer></script>
+    <script src="site.js?v=4" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#top">Skip to main content</a>
@@ -22,15 +22,28 @@
         </span>
       </a>
       <nav class="nav-links" aria-label="Warm-up navigation">
-        <a href="index.html">Guide</a>
+        <a href="index.html">Home</a>
         <a href="getting-started.html">Getting started</a>
-        <a href="#run-code">Run code</a>
-        <a href="#objects">Objects</a>
-        <a href="#data">Data</a>
-        <a href="#errors">Errors</a>
-        <a href="#finish">Finish</a>
+        <a href="interactive-hour.html">Warm-up</a>
+        <a href="index.html#assignments">Assignments</a>
+        <a href="submission.html">Submission</a>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <a href="faq.html">FAQ</a>
+        <a href="data.html">Data</a>
       </nav>
     </header>
+
+    <nav class="subnav" aria-label="Warm-up sections">
+      <span class="subnav-label">On this page</span>
+      <a href="#run-code">1 · Run code</a>
+      <a href="#objects">2 · Objects</a>
+      <a href="#functions">3 · Functions</a>
+      <a href="#data">4 · Data</a>
+      <a href="#pipes">5 · Pipes</a>
+      <a href="#errors">6 · Errors</a>
+      <a href="#ai-check">7 · AI</a>
+      <a href="#finish">Finish</a>
+    </nav>
 
     <main id="top" class="warmup-main">
       <section class="warmup-hero" aria-labelledby="warmup-title">
@@ -50,8 +63,8 @@
 
         <aside class="progress-panel" aria-label="Warm-up progress">
           <div>
-            <span class="progress-label">Your progress</span>
-            <strong><span id="progress-count">0</span>/8</strong>
+            <span class="progress-label">Warm-up activities</span>
+            <strong><span id="progress-count">0</span>/7</strong>
           </div>
           <div class="progress-track" aria-hidden="true">
             <span id="progress-bar"></span>
@@ -113,6 +126,11 @@
         <div class="activity-grid">
           <article class="code-card">
             <pre><code><span class="line"><span class="line-number">1</span><span>2 + 2</span></span></code></pre>
+            <div class="run-bar">
+              <button type="button" class="run-code-button">▶ Run this code</button>
+              <span class="run-status" aria-live="polite"></span>
+            </div>
+            <pre class="run-output" hidden></pre>
           </article>
           <article class="activity-card choice-group">
             <h3>Predict</h3>
@@ -149,6 +167,11 @@
 <span class="line"><span class="line-number">3</span><span>country &lt;- "Ghana"</span></span>
 <span class="line"><span class="line-number">4</span><span></span></span>
 <span class="line"><span class="line-number">5</span><span>program_cost</span></span></code></pre>
+            <div class="run-bar">
+              <button type="button" class="run-code-button">▶ Run this code</button>
+              <span class="run-status" aria-live="polite"></span>
+            </div>
+            <pre class="run-output" hidden></pre>
           </article>
           <article class="activity-card">
             <h3>Predict</h3>
@@ -188,6 +211,11 @@
           <article class="code-card">
             <pre><code><span class="line"><span class="line-number">1</span><span>program_costs &lt;- c(120, 150, 180)</span></span>
 <span class="line"><span class="line-number">2</span><span>mean(program_costs)</span></span></code></pre>
+            <div class="run-bar">
+              <button type="button" class="run-code-button">▶ Run this code</button>
+              <span class="run-status" aria-live="polite"></span>
+            </div>
+            <pre class="run-output" hidden></pre>
           </article>
           <article class="activity-card choice-group">
             <h3>Choose the output</h3>
@@ -336,6 +364,11 @@
             <pre><code><span class="line"><span class="line-number">1</span><span>poverty_rate &lt;- c(23.4, NA, 19.6)</span></span>
 <span class="line"><span class="line-number">2</span><span>mean(poverty_rate)</span></span></code></pre>
             <p class="console-line">[1] NA</p>
+            <div class="run-bar">
+              <button type="button" class="run-code-button">▶ Run this code</button>
+              <span class="run-status" aria-live="polite"></span>
+            </div>
+            <pre class="run-output" hidden></pre>
           </article>
           <article class="activity-card choice-group">
             <h3>Diagnose</h3>
@@ -402,9 +435,9 @@
             chunks, and ask a specific question when something is confusing.
           </p>
           <ol class="lesson-path compact" aria-label="Recommended sequence">
-            <li><span>1</span><strong>Getting Started</strong></li>
-            <li class="is-current"><span>2</span><strong>Warm-up</strong></li>
-            <li><span>3</span><strong>Assignment 1 in Posit Cloud</strong></li>
+            <li><span>Set up</span><strong>Getting Started</strong></li>
+            <li class="is-current"><span>Practice</span><strong>Warm-up</strong></li>
+            <li><span>Work</span><strong>Parts 1&ndash;5 in Posit Cloud</strong></li>
           </ol>
         </div>
         <div class="finish-actions">
@@ -421,7 +454,7 @@
             <input type="checkbox" data-progress="finish">
             I completed the warm-up.
           </label>
-          <a class="button primary" href="https://posit.cloud" target="_blank" rel="noopener">Open your saved copy in Posit Cloud</a>
+          <a class="button primary" href="https://posit.cloud" data-platform-link="workspace" target="_blank" rel="noopener">Open your saved copy in Posit Cloud</a>
           <a class="button secondary" href="getting-started.html">Getting started</a>
           <a class="button secondary" href="index.html">Back to main guide</a>
         </div>
@@ -524,7 +557,7 @@
             }
           }
         });
-        document.querySelectorAll(".nav-links a[href^='#']").forEach((link) => {
+        document.querySelectorAll(".subnav a[href^='#']").forEach((link) => {
           const id = link.getAttribute("href").slice(1);
           const index = stepIds.indexOf(id);
           if (index === -1) {
@@ -553,12 +586,13 @@
 
       function updateProgress() {
         updateLocks();
-        const done = stepSections.filter(isSectionComplete).length;
+        const activitySections = stepSections.filter((s) => s.id !== "finish");
+        const done = activitySections.filter(isSectionComplete).length;
         const count = document.querySelector("#progress-count");
         const bar = document.querySelector("#progress-bar");
         count.textContent = done;
-        bar.style.width = `${(done / progressBoxes.length) * 100}%`;
-        const allDone = done === progressBoxes.length;
+        bar.style.width = `${(done / activitySections.length) * 100}%`;
+        const allDone = stepSections.every(isSectionComplete);
         document.querySelector(".progress-panel").classList.toggle("is-complete", allDone);
         document.querySelector(".progress-complete").hidden = !allDone;
         const nextProgress = {};
@@ -586,7 +620,7 @@
         });
       });
 
-      document.querySelectorAll(".nav-links a[href^='#']").forEach((link) => {
+      document.querySelectorAll(".subnav a[href^='#']").forEach((link) => {
         link.addEventListener("click", (event) => {
           const id = link.getAttribute("href").slice(1);
           const index = stepIds.indexOf(id);
@@ -655,6 +689,60 @@
       renderUnlockToggle();
 
       updateLocks();
+
+      /* PROTOTYPE (plans/003): run R in the browser via webR. The ~15 MB
+         runtime loads lazily on the first click only — students who never
+         click pay nothing. Failure is non-blocking: the button degrades to
+         a pointer at Posit Cloud and never gates progress. */
+      let webRPromise = null;
+      function getWebR() {
+        if (!webRPromise) {
+          webRPromise = import("https://webr.r-wasm.org/latest/webr.mjs")
+            .then(async ({ WebR }) => {
+              const webR = new WebR();
+              await webR.init();
+              return webR;
+            });
+        }
+        return webRPromise;
+      }
+
+      function codeFromCard(card) {
+        return [...card.querySelectorAll("code .line > span:last-child")]
+          .map((span) => span.textContent)
+          .join("\n");
+      }
+
+      document.querySelectorAll(".run-code-button").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const card = button.closest(".code-card");
+          const status = card.querySelector(".run-status");
+          const output = card.querySelector(".run-output");
+          button.disabled = true;
+          status.textContent = "Loading R in your browser (one-time, ~15 MB)…";
+          try {
+            const webR = await getWebR();
+            status.textContent = "Running…";
+            const shelter = await new webR.Shelter();
+            const result = await shelter.captureR(codeFromCard(card), {
+              withAutoprint: true
+            });
+            const text = result.output
+              .filter((m) => m.type === "stdout" || m.type === "stderr")
+              .map((m) => m.data)
+              .join("\n");
+            output.textContent = text || "(no output)";
+            output.hidden = false;
+            status.textContent = "";
+            shelter.purge();
+          } catch (err) {
+            status.textContent =
+              "Could not load R in this browser — no problem, the real work happens in Posit Cloud.";
+          } finally {
+            button.disabled = false;
+          }
+        });
+      });
 
       /* Gentle scroll reveal for below-the-fold content. Elements only get
          the reveal class once JS runs, so nothing is hidden without it. */

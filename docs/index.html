@@ -8,9 +8,9 @@
       name="description"
       content="Student guide for completing the API-209 Summer 2026 R assignments in Posit Cloud."
     >
-    <link rel="stylesheet" href="site.css?v=22">
+    <link rel="stylesheet" href="site.css?v=24">
     <link rel="icon" href="favicon.ico">
-    <script src="site.js?v=2" defer></script>
+    <script src="site.js?v=4" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#top">Skip to main content</a>
@@ -22,12 +22,14 @@
         </span>
       </a>
       <nav class="nav-links" aria-label="Page navigation">
-        <a href="index.html">Guide</a>
+        <a href="index.html">Home</a>
         <a href="getting-started.html">Getting started</a>
         <a href="interactive-hour.html">Warm-up</a>
         <a href="#assignments">Assignments</a>
-        <a href="faq.html">FAQ</a>
         <a href="submission.html">Submission</a>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <a href="faq.html">FAQ</a>
+        <a href="data.html">Data</a>
       </nav>
     </header>
 
@@ -88,8 +90,8 @@
 
         <nav class="journey-flow" aria-label="Recommended sequence">
           <a class="journey-step" href="getting-started.html">
-            <span class="journey-number">1</span>
-            <span class="journey-kicker">Orient</span>
+            <span class="journey-number" aria-hidden="true"></span>
+            <span class="journey-kicker">Set up</span>
             <strong>Getting Started</strong>
             <span>
               Learn the platform roles, enter Posit Cloud, and save your own
@@ -97,7 +99,7 @@
             </span>
           </a>
           <a class="journey-step" href="interactive-hour.html">
-            <span class="journey-number">2</span>
+            <span class="journey-number" aria-hidden="true"></span>
             <span class="journey-kicker">Practice</span>
             <strong>Warm-up</strong>
             <span>
@@ -105,26 +107,17 @@
               in plain language.
             </span>
           </a>
-          <a class="journey-step" href="getting-started.html#steps-title">
-            <span class="journey-number">3</span>
-            <span class="journey-kicker">Work</span>
-            <strong>Assignment 1</strong>
-            <span>
-              Open <code>assignments</code>, edit the first <code>.Rmd</code>,
-              and knit regularly.
-            </span>
-          </a>
           <a class="journey-step" href="#assignments">
-            <span class="journey-number">4</span>
-            <span class="journey-kicker">Build</span>
-            <strong>Parts 2-5</strong>
+            <span class="journey-number" aria-hidden="true"></span>
+            <span class="journey-kicker">Work</span>
+            <strong>Parts 1&ndash;5</strong>
             <span>
-              Keep using the cleaned CSV snapshot and check filters,
-              denominators, and missing values.
+              Work through the five R Markdown assignments in order. Mark
+              each part complete below.
             </span>
           </a>
           <a class="journey-step" href="submission.html">
-            <span class="journey-number">5</span>
+            <span class="journey-number" aria-hidden="true"></span>
             <span class="journey-kicker">Submit</span>
             <strong>Canvas</strong>
             <span>
@@ -166,7 +159,7 @@
               <strong>Your Workspace</strong>. Do not click the class project
               link again.
             </p>
-            <a class="button primary" href="https://posit.cloud" target="_blank" rel="noopener">Open Your Workspace</a>
+            <a class="button primary" href="https://posit.cloud" data-platform-link="workspace" target="_blank" rel="noopener">Open Your Workspace</a>
           </article>
         </div>
       </section>
@@ -282,6 +275,8 @@
           <p class="eyebrow">Five parts</p>
           <h2 id="assignments-title">Assignment roadmap</h2>
           <p>
+            These five parts are the whole assignment; everything else on
+            this site supports them.
             Use this roadmap to understand the sequence. To see the actual
             assignment files, open the Posit Cloud project and check the
             <code>.Rmd</code> files in the <code>assignments</code> folder.

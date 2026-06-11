@@ -9,8 +9,20 @@
   var WARMUP_ANSWER_KEY = "api209-warmup-answers-v2";
   /* The share link creates a NEW temporary copy each visit, so it is only
      for the first visit. Returning students must reopen their saved copy
-     from their own workspace, or they will work in (and lose) a copy. */
+     from their own workspace, or they will work in (and lose) a copy.
+     These constants are the single source of truth for platform links:
+     a future platform change starts by editing them (static hrefs in the
+     HTML are the no-JS fallback and should be swept afterwards). */
   var WORKSPACE_URL = "https://posit.cloud";
+  var PROJECT_SHARE_URL = "https://posit.cloud/content/8155534";
+  var REPO_ZIP_URL =
+    "https://github.com/harvard-api209/summer-assignments/archive/refs/heads/2026-refresh.zip";
+
+  /* The five assignments are the only counted thing on the site; setup
+     and the warm-up are prerequisites, shown as a checklist, never as a
+     denominator. This is deliberate — see plans/001. */
+  var SETUP_IDS = ["getting-started", "warmup"];
+  var PART_IDS = ["part-1", "part-2", "part-3", "part-4", "part-5"];
 
   /* Trackable steps, in course order. The submit step is a destination,
      not a checkbox: it becomes the "next step" once everything is done. */
@@ -94,6 +106,19 @@
     cta: "Read the submission steps"
   };
 
+  /* Sandboxed contexts (file previews, some embedded webviews) block
+     localStorage. Detect it once so the UI can say so instead of silently
+     losing progress between visits. */
+  var storageOk = (function () {
+    try {
+      localStorage.setItem("api209-storage-test", "1");
+      localStorage.removeItem("api209-storage-test");
+      return true;
+    } catch (err) {
+      return false;
+    }
+  })();
+
   function readJSON(key) {
     try {
       return JSON.parse(localStorage.getItem(key) || "{}") || {};
@@ -125,6 +150,12 @@
   function doneCount() {
     return STEPS.filter(function (step) {
       return progress[step.id];
+    }).length;
+  }
+
+  function partsDone() {
+    return PART_IDS.filter(function (id) {
+      return progress[id];
     }).length;
   }
 
@@ -200,12 +231,16 @@
     wrap.className = "course-progress";
     wrap.innerHTML =
       '<div class="progress-row">' +
-      '<span class="progress-label">Your progress</span>' +
-      '<strong><span data-progress-count>0</span>/' + STEPS.length + "</strong>" +
+      '<span class="progress-label">Parts complete</span>' +
+      '<strong><span data-progress-count>0</span>/' + PART_IDS.length + "</strong>" +
       "</div>" +
       '<div class="progress-track" aria-hidden="true"><span data-progress-bar></span></div>' +
-      '<p class="progress-note">Progress is saved in this browser only. ' +
-      'Mark parts complete in the roadmap below.</p>' +
+      '<p class="progress-setup" data-progress-setup></p>' +
+      '<p class="progress-note">' +
+      (storageOk
+        ? "Progress is saved in this browser only. Mark parts complete in the roadmap below."
+        : "This browser view cannot save progress between visits. Open the site in a regular browser tab to keep it.") +
+      "</p>" +
       '<button type="button" class="progress-reset" data-progress-reset hidden>Reset my progress</button>';
     panel.appendChild(wrap);
 
@@ -242,11 +277,11 @@
     var button = card.querySelector("a.button");
 
     if (kicker) {
-      kicker.textContent = done === 0
-        ? "Next step"
-        : done === STEPS.length
-          ? "Final step"
-          : "Next step · " + done + " of " + STEPS.length + " done";
+      kicker.textContent = step === SUBMIT_STEP
+        ? "Final step"
+        : PART_IDS.indexOf(step.id) === -1
+          ? "Before Part 1"
+          : "Next up · " + partsDone() + " of " + PART_IDS.length + " parts done";
     }
     if (heading) {
       heading.textContent = step.title;
@@ -272,14 +307,13 @@
     if (!steps.length) {
       return;
     }
-    var partsDone = ["part-2", "part-3", "part-4", "part-5"].every(function (id) {
+    var allParts = PART_IDS.every(function (id) {
       return progress[id];
     });
     var doneFlags = [
       Boolean(progress["getting-started"]),
       Boolean(progress.warmup),
-      Boolean(progress["part-1"]),
-      partsDone,
+      allParts,
       false /* submission happens on Canvas; we cannot verify it here */
     ];
     var nextMarked = false;
@@ -288,7 +322,7 @@
       stepEl.classList.toggle("is-done", isDone);
       var number = stepEl.querySelector(".journey-number");
       if (number) {
-        number.textContent = isDone ? "✓" : String(index + 1);
+        number.textContent = isDone ? "✓" : "";
       }
       var isNext = !isDone && !nextMarked;
       stepEl.classList.toggle("is-next", isNext);
@@ -314,11 +348,17 @@
     if (!count || !bar) {
       return;
     }
-    var done = doneCount();
-    count.textContent = done;
-    bar.style.width = (done / STEPS.length) * 100 + "%";
+    var parts = partsDone();
+    count.textContent = parts;
+    bar.style.width = (parts / PART_IDS.length) * 100 + "%";
+    var setupEl = document.querySelector("[data-progress-setup]");
+    if (setupEl) {
+      setupEl.textContent = "Before Part 1: Getting started " +
+        (progress["getting-started"] ? "✓" : "·") + "  Warm-up " +
+        (progress.warmup ? "✓" : "·");
+    }
     if (reset) {
-      reset.hidden = done === 0;
+      reset.hidden = doneCount() === 0;
     }
   }
 
@@ -385,6 +425,26 @@
     }
 
     input.addEventListener("input", apply);
+  }
+
+  /* ---------- Platform links ---------- */
+
+  /* Single source of truth for platform links. Static hrefs in the HTML
+     are the no-JS fallback and MUST stay correct; this rewrite exists so
+     a future platform change is: update the constants at the top of this
+     file, then sweep the static hrefs at leisure. */
+  function applyPlatformLinks() {
+    var urls = {
+      workspace: WORKSPACE_URL,
+      project: PROJECT_SHARE_URL,
+      zip: REPO_ZIP_URL
+    };
+    document.querySelectorAll("[data-platform-link]").forEach(function (a) {
+      var url = urls[a.dataset.platformLink];
+      if (url) {
+        a.href = url;
+      }
+    });
   }
 
   /* ---------- FAQ anchor links ---------- */
@@ -455,6 +515,7 @@
   }
 
   markCurrentNavLink();
+  applyPlatformLinks();
   bindCheckboxes();
   syncCheckboxes();
   initIndex();

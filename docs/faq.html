@@ -8,9 +8,9 @@
       name="description"
       content="Frequently asked questions for the API-209 Summer 2026 R assignments."
     >
-    <link rel="stylesheet" href="site.css?v=22">
+    <link rel="stylesheet" href="site.css?v=24">
     <link rel="icon" href="favicon.ico">
-    <script src="site.js?v=2" defer></script>
+    <script src="site.js?v=4" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -22,12 +22,14 @@
         </span>
       </a>
       <nav class="nav-links" aria-label="FAQ navigation">
-        <a href="index.html">Guide</a>
+        <a href="index.html">Home</a>
         <a href="getting-started.html">Getting started</a>
         <a href="interactive-hour.html">Warm-up</a>
         <a href="index.html#assignments">Assignments</a>
-        <a href="faq.html">FAQ</a>
         <a href="submission.html">Submission</a>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <a href="faq.html">FAQ</a>
+        <a href="data.html">Data</a>
       </nav>
     </header>
 
@@ -50,6 +52,15 @@
           >
           <p class="faq-count" aria-live="polite"></p>
         </div>
+        <nav class="faq-jump" aria-label="Jump to a section">
+          <a href="#access-title">Access &amp; setup</a>
+          <a href="#interface-title">Using Posit Cloud</a>
+          <a href="#rmd-title">R Markdown</a>
+          <a href="#knit-errors-title">Knitting errors</a>
+          <a href="#data-faq-title">Data</a>
+          <a href="#ai-faq-title">AI use</a>
+          <a href="#more-help-title">Still stuck?</a>
+        </nav>
       </section>
 
       <section class="resource-section" aria-labelledby="access-title">
@@ -74,10 +85,22 @@
           <article>
             <h3>Do I need to install R or RStudio?</h3>
             <p>
-              No. You can complete the summer assignments in Posit Cloud, which
-              runs RStudio in your browser. During Math Camp, the teaching team
-              will help students move from Posit Cloud to a local R/RStudio
-              setup.
+              No — Posit Cloud runs RStudio in your browser and is the
+              supported default. During Math Camp, the teaching team will
+              help everyone move to a local R/RStudio setup.
+            </p>
+            <p>
+              If you prefer to work locally now (or your internet connection
+              makes a cloud editor painful), you can: install R and RStudio
+              Desktop from
+              <a href="https://posit.co/download/rstudio-desktop/" target="_blank" rel="noopener">posit.co/download</a>,
+              download the course materials as a
+              <a href="https://github.com/harvard-api209/summer-assignments/archive/refs/heads/2026-refresh.zip" data-platform-link="zip">zip file</a>,
+              unzip it, and open the <code>.Rmd</code> files in the
+              <code>assignments</code> folder. The folder structure and file
+              paths are identical to the Posit Cloud project. Submission is
+              the same either way: upload the completed <code>.Rmd</code>
+              files to Canvas.
             </p>
           </article>
 
@@ -110,7 +133,7 @@
               it is opened, so the project you are looking at is brand new.
               Your work is still in your saved copy. Close the temporary copy,
               go to
-              <a href="https://posit.cloud" target="_blank" rel="noopener">posit.cloud</a>,
+              <a href="https://posit.cloud" data-platform-link="workspace" target="_blank" rel="noopener">posit.cloud</a>,
               sign in with the same account as before, and open your project
               from <strong>Your Workspace</strong>.
             </p>
@@ -222,66 +245,6 @@
         </div>
       </section>
 
-      <section class="resource-section" aria-labelledby="data-faq-title">
-        <h2 id="data-faq-title">Data</h2>
-        <div class="faq-list">
-          <article>
-            <h3>Where do the assignment data come from?</h3>
-            <p>
-              The assignments use one cleaned country-year CSV snapshot created
-              for this course. Most indicators come from the World Bank World
-              Development Indicators. Governance indicators come from the
-              Worldwide Governance Indicators. The data dictionary lists the
-              exact source, indicator code, unit, and notes for each variable.
-            </p>
-          </article>
-
-          <article>
-            <h3>Why are some values missing?</h3>
-            <p>
-              Missing values are normal in development data. Some indicators,
-              such as population and life expectancy, are available for nearly
-              every country-year. Poverty and inequality indicators often depend
-              on household surveys, so they are measured less frequently. The
-              assignments ask you to notice and explain missingness rather than
-              ignore it.
-            </p>
-          </article>
-
-          <article>
-            <h3>Why do the filters need to be coherent?</h3>
-            <p>
-              A filter should match a real policy question. For example, it
-              makes sense to filter to Sub-Saharan Africa and then choose
-              countries from that region. It does not make sense to filter to
-              Sub-Saharan Africa and then ask for India, because that would
-              return no rows.
-            </p>
-            <p>
-              When you combine filters, check the intermediate data. If you
-              filter to a region first, list the countries in that region
-              before adding a country filter.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="resource-section" aria-labelledby="ai-faq-title">
-        <h2 id="ai-faq-title">AI use</h2>
-        <div class="faq-list">
-          <article>
-            <h3>Can I use ChatGPT or similar tools?</h3>
-            <p>
-              AI tools can help explain error messages or clarify what a
-              specific R command does. They should not choose your answers,
-              replace your practice, or write interpretations you cannot
-              defend. You are responsible for understanding and checking all
-              code and written work you submit.
-            </p>
-          </article>
-        </div>
-      </section>
-
       <section class="resource-section" aria-labelledby="knit-errors-title">
         <h2 id="knit-errors-title">Common knitting errors</h2>
         <p>
@@ -364,6 +327,66 @@
                 </tbody>
               </table>
             </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="resource-section" aria-labelledby="data-faq-title">
+        <h2 id="data-faq-title">Data</h2>
+        <div class="faq-list">
+          <article>
+            <h3>Where do the assignment data come from?</h3>
+            <p>
+              The assignments use one cleaned country-year CSV snapshot created
+              for this course. Most indicators come from the World Bank World
+              Development Indicators. Governance indicators come from the
+              Worldwide Governance Indicators. The data dictionary lists the
+              exact source, indicator code, unit, and notes for each variable.
+            </p>
+          </article>
+
+          <article>
+            <h3>Why are some values missing?</h3>
+            <p>
+              Missing values are normal in development data. Some indicators,
+              such as population and life expectancy, are available for nearly
+              every country-year. Poverty and inequality indicators often depend
+              on household surveys, so they are measured less frequently. The
+              assignments ask you to notice and explain missingness rather than
+              ignore it.
+            </p>
+          </article>
+
+          <article>
+            <h3>Why do the filters need to be coherent?</h3>
+            <p>
+              A filter should match a real policy question. For example, it
+              makes sense to filter to Sub-Saharan Africa and then choose
+              countries from that region. It does not make sense to filter to
+              Sub-Saharan Africa and then ask for India, because that would
+              return no rows.
+            </p>
+            <p>
+              When you combine filters, check the intermediate data. If you
+              filter to a region first, list the countries in that region
+              before adding a country filter.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="resource-section" aria-labelledby="ai-faq-title">
+        <h2 id="ai-faq-title">AI use</h2>
+        <div class="faq-list">
+          <article>
+            <h3>Can I use ChatGPT or similar tools?</h3>
+            <p>
+              AI tools can help explain error messages or clarify what a
+              specific R command does. They should not choose your answers,
+              replace your practice, or write interpretations you cannot
+              defend. You are responsible for understanding and checking all
+              code and written work you submit.
+            </p>
           </article>
         </div>
       </section>

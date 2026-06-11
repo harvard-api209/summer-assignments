@@ -8,9 +8,9 @@
       name="description"
       content="Getting started with the API-209 Summer 2026 R assignments in Posit Cloud."
     >
-    <link rel="stylesheet" href="site.css?v=22">
+    <link rel="stylesheet" href="site.css?v=24">
     <link rel="icon" href="favicon.ico">
-    <script src="site.js?v=2" defer></script>
+    <script src="site.js?v=4" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -22,12 +22,14 @@
         </span>
       </a>
       <nav class="nav-links" aria-label="Getting started navigation">
-        <a href="index.html">Guide</a>
+        <a href="index.html">Home</a>
         <a href="getting-started.html">Getting started</a>
         <a href="interactive-hour.html">Warm-up</a>
         <a href="index.html#assignments">Assignments</a>
-        <a href="faq.html">FAQ</a>
         <a href="submission.html">Submission</a>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <a href="faq.html">FAQ</a>
+        <a href="data.html">Data</a>
       </nav>
     </header>
 
@@ -65,11 +67,10 @@
       <section class="resource-section" aria-labelledby="path-title">
         <h2 id="path-title">Recommended path</h2>
         <ol class="lesson-path" aria-label="Recommended sequence">
-          <li class="is-current"><span>1</span><strong>Getting Started</strong></li>
-          <li><span>2</span><strong>Warm-up</strong></li>
-          <li><span>3</span><strong>Assignment 1 in Posit Cloud</strong></li>
-          <li><span>4</span><strong>Parts 2-5</strong></li>
-          <li><span>5</span><strong>Submit on Canvas</strong></li>
+          <li class="is-current"><span>Set up</span><strong>Getting Started</strong></li>
+          <li><span>Practice</span><strong>Warm-up</strong></li>
+          <li><span>Work</span><strong>Parts 1&ndash;5 in Posit Cloud</strong></li>
+          <li><span>Submit</span><strong>Submit on Canvas</strong></li>
         </ol>
       </section>
 
@@ -78,7 +79,7 @@
         <ol class="resource-list">
           <li>
             Open the
-            <a href="https://posit.cloud/content/8155534" target="_blank" rel="noopener">API-209 Posit Cloud project</a>.
+            <a href="https://posit.cloud/content/8155534" data-platform-link="project" target="_blank" rel="noopener">API-209 Posit Cloud project</a>.
           </li>
           <li>
             Sign in to Posit Cloud with the same account every time. We
@@ -95,30 +96,54 @@
           The screenshots below show what those steps look like and where to
           find the assignment files once your copy is open.
         </p>
-        <div class="callout">
-          <strong>If your work seems to disappear:</strong> first check that you
-          signed in with the same account you used when you saved your
-          permanent copy. Most missing-project problems come from switching
-          between Google, GitHub, Clever, or Harvard Google accounts.
-        </div>
         <div class="callout important">
           <strong>Before you edit:</strong> click
           <strong>Save a Permanent Copy</strong>. This creates your own version
           of the project. Do not start answering questions until your copy has
           opened.
         </div>
-        <div class="callout important">
-          <strong>Coming back later?</strong> Do not click the class project
-          link again. It opens a brand-new temporary copy without your work.
-          Instead, go to
-          <a href="https://posit.cloud" target="_blank" rel="noopener">posit.cloud</a>,
-          sign in with the same account, and open your saved copy from
-          <strong>Your Workspace</strong>.
-        </div>
-        <div class="callout">
-          <strong>Use a computer for the work:</strong> this guide reads fine
-          on a phone, but Posit Cloud needs a laptop or desktop browser. Plan
-          to write and knit the assignments on a computer.
+      </section>
+
+      <section class="resource-section" aria-labelledby="know-title">
+        <h2 id="know-title">Good to know</h2>
+        <div class="note-grid">
+          <article>
+            <span>Returning</span>
+            <h3>Don't reopen the class link</h3>
+            <p>
+              It creates a brand-new temporary copy without your work. Go to
+              <a href="https://posit.cloud" data-platform-link="workspace" target="_blank" rel="noopener">posit.cloud</a>,
+              sign in with the same account, and open your saved copy from
+              <strong>Your Workspace</strong>.
+            </p>
+          </article>
+          <article>
+            <span>Accounts</span>
+            <h3>If your work seems to disappear</h3>
+            <p>
+              Check that you signed in with the same account you used when you
+              saved your permanent copy. Most missing-project problems come
+              from switching between Google, GitHub, Clever, or Harvard Google.
+            </p>
+          </article>
+          <article>
+            <span>Devices</span>
+            <h3>Do the work on a computer</h3>
+            <p>
+              This guide reads fine on a phone, but Posit Cloud needs a laptop
+              or desktop browser for editing and knitting.
+            </p>
+          </article>
+          <article>
+            <span>Optional</span>
+            <h3>Prefer to work locally?</h3>
+            <p>
+              Posit Cloud is the supported default, but the assignments also
+              run in RStudio Desktop. See the
+              <a href="faq.html#q-do-i-need-to-install-r-or-rstudio">FAQ entry</a>
+              for the short version.
+            </p>
+          </article>
         </div>
       </section>
 
