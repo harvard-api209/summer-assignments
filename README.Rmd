@@ -20,13 +20,15 @@ the R Markdown assignments.
 
 ## Repository Branches
 
-- `main`: current stable landing branch for the repository. This should reflect
-  the current year's approved guide and project overview.
-- `2026-refresh`: website branch. GitHub Pages publishes from `docs/` on this
-  branch.
-- `posit-cloud-2026`: student Posit Cloud branch. This branch keeps the project
-  focused on the files students need in Posit Cloud: assignments, data, the
-  project file, README, and the refresh script.
+See `BRANCHING.md` for the full model and the season-end checklist.
+
+- `2026-refresh`: canonical working branch. The website (GitHub Pages
+  publishes from `docs/` here), the assignments, and all supporting files are
+  edited on this branch and nowhere else.
+- `posit-cloud-2026`: student Posit Cloud branch, regenerated automatically by
+  a GitHub Action whenever student files change on the canonical branch. Do
+  not commit to it by hand.
+- `main`: stable landing branch; receives the refresh branch at season end.
 - `archive/2025`: frozen 2025 branch.
 
 ## Release Tags
@@ -80,7 +82,6 @@ In your Posit Cloud workspace, you will find the following structure:
   data/
     development_indicators_2026.csv
     development_indicators_dictionary_2026.csv
-  figs/
   scripts/
     refresh_development_indicators.R
 ```

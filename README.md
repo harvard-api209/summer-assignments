@@ -18,13 +18,16 @@ students edit and submit the R Markdown assignments.
 
 ## Repository Branches
 
-- `main`: current stable landing branch for the repository. This should
-  reflect the current year's approved guide and project overview.
-- `2026-refresh`: website branch. GitHub Pages publishes from `docs/` on
-  this branch.
-- `posit-cloud-2026`: student Posit Cloud branch. This branch keeps the
-  project focused on the files students need in Posit Cloud: assignments,
-  data, the project file, README, and the refresh script.
+See `BRANCHING.md` for the full model and the season-end checklist.
+
+- `2026-refresh`: canonical working branch. The website (GitHub Pages
+  publishes from `docs/` here), the assignments, and all supporting
+  files are edited on this branch and nowhere else.
+- `posit-cloud-2026`: student Posit Cloud branch, regenerated
+  automatically by a GitHub Action whenever student files change on the
+  canonical branch. Do not commit to it by hand.
+- `main`: stable landing branch; receives the refresh branch at season
+  end.
 - `archive/2025`: frozen 2025 branch.
 
 ## Release Tags
@@ -47,20 +50,20 @@ students edit and submit the R Markdown assignments.
 The five assignments use the same data backbone so students can focus on
 R skills instead of learning a new dataset each time.
 
-1.  **Part 1: R Basics for Development Data**  
+1.  **Part 1: R Basics for Development Data**\
     Objects, data types, logical values, functions, vectors, comments,
     and one controlled debugging exercise.
-2.  **Part 2: Filtering and Inspecting Country-Year Data**  
+2.  **Part 2: Filtering and Inspecting Country-Year Data**\
     `read_csv()`, `head()`, `glimpse()`, `distinct()`, coherent
     `filter()` use, `arrange()`, light `mutate()`, data dictionaries,
     and missingness.
-3.  **Part 3: Visualizing Development Patterns**  
+3.  **Part 3: Visualizing Development Patterns**\
     `ggplot()`, line plots, scatterplots, bar charts, color, facets,
     labels, and descriptive interpretation.
-4.  **Part 4: Summarizing Countries, Regions, and Time Periods**  
+4.  **Part 4: Summarizing Countries, Regions, and Time Periods**\
     `group_by()`, `summarise()`, means, medians, denominators, and
     missing-data caveats.
-5.  **Part 5: Mini Development Diagnostic Memo**  
+5.  **Part 5: Mini Development Diagnostic Memo**\
     A structured country-peer diagnostic memo using filters, plots,
     summaries, and a short non-causal interpretation.
 
@@ -79,7 +82,6 @@ In your Posit Cloud workspace, you will find the following structure:
   data/
     development_indicators_2026.csv
     development_indicators_dictionary_2026.csv
-  figs/
   scripts/
     refresh_development_indicators.R
 ```
@@ -94,8 +96,8 @@ folder” from `assignments/` and then enter the `data/` folder.
 The assignments use one cleaned country-year dataset created for this
 course. Most indicators come from the World Bank World Development
 Indicators. Governance indicators come from the Worldwide Governance
-Indicators. The data are stored as a local CSV snapshot so everyone works
-with the same values and the assignments knit reliably.
+Indicators. The data are stored as a local CSV snapshot so everyone
+works with the same values and the assignments knit reliably.
 
 The data dictionary records each variable’s label, source, source
 indicator code, unit, and interpretation notes. The instructor refresh
@@ -115,8 +117,8 @@ assignment is complete and self-contained.
 ### Posit Cloud
 
 We use Posit Cloud as the primary platform for the summer assignments.
-Posit Cloud lets students write, execute, save, and knit R Markdown files
-in a browser.
+Posit Cloud lets students write, execute, save, and knit R Markdown
+files in a browser.
 
 ### R and RStudio
 
@@ -131,19 +133,20 @@ Students submit the completed `.Rmd` files to Canvas.
 
 ### AI and Learning R
 
-AI tools can be useful for debugging error messages and clarifying what a
-specific R command does. They are not a substitute for running the code,
-checking the output, and explaining the analysis. Each assignment asks
-for a brief AI-use note; the capstone asks for a fuller reflection.
+AI tools can be useful for debugging error messages and clarifying what
+a specific R command does. They are not a substitute for running the
+code, checking the output, and explaining the analysis. Each assignment
+asks for a brief AI-use note; the capstone asks for a fuller reflection.
 
 ## Submission
 
-Complete the assignments in Posit Cloud. For each part, knit successfully
-and submit the completed `.Rmd` file to Canvas unless the teaching team
-gives different instructions.
+Complete the assignments in Posit Cloud. For each part, knit
+successfully and submit the completed `.Rmd` file to Canvas unless the
+teaching team gives different instructions.
 
 ## Help and Support
 
 If you get stuck, check the guide website and FAQ first. If you still
 need help, use Slack or the course support channel and include the
-assignment number, the code or error message, and what you already tried.
+assignment number, the code or error message, and what you already
+tried.
