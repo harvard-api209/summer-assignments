@@ -330,12 +330,12 @@ must all match.
 
 ## Before you submit
 
-- Add your name at the top.
-- Confirm that you are in your own saved Posit Cloud copy.
+- Add your name in the YAML header at the top, replacing `YOUR NAME`.
+- Confirm you are in your own saved Posit Cloud copy, not a temporary copy.
+- Run your code chunks, then knit the document successfully. If knitting
+  fails, read the first error message and fix that chunk first.
+- Complete the memo and the AI-use reflection.
 - Check that your peer comparison is coherent.
 - Check missing values for your main indicator.
-- Make sure your graphs have meaningful labels.
-- Avoid causal claims.
-- Complete the memo and AI-use reflection.
-- Knit successfully.
+- Make sure your graphs have meaningful labels and avoid causal claims.
 - Submit the completed `.Rmd` file to Canvas.

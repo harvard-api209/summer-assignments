@@ -430,10 +430,10 @@ write "I did not use AI for this assignment."
 
 ## Before you submit
 
-- Add your name at the top of this file.
-- Confirm that you are in your own saved Posit Cloud copy.
-- Run the chunks you completed.
-- Knit the document successfully.
-- If knitting fails, read the first error message and fix that chunk first.
-- Submit the completed `.Rmd` file to Canvas.
+- Add your name in the YAML header at the top, replacing `YOUR NAME`.
+- Confirm you are in your own saved Posit Cloud copy, not a temporary copy.
+- Run your code chunks, then knit the document successfully. If knitting
+  fails, read the first error message and fix that chunk first.
+- Complete the AI-use note.
 - Do not submit the knitted `.html` file unless the teaching team asks for it.
+- Submit the completed `.Rmd` file to Canvas.
