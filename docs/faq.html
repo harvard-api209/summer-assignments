@@ -8,10 +8,12 @@
       name="description"
       content="Frequently asked questions for the API-209 Summer 2026 R assignments."
     >
-    <link rel="stylesheet" href="site.css?v=20">
+    <link rel="stylesheet" href="site.css?v=22">
     <link rel="icon" href="favicon.ico">
+    <script src="site.js?v=2" defer></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header" aria-label="Course guide header">
       <a class="brand" href="index.html" aria-label="Back to API-209 summer guide">
         <span>
@@ -21,13 +23,15 @@
       </a>
       <nav class="nav-links" aria-label="FAQ navigation">
         <a href="index.html">Guide</a>
-        <a href="interactive-hour.html">Warm-up</a>
         <a href="getting-started.html">Getting started</a>
+        <a href="interactive-hour.html">Warm-up</a>
+        <a href="index.html#assignments">Assignments</a>
+        <a href="faq.html">FAQ</a>
         <a href="submission.html">Submission</a>
       </nav>
     </header>
 
-    <main class="resource-main">
+    <main id="main-content" class="resource-main">
       <section class="resource-hero" aria-labelledby="faq-title">
         <p class="eyebrow">When stuck</p>
         <h1 id="faq-title">Frequently asked questions</h1>
@@ -36,6 +40,16 @@
           Markdown, AI use, and submission. The assignment work itself always
           happens in Posit Cloud.
         </p>
+        <div class="faq-search" hidden>
+          <label for="faq-filter">Filter the questions</label>
+          <input
+            id="faq-filter"
+            type="search"
+            placeholder="Type a keyword, e.g. knit, account, missing"
+            autocomplete="off"
+          >
+          <p class="faq-count" aria-live="polite"></p>
+        </div>
       </section>
 
       <section class="resource-section" aria-labelledby="access-title">
@@ -86,6 +100,32 @@
               you used before. If you still cannot find the project, contact
               the teaching team with the account type you used and a screenshot
               of your Posit Cloud workspace.
+            </p>
+          </article>
+
+          <article>
+            <h3>I clicked the class project link again and my work is gone. Where is it?</h3>
+            <p>
+              The class project link creates a new temporary copy every time
+              it is opened, so the project you are looking at is brand new.
+              Your work is still in your saved copy. Close the temporary copy,
+              go to
+              <a href="https://posit.cloud" target="_blank" rel="noopener">posit.cloud</a>,
+              sign in with the same account as before, and open your project
+              from <strong>Your Workspace</strong>.
+            </p>
+            <p>
+              To avoid this, use the class link only once. After you save a
+              permanent copy, always enter through Your Workspace.
+            </p>
+          </article>
+
+          <article>
+            <h3>Can I do the assignments on my phone or tablet?</h3>
+            <p>
+              Use a computer for the actual work. This guide reads fine on a
+              phone, but Posit Cloud needs a laptop or desktop browser to
+              edit and knit the <code>.Rmd</code> files comfortably.
             </p>
           </article>
         </div>
@@ -242,15 +282,104 @@
         </div>
       </section>
 
+      <section class="resource-section" aria-labelledby="knit-errors-title">
+        <h2 id="knit-errors-title">Common knitting errors</h2>
+        <p>
+          Most knitting failures are one of these five. Read the error message
+          slowly, find the matching row, and try the first fix before asking
+          for help.
+        </p>
+        <div class="faq-list">
+          <article id="q-error-decoder">
+            <h3>Error message decoder</h3>
+            <div class="table-scroll">
+              <table class="error-table">
+                <thead>
+                  <tr>
+                    <th>The error says</th>
+                    <th>It usually means</th>
+                    <th>First thing to try</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>object 'x' not found</code></td>
+                    <td>
+                      The file uses an object that is never created inside this
+                      <code>.Rmd</code>. Knitting starts from a fresh R session,
+                      so objects from the console or another assignment do not
+                      exist.
+                    </td>
+                    <td>
+                      Create the object earlier in the same file, then knit
+                      again.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>could not find function "filter"</code></td>
+                    <td>
+                      The package that provides the function is not loaded in
+                      this file.
+                    </td>
+                    <td>
+                      Check that <code>library(tidyverse)</code> runs in the
+                      setup chunk at the top of the file.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>cannot open file '…csv'</code></td>
+                    <td>
+                      The path to the data file is wrong, or the file was moved
+                      or renamed.
+                    </td>
+                    <td>
+                      Use the original path
+                      <code>../data/development_indicators_2026.csv</code> and
+                      keep the assignment file inside <code>assignments</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>unexpected '}' or unexpected symbol</code></td>
+                    <td>
+                      A parenthesis, bracket, quote, or comma is unbalanced
+                      somewhere at or above the line R reports.
+                    </td>
+                    <td>
+                      Go to the reported line and check the lines just above
+                      it. Count the <code>(</code> <code>)</code> pairs and the
+                      quotes.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Chunks run fine, but knitting fails</td>
+                    <td>
+                      You ran chunks in a different order than they appear in
+                      the file. Knitting only runs top to bottom.
+                    </td>
+                    <td>
+                      Restart R, then run all chunks from the top in order to
+                      find the first one that breaks.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="resource-section" aria-labelledby="more-help-title">
         <h2 id="more-help-title">Still stuck?</h2>
         <p>
-          If these answers do not solve the issue, contact the teaching team
-          through the course support channel and include the assignment number,
-          the code or error message, and what you already tried.
+          If these answers do not solve the issue, email the Teaching Fellow,
+          <strong>Rony Rodriguez-Ramirez</strong>, at
+          <a href="mailto:rrodriguezramirez@g.harvard.edu">rrodriguezramirez@g.harvard.edu</a>.
+          Include the assignment number, a screenshot, the code or error
+          message, and what you already tried. A course Slack channel is
+          coming; the link will be posted here.
         </p>
         <div class="resource-actions">
-          <a class="button primary" href="https://posit.cloud/content/8155534" target="_blank" rel="noopener">Open Posit Cloud</a>
+          <a class="button primary" href="mailto:rrodriguezramirez@g.harvard.edu?subject=API-209%20summer%20assignment%20question">Email the Teaching Fellow</a>
           <a class="button secondary" href="submission.html">How to submit</a>
           <a class="button secondary" href="index.html">Back to main guide</a>
         </div>
@@ -261,6 +390,7 @@
       <div>
         <strong>API-209 Summer R Guide</strong>
         <p>Built by Dan Levy and Rony Rodriguez for API-209.</p>
+        <p class="footer-contact">Questions? Email <a href="mailto:rrodriguezramirez@g.harvard.edu">Rony Rodriguez-Ramirez</a> (Teaching Fellow) &middot; Slack link coming soon.</p>
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="index.html">Guide</a>

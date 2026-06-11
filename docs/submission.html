@@ -8,10 +8,12 @@
       name="description"
       content="How to download and submit the API-209 Summer 2026 R assignment files."
     >
-    <link rel="stylesheet" href="site.css?v=20">
+    <link rel="stylesheet" href="site.css?v=22">
     <link rel="icon" href="favicon.ico">
+    <script src="site.js?v=2" defer></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header" aria-label="Course guide header">
       <a class="brand" href="index.html" aria-label="Back to API-209 summer guide">
         <span>
@@ -21,13 +23,15 @@
       </a>
       <nav class="nav-links" aria-label="Submission navigation">
         <a href="index.html">Guide</a>
-        <a href="interactive-hour.html">Warm-up</a>
         <a href="getting-started.html">Getting started</a>
+        <a href="interactive-hour.html">Warm-up</a>
+        <a href="index.html#assignments">Assignments</a>
         <a href="faq.html">FAQ</a>
+        <a href="submission.html">Submission</a>
       </nav>
     </header>
 
-    <main class="resource-main">
+    <main id="main-content" class="resource-main">
       <section class="resource-hero" aria-labelledby="submission-title">
         <p class="eyebrow">Submission</p>
         <h1 id="submission-title">Submit the completed R Markdown files</h1>
@@ -72,15 +76,80 @@
           file whose name ends with <code>.Rmd</code>.
         </div>
         <ol class="resource-list">
-          <li>Open your saved copy of the Posit Cloud project.</li>
+          <li>
+            Open your saved copy from
+            <a href="https://posit.cloud" target="_blank" rel="noopener">Your Workspace</a>
+            (not the class project link).
+          </li>
           <li>In the Files pane, open the <code>assignments</code> folder.</li>
-          <li>Select the completed assignment <code>.Rmd</code> file.</li>
-          <li>Use the file menu or gear menu to export or download the file.</li>
+          <li>Tick the checkbox next to the completed <code>.Rmd</code> file.</li>
+          <li>Click <strong>More</strong> (the gear) and choose <strong>Export...</strong></li>
           <li>
             Rename the downloaded file with your name, for example
             <code>R Summer Assignment 1 - First Last.Rmd</code>.
           </li>
         </ol>
+        <figure class="export-figure">
+          <svg viewBox="0 0 640 330" role="img" aria-labelledby="export-figure-title" xmlns="http://www.w3.org/2000/svg">
+            <title id="export-figure-title">Diagram of the Posit Cloud Files pane showing the three export steps</title>
+            <!-- pane frame -->
+            <rect x="10" y="10" width="620" height="310" rx="8" fill="#ffffff" stroke="#d8dee4"/>
+            <!-- tab bar -->
+            <rect x="10" y="10" width="620" height="36" rx="8" fill="#f6f8fa" stroke="#d8dee4"/>
+            <rect x="22" y="18" width="52" height="28" rx="5" fill="#ffffff" stroke="#d8dee4"/>
+            <text x="48" y="37" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Files</text>
+            <text x="106" y="37" font-size="13" text-anchor="middle" fill="#59636e">Plots</text>
+            <text x="178" y="37" font-size="13" text-anchor="middle" fill="#59636e">Packages</text>
+            <text x="240" y="37" font-size="13" text-anchor="middle" fill="#59636e">Help</text>
+            <!-- toolbar -->
+            <text x="28" y="73" font-size="13" fill="#59636e">New Folder</text>
+            <text x="116" y="73" font-size="13" fill="#59636e">Upload</text>
+            <text x="184" y="73" font-size="13" fill="#59636e">Delete</text>
+            <text x="246" y="73" font-size="13" fill="#59636e">Rename</text>
+            <rect x="312" y="54" width="86" height="28" rx="5" fill="#ffffff" stroke="#a51c30" stroke-width="2"/>
+            <text x="355" y="73" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">⚙ More ▾</text>
+            <line x1="10" y1="92" x2="630" y2="92" stroke="#d8dee4"/>
+            <!-- breadcrumb -->
+            <text x="28" y="114" font-size="12.5" fill="#59636e">Cloud &gt; project &gt; assignments</text>
+            <line x1="10" y1="126" x2="630" y2="126" stroke="#eef1f4"/>
+            <!-- file rows -->
+            <rect x="24" y="140" width="16" height="16" rx="3" fill="#a51c30"/>
+            <path d="M27.5 148 l4 4 l6 -7" stroke="#ffffff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="52" y="153" font-size="13.5" font-weight="600" fill="#1f2328">R Summer Assignment 1.Rmd</text>
+            <rect x="24" y="174" width="16" height="16" rx="3" fill="#ffffff" stroke="#d8dee4"/>
+            <text x="52" y="187" font-size="13.5" fill="#8c959f">R Summer Assignment 1.html</text>
+            <text x="262" y="187" font-size="12" fill="#a51c30">← not this one</text>
+            <rect x="24" y="208" width="16" height="16" rx="3" fill="#ffffff" stroke="#d8dee4"/>
+            <text x="52" y="221" font-size="13.5" fill="#59636e">R Summer Assignment 2.Rmd</text>
+            <rect x="24" y="242" width="16" height="16" rx="3" fill="#ffffff" stroke="#d8dee4"/>
+            <text x="52" y="255" font-size="13.5" fill="#59636e">R Summer Assignment 3.Rmd</text>
+            <!-- dropdown menu -->
+            <g>
+              <rect x="402" y="86" width="190" height="148" rx="6" fill="#ffffff" stroke="#d8dee4"/>
+              <rect x="402" y="86" width="190" height="148" rx="6" fill="none" stroke="#1f2328" stroke-opacity="0.06"/>
+              <text x="420" y="113" font-size="13" fill="#59636e">Copy...</text>
+              <text x="420" y="143" font-size="13" fill="#59636e">Move...</text>
+              <rect x="408" y="156" width="178" height="28" rx="4" fill="#fdeef0"/>
+              <text x="420" y="175" font-size="13" font-weight="700" fill="#a51c30">Export...</text>
+              <text x="420" y="207" font-size="13" fill="#59636e">Set Working Directory</text>
+            </g>
+            <!-- step badges -->
+            <g font-size="13" font-weight="700" text-anchor="middle">
+              <circle cx="612" cy="148" r="12" fill="#a51c30"/>
+              <text x="612" y="152.5" fill="#ffffff">1</text>
+              <circle cx="312" cy="54" r="12" fill="#a51c30"/>
+              <text x="312" y="58.5" fill="#ffffff">2</text>
+              <circle cx="592" cy="170" r="12" fill="#a51c30"/>
+              <text x="592" y="174.5" fill="#ffffff">3</text>
+            </g>
+          </svg>
+          <figcaption>
+            In the Files pane: (1) tick the box next to the
+            <code>.Rmd</code> file — not the <code>.html</code> file —
+            (2) click <strong>More</strong>, then (3) choose
+            <strong>Export...</strong> to download it.
+          </figcaption>
+        </figure>
         <p>
           Repeat this process for each of the five assignment files.
         </p>
@@ -137,7 +206,7 @@
           </article>
         </div>
         <div class="resource-actions">
-          <a class="button primary" href="https://posit.cloud/content/8155534" target="_blank" rel="noopener">Open Posit Cloud</a>
+          <a class="button primary" href="https://posit.cloud" target="_blank" rel="noopener">Open Your Workspace</a>
           <a class="button secondary" href="faq.html">Read the FAQ</a>
           <a class="button secondary" href="index.html">Back to main guide</a>
         </div>
@@ -148,6 +217,7 @@
       <div>
         <strong>API-209 Summer R Guide</strong>
         <p>Built by Dan Levy and Rony Rodriguez for API-209.</p>
+        <p class="footer-contact">Questions? Email <a href="mailto:rrodriguezramirez@g.harvard.edu">Rony Rodriguez-Ramirez</a> (Teaching Fellow) &middot; Slack link coming soon.</p>
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="index.html">Guide</a>
