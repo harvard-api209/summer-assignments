@@ -150,6 +150,20 @@
           </article>
 
           <article>
+            <h3>Why does knitting say an object like <code>hks_blue</code> was not found?</h3>
+            <p>
+              Each assignment knits on its own in a fresh R session. Objects you
+              created while working in another assignment, such as a custom color
+              object from Part 3, do not automatically exist in Parts 4 or 5.
+            </p>
+            <p>
+              If you reuse code from an earlier assignment, make sure any custom
+              objects it needs are also defined in the current <code>.Rmd</code>
+              file before the plot or table code runs.
+            </p>
+          </article>
+
+          <article>
             <h3>Do I submit HTML files?</h3>
             <p>
               No. HTML files may be created when you knit, but the file you
