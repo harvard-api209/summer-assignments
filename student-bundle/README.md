@@ -11,6 +11,9 @@ This is the student Posit Cloud branch: `posit-cloud-2026`.
 Use the course website as the main guide:
 <https://harvard-api209.github.io/summer-assignments/>
 
+The website also has a browsable data dictionary for the course dataset:
+<https://harvard-api209.github.io/summer-assignments/data.html>
+
 This Posit Cloud project is where you do the assignment work. Canvas is where
 you will submit completed files when the course submission links are posted.
 
