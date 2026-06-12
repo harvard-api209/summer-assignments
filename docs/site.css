@@ -1382,6 +1382,15 @@ h3 {
   padding: 16px 0 0;
 }
 
+/* Neutralize the generic .hero-panel div padding/border inside the
+   progress widget: with border-box, 14px vertical padding inside the
+   10px-high track collapses its content to zero height and the fill
+   bar becomes invisible. */
+.course-progress div {
+  border-bottom: 0;
+  padding: 0;
+}
+
 .progress-setup {
   color: var(--muted);
   font-size: 0.9rem;
