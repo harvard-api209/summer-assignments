@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>API-209 Summer 2026 Getting Started</title>
+    <title>API-209 Posit Cloud Setup (Optional)</title>
     <meta
       name="description"
-      content="Getting started with the API-209 Summer 2026 R assignments in Posit Cloud."
+      content="Optional: set up Posit Cloud to do the API-209 coding assignments in RStudio instead of the browser."
     >
-    <link rel="stylesheet" href="site.css?v=24">
+    <link rel="stylesheet" href="site.css?v=28">
     <link rel="icon" href="favicon.ico">
-    <script src="site.js?v=4" defer></script>
+    <script src="site.js?v=8" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -18,28 +18,41 @@
       <a class="brand" href="index.html" aria-label="Back to API-209 summer guide">
         <span>
           <strong>API-209</strong>
-          <small>Summer R Guide</small>
+          <small>Summer Coding Guide</small>
         </span>
       </a>
       <nav class="nav-links" aria-label="Getting started navigation">
         <a href="index.html">Home</a>
-        <a href="getting-started.html">Getting started</a>
         <a href="interactive-hour.html">Warm-up</a>
-        <a href="index.html#assignments">Assignments</a>
+        <details class="nav-dropdown">
+          <summary>Assignments</summary>
+          <div class="nav-menu">
+            <a href="assignments.html">All assignments</a>
+            <a href="part1.html" target="_blank" rel="noopener">Part 1 · Programming Fundamentals</a>
+            <a href="part2.html" target="_blank" rel="noopener">Part 2 · Filtering Data</a>
+            <a href="part3.html" target="_blank" rel="noopener">Part 3 · Data Visualization</a>
+            <a href="part4.html" target="_blank" rel="noopener">Part 4 · Summarizing Data</a>
+            <a href="part5.html" target="_blank" rel="noopener">Part 5 · Diagnostic Memo</a>
+          </div>
+        </details>
         <a href="submission.html">Submission</a>
         <span class="nav-divider" aria-hidden="true"></span>
         <a href="faq.html">FAQ</a>
         <a href="data.html">Data</a>
+        <a href="getting-started.html">Posit Cloud</a>
       </nav>
     </header>
 
     <main id="main-content" class="resource-main">
       <section class="resource-hero" aria-labelledby="getting-started-title">
-        <p class="eyebrow">Getting started</p>
-        <h1 id="getting-started-title">Work in Posit Cloud</h1>
+        <p class="eyebrow">Optional setup</p>
+        <h1 id="getting-started-title">Using Posit Cloud (optional)</h1>
         <p class="hero-text">
-          The website gives you the sequence and support materials. The actual
-          assignment files are in the Posit Cloud project.
+          The assignments run right in your browser with nothing to install —
+          you do not need this page to get started. Set up Posit Cloud only if
+          you prefer working in RStudio, or to get a head start on the local
+          setup everyone adopts at Math Camp. Either way you submit the same
+          <code>.Rmd</code> files.
         </p>
       </section>
 
@@ -62,16 +75,6 @@
             <p>Submit the completed <code>.Rmd</code> files after they knit.</p>
           </article>
         </div>
-      </section>
-
-      <section class="resource-section" aria-labelledby="path-title">
-        <h2 id="path-title">Recommended path</h2>
-        <ol class="lesson-path" aria-label="Recommended sequence">
-          <li class="is-current"><span>Set up</span><strong>Getting Started</strong></li>
-          <li><span>Practice</span><strong>Warm-up</strong></li>
-          <li><span>Work</span><strong>Parts 1&ndash;5 in Posit Cloud</strong></li>
-          <li><span>Submit</span><strong>Submit on Canvas</strong></li>
-        </ol>
       </section>
 
       <section class="resource-section" aria-labelledby="steps-title">
@@ -101,6 +104,42 @@
           <strong>Save a Permanent Copy</strong>. This creates your own version
           of the project. Do not start answering questions until your copy has
           opened.
+        </div>
+      </section>
+
+      <section class="orientation-panel" id="posit-entry" aria-labelledby="entry-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Opening Posit Cloud</p>
+          <h2 id="entry-title">First visit vs. returning</h2>
+          <p>
+            The class project link creates a brand-new temporary copy every
+            time it is opened. Use it once to save your permanent copy. After
+            that, always reopen your own copy, or you will be working in a
+            copy that is not saved to your workspace.
+          </p>
+        </div>
+        <div class="entry-split">
+          <article>
+            <span class="entry-tag">First time here</span>
+            <h3>Open the class project link once</h3>
+            <p>
+              Open the class project, sign in, and click
+              <strong>Save a Permanent Copy</strong> before editing anything.
+              The setup guide walks through every step.
+            </p>
+            <a class="button secondary" href="getting-started.html">Follow the setup guide</a>
+          </article>
+          <article class="entry-returning">
+            <span class="entry-tag">Returning</span>
+            <h3>Reopen your saved copy</h3>
+            <p>
+              Go to <strong>posit.cloud</strong>, sign in with the same
+              account as before, and open your copy from
+              <strong>Your Workspace</strong>. Do not click the class project
+              link again.
+            </p>
+            <a class="button primary" href="https://posit.cloud" data-platform-link="workspace" target="_blank" rel="noopener">Open Your Workspace</a>
+          </article>
         </div>
       </section>
 
@@ -355,7 +394,7 @@
 
     <footer class="site-footer" aria-label="Site footer">
       <div>
-        <strong>API-209 Summer R Guide</strong>
+        <strong>API-209 Summer Coding Guide</strong>
         <p>Built by Dan Levy and Rony Rodriguez for API-209.</p>
         <p class="footer-contact">Questions? Email <a href="mailto:rrodriguezramirez@g.harvard.edu">Rony Rodriguez-Ramirez</a> (Teaching Fellow) &middot; Slack link coming soon.</p>
       </div>

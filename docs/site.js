@@ -18,90 +18,69 @@
   var REPO_ZIP_URL =
     "https://github.com/harvard-api209/summer-assignments/archive/refs/heads/2026-refresh.zip";
 
-  /* The five assignments are the only counted thing on the site; setup
-     and the warm-up are prerequisites, shown as a checklist, never as a
-     denominator. This is deliberate — see plans/001. */
-  var SETUP_IDS = ["getting-started", "warmup"];
+  /* The five assignments are the only counted thing on the site. Setup
+     and the warm-up are optional (browser-first, see plans/007) and are
+     never steps or denominators. */
   var PART_IDS = ["part-1", "part-2", "part-3", "part-4", "part-5"];
+  /* Answer-box totals per part, used for "in progress" badges. Recount
+     with: grep -c "^\[Write your" docs/web-assignments/part-N.Rmd */
+  var PART_ANSWER_TOTALS = { 1: 7, 2: 5, 3: 4, 4: 4, 5: 8 };
 
   /* Trackable steps, in course order. The submit step is a destination,
      not a checkbox: it becomes the "next step" once everything is done. */
   var STEPS = [
     {
-      id: "getting-started",
-      title: "Getting Started",
-      blurb:
-        "Open the setup guide. It explains the platform roles, Posit Cloud " +
-        "sign-in, and the permanent-copy step before editing.",
-      href: "getting-started.html",
-      cta: "Begin step 1"
-    },
-    {
-      id: "warmup",
-      title: "Warm-up",
-      blurb:
-        "Practice the core habit before Part 1: read the code, predict the " +
-        "result, run it, and explain what happened.",
-      href: "interactive-hour.html",
-      cta: "Start the warm-up"
-    },
-    {
       id: "part-1",
       title: "Part 1: Programming Fundamentals",
       blurb:
-        "Open your saved copy from Your Workspace, then work through the " +
-        "first .Rmd file in the assignments folder. Knit regularly.",
-      href: WORKSPACE_URL,
-      cta: "Open your saved copy",
-      external: true
+        "Start right here in your browser — no account, no setup. Your " +
+        "work saves automatically as you type.",
+      href: "part1.html",
+      cta: "Start Part 1"
     },
     {
       id: "part-2",
       title: "Part 2: Filtering Country-Year Data",
       blurb:
-        "In your saved copy, read the local CSV, use the data dictionary, " +
+        "On the Part 2 page, read the course CSV, use the data dictionary, " +
         "filter and sort rows, and interpret missingness.",
-      href: WORKSPACE_URL,
-      cta: "Open your saved copy",
-      external: true
+      href: "part2.html",
+      cta: "Open Part 2"
     },
     {
       id: "part-3",
       title: "Part 3: Data Visualization",
       blurb:
-        "In your saved copy, build descriptive plots with ggplot(), label " +
+        "On the Part 3 page, build descriptive plots with ggplot(), label " +
         "figures, and explain what each graph shows.",
-      href: WORKSPACE_URL,
-      cta: "Open your saved copy",
-      external: true
+      href: "part3.html",
+      cta: "Open Part 3"
     },
     {
       id: "part-4",
       title: "Part 4: Data Manipulation II",
       blurb:
-        "In your saved copy, use group_by() and summarise(), compare means " +
+        "On the Part 4 page, use group_by() and summarise(), compare means " +
         "and medians, and treat missing values as a data-quality issue.",
-      href: WORKSPACE_URL,
-      cta: "Open your saved copy",
-      external: true
+      href: "part4.html",
+      cta: "Open Part 4"
     },
     {
       id: "part-5",
       title: "Part 5: Mini Diagnostic Memo",
       blurb:
-        "In your saved copy, choose one country and coherent peers, produce " +
+        "On the Part 5 page, choose one country and coherent peers, produce " +
         "the required outputs, and write the short non-causal memo.",
-      href: WORKSPACE_URL,
-      cta: "Open your saved copy",
-      external: true
+      href: "part5.html",
+      cta: "Open Part 5"
     }
   ];
 
   var SUBMIT_STEP = {
     title: "Submit on Canvas",
     blurb:
-      "All five parts are marked complete. Knit each file one last time, " +
-      "then follow the submission steps.",
+      "All five parts are marked complete. Make sure you downloaded each " +
+      "completed .Rmd, then follow the submission steps.",
     href: "submission.html",
     cta: "Read the submission steps"
   };
@@ -159,13 +138,47 @@
     }).length;
   }
 
+  /* Reads the in-browser player's autosave (written by
+     assignment-player.js) so the roadmap can show live "in progress"
+     state. Read-only: the schema belongs to the player. */
+  function partWork(n) {
+    try {
+      var raw = localStorage.getItem("api209-part" + n + "-work-v1");
+      if (!raw) {
+        return null;
+      }
+      var w = JSON.parse(raw) || {};
+      var answers = 0;
+      Object.keys(w.answers || {}).forEach(function (k) {
+        if (String(w.answers[k]).trim()) {
+          answers += 1;
+        }
+      });
+      var chunks = Object.keys(w.chunks || {}).length;
+      if (!answers && !chunks) {
+        return null;
+      }
+      return { answers: answers, chunks: chunks, total: PART_ANSWER_TOTALS[n] || 0 };
+    } catch (err) {
+      return null;
+    }
+  }
+
   function nextStep() {
+    /* Prefer the lowest-numbered incomplete part the student has actually
+       started; otherwise the first incomplete part. */
+    var firstIncomplete = null;
     for (var i = 0; i < STEPS.length; i += 1) {
       if (!progress[STEPS[i].id]) {
-        return STEPS[i];
+        if (!firstIncomplete) {
+          firstIncomplete = STEPS[i];
+        }
+        if (partWork(i + 1)) {
+          return STEPS[i];
+        }
       }
     }
-    return SUBMIT_STEP;
+    return firstIncomplete || SUBMIT_STEP;
   }
 
   /* ---------- Current page in the navigation ---------- */
@@ -177,10 +190,26 @@
       if (raw.charAt(0) === "#") {
         return; /* same-page anchors are not a separate page */
       }
-      if (raw.split("#")[0] === page) {
+      if (raw.split("#")[0] === page && !link.closest(".nav-menu")) {
         link.setAttribute("aria-current", "page");
       }
     });
+    /* The Assignments dropdown represents the hub and the five part pages. */
+    var dropdown = document.querySelector(".nav-dropdown");
+    if (dropdown) {
+      var owns = Array.prototype.some.call(
+        dropdown.querySelectorAll(".nav-menu a"),
+        function (a) { return (a.getAttribute("href") || "").split("#")[0] === page; }
+      );
+      if (owns) {
+        dropdown.querySelector("summary").setAttribute("aria-current", "page");
+      }
+      document.addEventListener("click", function (event) {
+        if (dropdown.open && !dropdown.contains(event.target)) {
+          dropdown.open = false;
+        }
+      });
+    }
   }
 
   /* ---------- Progress checkboxes (any page) ---------- */
@@ -235,7 +264,7 @@
       '<strong><span data-progress-count>0</span>/' + PART_IDS.length + "</strong>" +
       "</div>" +
       '<div class="progress-track" aria-hidden="true"><span data-progress-bar></span></div>' +
-      '<p class="progress-setup" data-progress-setup></p>' +
+      '<p class="progress-live" data-progress-live hidden></p>' +
       '<p class="progress-note">' +
       (storageOk
         ? "Progress is saved in this browser only. Mark parts complete in the roadmap below."
@@ -276,12 +305,12 @@
     var copy = card.querySelector("p");
     var button = card.querySelector("a.button");
 
+    var started = step !== SUBMIT_STEP && partWork(PART_IDS.indexOf(step.id) + 1);
     if (kicker) {
       kicker.textContent = step === SUBMIT_STEP
         ? "Final step"
-        : PART_IDS.indexOf(step.id) === -1
-          ? "Before Part 1"
-          : "Next up · " + partsDone() + " of " + PART_IDS.length + " parts done";
+        : (started ? "Continue · " : "Next up · ") +
+          partsDone() + " of " + PART_IDS.length + " parts done";
     }
     if (heading) {
       heading.textContent = step.title;
@@ -290,7 +319,9 @@
       copy.textContent = step.blurb;
     }
     if (button) {
-      button.textContent = step.cta;
+      button.textContent = started
+        ? step.cta.replace(/^(Start|Open)/, "Continue")
+        : step.cta;
       button.href = step.href;
       if (step.external) {
         button.target = "_blank";
@@ -302,41 +333,28 @@
     }
   }
 
-  function renderJourney() {
-    var steps = document.querySelectorAll(".journey-flow .journey-step");
-    if (!steps.length) {
-      return;
-    }
-    var allParts = PART_IDS.every(function (id) {
-      return progress[id];
-    });
-    var doneFlags = [
-      Boolean(progress["getting-started"]),
-      Boolean(progress.warmup),
-      allParts,
-      false /* submission happens on Canvas; we cannot verify it here */
-    ];
-    var nextMarked = false;
-    steps.forEach(function (stepEl, index) {
-      var isDone = Boolean(doneFlags[index]);
-      stepEl.classList.toggle("is-done", isDone);
-      var number = stepEl.querySelector(".journey-number");
-      if (number) {
-        number.textContent = isDone ? "✓" : "";
-      }
-      var isNext = !isDone && !nextMarked;
-      stepEl.classList.toggle("is-next", isNext);
-      if (isNext) {
-        nextMarked = true;
-      }
-    });
-  }
-
   function renderAssignments() {
-    ["part-1", "part-2", "part-3", "part-4", "part-5"].forEach(function (id) {
+    PART_IDS.forEach(function (id, index) {
       var article = document.getElementById(id);
-      if (article) {
-        article.classList.toggle("is-done", Boolean(progress[id]));
+      if (!article) {
+        return;
+      }
+      var done = Boolean(progress[id]);
+      article.classList.toggle("is-done", done);
+      var work = done ? null : partWork(index + 1);
+      var status = article.querySelector(".assignment-status");
+      if (work) {
+        if (!status) {
+          status = document.createElement("p");
+          status.className = "assignment-status";
+          var h3 = article.querySelector("h3");
+          h3.parentNode.insertBefore(status, h3.nextSibling);
+        }
+        status.textContent = work.total
+          ? "In progress · " + work.answers + " of " + work.total + " answers written"
+          : "In progress";
+      } else if (status) {
+        status.remove();
       }
     });
   }
@@ -351,11 +369,18 @@
     var parts = partsDone();
     count.textContent = parts;
     bar.style.width = (parts / PART_IDS.length) * 100 + "%";
-    var setupEl = document.querySelector("[data-progress-setup]");
-    if (setupEl) {
-      setupEl.textContent = "Before Part 1: Getting started " +
-        (progress["getting-started"] ? "✓" : "·") + "  Warm-up " +
-        (progress.warmup ? "✓" : "·");
+    var liveEl = document.querySelector("[data-progress-live]");
+    if (liveEl) {
+      var inProgress = [];
+      PART_IDS.forEach(function (id, index) {
+        if (!progress[id] && partWork(index + 1)) {
+          inProgress.push("Part " + (index + 1));
+        }
+      });
+      liveEl.hidden = !inProgress.length;
+      liveEl.textContent = inProgress.length
+        ? "In progress: " + inProgress.join(", ")
+        : "";
     }
     if (reset) {
       reset.hidden = doneCount() === 0;
@@ -364,7 +389,6 @@
 
   function renderIndex() {
     renderNextCard();
-    renderJourney();
     renderAssignments();
     renderProgressSummary();
   }

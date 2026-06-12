@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API-209 Part 3: Visualizing Development Patterns</title>
+    <meta
+      name="description"
+      content="Do Part 3 of the API-209 Summer 2026 coding assignments in your browser and export the .Rmd for Canvas."
+    >
+    <link rel="stylesheet" href="site.css?v=28">
+    <link rel="icon" href="favicon.ico">
+    <script src="site.js?v=8" defer></script>
+    <script>
+      window.API209_PART = {
+        number: 3,
+        source: "web-assignments/part-3.Rmd",
+        storageKey: "api209-part3-work-v1",
+        exportBase: "R Summer Assignment 3",
+        prewarmPackages: ["tidyverse"],
+        dataFiles: ["development_indicators_2026.csv", "development_indicators_dictionary_2026.csv"]
+      };
+    </script>
+    <script src="webr-runner.js?v=1" defer></script>
+    <script src="assignment-player.js?v=2" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header" aria-label="Course guide header">
+      <a class="brand" href="index.html" aria-label="Back to API-209 summer guide">
+        <span>
+          <strong>API-209</strong>
+          <small>Summer Coding Guide</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="index.html">Home</a>
+        <a href="interactive-hour.html">Warm-up</a>
+        <details class="nav-dropdown">
+          <summary>Assignments</summary>
+          <div class="nav-menu">
+            <a href="assignments.html">All assignments</a>
+            <a href="part1.html" target="_blank" rel="noopener">Part 1 · Programming Fundamentals</a>
+            <a href="part2.html" target="_blank" rel="noopener">Part 2 · Filtering Data</a>
+            <a href="part3.html" target="_blank" rel="noopener">Part 3 · Data Visualization</a>
+            <a href="part4.html" target="_blank" rel="noopener">Part 4 · Summarizing Data</a>
+            <a href="part5.html" target="_blank" rel="noopener">Part 5 · Diagnostic Memo</a>
+          </div>
+        </details>
+        <a href="submission.html">Submission</a>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <a href="faq.html">FAQ</a>
+        <a href="data.html">Data</a>
+        <a href="getting-started.html">Posit Cloud</a>
+      </nav>
+    </header>
+
+    <main id="main-content" class="warmup-main">
+      <section class="warmup-hero" aria-labelledby="part-title">
+        <div>
+          <p class="eyebrow">Part 3 · Estimated time: 2–3 hours</p>
+          <h1 id="part-title">Visualizing Development Patterns</h1>
+          <p class="hero-text">
+            Build line plots, scatterplots, and bar charts with ggplot2 — plots render right on the page.
+          </p>
+          <p class="hero-text">
+            Work right here — edit the code, press Run, type your answers.
+            Everything saves automatically in this browser. When you finish,
+            download your completed <code>.Rmd</code> and submit it to Canvas.
+          </p>
+          <p class="hero-text">
+            This part uses the course dataset — it is loaded into R here
+            automatically. The first chunk installs the tidyverse in your
+            browser, which can take a few minutes the first time. Posit Cloud
+            may feel faster for the data-heavy parts; both produce the same
+            submission file.
+          </p>
+        </div>
+
+        <aside class="progress-panel player-panel" aria-label="Assignment tools">
+          <label class="player-name">
+            <span class="progress-label">Your name</span>
+            <input type="text" id="student-name" autocomplete="name"
+                   placeholder="First Last">
+          </label>
+          <p class="panel-note">
+            Goes into the exported file and its filename.
+          </p>
+          <button type="button" class="button primary panel-download" data-player-download>
+            ⬇ Download my .Rmd
+          </button>
+          <p class="panel-note" id="export-status">Not downloaded yet in this session.</p>
+          <p class="panel-note" id="autosave-status" aria-live="polite">
+            Work is saved in this browser as you type.
+          </p>
+          <p class="panel-note" id="engine-status" aria-live="polite">
+            R loads the first time you press Run (~15 MB, one time).
+          </p>
+          <div class="panel-links">
+            <button type="button" class="unlock-toggle" id="reset-session">Reset the R session</button>
+            <button type="button" class="unlock-toggle" id="clear-work">Start over (delete saved work)</button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="player-section" aria-label="Assignment">
+        <article class="player-doc" id="player-doc">
+          <p id="player-loading">Loading the assignment…</p>
+        </article>
+      </section>
+
+      <section class="player-section" aria-labelledby="finish-title">
+        <h2 id="finish-title">Finished?</h2>
+        <ol class="resource-list">
+          <li>Run your chunks from top to bottom and fix any error or warning — what you export is exactly what you submit.</li>
+          <li>Type your name in the panel at the top.</li>
+          <li>Press <strong>Download my .Rmd</strong> and keep the file. It is your only backup of this work.</li>
+          <li>Submit it to Canvas when the submission links open — see the <a href="submission.html">submission steps</a>.</li>
+        </ol>
+        <div class="resource-actions">
+          <button type="button" class="button primary" data-player-download>⬇ Download my .Rmd</button>
+          <a class="button secondary" href="assignments.html">All assignments</a>
+        </div>
+        <label class="done-check">
+          <input type="checkbox" data-course-step="part-3">
+          Mark Part 3 complete on my roadmap.
+        </label>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+      <div>
+        <strong>API-209 Summer Coding Guide</strong>
+        <p>Built by Dan Levy and Rony Rodriguez for API-209.</p>
+        <p class="footer-contact">Questions? Email <a href="mailto:rrodriguezramirez@g.harvard.edu">Rony Rodriguez-Ramirez</a> (Teaching Fellow) &middot; Slack link coming soon.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="assignments.html">Assignments</a>
+        <a href="faq.html">FAQ</a>
+        <a href="submission.html">Submission</a>
+      </nav>
+    </footer>
+  </body>
+</html>

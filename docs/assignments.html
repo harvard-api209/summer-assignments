@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API-209 Summer 2026 Assignments</title>
+    <meta
+      name="description"
+      content="The five API-209 Summer 2026 coding assignments — do them in your browser or in Posit Cloud, then submit the .Rmd to Canvas."
+    >
+    <link rel="stylesheet" href="site.css?v=28">
+    <link rel="icon" href="favicon.ico">
+    <script src="site.js?v=8" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header" aria-label="Course guide header">
+      <a class="brand" href="index.html" aria-label="Back to API-209 summer guide">
+        <span>
+          <strong>API-209</strong>
+          <small>Summer Coding Guide</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="index.html">Home</a>
+        <a href="interactive-hour.html">Warm-up</a>
+        <details class="nav-dropdown">
+          <summary>Assignments</summary>
+          <div class="nav-menu">
+            <a href="assignments.html">All assignments</a>
+            <a href="part1.html" target="_blank" rel="noopener">Part 1 · Programming Fundamentals</a>
+            <a href="part2.html" target="_blank" rel="noopener">Part 2 · Filtering Data</a>
+            <a href="part3.html" target="_blank" rel="noopener">Part 3 · Data Visualization</a>
+            <a href="part4.html" target="_blank" rel="noopener">Part 4 · Summarizing Data</a>
+            <a href="part5.html" target="_blank" rel="noopener">Part 5 · Diagnostic Memo</a>
+          </div>
+        </details>
+        <a href="submission.html">Submission</a>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <a href="faq.html">FAQ</a>
+        <a href="data.html">Data</a>
+        <a href="getting-started.html">Posit Cloud</a>
+      </nav>
+    </header>
+
+    <main id="main-content" class="resource-main">
+      <section class="resource-hero" aria-labelledby="assignments-title">
+        <p class="eyebrow">Five parts · about 11–16 hours total</p>
+        <h1 id="assignments-title">The coding assignments</h1>
+        <p class="hero-text">
+          Five parts, one cleaned country-year development dataset. Each part
+          opens in its own tab, runs entirely in your browser — nothing to
+          install, no account — and exports a completed <code>.Rmd</code>
+          file for Canvas. Your work saves automatically in this browser, and
+          the downloaded file is your backup.
+        </p>
+        <p class="hero-text">
+          Prefer RStudio? The identical assignments live in the
+          <a href="getting-started.html">Posit Cloud project</a>. Either way,
+          you submit the same <code>.Rmd</code> file.
+        </p>
+      </section>
+
+      <section class="resource-section" aria-labelledby="parts-title">
+        <h2 id="parts-title">Work through the parts in order</h2>
+        <div class="parts-list">
+          <article class="part-card">
+            <div>
+              <span class="entry-tag">Part 1 · 1.5–3 hours</span>
+              <h3>Programming Fundamentals</h3>
+              <p>
+                Objects, data types, logical values, functions, vectors, and
+                reading your first error message.
+              </p>
+            </div>
+            <div class="part-actions">
+              <a class="button primary" href="part1.html" target="_blank" rel="noopener">Open Part 1</a>
+            </div>
+          </article>
+
+          <article class="part-card">
+            <div>
+              <span class="entry-tag">Part 2 · 2–3 hours</span>
+              <h3>Filtering Country-Year Data</h3>
+              <p>
+                Inspect the course dataset, build coherent filters, sort rows,
+                and reason about missing values.
+              </p>
+            </div>
+            <div class="part-actions">
+              <a class="button primary" href="part2.html" target="_blank" rel="noopener">Open Part 2</a>
+            </div>
+          </article>
+
+          <article class="part-card">
+            <div>
+              <span class="entry-tag">Part 3 · 2–3 hours</span>
+              <h3>Visualizing Development Patterns</h3>
+              <p>
+                Line plots, scatterplots, and bar charts with
+                <code>ggplot2</code> — plots render right on the page.
+              </p>
+            </div>
+            <div class="part-actions">
+              <a class="button primary" href="part3.html" target="_blank" rel="noopener">Open Part 3</a>
+            </div>
+          </article>
+
+          <article class="part-card">
+            <div>
+              <span class="entry-tag">Part 4 · 2–3 hours</span>
+              <h3>Summarizing Countries and Regions</h3>
+              <p>
+                <code>group_by()</code> and <code>summarise()</code>, means
+                versus medians, denominators, and missing-data caveats.
+              </p>
+            </div>
+            <div class="part-actions">
+              <a class="button primary" href="part4.html" target="_blank" rel="noopener">Open Part 4</a>
+            </div>
+          </article>
+
+          <article class="part-card">
+            <div>
+              <span class="entry-tag">Part 5 · 3–4 hours</span>
+              <h3>Mini Development Diagnostic Memo</h3>
+              <p>
+                The capstone: one country, coherent peers, a trend plot, a
+                comparison table, and a short non-causal memo.
+              </p>
+            </div>
+            <div class="part-actions">
+              <a class="button primary" href="part5.html" target="_blank" rel="noopener">Open Part 5</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="resource-section" aria-labelledby="how-title">
+        <h2 id="how-title">How the browser assignments work</h2>
+        <div class="note-grid">
+          <article>
+            <span>Run</span>
+            <h3>Real R, in the page</h3>
+            <p>
+              Each code chunk is editable and runs real R in your browser.
+              Parts 2&ndash;5 load the course dataset automatically; the
+              first chunk installs the tidyverse, which can take a few
+              minutes once.
+            </p>
+          </article>
+          <article>
+            <span>Save</span>
+            <h3>Autosave, per browser</h3>
+            <p>
+              Your code and answers save automatically — but only in this
+              browser on this device. Download your <code>.Rmd</code>
+              whenever you stop working; that file is your real backup.
+            </p>
+          </article>
+          <article>
+            <span>Check</span>
+            <h3>No errors, no warnings</h3>
+            <p>
+              Before you download, run your chunks from top to bottom and fix
+              anything that prints an error or warning. The exported file
+              contains your code exactly as written.
+            </p>
+          </article>
+          <article>
+            <span>Submit</span>
+            <h3>One file to Canvas</h3>
+            <p>
+              The exported <code>.Rmd</code> is the same file a Posit Cloud
+              student submits. Add your name in the panel so it lands in the
+              filename, then follow the
+              <a href="submission.html">submission steps</a>.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="resource-section" aria-labelledby="posit-title">
+        <h2 id="posit-title">Prefer Posit Cloud or RStudio?</h2>
+        <p>
+          The same five assignments live in the Posit Cloud project with the
+          same dataset and the same submission format. Use whichever
+          environment suits you; the teaching team grades the same
+          <code>.Rmd</code> either way.
+        </p>
+        <div class="resource-actions">
+          <a class="button secondary" href="getting-started.html">Set up Posit Cloud</a>
+          <a class="button secondary" href="https://posit.cloud" data-platform-link="workspace" target="_blank" rel="noopener">Open your saved copy</a>
+          <a class="button secondary" href="index.html#assignments">Track progress on the roadmap</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Site footer">
+      <div>
+        <strong>API-209 Summer Coding Guide</strong>
+        <p>Built by Dan Levy and Rony Rodriguez for API-209.</p>
+        <p class="footer-contact">Questions? Email <a href="mailto:rrodriguezramirez@g.harvard.edu">Rony Rodriguez-Ramirez</a> (Teaching Fellow) &middot; Slack link coming soon.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="getting-started.html">Getting started</a>
+        <a href="interactive-hour.html">Warm-up</a>
+        <a href="faq.html">FAQ</a>
+        <a href="submission.html">Submission</a>
+      </nav>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,263 @@
+---
+title: "R Summer Assignment -- Part 4"
+author: "YOUR NAME"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+editor:
+  mode: visual
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
+
+**Part 4: Summarizing Countries, Regions, and Time Periods**
+
+**Estimated time:** 2-3 hours
+
+## Learning goals
+
+By the end of Part 4, you should be able to:
+
+- summarize a filtered dataset with `summarise()`;
+- use `group_by()` to compare regions, income groups, and years;
+- explain when the unit of analysis changes;
+- report denominators when values are missing; and
+- compare means and medians without overclaiming.
+
+## How to work through this file
+
+Each summary should follow the same rhythm: define the goal, filter the data,
+summarize it, check the denominator and unit of analysis, and explain the
+result before moving on.
+
+This assignment introduces grouped summaries. You will use `group_by()` and
+`summarise()` to compare countries, regions, and years. Always check what one
+row represents before and after summarizing.
+
+## Packages and data
+
+```{r message=FALSE, warning=FALSE}
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+
+library(tidyverse)
+
+dev <- read_csv("data/development_indicators_2026.csv")
+dictionary <- read_csv("data/development_indicators_dictionary_2026.csv")
+
+hks_blue <- "#1F5F83"
+hks_crimson <- "#A51C30"
+hks_gray <- "#6B7280"
+```
+
+## Summarizing one variable
+
+Use `summarise()` to reduce a dataset to summary statistics.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  summarise(
+    mean_life_expectancy = mean(life_expectancy),
+    median_life_expectancy = median(life_expectancy),
+    n_countries = n()
+  )
+```
+
+## Grouping by region
+
+Use `group_by()` before `summarise()` to calculate statistics within groups.
+
+```{r}
+region_life_2023 <- dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  group_by(region) |>
+  summarise(
+    mean_life_expectancy = mean(life_expectancy),
+    median_life_expectancy = median(life_expectancy),
+    n_countries = n()
+  )
+
+region_life_2023
+```
+
+The unit of analysis changed. In `dev`, one row is a country-year. In
+`region_life_2023`, one row is a region.
+
+## Exercise 1: regional summaries
+
+Goal: make a regional summary and explain what one row represents after
+grouping.
+
+1. For assignment-sample countries in 2023, calculate the mean and median
+under-5 mortality by region. Include `n_countries = n()`.
+
+```{r}
+# Write your code here.
+```
+
+2. Which region has the highest median under-5 mortality in your table? What
+does one row in your summary represent?
+
+**Answer:**
+
+[Write your answer here.]
+
+3. Make a bar chart of the regional median under-5 mortality values.
+
+```{r}
+# Write your code here.
+```
+
+## Multiple grouping variables
+
+You can group by more than one variable.
+
+```{r}
+region_year_life <- dev |>
+  filter(assignment_sample == TRUE & year >= 2010) |>
+  group_by(region, year) |>
+  summarise(
+    mean_life_expectancy = mean(life_expectancy),
+    n_countries = n(),
+    .groups = "drop"
+  )
+
+head(region_year_life)
+```
+
+Plot the regional trend:
+
+```{r}
+region_year_life |>
+  ggplot(aes(x = year, y = mean_life_expectancy, color = region)) +
+  geom_line(linewidth = 1) +
+  labs(
+    x = "Year",
+    y = "Mean life expectancy",
+    color = "Region",
+    title = "Average Life Expectancy by Region",
+    subtitle = "Assignment-sample countries, 2010-2024"
+  )
+```
+
+## Missing values in summaries
+
+Some indicators have missing values. By default, `mean()` returns `NA` if any
+input value is missing.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  summarise(mean_poverty = mean(poverty_rate))
+```
+
+Use `na.rm = TRUE` to remove missing values from the calculation.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  summarise(
+    mean_poverty = mean(poverty_rate, na.rm = TRUE),
+    countries_with_poverty_data = sum(!is.na(poverty_rate)),
+    total_countries = n()
+  )
+```
+
+Missingness is substantive. Poverty data are usually based on household surveys,
+which are not available every year in every country.
+
+## Exercise 2: missingness and denominators
+
+Goal: summarize a sparse indicator while showing how much data the summary is
+based on.
+
+1. For assignment-sample countries in 2023, summarize poverty by region. Include
+the mean poverty rate, number of countries with poverty data, and total number
+of countries.
+
+```{r}
+# Write your code here.
+```
+
+2. Which regions have very few countries with poverty data in 2023? Why should
+that affect interpretation?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Mean versus median
+
+Means can be sensitive to outliers. Medians are often useful for skewed
+variables like GDP per capita.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  group_by(region) |>
+  summarise(
+    mean_gdp_pc = mean(gdp_per_capita_ppp, na.rm = TRUE),
+    median_gdp_pc = median(gdp_per_capita_ppp, na.rm = TRUE),
+    n_countries = n(),
+    .groups = "drop"
+  )
+```
+
+## Exercise 3: income summaries
+
+Goal: compare means and medians while recognizing skewed income data.
+
+1. Calculate mean and median GDP per capita by income group for 2023.
+
+```{r}
+# Write your code here.
+```
+
+2. In one or two sentences, explain why mean and median might differ.
+
+**Answer:**
+
+[Write your answer here.]
+
+## Optional challenge
+
+Compare mean and median GDP per capita by region in 2010 and 2023. What changed?
+
+```{r}
+# Optional challenge code here.
+```
+
+## AI-use note
+
+If you used AI, write one sentence describing what you asked and how you checked
+the answer. If you did not use AI, write "I did not use AI for this assignment."
+
+If AI suggested a summary, verify the grouping variables, denominator, missing
+value handling, and unit of analysis before trusting it.
+
+**AI-use note:**
+
+[Write your AI-use note here.]
+
+## Before you submit
+
+- Type your name in the panel at the top of the page so it appears in the
+  exported file and its filename.
+- Run your code chunks from top to bottom and fix any error or warning
+  before you download. The file you export contains your code exactly as
+  written.
+- Complete the AI-use note.
+- Check what one row represents before and after each summary.
+- Include denominators when summarizing sparse indicators.
+- Download your completed `.Rmd` with the **Download my .Rmd** button and
+  submit it to Canvas.

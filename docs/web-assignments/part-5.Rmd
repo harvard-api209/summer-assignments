@@ -1,0 +1,312 @@
+---
+title: "R Summer Assignment -- Part 5"
+author: "YOUR NAME"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+editor:
+  mode: visual
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
+
+**Part 5: Mini Development Diagnostic Memo**
+
+**Estimated time:** 3-4 hours
+
+## Learning goals
+
+By the end of Part 5, you should be able to:
+
+- choose a coherent country-peer comparison;
+- inspect missingness before choosing an indicator;
+- create a filtered analysis dataset;
+- produce a trend plot, comparison table, and second output;
+- write a short descriptive memo with a caveat; and
+- document and verify any AI help.
+
+## How to work through this file
+
+This capstone still follows the course rhythm: define the goal, build and check
+the data, produce output, and explain what it means as you go. The
+scaffolding is lighter here because the final task asks you to exercise
+judgment.
+
+This capstone asks you to combine the core skills from Parts 1-4: filtering,
+inspecting, mutating, plotting, summarizing, and writing a short interpretation.
+The analysis is descriptive. You may discuss possible explanations, but do not
+claim the data prove that one variable caused another.
+
+## Packages and data
+
+```{r message=FALSE, warning=FALSE}
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+
+library(tidyverse)
+
+dev <- read_csv("data/development_indicators_2026.csv")
+dictionary <- read_csv("data/development_indicators_dictionary_2026.csv")
+
+hks_blue <- "#1F5F83"
+hks_crimson <- "#A51C30"
+hks_gray <- "#6B7280"
+```
+
+## Your task
+
+Choose one country and 3-5 peer countries. Peers should be in the same region or
+same income group unless you briefly justify a different comparison.
+
+Write a short diagnostic memo that identifies one development challenge, shows
+how your country compares to peers over time, and states one caveat about the
+data.
+
+Required outputs:
+
+- One filtered country-peer dataset.
+- One trend plot.
+- One comparison table.
+- One second plot or summary statistic.
+- A short memo with question, data, approach, finding, and caveat.
+- A fuller AI-use reflection.
+
+## Step 1: choose a country and peers
+
+Start by inspecting possible countries.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  distinct(country, region, income_group) |>
+  arrange(region, country)
+```
+
+Example country-peer set:
+
+```{r}
+my_country <- "Ghana"
+peer_countries <- c("Ghana", "Kenya", "Rwanda", "Tanzania")
+```
+
+Replace the example values below with your own country and peer countries.
+
+```{r}
+my_country <- "Ghana"
+peer_countries <- c("Ghana", "Kenya", "Rwanda", "Tanzania")
+```
+
+Check that your countries exist in the data:
+
+```{r}
+dev |>
+  filter(country %in% peer_countries) |>
+  distinct(country, region, income_group) |>
+  arrange(country)
+```
+
+Are your peer countries from the same region or income group? If not, what is
+your justification?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Step 2: create your analysis dataset
+
+Filter to your countries and a recent time period.
+
+```{r}
+analysis_data <- dev |>
+  filter(country %in% peer_countries & year >= 2010)
+
+glimpse(analysis_data)
+```
+
+What does one row in `analysis_data` represent?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Step 3: inspect missingness
+
+Start with several possible indicators, inspect missingness for each, then
+choose one main diagnostic indicator for the rest of the memo. Good options
+include:
+
+- `gdp_per_capita_ppp`
+- `life_expectancy`
+- `under5_mortality`
+- `secondary_school_enrollment`
+- `unemployment_youth`
+- `co2_per_capita`
+- `government_effectiveness`
+- `poverty_rate` if coverage is adequate
+
+Inspect missing values for the candidate indicators you might use.
+
+```{r}
+analysis_data |>
+  summarise(
+    missing_gdp = sum(is.na(gdp_per_capita_ppp)),
+    missing_life_expectancy = sum(is.na(life_expectancy)),
+    missing_under5 = sum(is.na(under5_mortality)),
+    missing_poverty = sum(is.na(poverty_rate)),
+    total_rows = n()
+  )
+```
+
+After checking missingness, which one indicator will you use as your main
+diagnostic outcome, and why?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Step 4: trend plot
+
+Example trend plot:
+
+```{r}
+analysis_data |>
+  ggplot(aes(x = year, y = life_expectancy, color = country)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.4) +
+  labs(
+    x = "Year",
+    y = "Life expectancy at birth",
+    color = "Country",
+    title = "Life Expectancy Trends",
+    subtitle = "Country-peer comparison, 2010-2024"
+  )
+```
+
+Create your own trend plot using your chosen indicator.
+
+```{r}
+# Write your code here.
+```
+
+What is the main pattern in your trend plot?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Step 5: comparison table
+
+Create a table for the latest year you want to compare. Use a year with enough
+data for your chosen indicator.
+
+Example:
+
+```{r}
+comparison_table <- analysis_data |>
+  filter(year == 2023) |>
+  select(
+    country,
+    region,
+    income_group,
+    life_expectancy,
+    under5_mortality,
+    gdp_per_capita_ppp
+  ) |>
+  arrange(desc(life_expectancy))
+
+comparison_table
+```
+
+Create your own comparison table.
+
+```{r}
+# Write your code here.
+```
+
+In one sentence, what does the table show?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Step 6: second plot or summary
+
+Create one additional plot or summary statistic that helps your memo. It can
+compare countries in one year, summarize change since 2010, or show an
+association.
+
+```{r}
+# Write your code here.
+```
+
+Explain why this output is useful for your diagnostic.
+
+**Answer:**
+
+[Write your answer here.]
+
+## Step 7: short memo
+
+Write a short memo below. Be specific but concise.
+
+- **Question:** What did you ask?
+- **Data:** What does one row represent, and which variables did you use?
+- **Approach:** What filters, summaries, and plots did you create?
+- **Finding:** What is your main descriptive takeaway?
+- **Caveat:** What is one limitation or reason to be cautious?
+
+**Memo:**
+
+[Write your memo here.]
+
+## Optional extension
+
+If you want a challenge, add one polished figure with improved labels, caption,
+or direct annotations. You can also add one additional indicator from the
+dataset if it helps your memo.
+
+```{r}
+# Optional extension code here.
+```
+
+## AI-use reflection
+
+If you used AI for this capstone, document it here:
+
+- What did you ask it for?
+- What did it suggest?
+- What did you change?
+- How did you verify the code and interpretation?
+
+If you did not use AI, write "I did not use AI for this capstone."
+
+**AI-use reflection:**
+
+[Write your AI-use reflection here.]
+
+Before submitting, verify any AI-suggested code against your actual output:
+filters, countries, years, missing values, graph labels, and the memo's claim
+must all match.
+
+## Before you submit
+
+- Type your name in the panel at the top of the page so it appears in the
+  exported file and its filename.
+- Run your code chunks from top to bottom and fix any error or warning
+  before you download. The file you export contains your code exactly as
+  written.
+- Complete the memo and the AI-use reflection.
+- Check that your peer comparison is coherent.
+- Check missing values for your main indicator.
+- Make sure your graphs have meaningful labels and avoid causal claims.
+- Download your completed `.Rmd` with the **Download my .Rmd** button and
+  submit it to Canvas.

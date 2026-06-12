@@ -8,9 +8,9 @@
       name="description"
       content="Variable-by-variable reference for the API-209 Summer 2026 development indicators dataset."
     >
-    <link rel="stylesheet" href="site.css?v=24">
+    <link rel="stylesheet" href="site.css?v=28">
     <link rel="icon" href="favicon.ico">
-    <script src="site.js?v=4" defer></script>
+    <script src="site.js?v=8" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -18,18 +18,28 @@
       <a class="brand" href="index.html" aria-label="Back to API-209 summer guide">
         <span>
           <strong>API-209</strong>
-          <small>Summer R Guide</small>
+          <small>Summer Coding Guide</small>
         </span>
       </a>
       <nav class="nav-links" aria-label="Data dictionary navigation">
         <a href="index.html">Home</a>
-        <a href="getting-started.html">Getting started</a>
         <a href="interactive-hour.html">Warm-up</a>
-        <a href="index.html#assignments">Assignments</a>
+        <details class="nav-dropdown">
+          <summary>Assignments</summary>
+          <div class="nav-menu">
+            <a href="assignments.html">All assignments</a>
+            <a href="part1.html" target="_blank" rel="noopener">Part 1 · Programming Fundamentals</a>
+            <a href="part2.html" target="_blank" rel="noopener">Part 2 · Filtering Data</a>
+            <a href="part3.html" target="_blank" rel="noopener">Part 3 · Data Visualization</a>
+            <a href="part4.html" target="_blank" rel="noopener">Part 4 · Summarizing Data</a>
+            <a href="part5.html" target="_blank" rel="noopener">Part 5 · Diagnostic Memo</a>
+          </div>
+        </details>
         <a href="submission.html">Submission</a>
         <span class="nav-divider" aria-hidden="true"></span>
         <a href="faq.html">FAQ</a>
         <a href="data.html">Data</a>
+        <a href="getting-started.html">Posit Cloud</a>
       </nav>
     </header>
 
@@ -227,7 +237,7 @@
 
     <footer class="site-footer" aria-label="Site footer">
       <div>
-        <strong>API-209 Summer R Guide</strong>
+        <strong>API-209 Summer Coding Guide</strong>
         <p>Built by Dan Levy and Rony Rodriguez for API-209.</p>
         <p class="footer-contact">Questions? Email <a href="mailto:rrodriguezramirez@g.harvard.edu">Rony Rodriguez-Ramirez</a> (Teaching Fellow) &middot; Slack link coming soon.</p>
       </div>

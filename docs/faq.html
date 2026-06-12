@@ -6,11 +6,11 @@
     <title>API-209 Summer 2026 FAQ</title>
     <meta
       name="description"
-      content="Frequently asked questions for the API-209 Summer 2026 R assignments."
+      content="Frequently asked questions for the API-209 Summer 2026 coding assignments."
     >
-    <link rel="stylesheet" href="site.css?v=24">
+    <link rel="stylesheet" href="site.css?v=28">
     <link rel="icon" href="favicon.ico">
-    <script src="site.js?v=4" defer></script>
+    <script src="site.js?v=8" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -18,18 +18,28 @@
       <a class="brand" href="index.html" aria-label="Back to API-209 summer guide">
         <span>
           <strong>API-209</strong>
-          <small>Summer R Guide</small>
+          <small>Summer Coding Guide</small>
         </span>
       </a>
       <nav class="nav-links" aria-label="FAQ navigation">
         <a href="index.html">Home</a>
-        <a href="getting-started.html">Getting started</a>
         <a href="interactive-hour.html">Warm-up</a>
-        <a href="index.html#assignments">Assignments</a>
+        <details class="nav-dropdown">
+          <summary>Assignments</summary>
+          <div class="nav-menu">
+            <a href="assignments.html">All assignments</a>
+            <a href="part1.html" target="_blank" rel="noopener">Part 1 · Programming Fundamentals</a>
+            <a href="part2.html" target="_blank" rel="noopener">Part 2 · Filtering Data</a>
+            <a href="part3.html" target="_blank" rel="noopener">Part 3 · Data Visualization</a>
+            <a href="part4.html" target="_blank" rel="noopener">Part 4 · Summarizing Data</a>
+            <a href="part5.html" target="_blank" rel="noopener">Part 5 · Diagnostic Memo</a>
+          </div>
+        </details>
         <a href="submission.html">Submission</a>
         <span class="nav-divider" aria-hidden="true"></span>
         <a href="faq.html">FAQ</a>
         <a href="data.html">Data</a>
+        <a href="getting-started.html">Posit Cloud</a>
       </nav>
     </header>
 
@@ -38,9 +48,8 @@
         <p class="eyebrow">When stuck</p>
         <h1 id="faq-title">Frequently asked questions</h1>
         <p class="hero-text">
-          These answers cover the most common issues with Posit Cloud, R
-          Markdown, AI use, and submission. The assignment work itself always
-          happens in Posit Cloud.
+          These answers cover the most common issues with the in-browser
+          assignments, Posit Cloud, R Markdown, AI use, and submission.
         </p>
         <div class="faq-search" hidden>
           <label for="faq-filter">Filter the questions</label>
@@ -53,7 +62,8 @@
           <p class="faq-count" aria-live="polite"></p>
         </div>
         <nav class="faq-jump" aria-label="Jump to a section">
-          <a href="#access-title">Access &amp; setup</a>
+          <a href="#browser-faq-title">In the browser</a>
+          <a href="#access-title">Posit Cloud</a>
           <a href="#interface-title">Using Posit Cloud</a>
           <a href="#rmd-title">R Markdown</a>
           <a href="#knit-errors-title">Knitting errors</a>
@@ -63,8 +73,67 @@
         </nav>
       </section>
 
+      <section class="resource-section" aria-labelledby="browser-faq-title">
+        <h2 id="browser-faq-title">Working in the browser</h2>
+        <div class="faq-list">
+          <article>
+            <h3>Where is my work saved?</h3>
+            <p>
+              Automatically, as you type, in this browser on this device. It
+              survives closing the tab and restarting your computer. Clearing
+              your browser data deletes it, and other browsers or devices
+              cannot see it. The <code>.Rmd</code> you download with the
+              <strong>Download my .Rmd</strong> button is the durable copy —
+              export whenever you stop working.
+            </p>
+          </article>
+
+          <article>
+            <h3>I lost my work in the browser — what now?</h3>
+            <p>
+              First check that you are in the same browser, on the same
+              device, and not in a private window — each one has its own
+              storage. If the work is truly gone, open your most recent
+              downloaded <code>.Rmd</code>: your code and answers are in it,
+              and you can paste them back into the page.
+            </p>
+          </article>
+
+          <article>
+            <h3>Why is the first Run in Parts 2&ndash;5 slow?</h3>
+            <p>
+              The first Run downloads R and the tidyverse into your browser —
+              a few minutes, one time. After that, runs are fast. If you
+              prefer, the data-heavy parts also run in
+              <a href="getting-started.html">Posit Cloud</a>, which is quicker
+              for them.
+            </p>
+          </article>
+
+          <article>
+            <h3>Is the browser version the same assignment as Posit Cloud?</h3>
+            <p>
+              Yes. Same questions, same dataset, and the exported
+              <code>.Rmd</code> has the same structure — the teaching team
+              grades the same file either way.
+            </p>
+          </article>
+
+          <article>
+            <h3>Do I need Posit Cloud at all?</h3>
+            <p>
+              Not for the summer. It is an optional alternative if you prefer
+              RStudio — see the
+              <a href="getting-started.html">Posit Cloud setup page</a>.
+              During Math Camp the teaching team will move everyone to a local
+              RStudio setup.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section class="resource-section" aria-labelledby="access-title">
-        <h2 id="access-title">Access and setup</h2>
+        <h2 id="access-title">Posit Cloud: access and setup</h2>
         <div class="faq-list">
           <article>
             <h3>I cannot enter Posit Cloud. What should I do?</h3>
@@ -411,7 +480,7 @@
 
     <footer class="site-footer" aria-label="Site footer">
       <div>
-        <strong>API-209 Summer R Guide</strong>
+        <strong>API-209 Summer Coding Guide</strong>
         <p>Built by Dan Levy and Rony Rodriguez for API-209.</p>
         <p class="footer-contact">Questions? Email <a href="mailto:rrodriguezramirez@g.harvard.edu">Rony Rodriguez-Ramirez</a> (Teaching Fellow) &middot; Slack link coming soon.</p>
       </div>

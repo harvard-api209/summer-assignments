@@ -1,0 +1,319 @@
+---
+title: "R Summer Assignment -- Part 3"
+author: "YOUR NAME"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+editor:
+  mode: visual
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
+
+**Part 3: Visualizing Development Patterns**
+
+**Estimated time:** 2-3 hours
+
+## Learning goals
+
+By the end of Part 3, you should be able to:
+
+- filter data before plotting;
+- make line plots for trends over time;
+- choose coherent peer countries for comparisons;
+- make scatterplots for descriptive associations;
+- label plots clearly; and
+- explain why a graph alone is not causal evidence.
+
+## How to work through this file
+
+Each graph should follow the same rhythm: define the goal, create the filtered
+data, plot it, check the rows and labels, and explain the pattern before
+moving on.
+
+This assignment introduces `ggplot2`, the main plotting system we will use in R.
+The goal is descriptive: make graphs that show trends, comparisons, and
+associations. Do not claim that one variable causes another.
+
+A note on the exercises: copy the example code just above each exercise and
+adapt it -- change the country, the variable, the labels. Adapting working
+code is how analysts actually work. The goal is to read and adjust ggplot
+code with judgment, not to memorize its syntax.
+
+`ggplot2` uses a "grammar of graphics": the data are the cast, `aes(...)` gives
+each variable a visual role, and geoms decide what gets drawn. In code,
+`ggplot(aes(...))` maps variables to visual features such as the x-axis, y-axis,
+or color. `geom_line()` draws connected lines, `geom_point()` draws points for
+observations, and `+` adds another layer or setting to the graph.
+
+## Packages and data
+
+```{r message=FALSE, warning=FALSE}
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+
+library(tidyverse)
+
+dev <- read_csv("data/development_indicators_2026.csv")
+dictionary <- read_csv("data/development_indicators_dictionary_2026.csv")
+
+hks_blue <- "#1F5F83"
+hks_crimson <- "#A51C30"
+hks_gray <- "#6B7280"
+
+theme_set(
+  theme_minimal(base_size = 13) +
+    theme(
+      plot.title = element_text(face = "bold"),
+      plot.subtitle = element_text(color = "gray35"),
+      panel.grid.minor = element_blank()
+    )
+)
+```
+
+## A first line plot
+
+A line plot is useful for trends over time. Start by filtering to one country.
+
+```{r}
+ghana <- dev |>
+  filter(country == "Ghana")
+
+ghana |>
+  ggplot(aes(x = year, y = life_expectancy)) +
+  geom_line(color = hks_blue) +
+  geom_point(color = hks_blue) +
+  labs(
+    x = "Year",
+    y = "Life expectancy at birth",
+    title = "Life Expectancy in Ghana",
+    subtitle = "Country-year observations, 2000-2024"
+  )
+```
+
+## Exercise 1: trends
+
+Goal: make a trend plot for one country and describe the pattern in plain
+language.
+
+1. Create an object for one country other than Ghana.
+
+```{r}
+# Write your code here.
+```
+
+2. Make a line plot of that country's under-5 mortality over time. Start from
+the Ghana example above and change the country object and the y-axis variable.
+
+```{r}
+# Write your code here.
+```
+
+3. In one sentence, describe the trend.
+
+**Answer:**
+
+[Write your answer here.]
+
+## Comparing peer countries
+
+You can use `%in%` to filter to several values at once.
+
+```{r}
+east_africa_peers <- dev |>
+  filter(country %in% c("Kenya", "Rwanda", "Tanzania", "Uganda"))
+```
+
+Check the peer set before plotting it.
+
+```{r}
+east_africa_peers |>
+  distinct(country, region, income_group) |>
+  arrange(country)
+```
+
+Map color to country to compare trends.
+
+```{r}
+east_africa_peers |>
+  ggplot(aes(x = year, y = life_expectancy, color = country)) +
+  geom_line(linewidth = 1) +
+  labs(
+    x = "Year",
+    y = "Life expectancy at birth",
+    color = "Country",
+    title = "Life Expectancy Trends Across Four East African Countries"
+  )
+```
+
+## Exercise 2: coherent peer comparison
+
+Goal: choose peers that make substantive sense before graphing them.
+
+1. Choose 3-5 countries from the same region. Use `distinct()` first if you need
+to check which countries are in the region.
+
+```{r}
+# Write your code here.
+```
+
+2. Create a line plot comparing GDP per capita over time for those countries.
+
+```{r}
+# Write your code here.
+```
+
+3. What is the main comparison in your graph? What is one caveat?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Scatterplots
+
+Scatterplots are useful for associations between two variables in the same year.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  ggplot(aes(x = gdp_per_capita_ppp, y = life_expectancy)) +
+  geom_point(color = hks_blue, alpha = 0.75) +
+  scale_x_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+  labs(
+    x = "GDP per capita, PPP",
+    y = "Life expectancy at birth",
+    title = "Income and Life Expectancy",
+    subtitle = "Assignment-sample countries, 2023"
+  )
+```
+
+This graph shows an association. It does not prove that GDP per capita causes
+life expectancy.
+
+## Color and facets
+
+Color can show groups.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  ggplot(aes(x = gdp_per_capita_ppp, y = life_expectancy, color = region)) +
+  geom_point(alpha = 0.75) +
+  scale_x_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+  labs(
+    x = "GDP per capita, PPP",
+    y = "Life expectancy at birth",
+    color = "Region",
+    title = "Income and Life Expectancy by Region",
+    subtitle = "Assignment-sample countries, 2023"
+  )
+```
+
+Facets create small multiple plots within one output, usually by splitting the
+same graph across groups such as regions.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023) |>
+  ggplot(aes(x = gdp_per_capita_ppp, y = life_expectancy)) +
+  geom_point(color = hks_blue, alpha = 0.75) +
+  scale_x_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+  facet_wrap(~region) +
+  labs(
+    x = "GDP per capita, PPP",
+    y = "Life expectancy at birth",
+    title = "Income and Life Expectancy by Region",
+    subtitle = "Each panel uses the same 2023 country-year data"
+  )
+```
+
+## Exercise 3: associations
+
+Goal: make an association plot and describe it without making a causal claim.
+
+1. Make a scatterplot with GDP per capita on the x-axis and CO2 emissions per
+capita on the y-axis for assignment-sample countries in 2022 or 2023.
+
+```{r}
+# Write your code here.
+```
+
+2. Add color by `region` and clear axis labels.
+
+```{r}
+# Write your code here.
+```
+
+3. Write two sentences: one describing the association and one explaining why
+the graph alone is not causal evidence.
+
+**Answer:**
+
+[Write your answer here.]
+
+## Bar charts
+
+Bar charts can compare values across countries in one year.
+
+```{r}
+dev |>
+  filter(country %in% c("Ghana", "Kenya", "Rwanda", "Tanzania") & year == 2023) |>
+  ggplot(aes(x = reorder(country, life_expectancy), y = life_expectancy)) +
+  geom_col(fill = hks_blue) +
+  coord_flip() +
+  labs(
+    x = NULL,
+    y = "Life expectancy at birth",
+    title = "Life Expectancy Across Peer Countries",
+    subtitle = "Four countries in Sub-Saharan Africa, 2023"
+  )
+```
+
+## Optional challenge
+
+If you want more practice, use `ggrepel` to label selected countries in a
+scatterplot. Keep this optional; it is not required for submission.
+
+```{r eval=FALSE}
+install.packages("ggrepel")
+library(ggrepel)
+```
+
+For more graph examples, browse the
+[R Graph Gallery](https://r-graph-gallery.com/) or the
+[ggplot2 reference](https://ggplot2.tidyverse.org/reference/).
+
+## AI-use note
+
+If you used AI, write one sentence describing what you asked and how you checked
+the answer. If you did not use AI, write "I did not use AI for this assignment."
+
+If AI suggested a plot, verify that the filtered data, variables, geoms, labels,
+and interpretation all match the assignment question.
+
+**AI-use note:**
+
+[Write your AI-use note here.]
+
+## Before you submit
+
+- Type your name in the panel at the top of the page so it appears in the
+  exported file and its filename.
+- Run your code chunks from top to bottom and fix any error or warning
+  before you download. The file you export contains your code exactly as
+  written.
+- Complete the AI-use note.
+- Make sure your plots have meaningful labels.
+- Do not make causal claims from descriptive graphs.
+- Check that peer countries and filters are coherent.
+- Download your completed `.Rmd` with the **Download my .Rmd** button and
+  submit it to Canvas.

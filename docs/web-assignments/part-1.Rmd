@@ -1,0 +1,406 @@
+---
+title: "R Summer Assignment -- Part 1"
+author: "YOUR NAME"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+editor:
+  mode: visual
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
+
+## Summer 2026 Pre-Assignment
+
+**Part 1: R Basics for Development Data**
+
+**Estimated time:** 1.5-3 hours
+
+This first assignment is a bridge from the website warm-up into real coding
+work. You will practice the habits that will appear in every later part:
+read the prompt, run a small piece of code, check the output, and explain what
+happened.
+
+## Learning goals
+
+By the end of Part 1, you should be able to:
+
+- run R code in a chunk;
+- create objects with `<-`;
+- use comments to explain code;
+- identify basic data types;
+- use logical checks;
+- use basic functions;
+- create vectors;
+- read and fix a simple error message.
+
+## Why this matters for API-209 and MPA/ID
+
+API-209 uses data to reason carefully about policy questions. Before using
+models, graphs, or development indicators, you need a few reliable habits:
+write code you understand, check what R returned, and explain results in words
+without overclaiming. This assignment is about those habits.
+
+## Lesson 1: Run code and read output
+
+### Goal
+
+Run a code chunk and connect the code you wrote to the output R returns.
+
+### Concept
+
+R can act like a calculator. In this course, that same code-running habit will
+later help you inspect data, filter rows, calculate summaries, and make plots.
+
+### Try it
+
+Click the green run button in the code chunk, or use Cmd + Enter on a Mac /
+Ctrl + Enter on a PC.
+
+```{r}
+3 + 2
+```
+
+Try a few more calculations:
+
+```{r}
+100 - 42
+12 * 4
+144 / 12
+(4 + 2) * 3
+
+# Try your own calculation below.
+```
+
+### Check
+
+Did R print the result you expected for each line? If not, rerun one line at a
+time and check the arithmetic slowly.
+
+### Explain
+
+In one sentence, what does R do when you run a line of code?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Lesson 2: Data types
+
+### Goal
+
+Recognize the difference between numbers and text values.
+
+### Concept
+
+R works with different kinds of values. Numbers are numeric values. Words inside
+quotation marks are character values.
+
+### Try it
+
+```{r}
+2026
+"Harvard Kennedy School"
+"Ghana"
+```
+
+Write your name as a character value:
+
+```{r}
+# Write your name below, inside quotation marks.
+```
+
+### Check
+
+Your name should have quotation marks around it. Without quotation marks, R will
+look for an object with that name.
+
+### Explain
+
+Why do country names need quotation marks but years do not?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Lesson 3: Logical values
+
+### Goal
+
+Use `TRUE` and `FALSE` checks, which are the foundation of filtering data.
+
+### Concept
+
+Logical values are `TRUE` or `FALSE`. The operator `==` asks whether two things
+are equal. The operator `!=` asks whether two things are not equal. Logical
+checks can also compare size: `>` means greater than, `<` means less than, `>=`
+means greater than or equal to, and `<=` means less than or equal to.
+
+### Try it
+
+```{r}
+3 == 3
+2 == 4
+"Ghana" == "Kenya"
+```
+
+```{r}
+"Ghana" != "Kenya"
+2024 != 2023
+```
+
+```{r}
+2026 > 2024
+2020 <= 2026
+```
+
+### Practice
+
+1. Ask R whether 100 is equal to 10 times 10.
+
+```{r}
+# Write your code here.
+```
+
+2. Ask R whether `"HKS"` is not equal to `"MPAID"`.
+
+```{r}
+# Write your code here.
+```
+
+3. Add a comment above each line of code you wrote in questions 1 and 2. In R,
+comments begin with `#`.
+
+### Check
+
+Your first check should return `TRUE`. Your second check should also return
+`TRUE`.
+
+### Explain
+
+Why will logical checks matter when you later filter country-year data?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Lesson 4: Objects
+
+### Goal
+
+Create named objects and reuse them in calculations and checks.
+
+### Concept
+
+Objects store values so you can use them later. The assignment operator `<-`
+puts the value on the right into the name on the left.
+
+### Try it
+
+```{r}
+country <- "Ghana"
+year <- 2023
+population <- 33787914
+```
+
+Run the object names to see what they store:
+
+```{r}
+country
+year
+population
+```
+
+Use objects in calculations:
+
+```{r}
+population_millions <- population / 1000000
+population_millions
+```
+
+Use objects in logical checks:
+
+```{r}
+country == "Ghana"
+year >= 2020
+```
+
+### Practice
+
+1. Create an object called `my_country` with the name of a country you are
+interested in.
+
+```{r}
+# Write your code here.
+```
+
+2. Create an object called `current_year` and set it equal to 2026.
+
+```{r}
+# Write your code here.
+```
+
+3. Ask R whether `current_year` is greater than or equal to 2026.
+
+```{r}
+# Write your code here.
+```
+
+### Check
+
+Run each object name by itself. R should print the value you stored.
+
+### Explain
+
+What is one reason it is useful to store a value in an object instead of typing
+the value again and again?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Lesson 5: Functions and vectors
+
+### Goal
+
+Use functions and vectors to summarize several values.
+
+### Concept
+
+Functions perform tasks. Most functions use parentheses. A vector stores
+several values in one object. Use `c()` to combine values. Vectors are values
+you can pass into functions; they are not functions themselves.
+
+### Try it
+
+```{r}
+sqrt(9)
+log(100)
+round(3.14159, digits = 2)
+```
+
+The values inside parentheses are called arguments. Some arguments are required;
+others are optional.
+
+```{r}
+mean(c(10, 20, 30))
+max(c(10, 20, 30))
+min(c(10, 20, 30))
+```
+
+Now create two vectors:
+
+```{r}
+peer_countries <- c("Ghana", "Kenya", "Rwanda", "Tanzania")
+growth_rates <- c(3.8, 5.6, 8.2, 5.1)
+```
+
+Run the objects:
+
+```{r}
+peer_countries
+growth_rates
+mean(growth_rates)
+growth_rates > 5
+```
+
+### Practice
+
+1. Create a vector called `years` with the values 2020, 2021, 2022, and 2023.
+
+```{r}
+# Write your code here.
+```
+
+2. Create a vector called `life_expectancy_values` with four made-up numeric
+values.
+
+```{r}
+# Write your code here.
+```
+
+3. Calculate the mean of `life_expectancy_values`.
+
+```{r}
+# Write your code here.
+```
+
+### Check
+
+Your `years` object should contain four values. Your
+`life_expectancy_values` object should also contain four values, and
+`mean(life_expectancy_values)` should return one number.
+
+### Explain
+
+In plain language, what does `mean(life_expectancy_values)` ask R to do?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Lesson 6: Debug one simple error
+
+### Goal
+
+Read an error message and fix one typo.
+
+### Concept
+
+Errors are part of learning R. Read error messages slowly. They usually tell
+you where to look first.
+
+### Try it
+
+The chunk below has an intentional error so you can practice reading an error
+message. Run it, read the error, then fix the spelling in the next chunk.
+
+```{r eval=FALSE}
+squrt(9)
+```
+
+Write the corrected code here:
+
+```{r}
+# Write your corrected code here.
+```
+
+### Check
+
+The corrected code should return `3`.
+
+### Explain
+
+What was the error, and how did you fix it?
+
+**Answer:**
+
+[Write your answer here.]
+
+## AI-use note
+
+AI tools may help you understand an error message or remember what a function
+does. They should not replace your practice. If you used AI, write one sentence
+describing what you asked and how you checked the answer. If you did not use AI,
+write "I did not use AI for this assignment."
+
+**AI-use note:**
+
+[Write your AI-use note here.]
+
+## Before you submit
+
+- Type your name in the panel at the top of the page so it appears in the
+  exported file and its filename.
+- Run your code chunks from top to bottom and fix any error or warning
+  before you download. The file you export contains your code exactly as
+  written.
+- Complete the AI-use note.
+- Download your completed `.Rmd` with the **Download my .Rmd** button and
+  submit it to Canvas.

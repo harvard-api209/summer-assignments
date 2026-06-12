@@ -6,11 +6,12 @@
     <title>API-209 Interactive R Warm-up</title>
     <meta
       name="description"
-      content="A short interactive warm-up for API-209 students before starting the summer R assignments."
+      content="A short interactive warm-up for API-209 students before starting the summer coding assignments."
     >
-    <link rel="stylesheet" href="site.css?v=24">
+    <link rel="stylesheet" href="site.css?v=28">
     <link rel="icon" href="favicon.ico">
-    <script src="site.js?v=4" defer></script>
+    <script src="site.js?v=8" defer></script>
+    <script src="webr-runner.js?v=1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#top">Skip to main content</a>
@@ -23,13 +24,23 @@
       </a>
       <nav class="nav-links" aria-label="Warm-up navigation">
         <a href="index.html">Home</a>
-        <a href="getting-started.html">Getting started</a>
         <a href="interactive-hour.html">Warm-up</a>
-        <a href="index.html#assignments">Assignments</a>
+        <details class="nav-dropdown">
+          <summary>Assignments</summary>
+          <div class="nav-menu">
+            <a href="assignments.html">All assignments</a>
+            <a href="part1.html" target="_blank" rel="noopener">Part 1 · Programming Fundamentals</a>
+            <a href="part2.html" target="_blank" rel="noopener">Part 2 · Filtering Data</a>
+            <a href="part3.html" target="_blank" rel="noopener">Part 3 · Data Visualization</a>
+            <a href="part4.html" target="_blank" rel="noopener">Part 4 · Summarizing Data</a>
+            <a href="part5.html" target="_blank" rel="noopener">Part 5 · Diagnostic Memo</a>
+          </div>
+        </details>
         <a href="submission.html">Submission</a>
         <span class="nav-divider" aria-hidden="true"></span>
         <a href="faq.html">FAQ</a>
         <a href="data.html">Data</a>
+        <a href="getting-started.html">Posit Cloud</a>
       </nav>
     </header>
 
@@ -48,13 +59,17 @@
     <main id="top" class="warmup-main">
       <section class="warmup-hero" aria-labelledby="warmup-title">
         <div>
-          <p class="eyebrow">Before Assignment 1</p>
+          <p class="eyebrow">Optional warm-up</p>
           <h1 id="warmup-title">A short warm-up before R</h1>
           <p class="hero-text">
             This warm-up is for students who may be opening R for the first
             time. It is not a test. In about 20 minutes, and no more than 30,
             you will practice running small pieces of code, reading the output,
             and explaining what happened in plain language.
+          </p>
+          <p class="hero-text">
+            Already comfortable running a line of code? Skip straight to
+            <a href="part1.html">Part 1</a> — you can come back any time.
           </p>
           <div class="hero-actions" aria-label="Warm-up actions">
             <a class="button primary" href="#run-code">Begin</a>
@@ -431,13 +446,13 @@
           <h2 id="finish-title">Now open Part 1</h2>
           <p>
             You are ready to start Part 1. Keep this warm-up nearby as a
-            reference, then open the assignment file in Posit Cloud, run small
+            reference, then open Part 1 right here on the site, run small
             chunks, and ask a specific question when something is confusing.
           </p>
           <ol class="lesson-path compact" aria-label="Recommended sequence">
             <li><span>Set up</span><strong>Getting Started</strong></li>
             <li class="is-current"><span>Practice</span><strong>Warm-up</strong></li>
-            <li><span>Work</span><strong>Parts 1&ndash;5 in Posit Cloud</strong></li>
+            <li><span>Work</span><strong>Parts 1&ndash;5 on this site</strong></li>
           </ol>
         </div>
         <div class="finish-actions">
@@ -454,8 +469,8 @@
             <input type="checkbox" data-progress="finish">
             I completed the warm-up.
           </label>
-          <a class="button primary" href="https://posit.cloud" data-platform-link="workspace" target="_blank" rel="noopener">Open your saved copy in Posit Cloud</a>
-          <a class="button secondary" href="getting-started.html">Getting started</a>
+          <a class="button primary" href="part1.html">Start Part 1 in your browser</a>
+          <a class="button secondary" href="getting-started.html">Prefer RStudio? Posit Cloud setup</a>
           <a class="button secondary" href="index.html">Back to main guide</a>
         </div>
       </section>
@@ -463,7 +478,7 @@
 
     <footer class="site-footer" aria-label="Site footer">
       <div>
-        <strong>API-209 Summer R Guide</strong>
+        <strong>API-209 Summer Coding Guide</strong>
         <p>Built by Dan Levy and Rony Rodriguez for API-209.</p>
         <p class="footer-contact">Questions? Email <a href="mailto:rrodriguezramirez@g.harvard.edu">Rony Rodriguez-Ramirez</a> (Teaching Fellow) &middot; Slack link coming soon.</p>
       </div>
@@ -690,23 +705,10 @@
 
       updateLocks();
 
-      /* PROTOTYPE (plans/003): run R in the browser via webR. The ~15 MB
-         runtime loads lazily on the first click only — students who never
-         click pay nothing. Failure is non-blocking: the button degrades to
-         a pointer at Posit Cloud and never gates progress. */
-      let webRPromise = null;
-      function getWebR() {
-        if (!webRPromise) {
-          webRPromise = import("https://webr.r-wasm.org/latest/webr.mjs")
-            .then(async ({ WebR }) => {
-              const webR = new WebR();
-              await webR.init();
-              return webR;
-            });
-        }
-        return webRPromise;
-      }
-
+      /* Run R in the browser via the shared API209WebR runner
+         (webr-runner.js — pinned version, shared with the assignment
+         player). Loads lazily on the first click only; failure is
+         non-blocking and never gates progress. */
       function codeFromCard(card) {
         return [...card.querySelectorAll("code .line > span:last-child")]
           .map((span) => span.textContent)
@@ -719,25 +721,17 @@
           const status = card.querySelector(".run-status");
           const output = card.querySelector(".run-output");
           button.disabled = true;
-          status.textContent = "Loading R in your browser (one-time, ~15 MB)…";
+          status.textContent = window.API209WebR.getState().name === "ready"
+            ? "Running…"
+            : "Loading R in your browser (one-time, ~15 MB)…";
           try {
-            const webR = await getWebR();
-            status.textContent = "Running…";
-            const shelter = await new webR.Shelter();
-            const result = await shelter.captureR(codeFromCard(card), {
-              withAutoprint: true
-            });
-            const text = result.output
-              .filter((m) => m.type === "stdout" || m.type === "stderr")
-              .map((m) => m.data)
-              .join("\n");
-            output.textContent = text || "(no output)";
+            const result = await window.API209WebR.runCode(codeFromCard(card), { graphics: false });
+            output.textContent = result.text || "(no output)";
             output.hidden = false;
             status.textContent = "";
-            shelter.purge();
           } catch (err) {
             status.textContent =
-              "Could not load R in this browser — no problem, the real work happens in Posit Cloud.";
+              "Could not load R in this browser — no problem, you can still do everything on the assignment pages or in Posit Cloud.";
           } finally {
             button.disabled = false;
           }

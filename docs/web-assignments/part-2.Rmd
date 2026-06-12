@@ -1,0 +1,338 @@
+---
+title: "R Summer Assignment -- Part 2"
+author: "YOUR NAME"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+editor:
+  mode: visual
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![](https://www.hks.harvard.edu/sites/default/files/images/paragraph_footer/harvard-kennedy-school-logo_1.png)
+
+**Part 2: Filtering and Inspecting Country-Year Data**
+
+**Estimated time:** 2-3 hours
+
+## Learning goals
+
+By the end of Part 2, you should be able to:
+
+- inspect a country-year dataset before filtering it;
+- use `filter()` with one condition and with coherent combined conditions;
+- check that region, country, and year filters return the rows you expect;
+- sort rows with `arrange()`;
+- create simple variables with `mutate()`; and
+- recognize and explain missing values.
+
+## How to work through this file
+
+Each main section follows the same rhythm: identify the goal, read the concept,
+try the code, check the output, and explain what it means before moving on. Part 2 gives you more responsibility than Part 1 for checking that your
+filters match the question.
+
+In this assignment, you will use one cleaned country-year dataset built for the
+summer assignments. Each row is one country or economy in one year. Most
+indicators come from World Bank World Development Indicators. Governance
+indicators come from the Worldwide Governance Indicators. The teaching team uses
+a cleaned CSV snapshot so everyone works with the same data and the assignment
+runs reliably.
+
+## Packages and data
+
+Think of R like a phone and packages like apps. Base R can already do many
+things, but a package gives R extra tools. The `tidyverse` package collection
+gives us functions for reading, filtering, summarizing, and plotting data.
+`install.packages()` downloads a package if needed; `library()` opens it for
+this R session.
+
+Run this chunk first.
+
+```{r message=FALSE, warning=FALSE}
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+
+library(tidyverse)
+
+dev <- read_csv("data/development_indicators_2026.csv")
+dictionary <- read_csv("data/development_indicators_dictionary_2026.csv")
+```
+
+## Inspect before filtering
+
+Always inspect a dataset before filtering it.
+
+```{r}
+head(dev)
+glimpse(dev)
+nrow(dev)
+```
+
+The data dictionary explains the variables, sources, and units.
+
+```{r}
+dictionary
+```
+
+Find the row for `under5_mortality` in the dictionary. What is the unit? Does a
+higher value mean better or worse outcomes?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Values that exist
+
+Before filtering on a text value, check the exact values in the data.
+
+```{r}
+dev |> distinct(region)
+dev |> distinct(income_group)
+```
+
+Now inspect countries inside one region before choosing a country filter.
+
+```{r}
+dev |>
+  filter(region == "Sub-Saharan Africa") |>
+  distinct(country) |>
+  arrange(country)
+```
+
+**Check:** if you later filter to `region == "Sub-Saharan Africa"`, any country
+filter you add should name countries that actually appear in the list above.
+
+## Filtering rows
+
+The `filter()` function keeps rows that satisfy a condition.
+
+```{r}
+dev |>
+  filter(country == "Ghana")
+```
+
+You can filter to a year:
+
+```{r}
+dev |>
+  filter(year == 2023)
+```
+
+You can filter to one region:
+
+```{r}
+dev |>
+  filter(region == "Sub-Saharan Africa")
+```
+
+You can combine filters with `&`, which means "and."
+
+```{r}
+dev |>
+  filter(region == "Sub-Saharan Africa" & year == 2023)
+```
+
+You can filter to low- and middle-income countries using the helper column
+`is_lmic`.
+
+```{r}
+dev |>
+  filter(is_lmic == TRUE & year == 2023)
+```
+
+The required exercises use `assignment_sample == TRUE`, which keeps the focus on
+countries that are good teaching examples for these assignments.
+
+```{r}
+dev |>
+  filter(assignment_sample == TRUE & year == 2023)
+```
+
+## Exercise 1: coherent filters
+
+Goal: build filters that match the question and then inspect the result before
+interpreting it.
+
+1. Use `distinct()` to list the countries in South Asia.
+
+```{r}
+# Write your code here.
+```
+
+2. Filter to India in years 2010 or later. Save the result as `india_recent`.
+
+```{r}
+# Write your code here.
+```
+
+3. Use `head()` or `glimpse()` to inspect `india_recent`. What does one row
+represent?
+
+```{r}
+# Write your code here.
+```
+
+**Answer:**
+
+[Write your answer here.]
+
+4. Filter to countries in Sub-Saharan Africa in 2023 with life expectancy above
+   65. Save the result as `ssa_life_2023`.
+
+```{r}
+# Write your code here.
+```
+
+5. Which countries appear in `ssa_life_2023`? Does the filter make substantive
+sense?
+
+```{r}
+# Write your code here.
+```
+
+**Answer:**
+
+[Write your answer here.]
+
+## Sorting with arrange()
+
+Use `arrange()` to sort rows. By default, `arrange()` sorts from lowest to
+highest for numbers and A to Z for text. Use `desc()` when you want highest to
+lowest.
+
+```{r}
+dev |>
+  filter(region == "Sub-Saharan Africa" & year == 2023) |>
+  arrange(life_expectancy) |>
+  select(country, year, life_expectancy)
+```
+
+Use `desc()` to sort from high to low.
+
+```{r}
+dev |>
+  filter(region == "Sub-Saharan Africa" & year == 2023) |>
+  arrange(desc(life_expectancy)) |>
+  select(country, year, life_expectancy)
+```
+
+## Exercise 2: ranking
+
+Goal: sort a filtered dataset and check that the ranking is set up correctly.
+
+1. Among assignment-sample countries in 2023, sort from highest to lowest GDP
+per capita. Keep only `country`, `region`, `income_group`, `year`, and
+`gdp_per_capita_ppp`.
+
+```{r}
+# Write your code here.
+```
+
+2. Among assignment-sample countries in 2023, sort from lowest to highest
+under-5 mortality. Keep only `country`, `region`, `year`, and
+`under5_mortality`.
+
+```{r}
+# Write your code here.
+```
+
+## Creating variables with mutate()
+
+Use `mutate()` to create new columns.
+
+```{r}
+dev |>
+  mutate(gdp_per_capita_thousands = gdp_per_capita_ppp / 1000) |>
+  select(country, year, gdp_per_capita_ppp, gdp_per_capita_thousands)
+```
+
+You can save the result as a new object.
+
+```{r}
+dev_small <- dev |>
+  mutate(gdp_per_capita_thousands = gdp_per_capita_ppp / 1000)
+```
+
+## Missing values
+
+Some development indicators are missing for many country-years. Poverty and
+Gini data often come from household surveys, which are not conducted every year
+in every country.
+
+```{r}
+dev |>
+  filter(country == "Rwanda") |>
+  select(country, year, poverty_rate, gini)
+```
+
+Use `!is.na()` to keep rows where a value is not missing.
+
+```{r}
+dev |>
+  filter(country == "Rwanda" & !is.na(poverty_rate)) |>
+  select(country, year, poverty_rate)
+```
+
+## Exercise 3: missingness
+
+Goal: treat missing values as information about data availability, not as a
+technical nuisance to ignore.
+
+1. Filter to your chosen country and keep only rows where `poverty_rate` is not
+missing.
+
+```{r}
+# Write your code here.
+```
+
+2. Which years have poverty data for your country? Why might poverty be measured
+less often than population or GDP?
+
+**Answer:**
+
+[Write your answer here.]
+
+## Optional challenge
+
+Choose one country and one coherent peer country from the same region. Create a
+filtered object that contains only those two countries and years from 2010
+onward.
+
+```{r}
+# Optional challenge code here.
+```
+
+## AI-use note
+
+If you used AI, write one sentence describing what you asked and how you checked
+the answer. If you did not use AI, write "I did not use AI for this assignment."
+
+Before writing this note, verify any AI-suggested code against the actual data:
+check column names, filter values, row counts, and whether missing values were
+handled intentionally.
+
+**AI-use note:**
+
+[Write your AI-use note here.]
+
+## Before you submit
+
+- Type your name in the panel at the top of the page so it appears in the
+  exported file and its filename.
+- Run your code chunks from top to bottom and fix any error or warning
+  before you download. The file you export contains your code exactly as
+  written.
+- Complete the AI-use note.
+- Make sure each filter matches the written question.
+- Check missing values before interpreting poverty or inequality.
+- Download your completed `.Rmd` with the **Download my .Rmd** button and
+  submit it to Canvas.
