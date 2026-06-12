@@ -636,7 +636,9 @@
     }
   }
 
-  fetch(CONFIG.source)
+  /* no-cache = revalidate with the server (ETag 304 normally) so a stale
+     CDN/browser copy of the assignment source can never outlive a reload. */
+  fetch(CONFIG.source, { cache: "no-cache" })
     .then(function (res) {
       if (!res.ok) { throw new Error("HTTP " + res.status); }
       return res.text();
