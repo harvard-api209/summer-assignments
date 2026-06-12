@@ -538,6 +538,28 @@
     });
   }
 
+  /* Part pages open in their own tabs and write progress/work to
+     localStorage there; an already-open homepage must hear about it.
+     `storage` fires for changes made in OTHER tabs; visibilitychange
+     covers coming back to a tab the browser kept alive. */
+  function refreshFromStorage() {
+    progress = loadProgress();
+    syncCheckboxes();
+    renderIndex();
+  }
+
+  window.addEventListener("storage", function (event) {
+    if (!event.key || event.key.indexOf("api209-") === 0) {
+      refreshFromStorage();
+    }
+  });
+
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) {
+      refreshFromStorage();
+    }
+  });
+
   markCurrentNavLink();
   applyPlatformLinks();
   bindCheckboxes();
