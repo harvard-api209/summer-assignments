@@ -11,6 +11,10 @@ One branch is the source of truth; the student branch is generated from it.
 
 ## How notebook edits flow
 
+0. After editing `assignments/*.Rmd`, also run
+   `python3 tools/generate_web_assignments.py` so the in-browser versions
+   under `docs/web-assignments/` stay in sync, and run
+   `bash tools/verify.sh` before pushing (see `docs/DEVELOPMENT.md`).
 1. Edit `assignments/*.Rmd` (or `data/`, `scripts/`) on `2026-refresh` and push.
 2. The GitHub Action rebuilds `posit-cloud-2026` automatically: it replaces
    the student branch's tree with the student folders plus
