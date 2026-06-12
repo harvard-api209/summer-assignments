@@ -28,7 +28,12 @@ background on the student's first keystroke. The warm-up
   `docs/site.js` in sync with them.
 - **Bump cache busters** (`site.css?v=`, `site.js?v=`,
   `assignment-player.js?v=`, `webr-runner.js?v=`) in every HTML page that
-  references a file you changed.
+  references a file you changed. The assignment sources are versioned the
+  same way: each part page's `source: "web-assignments/part-N.Rmd?v=X"` —
+  bump X whenever you regenerate with content changes.
+- **Never remove `docs/.nojekyll`.** Without it, GitHub Pages runs Jekyll,
+  which strips YAML front matter from the served `.Rmd` sources and breaks
+  every in-browser assignment (while everything still works locally).
 - **webR version** is pinned in one place (`WEBR_URL` in
   `docs/webr-runner.js`). To bump it, change the constant and re-run the
   part-page test matrix in `plans/010` before pushing.
