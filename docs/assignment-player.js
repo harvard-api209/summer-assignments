@@ -636,26 +636,36 @@
     }
   }
 
-  /* no-cache = revalidate with the server (ETag 304 normally) so a stale
-     CDN/browser copy of the assignment source can never outlive a reload. */
-  fetch(CONFIG.source, { cache: "no-cache" })
-    .then(function (res) {
-      if (!res.ok) { throw new Error("HTTP " + res.status); }
-      return res.text();
-    })
-    .then(function (text) {
-      parsed = parseRmd(text);
-      var problems = validateParse(parsed, text);
-      if (problems.length) {
-        var loadingEl = document.getElementById("player-loading");
-        if (loadingEl) {
-          loadingEl.innerHTML = "⚠ This assignment didn't load correctly (" +
-            escapeHtml(problems.join("; ")) + "). Reload the page; if it " +
-            "persists, use <a href=\"getting-started.html\">Posit Cloud</a> " +
-            "and tell the teaching team.";
+  /* no-cache = revalidate with the server; if a stale cache still hands us
+     a broken copy (e.g. an old CDN/browser entry), retry once with a
+     cache-busting URL before declaring failure — self-healing for the
+     stale-source class of errors. */
+  function fetchSource(bustCache) {
+    var url = CONFIG.source;
+    if (bustCache) {
+      url += (url.indexOf("?") === -1 ? "?" : "&") + "fresh=" + Date.now();
+    }
+    return fetch(url, { cache: bustCache ? "reload" : "no-cache" })
+      .then(function (res) {
+        if (!res.ok) { throw new Error("HTTP " + res.status); }
+        return res.text();
+      })
+      .then(function (text) {
+        var p = parseRmd(text);
+        var problems = validateParse(p, text);
+        if (problems.length) {
+          if (!bustCache) { return fetchSource(true); }
+          var err = new Error(problems.join("; "));
+          err.isParse = true;
+          throw err;
         }
-        return;
-      }
+        return p;
+      });
+  }
+
+  fetchSource(false)
+    .then(function (result) {
+      parsed = result;
       parsed.blocks.forEach(function (block) {
         if (block.type === "chunk") {
           if (!block.hidden) { root.appendChild(buildChunk(block)); }
@@ -672,8 +682,13 @@
     .catch(function (err) {
       var loading = document.getElementById("player-loading");
       if (loading) {
-        loading.innerHTML = "Could not load the assignment in this view. " +
-          "Open it in <a href=\"getting-started.html\">Posit Cloud</a> instead.";
+        loading.innerHTML = err && err.isParse
+          ? "⚠ This assignment didn't load correctly (" +
+            escapeHtml(err.message) + "). Reload the page; if it persists, " +
+            "use <a href=\"getting-started.html\">Posit Cloud</a> and tell " +
+            "the teaching team."
+          : "Could not load the assignment in this view. " +
+            "Open it in <a href=\"getting-started.html\">Posit Cloud</a> instead.";
       }
     });
 })();
