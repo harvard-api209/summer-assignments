@@ -431,6 +431,7 @@
     runBtn.type = "button";
     runBtn.className = "run-code-button";
     runBtn.textContent = "▶ Run";
+    runBtn.title = "Run this chunk (⌘/Ctrl + Enter)";
     var status = document.createElement("span");
     status.className = "run-status";
     status.setAttribute("aria-live", "polite");
@@ -455,6 +456,17 @@
     });
     runBtn.addEventListener("click", function () {
       runChunk(area.value, runBtn, status, output, plots);
+    });
+    /* Cmd/Ctrl + Enter (with or without Shift, matching RStudio) runs the
+       chunk, so the keyboard hint shown in the assignment text is true in
+       the browser too. A plain Enter still inserts a newline. */
+    area.addEventListener("keydown", function (event) {
+      if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+        event.preventDefault();
+        if (!runBtn.disabled) {
+          runChunk(area.value, runBtn, status, output, plots);
+        }
+      }
     });
     return card;
   }
