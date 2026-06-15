@@ -60,8 +60,8 @@ later help you inspect data, filter rows, calculate summaries, and make plots.
 
 ### Try it
 
-Click the green run button in the code chunk, or use Cmd + Enter on a Mac /
-Ctrl + Enter on a PC.
+Click the **Run** button below the code, or press Ctrl + Enter (Cmd + Enter
+on a Mac).
 
 ```{r}
 3 + 2

@@ -75,6 +75,13 @@ PROSE_SUBS = {
          "Cloud work.",
          "This first assignment is a bridge from the website warm-up into real coding\n"
          "work."),
+        # In the browser the run control is a dark "Run" button, not the green
+        # arrow students see in RStudio — keep the canonical (Posit) text and
+        # rewrite only the browser copy so it matches what they actually see.
+        ("Click the green run button in the code chunk, or use Cmd + Enter on a Mac /\n"
+         "Ctrl + Enter on a PC.",
+         "Click the **Run** button below the code, or press Ctrl + Enter (Cmd + Enter\n"
+         "on a Mac)."),
     ],
     2: [
         ("try the code, check the output, explain what it means, and knit before moving\n"
