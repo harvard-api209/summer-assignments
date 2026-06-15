@@ -199,7 +199,8 @@ Create named objects and reuse them in calculations and checks.
 ### Concept
 
 Objects store values so you can use them later. The assignment operator `<-`
-puts the value on the right into the name on the left.
+puts the value on the right into the name on the left. To see what an object
+holds, type its name on its own line and run it -- R prints the stored value.
 
 ### Try it
 
