@@ -82,6 +82,15 @@ PROSE_SUBS = {
          "Ctrl + Enter on a PC.",
          "Click the **Run** button below the code, or press Ctrl + Enter (Cmd + Enter\n"
          "on a Mac)."),
+        # The browser runs the whole chunk at once and stacks every line's
+        # output, so "rerun one line at a time" (an RStudio mechanic) does not
+        # apply — students check the results that are already shown together.
+        ("Did R print the result you expected for each line? If not, rerun one line at a\n"
+         "time and check the arithmetic slowly.",
+         "Did R print the result you expected for each line? The chunk shows every\n"
+         "line's result together — read each one and check the arithmetic slowly."),
+        ("Run each object name by itself. R should print the value you stored.",
+         "Run each object name to print the value you stored."),
     ],
     2: [
         ("try the code, check the output, explain what it means, and knit before moving\n"

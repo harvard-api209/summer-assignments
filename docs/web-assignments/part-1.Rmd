@@ -80,8 +80,8 @@ Try a few more calculations:
 
 ### Check
 
-Did R print the result you expected for each line? If not, rerun one line at a
-time and check the arithmetic slowly.
+Did R print the result you expected for each line? The chunk shows every
+line's result together — read each one and check the arithmetic slowly.
 
 ### Explain
 
@@ -254,7 +254,7 @@ interested in.
 
 ### Check
 
-Run each object name by itself. R should print the value you stored.
+Run each object name to print the value you stored.
 
 ### Explain
 
