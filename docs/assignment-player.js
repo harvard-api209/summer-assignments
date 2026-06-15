@@ -407,6 +407,10 @@
     reset.type = "button";
     reset.className = "chunk-reset";
     reset.textContent = "Reset code";
+    reset.title = "Restore the original code for this chunk";
+    /* Disabled until the student edits: an untouched pre-written chunk has
+       nothing to reset, so a live button there only looks broken. */
+    reset.disabled = state.chunks[block.editIdx] === undefined;
     bar.appendChild(tag);
     bar.appendChild(reset);
     card.appendChild(bar);
@@ -419,6 +423,7 @@
       : block.body;
     area.addEventListener("input", function () {
       state.chunks[block.editIdx] = area.value;
+      reset.disabled = false;
       autoGrow(area);
       scheduleSave();
     });
@@ -435,7 +440,14 @@
     var status = document.createElement("span");
     status.className = "run-status";
     status.setAttribute("aria-live", "polite");
+    var clearOut = document.createElement("button");
+    clearOut.type = "button";
+    clearOut.className = "chunk-clear-output";
+    clearOut.textContent = "Clear output";
+    clearOut.title = "Clear this chunk's output so you can run it fresh";
+    clearOut.hidden = true;
     runBar.appendChild(runBtn);
+    runBar.appendChild(clearOut);
     runBar.appendChild(status);
     card.appendChild(runBar);
 
@@ -451,11 +463,18 @@
     reset.addEventListener("click", function () {
       area.value = block.body;
       delete state.chunks[block.editIdx];
+      reset.disabled = true;
       autoGrow(area);
       scheduleSave();
     });
+    clearOut.addEventListener("click", function () {
+      output.hidden = true;
+      output.textContent = "";
+      plots.innerHTML = "";
+      clearOut.hidden = true;
+    });
     runBtn.addEventListener("click", function () {
-      runChunk(area.value, runBtn, status, output, plots);
+      runChunk(area.value, runBtn, status, output, plots, clearOut);
     });
     /* Cmd/Ctrl + Enter (with or without Shift, matching RStudio) runs the
        chunk, so the keyboard hint shown in the assignment text is true in
@@ -464,7 +483,7 @@
       if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
         event.preventDefault();
         if (!runBtn.disabled) {
-          runChunk(area.value, runBtn, status, output, plots);
+          runChunk(area.value, runBtn, status, output, plots, clearOut);
         }
       }
     });
@@ -480,7 +499,7 @@
     return pre;
   }
 
-  async function runChunk(code, button, status, output, plots) {
+  async function runChunk(code, button, status, output, plots, clearOut) {
     button.disabled = true;
     status.textContent = runner.getState().name === "ready"
       ? "Running…"
@@ -514,6 +533,10 @@
       }
     } finally {
       button.disabled = false;
+      if (clearOut) {
+        /* Offer "Clear output" whenever there is something to clear. */
+        clearOut.hidden = output.hidden && !plots.children.length;
+      }
     }
   }
 
@@ -526,6 +549,9 @@
       });
       document.querySelectorAll("#player-doc .run-plots").forEach(function (p) {
         p.innerHTML = "";
+      });
+      document.querySelectorAll("#player-doc .chunk-clear-output").forEach(function (b) {
+        b.hidden = true;
       });
       var el = document.getElementById("engine-status");
       if (el) {

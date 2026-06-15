@@ -1962,8 +1962,30 @@ body.unlock-all .continue-panel {
   text-decoration: underline;
 }
 
-.chunk-reset:hover {
+.chunk-reset:hover:not(:disabled) {
   color: #e5edf4;
+}
+
+.chunk-reset:disabled {
+  cursor: default;
+  opacity: 0.4;
+  text-decoration: none;
+}
+
+.chunk-clear-output {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  color: #cfdae4;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+}
+
+.chunk-clear-output:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
 }
 
 .code-editor {
